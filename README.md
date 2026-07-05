@@ -1,2 +1,2 @@
-# buffett-agent
-A Streamlit web app that screens any stock through Warren Buffett &amp; Charlie Munger, Benjamin Graham, and Peter Lynch's public investing criteria — scoring moat strength, valuation, debt, and growth, with plain-English pros/cons and a portfolio tracker. Educational tool, not financial advice.
+Buffett-Style Investing Agent
+A local-first web app that runs any stock through three famous investors' public criteria at once: Buffett/Munger (quality compounding), Benjamin Graham (deep value), and Peter Lynch (growth at a reasonable price). Get a score, plain-English pros and cons, and an overall verdict for each ticker, plus a simple portfolio tracker. Built on free Yahoo Finance data via yfinance. Educational research tool only — not financial advice, and it never places trades
