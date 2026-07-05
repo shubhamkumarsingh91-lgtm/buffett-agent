@@ -9,13 +9,54 @@ gracefully (they do; see strategies.py's "neutral score + note" pattern).
 
 IMPORTANT: this requires a normal internet connection. It will NOT work in a
 network-sandboxed environment — run it on your own machine.
+
+RATE LIMITING: Yahoo Finance aggressively rate-limits requests from shared
+cloud IP ranges (Streamlit Community Cloud, Render, etc. all trip this
+sometimes). `_with_retries()` below retries with exponential backoff + jitter
+on rate-limit errors, and `_make_session()` uses a browser-impersonating
+session to look less like a bot. This reduces failures but can't eliminate
+them if Yahoo has temporarily blocked the whole IP range — if lookups keep
+failing, wait a few minutes, or see README.md's "Rate limiting" section for
+a paid-API fallback option.
 """
 
 from __future__ import annotations
 
+import random
 import statistics
+import time
 from dataclasses import dataclass, field
 from typing import Optional
+
+
+def _make_session():
+    """Browser-impersonating session, if curl_cffi is available, to reduce bot-detection hits."""
+    try:
+        from curl_cffi import requests as cffi_requests
+        return cffi_requests.Session(impersonate="chrome124")
+    except Exception:
+        return None
+
+
+def _is_rate_limit_error(exc: Exception) -> bool:
+    msg = str(exc).lower()
+    return any(s in msg for s in ("rate limit", "too many requests", "429", "rate-limited"))
+
+
+def _with_retries(fn, retries: int = 4, base_delay: float = 2.0):
+    """Call fn() with exponential backoff + jitter, retrying only on rate-limit-shaped errors."""
+    last_exc = None
+    for attempt in range(retries):
+        try:
+            return fn()
+        except Exception as e:
+            last_exc = e
+            if attempt < retries - 1 and _is_rate_limit_error(e):
+                delay = base_delay * (2 ** attempt) + random.uniform(0, 1.5)
+                time.sleep(delay)
+                continue
+            raise
+    raise last_exc
 
 
 @dataclass
@@ -131,20 +172,29 @@ def fetch_stock_data(ticker: str) -> StockData:
         raise SystemExit("Missing dependency. Install with:  pip install yfinance") from e
 
     notes = []
-    t = yf.Ticker(ticker)
+    session = _make_session()
+    t = yf.Ticker(ticker, session=session) if session else yf.Ticker(ticker)
 
     try:
-        info = t.info or {}
+        info = _with_retries(lambda: t.info or {})
     except Exception as e:
+        if _is_rate_limit_error(e):
+            raise SystemExit(
+                f"Yahoo Finance is rate-limiting requests right now (ticker '{ticker}'). "
+                f"This happens on shared cloud IPs when many requests come in close together. "
+                f"Wait a minute and try again — if it keeps happening, see README.md's "
+                f"'Rate limiting' section."
+            )
         raise SystemExit(f"Could not fetch data for '{ticker}': {e}")
 
     try:
-        fin = t.financials
-        bs = t.balance_sheet
-        cf = t.cashflow
+        fin = _with_retries(lambda: t.financials)
+        bs = _with_retries(lambda: t.balance_sheet)
+        cf = _with_retries(lambda: t.cashflow)
     except Exception:
         fin = bs = cf = None
-        notes.append("Historical statement data unavailable from Yahoo Finance for this ticker.")
+        notes.append("Historical statement data unavailable from Yahoo Finance for this ticker "
+                      "(or temporarily rate-limited).")
 
     net_income_series = _series_from(fin, ["Net Income", "NetIncome"])
     revenue_series = _series_from(fin, ["Total Revenue", "TotalRevenue"])
@@ -187,7 +237,7 @@ def fetch_stock_data(ticker: str) -> StockData:
 
     news = []
     try:
-        raw_news = t.news or []
+        raw_news = _with_retries(lambda: t.news or [], retries=2)
         for item in raw_news[:8]:
             c = item.get("content", item)  # yfinance news shape has varied across versions
             title = c.get("title") or item.get("title")
