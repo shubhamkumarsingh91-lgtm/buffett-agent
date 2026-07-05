@@ -23,6 +23,14 @@ from portfolio import Portfolio
 
 st.set_page_config(page_title="Buffett-Style Investing Agent", layout="wide")
 
+
+@st.cache_data(ttl=900, show_spinner=False)
+def cached_fetch(ticker: str):
+    """Cache each ticker's data for 15 minutes so repeated lookups (including the
+    Portfolio tab re-checking every holding) don't hammer Yahoo Finance and trip
+    its rate limiter."""
+    return fetch_stock_data(ticker)
+
 if "portfolio" not in st.session_state:
     st.session_state.portfolio = Portfolio()
 
@@ -51,7 +59,7 @@ def render_strategy_card(result):
 def analyze(ticker: str):
     with st.spinner(f"Fetching live data for {ticker}..."):
         try:
-            data = fetch_stock_data(ticker)
+            data = cached_fetch(ticker)
         except SystemExit as e:
             st.error(str(e))
             return None
@@ -151,7 +159,7 @@ with tab_portfolio:
         total_cost = 0.0
         for h in holdings:
             try:
-                data = fetch_stock_data(h.ticker)
+                data = cached_fetch(h.ticker)
                 b = buffett_score(data)
                 g = graham_score(data)
                 l = lynch_score(data)
