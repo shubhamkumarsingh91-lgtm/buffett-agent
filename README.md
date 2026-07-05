@@ -94,3 +94,20 @@ around), construct a `StockData` object directly and pass it to the
   Every buy/sell decision should go through you, deliberately.
 - **Not investment advice.** Treat every score as a prompt for your own
   research, not a final answer.
+
+## Rate limiting
+
+Yahoo Finance (the free data source behind `yfinance`) rate-limits requests
+from shared cloud IP ranges more aggressively than from a home connection —
+this shows up as "Too Many Requests" errors, most often on Streamlit
+Community Cloud, Render, and similar free hosts. `data.py` already retries
+automatically with backoff and uses a browser-impersonating session to
+reduce the odds of this, and `app.py` caches each ticker's data for 15
+minutes so the Portfolio tab doesn't re-trigger it. If it still happens
+often on your deployment:
+
+1. Wait a minute or two and try again — it's usually temporary.
+2. Avoid analyzing many different tickers back-to-back in a short burst.
+3. If it's persistent, swap the data source in `data.py` for a key-based API
+   with a generous free tier (e.g. Financial Modeling Prep or Twelve Data)
+   — ask me and I'll wire that in.
