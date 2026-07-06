@@ -56,7 +56,7 @@ def resolve_api_key() -> str:
     everyone using a deployed link); fall back to a key pasted into the
     sidebar for this browser session only."""
     try:
-        secret_key = st.secrets.get("ANTHROPIC_API_KEY")
+        secret_key = st.secrets.get("GEMINI_API_KEY")
         if secret_key:
             return secret_key
     except Exception:
@@ -345,18 +345,19 @@ with st.sidebar:
     st.markdown("#### ⚡ AI Features")
     deployer_key_present = False
     try:
-        deployer_key_present = bool(st.secrets.get("ANTHROPIC_API_KEY"))
+        deployer_key_present = bool(st.secrets.get("GEMINI_API_KEY"))
     except Exception:
         pass
 
     if deployer_key_present:
         st.success("AI screenshot import & chatbot are enabled for everyone using this deployment.")
     else:
-        st.caption("Screenshot import and the chatbot need an Anthropic API key. "
-                   "Get one free at console.anthropic.com → API Keys, then paste it below. "
-                   "It's kept only for this browser session -- never saved to disk or committed anywhere.")
-        st.text_input("Anthropic API key", type="password", key="user_api_key",
-                       placeholder="sk-ant-...")
+        st.caption("Screenshot import and the chatbot need a free Gemini API key. "
+                   "Get one at aistudio.google.com → Get API Key (no credit card needed), "
+                   "then paste it below. It's kept only for this browser session -- never "
+                   "saved to disk or committed anywhere.")
+        st.text_input("Gemini API key", type="password", key="user_api_key",
+                       placeholder="AIza...")
         if resolve_api_key():
             st.success("Key set for this session.")
         else:
@@ -557,7 +558,7 @@ with tab_import:
                 "screenshots isn't perfect.")
 
     if not api_key:
-        st.warning("Add an Anthropic API key in the sidebar to use this feature.")
+        st.warning("Add a Gemini API key in the sidebar to use this feature.")
     else:
         uploaded = st.file_uploader("Portfolio screenshot", type=["png", "jpg", "jpeg"])
         if uploaded is not None:
@@ -618,7 +619,7 @@ with tab_chat:
                "trades -- and it's not financial advice.")
 
     if not api_key:
-        st.warning("Add an Anthropic API key in the sidebar to use the chatbot.")
+        st.warning("Add a Gemini API key in the sidebar to use the chatbot.")
     else:
         for msg in st.session_state.chat_history:
             with st.chat_message(msg["role"]):
