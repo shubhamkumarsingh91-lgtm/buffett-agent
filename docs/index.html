@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<!--
+  LONG-TERM LAB — Buffett / Graham / Lynch stock screener (read-only website)
+  DISCLAIMER: Independent personal project. Not tied to any employer or agency.
+  Public market data only (Yahoo Finance). No internal or personal data (no SSNs/PHI).
+  Educational research, not financial advice. This page never places trades and holds no API keys.
+  Data: docs/data/scores.json + history.json, rebuilt by .github/workflows/update.yml.
+  "Our portfolio" holdings live only in each viewer's own browser (localStorage), never in the repo.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Long-Term Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#0b0d10; --bg2:#101318; --panel:#13171d; --line:#232933; --line2:#2d3540;
+  --text:#e8eaee; --mute:#8b93a1; --dim:#5b6372;
+  --gold:#d9b46c; --gold2:#f0d79c;
+  --buy:#3ccf91; --research:#6aa8ff; --hold:#c9a24a; --pass:#e3646f;
+  --buffett:#d9b46c; --graham:#7fb3ff; --lynch:#b993ff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--text);font:14px/1.5 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body{background:radial-gradient(900px 500px at 80% -10%,rgba(217,180,108,.08),transparent 60%),var(--bg)}
+a{color:inherit}
+.mono{font-family:"JetBrains Mono",monospace}
+.serif{font-family:Fraunces,Georgia,serif}
+.wrap{max-width:1240px;margin:0 auto;padding:28px 24px 64px}
+header{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:22px}
+h1{font-family:Fraunces,serif;font-weight:600;font-size:34px;letter-spacing:-.5px}
+h1 span{color:var(--gold)}
+.tag{color:var(--mute);font-size:13px;margin-top:4px;max-width:560px}
+.meta{display:flex;gap:10px;flex-wrap:wrap}
+.pill{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:6px 12px;font-size:12px;color:var(--mute)}
+.pill b{color:var(--text);font-weight:500}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:20px}
+.tab{all:unset;cursor:pointer;padding:10px 14px;color:var(--mute);border-bottom:2px solid transparent;margin-bottom:-1px;font-weight:500}
+.tab.on{color:var(--text);border-color:var(--gold)}
+.intro{border:1px solid var(--line);background:linear-gradient(180deg,#141922,#11151b);border-radius:14px;padding:18px 20px;margin-bottom:18px;display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:20px;position:relative}
+.intro h3{font-family:Fraunces,serif;font-size:17px;font-weight:600;margin-bottom:4px}
+.intro p{color:var(--mute);font-size:12.5px}
+.intro .lens b{display:flex;align-items:center;gap:8px;margin-bottom:4px;font-size:13px}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex:none}
+.x{all:unset;cursor:pointer;position:absolute;right:12px;top:8px;color:var(--dim);font-size:18px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
+.stat{border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:14px 16px}
+.stat .k{font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--mute)}
+.stat .v{font-family:Fraunces,serif;font-size:28px;margin-top:4px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+.toolbar input,.toolbar select{background:var(--panel);border:1px solid var(--line);color:var(--text);border-radius:9px;padding:8px 11px;font:inherit;font-size:13px}
+.toolbar input{min-width:200px}
+.chip{all:unset;cursor:pointer;border:1px solid var(--line);border-radius:999px;padding:6px 11px;font-size:12px;color:var(--mute)}
+.chip.on{color:var(--text);border-color:var(--gold);background:rgba(217,180,108,.08)}
+.spacer{flex:1}
+.btn{all:unset;cursor:pointer;border:1px solid var(--line2);border-radius:9px;padding:8px 12px;font-size:12.5px;color:var(--text);background:var(--panel)}
+.btn:hover{border-color:var(--gold)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
+.card{border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:16px;cursor:pointer;transition:border-color .2s,transform .2s}
+.card:hover{border-color:var(--line2);transform:translateY(-2px)}
+.card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.tk{font-family:"JetBrains Mono",monospace;font-weight:500;font-size:16px}
+.nm{color:var(--mute);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:170px}
+.price{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--mute);margin-top:2px}
+.ring{position:relative;width:58px;height:58px;flex:none}
+.ring svg{transform:rotate(-90deg)}
+.ring b{position:absolute;inset:0;display:grid;place-items:center;font-family:Fraunces,serif;font-size:18px}
+.badge{display:inline-block;font-size:10.5px;letter-spacing:.6px;text-transform:uppercase;padding:3px 8px;border-radius:6px;margin-top:10px;font-weight:600}
+.b-buy{background:rgba(60,207,145,.12);color:var(--buy)}
+.b-research{background:rgba(106,168,255,.12);color:var(--research)}
+.b-hold{background:rgba(201,162,74,.12);color:var(--hold)}
+.b-pass{background:rgba(227,100,111,.12);color:var(--pass)}
+.bars{margin-top:12px;display:grid;gap:6px}
+.bar{display:grid;grid-template-columns:62px 1fr 30px;align-items:center;gap:8px;font-size:11.5px;color:var(--mute)}
+.track{height:5px;background:#1c222b;border-radius:4px;overflow:hidden}
+.track i{display:block;height:100%;border-radius:4px}
+.bar span:last-child{text-align:right;color:var(--text);font-family:"JetBrains Mono",monospace}
+.note{margin-top:10px;font-size:11.5px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.stale{color:var(--hold);font-size:11px;margin-left:6px}
+.empty{border:1px dashed var(--line2);border-radius:14px;padding:40px;text-align:center;color:var(--mute)}
+/* drawer */
+.shade{position:fixed;inset:0;background:rgba(0,0,0,.55);opacity:0;pointer-events:none;transition:.2s;z-index:20}
+.shade.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;height:100%;width:min(860px,100%);background:var(--bg2);border-left:1px solid var(--line);transform:translateX(100%);transition:transform .28s cubic-bezier(.2,.8,.2,1);z-index:21;overflow-y:auto}
+.drawer.on{transform:none}
+.dh{position:sticky;top:0;background:rgba(16,19,24,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:16px 22px;display:flex;justify-content:space-between;align-items:center;gap:10px;z-index:2}
+.dh .t{font-family:Fraunces,serif;font-size:22px}
+.db{padding:20px 22px 40px;display:grid;gap:18px}
+.sec{border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:16px}
+.sec h4{font-size:11px;letter-spacing:1.3px;text-transform:uppercase;color:var(--mute);margin-bottom:12px;font-weight:600}
+.lenses{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.lens{border:1px solid var(--line);border-radius:12px;padding:14px;background:#11151b}
+.lens .h{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.lens .n{font-weight:600;font-size:13px}
+.lens .s{font-family:Fraunces,serif;font-size:26px}
+.lens .vd{font-size:11px;color:var(--mute);margin-bottom:10px}
+.lens ul{list-style:none;display:grid;gap:7px;font-size:12px}
+.lens li{padding-left:16px;position:relative;color:#c9ced6}
+.lens li::before{position:absolute;left:0;top:0;font-weight:700}
+.lens li.p::before{content:"+";color:var(--buy)}
+.lens li.c::before{content:"–";color:var(--pass)}
+.kv{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.kv div{background:#11151b;border:1px solid var(--line);border-radius:9px;padding:10px}
+.kv span{display:block;font-size:10.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.8px}
+.kv b{display:block;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:14px;margin-top:3px}
+.tip{display:inline-grid;place-items:center;width:14px;height:14px;border:1px solid var(--dim);border-radius:50%;font-size:9px;font-style:normal;color:var(--mute);cursor:help;position:relative;margin-left:4px;text-transform:none;letter-spacing:0;vertical-align:1px}
+.tip::after{content:attr(data-t);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:230px;background:#0e1116;border:1px solid var(--line2);border-radius:8px;padding:9px 10px;font-size:11.5px;line-height:1.45;color:var(--text);opacity:0;pointer-events:none;transition:.15s;z-index:30;text-align:left}
+.tip:hover::after{opacity:1}
+#tv{height:380px;border-radius:10px;overflow:hidden}
+.news a{display:block;padding:9px 0;border-bottom:1px solid var(--line);text-decoration:none;font-size:13px}
+.news a:last-child{border:0}
+.news small{color:var(--dim)}
+/* portfolio */
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;font-weight:500;color:var(--mute);font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:0 10px 10px}
+td{padding:10px;border-top:1px solid var(--line)}
+td.n{font-family:"JetBrains Mono",monospace;text-align:right}
+th.n{text-align:right}
+.up{color:var(--buy)} .down{color:var(--pass)} .muted{color:var(--mute)}
+.form{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.form input{background:#11151b;border:1px solid var(--line);color:var(--text);border-radius:9px;padding:8px 10px;font:inherit;font-size:13px;width:130px}
+footer{margin-top:40px;color:var(--dim);font-size:11.5px;text-align:center;line-height:1.7}
+@media(max-width:860px){.intro,.stats,.lenses,.kv{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.intro,.stats,.lenses,.kv{grid-template-columns:1fr}.wrap{padding:20px 16px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Long-Term <span>Lab</span></h1>
+      <div class="tag">A shared research desk for long-term investing. Every stock on our watchlist is scored through three classic investors' rules, refreshed every weekday evening.</div>
+    </div>
+    <div class="meta">
+      <div class="pill">Updated <b id="upd">—</b></div>
+      <div class="pill"><b id="cnt">—</b> stocks</div>
+      <a class="pill" id="editLink" target="_blank" rel="noopener" style="text-decoration:none">✎ Edit watchlist</a>
+    </div>
+  </header>
+
+  <div class="tabs">
+    <button class="tab on" data-v="watch">Watchlist</button>
+    <button class="tab" data-v="port">Our portfolio</button>
+    <button class="tab" data-v="how">How it works</button>
+  </div>
+
+  <!-- WATCHLIST -->
+  <section id="v-watch">
+    <div class="intro" id="intro">
+      <button class="x" onclick="hideIntro()" title="Hide">×</button>
+      <div><h3>What am I looking at?</h3><p>Each card is a company we're considering holding for years. The big number (0–100) is the average of three lenses. Higher means more of each investor's rules are met. It's a research starting point, not a buy signal.</p></div>
+      <div class="lens"><b><span class="dot" style="background:var(--buffett)"></span>Buffett &amp; Munger</b><p>Great business at a fair price: strong margins, low debt, high returns on equity, buybacks, margin of safety.</p></div>
+      <div class="lens"><b><span class="dot" style="background:var(--graham)"></span>Benjamin Graham</b><p>Deep value: price below the Graham Number, cheap P/E × P/B, strong liquidity, steady profits, dividends.</p></div>
+      <div class="lens"><b><span class="dot" style="background:var(--lynch)"></span>Peter Lynch</b><p>Growth at a reasonable price: PEG under 1, the right growth category, manageable debt, not over-owned by funds.</p></div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="k">Buy candidates</div><div class="v" id="sBuy" style="color:var(--buy)">—</div></div>
+      <div class="stat"><div class="k">Worth researching</div><div class="v" id="sRes" style="color:var(--research)">—</div></div>
+      <div class="stat"><div class="k">Average score</div><div class="v" id="sAvg">—</div></div>
+      <div class="stat"><div class="k">Top pick today</div><div class="v mono" id="sTop" style="font-size:22px">—</div></div>
+    </div>
+
+    <div class="toolbar">
+      <input id="q" placeholder="Search ticker or name…">
+      <select id="sort">
+        <option value="overall">Sort: overall score</option>
+        <option value="buffett">Sort: Buffett</option>
+        <option value="graham">Sort: Graham</option>
+        <option value="lynch">Sort: Lynch</option>
+        <option value="mos">Sort: margin of safety</option>
+        <option value="ticker">Sort: A → Z</option>
+      </select>
+      <button class="chip on" data-f="all">All</button>
+      <button class="chip" data-f="BUY candidate">Buy candidates</button>
+      <button class="chip" data-f="WORTH RESEARCHING">Worth researching</button>
+      <button class="chip" data-f="HOLD / NEUTRAL">Neutral</button>
+      <button class="chip" data-f="LIKELY PASS">Likely pass</button>
+    </div>
+    <div class="grid" id="grid"><div class="empty">Loading scores…</div></div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="v-port" hidden>
+    <div class="sec" style="margin-bottom:14px">
+      <h4>Our portfolio <i class="tip" data-t="Saved only in this browser on this device. Nothing is uploaded or published. Use Export/Import to copy it to another device or share it with each other.">i</i></h4>
+      <div class="form">
+        <input id="pT" placeholder="Ticker (e.g. KO)">
+        <input id="pS" type="number" step="any" placeholder="Shares">
+        <input id="pC" type="number" step="any" placeholder="Cost / share ($)">
+        <button class="btn" onclick="addHolding()">Add / update</button>
+        <span id="pMsg" style="color:var(--pass);font-size:12px;align-self:center"></span>
+        <span class="spacer"></span>
+        <button class="btn" onclick="exportPort()">Export</button>
+        <label class="btn">Import<input type="file" accept=".json" hidden onchange="importPort(this)"></label>
+      </div>
+      <div style="overflow-x:auto"><table><thead><tr><th>Ticker</th><th class="n">Shares</th><th class="n">Cost</th><th class="n">Price</th><th class="n">Value</th><th class="n">Gain</th><th class="n">Score</th><th>Verdict</th><th></th></tr></thead>
+      <tbody id="ptb"></tbody></table></div>
+      <p class="muted" style="font-size:12px;margin-top:12px">Prices are from the last nightly update, not live. Tickers not on the watchlist show no score. Add them to <code>watchlist.txt</code> to get one.</p>
+    </div>
+  </section>
+
+  <!-- HOW -->
+  <section id="v-how" hidden>
+    <div class="sec" style="line-height:1.7;color:#c9ced6">
+      <h4>How it works</h4>
+      <p><b>1. The watchlist</b> is a plain text file in the GitHub repo (<code>watchlist.txt</code>). Either of us can add or remove a ticker with the "Edit watchlist" button.</p>
+      <p><b>2. Every weekday evening</b>, and a few minutes after the watchlist changes, a free GitHub job downloads public financial data from Yahoo Finance and runs the three scoring lenses.</p>
+      <p><b>3. This page</b> just reads those results. It holds no keys, doesn't connect to any brokerage, and never places trades.</p>
+      <p><b>4. "Our portfolio"</b> is stored only in your own browser. Export it to a file to share it or move it to another device.</p>
+      <p style="margin-top:12px"><b>Limits to keep in mind:</b> free data covers about 4 years of financials, while these investors looked at 10+. The scores are numeric proxies for judgments (moat durability, management quality) that still need a human. Always check the company's own filings before acting.</p>
+    </div>
+  </section>
+
+  <footer>
+    Independent personal project, not tied to any employer or agency. Public market data only (Yahoo Finance). No internal or personal data.<br>
+    Educational research only, not financial advice. This site never places trades.
+  </footer>
+</div>
+
+<div class="shade" id="shade" onclick="closeD()"></div>
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <div class="dh"><div><div class="t" id="dT">—</div><div class="muted" id="dS" style="font-size:12.5px"></div></div><button class="btn" onclick="closeD()">Close ✕</button></div>
+  <div class="db" id="dB"></div>
+</aside>
+
+<script>
+const REPO = 'shubhamkumarsingh91-lgtm/buffett-agent';
+const COLORS = {buffett:'#d9b46c', graham:'#7fb3ff', lynch:'#b993ff'};
+const LBL = {buffett:'Buffett', graham:'Graham', lynch:'Lynch'};
+const TIPS = {
+  pe:'Price ÷ earnings per share. Lower = cheaper. Graham wanted 15 or less.',
+  pb:'Price ÷ book value per share. Graham wanted P/E × P/B under 22.5.',
+  peg:'P/E ÷ earnings growth rate. Lynch liked it under 1.0.',
+  dividend_yield:'Yearly dividend as % of price.',
+  roe_avg:'Return on equity: profit per dollar of shareholder money. Buffett liked 15–20%+.',
+  gross_margin_avg:'Gross margin: a high, stable margin hints at a moat.',
+  debt_to_equity:'Total debt ÷ shareholder equity. Buffett preferred under 0.5.',
+  current_ratio:'Current assets ÷ current liabilities. Graham wanted 2.0+.',
+  graham_number:'√(22.5 × EPS × book value). Price below it passes Graham’s price test.',
+  intrinsic_value:'Rough value from owner earnings (9% discount, 4% growth). A very simple estimate.',
+  margin_of_safety:'How far price sits below the intrinsic value estimate. Positive = cheaper than estimated value.',
+  earnings_growth:'Recent earnings growth rate from Yahoo. Can be noisy.'
+};
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const money = n => n==null ? '—' : '$' + Number(n).toLocaleString(undefined,{minimumFractionDigits:2, maximumFractionDigits:2});
+const big = n => n==null ? '—' : n>=1e12 ? '$'+(n/1e12).toFixed(2)+'T' : n>=1e9 ? '$'+(n/1e9).toFixed(1)+'B' : '$'+(n/1e6).toFixed(0)+'M';
+const pct = (n,d=1) => n==null ? '—' : (n*100).toFixed(d)+'%';
+const num = (n,d=2) => n==null ? '—' : Number(n).toFixed(d);
+const badgeClass = l => l==='BUY candidate'?'b-buy':l==='WORTH RESEARCHING'?'b-research':l==='LIKELY PASS'?'b-pass':'b-hold';
+const scoreColor = s => s>=70?'var(--buy)':s>=55?'var(--research)':s>=40?'var(--hold)':'var(--pass)';
+const store = { get(k,d){ try{ const v=localStorage.getItem(k); return v?JSON.parse(v):d }catch(e){ return d } },
+                set(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)) }catch(e){} } };
+
+let DATA = {stocks:[]}, HIST = {}, filter = 'all', charts = [];
+$('#editLink').href = `https://github.com/${REPO}/edit/main/watchlist.txt`;
+if (store.get('ltl-hideIntro', false)) $('#intro').style.display = 'none';
+function hideIntro(){ $('#intro').style.display='none'; store.set('ltl-hideIntro', true); }
+
+// tabs
+document.querySelectorAll('.tab').forEach(t => t.onclick = () => {
+  document.querySelectorAll('.tab').forEach(x => x.classList.toggle('on', x===t));
+  ['watch','port','how'].forEach(v => $('#v-'+v).hidden = v !== t.dataset.v);
+  if (t.dataset.v==='port') renderPort();
+});
+document.querySelectorAll('.chip').forEach(c => c.onclick = () => {
+  filter = c.dataset.f; document.querySelectorAll('.chip').forEach(x => x.classList.toggle('on', x===c)); renderGrid();
+});
+$('#q').oninput = renderGrid; $('#sort').onchange = renderGrid;
+
+async function load(){
+  try{
+    const [s,h] = await Promise.all([
+      fetch('data/scores.json?t='+Date.now(), {cache:'no-store'}).then(r => r.ok ? r.json() : null),
+      fetch('data/history.json?t='+Date.now(), {cache:'no-store'}).then(r => r.ok ? r.json() : {}).catch(()=>({}))
+    ]);
+    if (!s) throw new Error('no data yet');
+    DATA = s; HIST = h || {};
+  }catch(e){
+    $('#grid').innerHTML = '<div class="empty">No scores yet. The first update runs a few minutes after the site is set up. Refresh shortly.</div>';
+    return;
+  }
+  const d = new Date(DATA.generated);
+  $('#upd').textContent = d.toLocaleString([], {month:'short', day:'numeric', hour:'numeric', minute:'2-digit'});
+  $('#cnt').textContent = DATA.count;
+  const st = DATA.stocks;
+  $('#sBuy').textContent = st.filter(s => s.overall.label==='BUY candidate').length;
+  $('#sRes').textContent = st.filter(s => s.overall.label==='WORTH RESEARCHING').length;
+  $('#sAvg').textContent = st.length ? (st.reduce((a,s)=>a+s.overall.score,0)/st.length).toFixed(1) : '—';
+  $('#sTop').textContent = st[0] ? st[0].ticker : '—';
+  renderGrid();
+  const hash = location.hash.slice(1).toUpperCase();
+  if (hash && st.find(s => s.ticker===hash)) openD(hash);
+}
+
+function ring(score, size=58){
+  const r = size/2 - 5, c = 2*Math.PI*r, off = c*(1 - Math.max(0,Math.min(100,score))/100);
+  return `<div class="ring" style="width:${size}px;height:${size}px"><svg width="${size}" height="${size}">
+    <circle cx="${size/2}" cy="${size/2}" r="${r}" stroke="#1f252e" stroke-width="5" fill="none"/>
+    <circle cx="${size/2}" cy="${size/2}" r="${r}" stroke="${scoreColor(score)}" stroke-width="5" fill="none" stroke-linecap="round" stroke-dasharray="${c}" stroke-dashoffset="${off}"/></svg>
+    <b>${Math.round(score)}</b></div>`;
+}
+const lensScore = (s,k) => (s.lenses.find(l => l.key===k)||{}).score ?? 0;
+
+function renderGrid(){
+  const q = $('#q').value.trim().toLowerCase(), sort = $('#sort').value;
+  let list = DATA.stocks.filter(s => (filter==='all' || s.overall.label===filter) &&
+     (!q || s.ticker.toLowerCase().includes(q) || (s.name||'').toLowerCase().includes(q)));
+  const key = s => sort==='overall' ? s.overall.score : sort==='mos' ? (s.metrics.margin_of_safety ?? -9) :
+                   sort==='ticker' ? 0 : lensScore(s, sort);
+  list = sort==='ticker' ? list.sort((a,b) => a.ticker.localeCompare(b.ticker)) : list.sort((a,b) => key(b)-key(a));
+  $('#grid').innerHTML = list.length ? list.map(s => `
+    <div class="card" onclick="openD('${esc(s.ticker)}')">
+      <div class="top">
+        <div><div class="tk">${esc(s.ticker)}${s.stale?'<span class="stale" title="Last update failed; showing the previous result">● stale</span>':''}</div>
+          <div class="nm">${esc(s.name||'')}</div><div class="price">${money(s.price)}</div></div>
+        ${ring(s.overall.score)}
+      </div>
+      <span class="badge ${badgeClass(s.overall.label)}">${esc(s.overall.label)}</span>
+      <div class="bars">${s.lenses.map(l => `<div class="bar"><span>${LBL[l.key]}</span>
+        <div class="track"><i style="width:${l.score}%;background:${COLORS[l.key]}"></i></div><span>${Math.round(l.score)}</span></div>`).join('')}</div>
+      ${s.note ? `<div class="note">${esc(s.note)}</div>` : ''}
+    </div>`).join('') : '<div class="empty">No stocks match.</div>';
+}
+
+function openD(t){
+  const s = DATA.stocks.find(x => x.ticker===t); if (!s) return;
+  location.hash = t;
+  $('#dT').innerHTML = `<span class="mono">${esc(s.ticker)}</span> · ${esc(s.name||'')}`;
+  $('#dS').textContent = [s.sector, s.industry, 'Mkt cap '+big(s.market_cap), '52-wk '+money(s.week52_low)+' – '+money(s.week52_high)].filter(Boolean).join('  ·  ');
+  const m = s.metrics;
+  const kv = ['pe','pb','peg','dividend_yield','roe_avg','gross_margin_avg','debt_to_equity','current_ratio','graham_number','intrinsic_value','margin_of_safety','earnings_growth'];
+  const fmt = k => ['dividend_yield','roe_avg','gross_margin_avg','margin_of_safety','earnings_growth'].includes(k) ? pct(m[k]) :
+                   ['graham_number','intrinsic_value'].includes(k) ? money(m[k]) : num(m[k]);
+  const names = {pe:'P/E', pb:'P/B', peg:'PEG', dividend_yield:'Dividend yield', roe_avg:'Avg ROE', gross_margin_avg:'Gross margin',
+                 debt_to_equity:'Debt / equity', current_ratio:'Current ratio', graham_number:'Graham number', intrinsic_value:'Intrinsic value',
+                 margin_of_safety:'Margin of safety', earnings_growth:'Earnings growth'};
+  $('#dB').innerHTML = `
+    <div class="sec" style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
+      ${ring(s.overall.score, 84)}
+      <div style="flex:1;min-width:220px"><span class="badge ${badgeClass(s.overall.label)}" style="margin:0">${esc(s.overall.label)}</span>
+        <p style="margin-top:8px;color:#c9ced6">${esc(s.overall.rationale)}</p>
+        <p class="muted" style="font-size:12px;margin-top:6px">Price ${money(s.price)} · updated ${new Date(s.updated).toLocaleDateString()}${s.stale?' · <span class="stale">stale: last fetch failed</span>':''}</p></div>
+    </div>
+    <div class="lenses">${s.lenses.map(l => `
+      <div class="lens"><div class="h"><span class="n" style="color:${COLORS[l.key]}">${esc(l.name.split(' (')[0])}</span><span class="s">${Math.round(l.score)}</span></div>
+        <div class="vd">${esc(l.verdict)}${l.name.includes('(')?' · '+esc(l.name.split('(')[1].replace(')','')):''}</div>
+        <ul>${l.pros.map(p => `<li class="p">${esc(p)}</li>`).join('')}${l.cons.map(c => `<li class="c">${esc(c)}</li>`).join('')}</ul></div>`).join('')}</div>
+    <div class="sec"><h4>Key numbers</h4><div class="kv">${kv.map(k => `<div><span>${names[k]}<i class="tip" data-t="${esc(TIPS[k]||'')}">i</i></span><b>${fmt(k)}</b></div>`).join('')}</div></div>
+    <div class="sec"><h4>Score history</h4><div style="height:200px"><canvas id="hc"></canvas></div><p class="muted" id="hcNote" style="font-size:12px;margin-top:6px"></p></div>
+    <div class="sec"><h4>Price chart (weekly)</h4><div id="tv"></div></div>
+    ${s.news && s.news.length ? `<div class="sec news"><h4>Recent headlines</h4>${s.news.map(n => `<a href="${esc(n.link)}" target="_blank" rel="noopener">${esc(n.title)} <small>· ${esc(n.publisher)}</small></a>`).join('')}</div>` : ''}
+    ${s.data_notes && s.data_notes.length ? `<div class="sec"><h4>Data limitations</h4><ul style="padding-left:18px;color:var(--mute);font-size:12.5px">${s.data_notes.map(n => `<li>${esc(n)}</li>`).join('')}</ul></div>` : ''}`;
+  $('#drawer').classList.add('on'); $('#shade').classList.add('on'); $('#drawer').setAttribute('aria-hidden','false');
+  drawHistory(t); drawTV(t);
+}
+function closeD(){ $('#drawer').classList.remove('on'); $('#shade').classList.remove('on'); $('#drawer').setAttribute('aria-hidden','true'); history.replaceState(null,'',location.pathname); }
+document.addEventListener('keydown', e => { if (e.key==='Escape') closeD(); });
+
+function drawHistory(t){
+  charts.forEach(c => c.destroy()); charts = [];
+  const h = HIST[t] || [];
+  $('#hcNote').textContent = h.length < 2 ? 'History builds up one point per update. Check back after a few days.' : `${h.length} updates since ${h[0].date}.`;
+  if (!window.Chart) return;
+  Chart.defaults.color = '#8b93a1'; Chart.defaults.font.family = 'Inter';
+  const ds = (k,label,col,w=1.5,dash) => ({label, data:h.map(p=>p[k]), borderColor:col, borderWidth:w, pointRadius:h.length<10?3:0, tension:.3, borderDash:dash});
+  charts.push(new Chart($('#hc'), {type:'line', data:{labels:h.map(p=>p.date), datasets:[
+      ds('score','Overall','#e8eaee',2.4), ds('b','Buffett',COLORS.buffett), ds('g','Graham',COLORS.graham), ds('l','Lynch',COLORS.lynch)]},
+    options:{responsive:true, maintainAspectRatio:false, interaction:{mode:'index',intersect:false},
+      plugins:{legend:{labels:{boxWidth:10,boxHeight:2}}}, scales:{y:{min:0,max:100,grid:{color:'#1c222b'}}, x:{grid:{display:false}}}}}));
+}
+function drawTV(t){
+  const box = $('#tv'); box.innerHTML = '';
+  const w = document.createElement('div'); w.className = 'tradingview-widget-container'; w.style.height = '100%';
+  const inner = document.createElement('div'); inner.style.height = '100%';
+  const s = document.createElement('script'); s.async = true;
+  s.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
+  s.textContent = JSON.stringify({autosize:true, symbol:t.replace('-','.'), interval:'W', theme:'dark', style:'1', locale:'en',
+    backgroundColor:'rgba(19,23,29,1)', hide_side_toolbar:true, allow_symbol_change:false, range:'60M', support_host:'https://www.tradingview.com'});
+  w.appendChild(inner); w.appendChild(s); box.appendChild(w);
+}
+
+// ── Our portfolio (browser-only) ──
+const PKEY = 'ltl-portfolio';
+function addHolding(){
+  const t = $('#pT').value.trim().toUpperCase(), sh = parseFloat($('#pS').value), c = parseFloat($('#pC').value);
+  if (!t || !(sh > 0)) { alertMsg('Enter a ticker and a share count.'); return; }
+  const p = store.get(PKEY, []); const i = p.findIndex(h => h.ticker===t);
+  const row = {ticker:t, shares:sh, cost: isFinite(c) ? c : null};
+  if (i >= 0) p[i] = row; else p.push(row);
+  store.set(PKEY, p); $('#pT').value = $('#pS').value = $('#pC').value = ''; renderPort();
+}
+function removeHolding(t){ store.set(PKEY, store.get(PKEY, []).filter(h => h.ticker!==t)); renderPort(); }
+function alertMsg(m){ const el = $('#pMsg'); el.textContent = m; setTimeout(() => el.textContent = '', 4000); }
+function renderPort(){
+  const p = store.get(PKEY, []);
+  if (!p.length) { $('#ptb').innerHTML = '<tr><td colspan="9" class="muted">No holdings yet. Add one above. It stays private to this browser.</td></tr>'; return; }
+  let tv = 0, tc = 0, ws = 0, wv = 0;
+  const rows = p.map(h => {
+    const s = DATA.stocks.find(x => x.ticker===h.ticker);
+    const price = s ? s.price : null, val = price!=null ? price*h.shares : null, cost = h.cost!=null ? h.cost*h.shares : null;
+    if (val!=null) tv += val; if (cost!=null && val!=null) tc += cost;
+    if (s && val!=null) { ws += s.overall.score*val; wv += val; }
+    const g = (val!=null && cost) ? (val-cost)/cost : null;
+    return `<tr><td class="mono" style="cursor:${s?'pointer':'default'}" ${s?`onclick="openD('${esc(h.ticker)}')"`:''}>${esc(h.ticker)}</td>
+      <td class="n">${num(h.shares,h.shares%1?3:0)}</td><td class="n">${money(h.cost)}</td><td class="n">${money(price)}</td><td class="n">${money(val)}</td>
+      <td class="n ${g==null?'muted':g>=0?'up':'down'}">${g==null?'—':(g>=0?'+':'')+pct(g)}</td>
+      <td class="n">${s?Math.round(s.overall.score):'—'}</td><td>${s?`<span class="badge ${badgeClass(s.overall.label)}" style="margin:0">${esc(s.overall.label)}</span>`:'<span class="muted">not on watchlist</span>'}</td>
+      <td><button class="btn" style="padding:4px 8px" onclick="removeHolding('${esc(h.ticker)}')">✕</button></td></tr>`;
+  });
+  const tg = tc ? (tv-tc)/tc : null;
+  rows.push(`<tr><td><b>Total</b></td><td></td><td class="n">${money(tc||null)}</td><td></td><td class="n"><b>${money(tv)}</b></td>
+    <td class="n ${tg==null?'muted':tg>=0?'up':'down'}"><b>${tg==null?'—':(tg>=0?'+':'')+pct(tg)}</b></td><td class="n"><b>${wv?Math.round(ws/wv):'—'}</b></td><td class="muted" style="font-size:12px">value-weighted score</td><td></td></tr>`);
+  $('#ptb').innerHTML = rows.join('');
+}
+function exportPort(){
+  const blob = new Blob([JSON.stringify(store.get(PKEY, []), null, 2)], {type:'application/json'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'long-term-lab-portfolio.json'; a.click();
+}
+function importPort(input){
+  const f = input.files[0]; if (!f) return;
+  f.text().then(t => { const p = JSON.parse(t); if (Array.isArray(p)) { store.set(PKEY, p.filter(h => h.ticker && h.shares>0)); renderPort(); } })
+   .catch(() => {}); input.value = '';
+}
+
+load();
+</script>
+</body>
+</html>

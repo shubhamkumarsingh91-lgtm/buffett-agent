@@ -1,0 +1,44 @@
+# DISCLAIMER: Independent personal project. Not tied to any employer or agency.
+# Public market data only. No internal or personal data (no SSNs/PHI). Not financial advice.
+#
+# Re-scores the watchlist and commits docs/data/*.json, which the website reads.
+# Runs: whenever watchlist.txt / scoring code changes, from the "Run workflow"
+# button (or cron-job.org), and a backup weekday-evening schedule.
+name: Update investing site
+
+on:
+  push:
+    branches: [main]
+    paths: ["watchlist.txt", "data.py", "strategies.py", "build_site.py"]
+  workflow_dispatch:
+  schedule:
+    - cron: "30 22 * * 1-5"   # backup only; GitHub's timer can be late
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-site
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Score the watchlist
+        run: python build_site.py
+      - name: Save results
+        if: always()
+        run: |
+          git config user.name "investing-site-bot"
+          git config user.email "actions@github.com"
+          git add docs/data || true
+          git diff --cached --quiet || git commit -m "Update scores"
+          git pull --rebase && git push
