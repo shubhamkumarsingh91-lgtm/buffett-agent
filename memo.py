@@ -45,7 +45,8 @@ def build_memo(e: dict) -> dict:
     name = e.get("name") or e["ticker"]
 
     # The business in one paragraph
-    bits = [f"{name} ({e['ticker']}) is a {(e.get('industry') or e.get('sector') or 'public').lower()} company"]
+    kind = (e.get('industry') or e.get('sector') or 'public').lower()
+    bits = [f"{name} ({e['ticker']}) is {'an' if kind[:1] in 'aeiou' else 'a'} {kind} company"]
     if k.get("market_cap"):
         bits.append(f"worth about {_m(k['market_cap'])}")
     s = " ".join(bits) + "."

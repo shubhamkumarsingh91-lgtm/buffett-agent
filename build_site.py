@@ -136,8 +136,11 @@ def default_fetch(ticker: str, desk: str):
         try:
             from edgar import find_prospectus
             pro = find_prospectus(ticker)
-        except Exception:
+        except Exception as e:
             pro = None
+            d.data_notes.append(f"SEC prospectus lookup failed ({type(e).__name__}).")
+        if pro is None:
+            d.data_notes.append("Prospectus link unavailable: ticker not found in SEC's company list.")
     return d, pro
 
 
