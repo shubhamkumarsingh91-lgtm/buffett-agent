@@ -1,7 +1,7 @@
 {
- "generated": "2026-10-21T19:36:44+00:00",
+ "generated": "2026-10-21T19:37:45+00:00",
  "version": 2,
- "count": 29,
+ "count": 30,
  "failed": [],
  "stocks": [
   {
@@ -4590,6 +4590,186 @@
     ],
     "plan": "Pass for now. Revisit only if the business or the price changes materially.",
     "buffett_view": "On Buffett's own tests this scores 54/100.",
+    "ai": null
+   }
+  },
+  {
+   "ticker": "UNH",
+   "desk": "company",
+   "note": "",
+   "name": "UnitedHealth Group Incorporated",
+   "sector": "Healthcare",
+   "industry": "Healthcare Plans",
+   "price": 417.22,
+   "week52_high": 461.62,
+   "week52_low": 255.97,
+   "overall": {
+    "label": "HOLD / NEUTRAL",
+    "rationale": "No strong signal either way on the available data.",
+    "score": 45.9
+   },
+   "lenses": [
+    {
+     "key": "buffett",
+     "short": "Buffett",
+     "name": "Buffett & Munger (Quality Compounding)",
+     "score": 42.1,
+     "verdict": "Weak fit",
+     "pros": [
+      "Share count shrank 4.1% \u2014 management is buying back stock, not diluting."
+     ],
+     "cons": [
+      "Thin gross margin (22%) \u2014 little evidence of a durable moat.",
+      "Margins are unstable year to year \u2014 less predictable than Buffett prefers.",
+      "Debt/Equity of 0.83 exceeds Buffett's usual 0.5 comfort zone.",
+      "No positive free cash flow yet, so there's no intrinsic value / margin of safety to estimate."
+     ]
+    },
+    {
+     "key": "graham",
+     "short": "Graham",
+     "name": "Benjamin Graham (Deep Value)",
+     "score": 27.9,
+     "verdict": "Poor fit",
+     "pros": [
+      "No loss-making years across the 4 most recent periods available.",
+      "Currently pays a dividend (yield ~2.2%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
+     ],
+     "cons": [
+      "Price ($417.22) exceeds the Graham Number ($200.97) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 97.0, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
+      "Current ratio of 0.79 is below Graham's 2.0 liquidity bar.",
+      "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test."
+     ]
+    },
+    {
+     "key": "lynch",
+     "short": "Lynch",
+     "name": "Peter Lynch (GARP \u2014 Fast Grower)",
+     "score": 55.9,
+     "verdict": "Partial fit",
+     "pros": [
+      "Classified as a Fast Grower (>25% earnings growth) \u2014 Lynch's favorite hunting ground, though these also carry the most execution/valuation risk.",
+      "Company is buying back shares alongside its growth story."
+     ],
+     "cons": [
+      "PEG ratio of 1.06 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule.",
+      "Institutional ownership is very high (90%) \u2014 the easy discovery phase is likely already behind it."
+     ]
+    },
+    {
+     "key": "fisher",
+     "short": "Fisher",
+     "name": "Philip Fisher (Growth Quality)",
+     "score": 56.0,
+     "verdict": "Partial fit",
+     "pros": [
+      "Revenue grew 11% a year over the available history. Fisher's point #1 wants products with room for sales to keep growing for years."
+     ],
+     "cons": [
+      "Operating margin 6%, below what Fisher called a worthwhile margin (#5).",
+      "Margins shrank by 4.5 points. Fisher #6 looks for improvement."
+     ]
+    },
+    {
+     "key": "greenblatt",
+     "short": "Greenblatt",
+     "name": "Joel Greenblatt (Magic Formula)",
+     "score": 47.5,
+     "verdict": "Weak fit",
+     "pros": [],
+     "cons": [
+      "Return on capital ~13%: below what the Magic Formula looks for.",
+      "Earnings yield (EBIT \u00f7 EV) 4.4%: not cheap by the Magic Formula."
+     ]
+    }
+   ],
+   "classic": null,
+   "kpis": {
+    "revenue_ttm": 450059010048,
+    "revenue_growth_yoy": -0.004,
+    "revenue_cagr": 0.1135,
+    "earnings_growth": 0.759,
+    "quarterly_revenue": [
+     111616000000,
+     113161000000,
+     113215000000,
+     111721000000,
+     112032000000
+    ],
+    "gross_margin": 0.2005,
+    "operating_margin": 0.0582,
+    "profit_margin": 0.0353,
+    "roe_avg": 0.1986,
+    "roic": 0.1299,
+    "roa": 0.0524,
+    "free_cash_flow": 16075000000.0,
+    "fcf_margin": 0.0357,
+    "total_cash": 28548999168,
+    "cash_runway_years": null,
+    "rule_of_40": 3.2,
+    "market_cap": 374494494720,
+    "pe": 26.83,
+    "forward_pe": 17.94,
+    "pb": 3.61,
+    "peg": 1.06,
+    "price_to_sales": 0.83,
+    "ev_to_ebitda": 14.72,
+    "earnings_yield": 0.044,
+    "graham_number": 200.97,
+    "dividend_yield": 0.0222,
+    "payout_ratio": 0.5756,
+    "debt_to_equity": 0.83,
+    "current_ratio": 0.79,
+    "insider_pct": 0.0025,
+    "institutional_pct": 0.8969,
+    "short_pct_float": 0.0198,
+    "beta": 0.61
+   },
+   "valuation": {
+    "bear": null,
+    "base": null,
+    "bull": null,
+    "growth": null,
+    "method": null,
+    "note": "Not meaningful yet: free cash flow is only 5% of revenue, too thin to value on cash flow. Judge it on growth and price/sales instead.",
+    "margin_of_safety": null
+   },
+   "recent_ipo": false,
+   "ipo": {
+    "months_listed": 504.1,
+    "first_trade_date": "1984-10-17",
+    "first_day_open": null,
+    "first_day_close": null,
+    "prospectus": null,
+    "checklist": []
+   },
+   "news": [],
+   "data_notes": [],
+   "stale": false,
+   "updated": "2026-10-21T19:37:45+00:00",
+   "memo": {
+    "headline": "HOLD / NEUTRAL. No strong signal either way on the available data.",
+    "business": "UnitedHealth Group Incorporated (UNH) is a healthcare plans company worth about $374.5B. It brought in $450.1B of revenue over the last year, down 0% from a year earlier. It keeps 6% of sales as operating profit.",
+    "bull": [
+     "Revenue grew 11% a year over the available history. Fisher's point #1 wants products with room for sales to keep growing for years. (Fisher)",
+     "Classified as a Fast Grower (>25% earnings growth) \u2014 Lynch's favorite hunting ground, though these also carry the most execution/valuation risk. (Lynch)",
+     "Company is buying back shares alongside its growth story. (Lynch)",
+     "Share count shrank 4.1% \u2014 management is buying back stock, not diluting. (Buffett)"
+    ],
+    "bear": [
+     "Price ($417.22) exceeds the Graham Number ($200.97) \u2014 fails Graham's defensive-investor price test. (Graham)",
+     "P/E \u00d7 P/B = 97.0, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)",
+     "Current ratio of 0.79 is below Graham's 2.0 liquidity bar. (Graham)",
+     "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test. (Graham)"
+    ],
+    "valuation": "Not meaningful yet: free cash flow is only 5% of revenue, too thin to value on cash flow. Judge it on growth and price/sales instead. The market prices it at 0.8x sales.",
+    "watch": [
+     "Revenue growth stays near or above 0% (last reading).",
+     "Operating margin (6%) keeps rising as the company grows."
+    ],
+    "plan": "Pass for now. Revisit only if the business or the price changes materially.",
+    "buffett_view": "On Buffett's own tests this scores 42/100.",
     "ai": null
    }
   },
