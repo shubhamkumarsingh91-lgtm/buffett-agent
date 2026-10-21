@@ -1,7 +1,7 @@
 {
- "generated": "2026-10-21T19:35:55+00:00",
+ "generated": "2026-10-21T19:36:44+00:00",
  "version": 2,
- "count": 28,
+ "count": 29,
  "failed": [],
  "stocks": [
   {
@@ -2566,6 +2566,183 @@
     ],
     "plan": "Put it on watch. A price around $144.07 would give the 25% margin of safety value investors look for. Re-check after the next earnings report.",
     "buffett_view": "On Buffett's own tests this scores 67/100.",
+    "ai": null
+   }
+  },
+  {
+   "ticker": "PNC",
+   "desk": "company",
+   "note": "",
+   "name": "The PNC Financial Services Group, Inc.",
+   "sector": "Financial Services",
+   "industry": "Banks - Regional",
+   "price": 222.32,
+   "week52_high": 258.96,
+   "week52_low": 177.08,
+   "overall": {
+    "label": "HOLD / NEUTRAL",
+    "rationale": "No strong signal either way on the available data.",
+    "score": 54.2
+   },
+   "lenses": [
+    {
+     "key": "buffett",
+     "short": "Buffett",
+     "name": "Buffett & Munger (Quality Compounding)",
+     "score": 60.0,
+     "verdict": "Partial fit",
+     "pros": [
+      "Share count shrank 3.9% \u2014 management is buying back stock, not diluting.",
+      "Trading ~56% below estimated intrinsic value \u2014 a real margin of safety."
+     ],
+     "cons": [
+      "Thin gross margin (0%) \u2014 little evidence of a durable moat.",
+      "Debt/Equity of 0.94 exceeds Buffett's usual 0.5 comfort zone.",
+      "Average ROE of 12% falls short of Buffett's 15% minimum."
+     ]
+    },
+    {
+     "key": "graham",
+     "short": "Graham",
+     "name": "Benjamin Graham (Deep Value)",
+     "score": 61.4,
+     "verdict": "Partial fit",
+     "pros": [
+      "Price ($222.32) is below the Graham Number ($257.54) \u2014 attractively priced by Graham's classic test.",
+      "P/E \u00d7 P/B = 16.8, at or under Graham's 22.5 ceiling.",
+      "No loss-making years across the 4 most recent periods available.",
+      "Currently pays a dividend (yield ~3.6%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
+     ],
+     "cons": [
+      "Current ratio unavailable \u2014 can't verify Graham's liquidity requirement."
+     ]
+    },
+    {
+     "key": "lynch",
+     "short": "Lynch",
+     "name": "Peter Lynch (GARP \u2014 Cyclical)",
+     "score": 36.6,
+     "verdict": "Weak fit",
+     "pros": [
+      "Company is buying back shares alongside its growth story."
+     ],
+     "cons": [
+      "PEG ratio of 1.52 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule.",
+      "Sits in a cyclical sector \u2014 Lynch warns timing matters enormously here; cheap-looking multiples near a cycle peak can be a trap.",
+      "Institutional ownership is very high (86%) \u2014 the easy discovery phase is likely already behind it."
+     ]
+    },
+    {
+     "key": "fisher",
+     "short": "Fisher",
+     "name": "Philip Fisher (Growth Quality)",
+     "score": 59.0,
+     "verdict": "Partial fit",
+     "pros": [
+      "Operating margin 41%. Fisher #5: worthwhile profit margins."
+     ],
+     "cons": [
+      "Revenue grew only 3% a year, weak on Fisher's point #1 (sales growth potential)."
+     ]
+    },
+    {
+     "key": "greenblatt",
+     "short": "Greenblatt",
+     "name": "Joel Greenblatt (Magic Formula)",
+     "score": 50.0,
+     "verdict": "Not applicable",
+     "pros": [],
+     "cons": [
+      "Greenblatt excludes Financial Services companies; their balance sheets don't fit the formula."
+     ]
+    }
+   ],
+   "classic": null,
+   "kpis": {
+    "revenue_ttm": 24944001024,
+    "revenue_growth_yoy": 0.109,
+    "revenue_cagr": 0.0301,
+    "earnings_growth": 0.143,
+    "quarterly_revenue": [
+     5662000000,
+     5900000000,
+     6068000000,
+     6157000000,
+     6435000000
+    ],
+    "gross_margin": 0.0,
+    "operating_margin": 0.4114,
+    "profit_margin": 0.3167,
+    "roe_avg": 0.116,
+    "roic": null,
+    "roa": 0.0133,
+    "free_cash_flow": 4384000000.0,
+    "fcf_margin": 0.1758,
+    "total_cash": 6525000192,
+    "cash_runway_years": null,
+    "rule_of_40": 28.5,
+    "market_cap": 88693161984,
+    "pe": 11.84,
+    "forward_pe": 10.4,
+    "pb": 1.42,
+    "peg": 1.52,
+    "price_to_sales": 3.56,
+    "ev_to_ebitda": null,
+    "earnings_yield": null,
+    "graham_number": 257.54,
+    "dividend_yield": 0.036,
+    "payout_ratio": 0.3744,
+    "debt_to_equity": 0.94,
+    "current_ratio": null,
+    "insider_pct": 0.003,
+    "institutional_pct": 0.86,
+    "short_pct_float": 0.0182,
+    "beta": 0.93
+   },
+   "valuation": {
+    "bear": 369.14,
+    "base": 501.82,
+    "bull": 755.49,
+    "growth": 0.109,
+    "method": "average free cash flow, last 3 years",
+    "note": null,
+    "margin_of_safety": 0.557
+   },
+   "recent_ipo": false,
+   "ipo": {
+    "months_listed": 611.1,
+    "first_trade_date": "1975-11-17",
+    "first_day_open": null,
+    "first_day_close": null,
+    "prospectus": null,
+    "checklist": []
+   },
+   "news": [],
+   "data_notes": [],
+   "stale": false,
+   "updated": "2026-10-21T19:36:44+00:00",
+   "memo": {
+    "headline": "HOLD / NEUTRAL. No strong signal either way on the available data.",
+    "business": "The PNC Financial Services Group, Inc. (PNC) is a banks - regional company worth about $88.7B. It brought in $24.9B of revenue over the last year, up 11% from a year earlier. It keeps 41% of sales as operating profit.",
+    "bull": [
+     "Price ($222.32) is below the Graham Number ($257.54) \u2014 attractively priced by Graham's classic test. (Graham)",
+     "P/E \u00d7 P/B = 16.8, at or under Graham's 22.5 ceiling. (Graham)",
+     "No loss-making years across the 4 most recent periods available. (Graham)",
+     "Currently pays a dividend (yield ~3.6%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm. (Graham)"
+    ],
+    "bear": [
+     "PEG ratio of 1.52 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule. (Lynch)",
+     "Sits in a cyclical sector \u2014 Lynch warns timing matters enormously here; cheap-looking multiples near a cycle peak can be a trap. (Lynch)",
+     "Institutional ownership is very high (86%) \u2014 the easy discovery phase is likely already behind it. (Lynch)",
+     "Greenblatt excludes Financial Services companies; their balance sheets don't fit the formula. (Greenblatt)"
+    ],
+    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 11% growth fading to 3%, 9% discount rate), fair value is roughly $501.82 a share (bear $369.14, bull $755.49) against a price of $222.32. That's a 56% margin of safety: Buffett and Graham wanted 25%+.",
+    "watch": [
+     "Revenue growth stays near or above 11% (last reading).",
+     "Operating margin (41%) keeps rising as the company grows."
+    ],
+    "plan": "Pass for now. Revisit only if the business or the price changes materially.",
+    "buffett_view": "On Buffett's own tests this scores 60/100.",
     "ai": null
    }
   },
