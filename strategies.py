@@ -471,8 +471,17 @@ def valuation(d: StockData) -> dict:
     if not shares:
         out["note"] = "Share count unavailable."
         return out
-    if d.free_cash_flow is not None and d.free_cash_flow > 0:
-        base_cf, out["method"] = d.free_cash_flow / shares, "free cash flow"
+    # Normalise: average the last 3 years of free cash flow so one odd year (a tax payment,
+    # a capex spike) doesn't swing the value. Skip when FCF is a sliver of revenue: a young
+    # company earning 1-4% FCF margins can't be valued on cash flow yet.
+    fcfs = [v for v in d.fcf_series[-3:] if v is not None]
+    fcf = sum(fcfs) / len(fcfs) if fcfs else d.free_cash_flow
+    if fcf is not None and fcf > 0 and d.revenue_ttm and fcf / d.revenue_ttm < 0.05:
+        out["note"] = (f"Not meaningful yet: free cash flow is only {fcf / d.revenue_ttm:.0%} of revenue, "
+                       f"too thin to value on cash flow. Judge it on growth and price/sales instead.")
+        return out
+    if fcf is not None and fcf > 0:
+        base_cf, out["method"] = fcf / shares, ("average free cash flow, last 3 years" if len(fcfs) > 1 else "free cash flow")
     elif (d.owner_earnings() or 0) > 0:
         base_cf, out["method"] = d.owner_earnings() / shares, "owner earnings"
     else:
@@ -758,12 +767,21 @@ def ipo_verdict(results: list, d: StockData) -> dict:
     """IPO desk: Ritter + Gurley average, with hard rules for lock-up and cash risk."""
     avg = sum(r.score for r in results) / len(results) if results else 0.0
     m, run = d.months_listed, d.cash_runway_years
+    ps, mos = d.price_to_sales, valuation(d)["margin_of_safety"]
     if run is not None and run < 1.5:
         label, why = "PASS (cash risk)", f"Only ~{run:.1f} years of cash left at today's burn. Likely to raise money and dilute owners."
     elif m is not None and m < 6:
         label, why = "WAIT (lock-up)", "Too new: let the lock-up expire and see two quarterly reports before deciding."
+    elif avg >= 52 and ps is not None and ps > 20:
+        label, why = "WATCH (priced for perfection)", (f"Good business by the numbers, but at {ps:.0f}x sales the price already "
+                     f"assumes years of flawless growth. Ritter's research says this is where IPO returns disappoint.")
+    elif avg >= 52 and mos is not None and mos < -0.5:
+        label, why = "WATCH (priced for perfection)", ("Good business by the numbers, but the price is far above what its cash flow "
+                     "supports even with strong growth. Wait for a better price.")
+    elif avg >= 65 and d.free_cash_flow is not None and d.free_cash_flow < 0:
+        label, why = "WATCH", "Strong scores, but it isn't self-funding yet. Wait for free cash flow to turn positive."
     elif avg >= 65:
-        label, why = "BUY candidate (start small)", "Strong on IPO research and revenue quality. If you buy, start small and add as it proves itself."
+        label, why = "BUY candidate (start small)", "Strong on IPO research and revenue quality at a reasonable price. If you buy, start small and add as it proves itself."
     elif avg >= 52:
         label, why = "WATCH", "Promising, but not yet convincing. Watch the next two quarters."
     elif avg >= 40:

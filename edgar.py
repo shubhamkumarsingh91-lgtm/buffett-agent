@@ -19,7 +19,9 @@ import json
 import urllib.request
 from typing import Optional
 
-UA = "Long-Term Lab research site (github.com/shubhamkumarsingh91-lgtm/buffett-agent)"
+# SEC rejects automated requests without a contact email in the User-Agent (HTTP 403).
+# A GitHub no-reply address is used so no personal email is published.
+UA = "LongTermLab research site shubhamkumarsingh91-lgtm@users.noreply.github.com"
 _TICKER_MAP: Optional[dict] = None
 PROSPECTUS_FORMS = ("424B4", "424B1", "S-1", "F-1", "S-1/A", "F-1/A")
 
@@ -36,8 +38,9 @@ def cik_for(ticker: str) -> Optional[int]:
         try:
             raw = _get_json("https://www.sec.gov/files/company_tickers.json")
             _TICKER_MAP = {v["ticker"].upper(): int(v["cik_str"]) for v in raw.values()}
-        except Exception:
+        except Exception as e:
             _TICKER_MAP = {}
+            raise RuntimeError(f"SEC company list unavailable: {e}") from e
     t = ticker.upper()
     return _TICKER_MAP.get(t) or _TICKER_MAP.get(t.replace("-", ".")) or _TICKER_MAP.get(t.replace(".", "-"))
 

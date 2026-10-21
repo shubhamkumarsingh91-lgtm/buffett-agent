@@ -31,10 +31,14 @@ watchlist.txt + ipos.txt ──► GitHub Action (build_site.py) ──► docs/
 * **Updates:** `.github/workflows/update.yml` runs when the watchlist or
   scoring code changes, from the "Run workflow" button, and on a weekday
   evening schedule.
-* **Our portfolio tab:** holdings are stored **only in each viewer's own
-  browser** (localStorage). Nothing personal is written to this public repo.
-  Use Export / Import to move or share a portfolio file.
-* **Charts:** a free TradingView embed for price, plus a score-history chart
+* **Our portfolio tab:** holdings are stored **only in each viewer's own browser**
+  (localStorage); nothing personal is written to this public repo.
+  **Import** from Excel/CSV (broker exports), PDF statements, Word (.docx) or screenshots
+  (in-browser OCR), always with a review table before anything is added. **Export** a PDF
+  report (holdings, gains, scores, research notes), Excel, CSV or a JSON backup. All of it
+  runs in the browser; files are never uploaded.
+* **TradingView panels:** weekly chart, technical rating, company profile, financial statements
+  and a market ticker tape (display-only, free widgets), plus a score-history chart
   that grows one point per update.
 
 ## Setup (one time)
