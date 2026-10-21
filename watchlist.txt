@@ -18,3 +18,4 @@ NVDA    # Nvidia — high growth, for contrast
 JPM     # JPMorgan — bank
 PEP     # PepsiCo
 MCD     # McDonald's
+SPCX    # added from the site's search

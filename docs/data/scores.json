@@ -1,7 +1,7 @@
 {
- "generated": "2026-10-21T19:02:40+00:00",
+ "generated": "2026-10-21T19:14:14+00:00",
  "version": 2,
- "count": 26,
+ "count": 27,
  "failed": [],
  "stocks": [
   {
@@ -4955,6 +4955,188 @@
     ],
     "plan": "Pass for now. Revisit only if the business or the price changes materially.",
     "buffett_view": "On Buffett's own tests this scores 44/100.",
+    "ai": null
+   }
+  },
+  {
+   "ticker": "SPCX",
+   "desk": "company",
+   "note": "",
+   "name": "Space Exploration Technologies Corp.",
+   "sector": "Industrials",
+   "industry": "Aerospace & Defense",
+   "price": 158.38,
+   "week52_high": 225.64,
+   "week52_low": 104.83,
+   "overall": {
+    "label": "HOLD / NEUTRAL",
+    "rationale": "No strong signal either way on the available data.",
+    "score": 42.8
+   },
+   "lenses": [
+    {
+     "key": "buffett",
+     "short": "Buffett",
+     "name": "Buffett & Munger (Quality Compounding)",
+     "score": 32.0,
+     "verdict": "Poor fit",
+     "pros": [
+      "Share count shrank 9.0% \u2014 management is buying back stock, not diluting."
+     ],
+     "cons": [
+      "Margins are unstable year to year \u2014 less predictable than Buffett prefers.",
+      "Debt/Equity of 9.06 exceeds Buffett's usual 0.5 comfort zone.",
+      "At least one loss-making year in the available window.",
+      "Average ROE of -32% falls short of Buffett's 15% minimum.",
+      "High R&D intensity (46% of revenue) \u2014 fast-moving, harder to forecast 10-20 years out, arguably outside a conservative circle of competence.",
+      "No positive free cash flow yet, so there's no intrinsic value / margin of safety to estimate."
+     ]
+    },
+    {
+     "key": "graham",
+     "short": "Graham",
+     "name": "Benjamin Graham (Deep Value)",
+     "score": 40.7,
+     "verdict": "Weak fit",
+     "pros": [],
+     "cons": [
+      "Not enough data (EPS/book value) to compute a Graham Number.",
+      "Current ratio of 1.45 is below Graham's 2.0 liquidity bar.",
+      "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test.",
+      "At least one loss-making year in the available window \u2014 Graham requires positive earnings every year (traditionally over 10 years).",
+      "No current dividend \u2014 fails Graham's income requirement for the defensive investor."
+     ]
+    },
+    {
+     "key": "lynch",
+     "short": "Lynch",
+     "name": "Peter Lynch (GARP \u2014 Unclassified (insufficient growth data))",
+     "score": 44.1,
+     "verdict": "Weak fit",
+     "pros": [
+      "Institutional ownership is relatively low (49%) \u2014 by Lynch's logic, more room for the stock to be 'discovered'.",
+      "Company is buying back shares alongside its growth story."
+     ],
+     "cons": [
+      "PEG ratio unavailable (need both a P/E and a growth estimate).",
+      "Debt/Equity of 9.06 is elevated \u2014 leverage adds fragility to a growth thesis."
+     ]
+    },
+    {
+     "key": "fisher",
+     "short": "Fisher",
+     "name": "Philip Fisher (Growth Quality)",
+     "score": 62.2,
+     "verdict": "Partial fit",
+     "pros": [
+      "Revenue grew 34% a year over the available history. Fisher's point #1 wants products with room for sales to keep growing for years.",
+      "Spends 46% of revenue on R&D. Fisher (#2, #3) wants management investing in future products.",
+      "Insiders own 13%. Management has real skin in the game (Fisher #14\u201315)."
+     ],
+     "cons": [
+      "Operating margin -2%, below what Fisher called a worthwhile margin (#5).",
+      "Margins shrank by 15.9 points. Fisher #6 looks for improvement."
+     ]
+    },
+    {
+     "key": "greenblatt",
+     "short": "Greenblatt",
+     "name": "Joel Greenblatt (Magic Formula)",
+     "score": 35.0,
+     "verdict": "Weak fit",
+     "pros": [],
+     "cons": [
+      "Earnings yield (EBIT \u00f7 EV) -0.1%: not cheap by the Magic Formula."
+     ]
+    }
+   ],
+   "classic": null,
+   "kpis": {
+    "revenue_ttm": 23043999744,
+    "revenue_growth_yoy": 0.919,
+    "revenue_cagr": 0.3408,
+    "earnings_growth": null,
+    "quarterly_revenue": [
+     4067000000,
+     4071000000,
+     4694000000,
+     7814000000
+    ],
+    "gross_margin": 0.5188,
+    "operating_margin": -0.018,
+    "profit_margin": -0.3566,
+    "roe_avg": -0.3221,
+    "roic": null,
+    "roa": null,
+    "free_cash_flow": -14121000000.0,
+    "fcf_margin": -0.6128,
+    "total_cash": 100009000960,
+    "cash_runway_years": 7.1,
+    "rule_of_40": 30.6,
+    "market_cap": 2087730413568,
+    "pe": null,
+    "forward_pe": 73.21,
+    "pb": 16.4,
+    "peg": null,
+    "price_to_sales": 90.6,
+    "ev_to_ebitda": 650.5,
+    "earnings_yield": -0.0006,
+    "graham_number": null,
+    "dividend_yield": 0.0,
+    "payout_ratio": 0.0,
+    "debt_to_equity": 9.06,
+    "current_ratio": 1.45,
+    "insider_pct": 0.1273,
+    "institutional_pct": 0.4855,
+    "short_pct_float": 0.0271,
+    "beta": null
+   },
+   "valuation": {
+    "bear": null,
+    "base": null,
+    "bull": null,
+    "growth": null,
+    "method": null,
+    "note": "Not meaningful: the company doesn't generate positive free cash flow yet.",
+    "margin_of_safety": null
+   },
+   "recent_ipo": true,
+   "ipo": {
+    "months_listed": 4.3,
+    "first_trade_date": "2026-06-12",
+    "first_day_open": null,
+    "first_day_close": null,
+    "prospectus": null,
+    "checklist": []
+   },
+   "news": [],
+   "data_notes": [],
+   "stale": false,
+   "updated": "2026-10-21T19:14:14+00:00",
+   "memo": {
+    "headline": "HOLD / NEUTRAL. No strong signal either way on the available data.",
+    "business": "Space Exploration Technologies Corp. (SPCX) is an aerospace & defense company worth about $2.09T. It brought in $23.0B of revenue over the last year, up 92% from a year earlier. It is not yet profitable at the operating level.",
+    "bull": [
+     "Revenue grew 34% a year over the available history. Fisher's point #1 wants products with room for sales to keep growing for years. (Fisher)",
+     "Spends 46% of revenue on R&D. Fisher (#2, #3) wants management investing in future products. (Fisher)",
+     "Insiders own 13%. Management has real skin in the game (Fisher #14\u201315). (Fisher)",
+     "Institutional ownership is relatively low (49%) \u2014 by Lynch's logic, more room for the stock to be 'discovered'. (Lynch)"
+    ],
+    "bear": [
+     "Margins are unstable year to year \u2014 less predictable than Buffett prefers. (Buffett)",
+     "Debt/Equity of 9.06 exceeds Buffett's usual 0.5 comfort zone. (Buffett)",
+     "At least one loss-making year in the available window. (Buffett)",
+     "Average ROE of -32% falls short of Buffett's 15% minimum. (Buffett)"
+    ],
+    "valuation": "Not meaningful: the company doesn't generate positive free cash flow yet. The market prices it at 90.6x sales.",
+    "watch": [
+     "Revenue growth stays near or above 92% (last reading).",
+     "Operating margin (-2%) keeps rising as the company grows.",
+     "Free cash flow turns positive. Until then it may need to raise money.",
+     "Debt (debt/equity 9.1) comes down."
+    ],
+    "plan": "Pass for now. Revisit only if the business or the price changes materially.",
+    "buffett_view": "On Buffett's own tests this scores 32/100.",
     "ai": null
    }
   }
