@@ -186,6 +186,12 @@ td.n,th.n{text-align:right} td.n{font-family:"JetBrains Mono",monospace}
 .menu button:hover{background:#1d232c}
 .tvw{height:520px;border-radius:10px;overflow:hidden}
 .modal.wide{width:min(860px,96vw)}
+.strat{display:grid;gap:8px}
+.st{display:grid;grid-template-columns:190px 1fr;gap:14px;padding:11px 14px;border:1px solid var(--line);border-radius:10px;background:#0d1117}
+.st b{color:var(--gold);font-size:13px}.st span{color:var(--soft);font-size:13px;line-height:1.5}
+@media(max-width:640px){.st{grid-template-columns:1fr;gap:4px}}
+.xban{border:1px solid rgba(217,180,108,.45);background:rgba(217,180,108,.08);border-radius:12px;padding:12px 14px;margin-bottom:14px;font-size:13px;color:var(--soft);line-height:1.55}
+.xban b{color:var(--text)}
 fieldset{border:1px solid var(--line);border-radius:12px;padding:10px 14px 14px;margin-top:12px}
 legend{font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--gold);padding:0 6px}
 .fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px 14px}
@@ -239,9 +245,13 @@ footer{margin-top:44px;color:var(--dim);font-size:11.5px;text-align:center;line-
       <h2>Upcoming IPOs</h2>
       <p>For companies that haven't started trading yet, when the real decision is whether to <b>apply</b>. There's no market data before listing, so this desk works from the prospectus (S-1 / 424B4 in the US, DRHP / RHP in India): you type in the price band, share count and a few years of revenue and profit, and it runs the IPO checks, a valuation at the band and a written memo instantly. <b>Save for both of us</b> puts it on the site for your friend too. Once it lists, it moves to the IPO Desk by itself.</p>
     </div>
-    <div class="search"><span class="muted" style="flex:1;font-size:12.5px">Sorted by subscription closing date. Numbers are typed in from public sources; always verify against the prospectus.</span>
-      <button class="btn" onclick="exportUpcomingPdf(this)" title="Download all upcoming IPOs as a PDF">⬇ PDF</button>
-      <button class="btn ipo" onclick="upForm()">＋ Check an upcoming IPO</button></div>
+    <div class="search">
+      <label class="sbox"><span class="muted">⌕</span><input id="upQ" placeholder="Search an upcoming IPO, e.g. Jio, or any new name to extract it…" autocomplete="off" oninput="renderUpcoming()" onkeydown="if(event.key==='Enter'&&!$('#upGrid .card'))upX(this.value.trim())"></label>
+      <button class="btn ipo" onclick="upX()" title="Read an IPO page, prospectus PDF, Word file or screenshot and analyze it">⤓ Extract IPO</button>
+      <button class="btn" onclick="upForm()" title="Type the numbers in yourself">＋ Enter manually</button>
+      <button class="btn" onclick="exportUpcomingPdf(this)" title="Download all upcoming IPOs as a PDF">⬇ PDF</button></div>
+    <div class="req" id="upReq"></div>
+    <p class="muted" style="font-size:12px;margin:-6px 0 14px">Sorted by subscription closing date. Numbers come from public pages and prospectuses; always verify against the prospectus.</p>
     <div class="grid" id="upGrid"><div class="empty">Loading…</div></div>
   </section>
 
@@ -291,6 +301,20 @@ footer{margin-top:44px;color:var(--dim);font-size:11.5px;text-align:center;line-
   <div id="upFormBody" style="padding:6px 20px 14px;overflow:auto;max-height:64vh"></div>
   <div style="display:flex;gap:8px;justify-content:flex-end;align-items:center;padding:14px 20px;border-top:1px solid var(--line);flex-wrap:wrap">
     <span id="upMsg" style="color:var(--pass);font-size:12.5px;margin-right:auto"></span><button class="btn" onclick="closeUpForm()">Cancel</button><button class="btn ipo" onclick="analyzeUpForm()">Analyze →</button></div>
+</div>
+<div class="modal wide" id="upX" role="dialog" aria-modal="true">
+  <div class="dh"><div><div class="t" style="font-size:18px">⤓ Extract an upcoming IPO</div><div class="muted" style="font-size:12.5px;margin-top:2px">Give it an IPO page or the prospectus; it pulls out the price band, dates, issue size, shares and 3 years of financials, then runs the full analysis and strategy. Everything is read in your browser.</div></div><button class="btn" onclick="closeUpX()">✕</button></div>
+  <div style="padding:14px 20px;overflow:auto;max-height:66vh;display:grid;gap:14px">
+    <div class="fgrid"><label class="fld"><span>Company name</span><input id="xName" placeholder="e.g. Jio Platforms" oninput="upXLinks()"></label>
+      <label class="fld"><span>Page link (optional, saved as the source)</span><input id="xUrl" type="url" placeholder="https://www.chittorgarh.com/ipo/…"></label></div>
+    <div><div class="muted" style="font-size:12.5px;margin-bottom:6px"><b style="color:var(--text)">1. Find the IPO page</b> (opens a search in a new tab):</div><div id="xLinks" style="display:flex;gap:8px;flex-wrap:wrap"></div></div>
+    <div><div class="muted" style="font-size:12.5px;margin-bottom:6px"><b style="color:var(--text)">2. Copy the whole page</b> (Ctrl+A then Ctrl+C, or ⌘A ⌘C on a Mac) and paste it here. You can paste two pages (e.g. Chittorgarh + Groww) to fill more fields.</div>
+      <textarea id="xText" rows="8" style="width:100%;background:#10141a;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:10px;font:inherit;font-size:12.5px" placeholder="Paste the IPO page or prospectus text here…"></textarea></div>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><span class="muted" style="font-size:12.5px"><b style="color:var(--text)">Or add a file:</b></span>
+      <label class="btn">⬆ Prospectus PDF, Word, screenshot or saved page<input type="file" hidden accept=".pdf,.docx,.png,.jpg,.jpeg,.webp,.bmp,.gif,.html,.htm,.txt,.md" onchange="upXFile(this)"></label></div>
+  </div>
+  <div style="display:flex;gap:8px;justify-content:flex-end;align-items:center;padding:14px 20px;border-top:1px solid var(--line);flex-wrap:wrap">
+    <span id="xMsg" style="color:var(--gold);font-size:12.5px;margin-right:auto"></span><button class="btn" onclick="closeUpX()">Cancel</button><button class="btn ipo" onclick="runUpX()">Extract &amp; analyze →</button></div>
 </div>
 <div class="modal" id="review" role="dialog" aria-modal="true">
   <div class="dh"><div><div class="t" id="rvTitle" style="font-size:18px">Review import</div><div class="muted" id="rvNote" style="font-size:12.5px;margin-top:2px"></div></div><button class="btn" onclick="closeReview()">✕</button></div>
@@ -813,6 +837,7 @@ document.addEventListener('click',e=>{ if(!e.target.closest('.exp')) $('#expMenu
 
 tvEmbed($('#tape'),'embed-widget-ticker-tape.js',{symbols:[{proName:'AMEX:SPY',title:'S&P 500'},{proName:'NASDAQ:QQQ',title:'Nasdaq 100'},{proName:'AMEX:DIA',title:'Dow'},{proName:'AMEX:IWM',title:'Small caps'},{proName:'AMEX:IPO',title:'Renaissance IPO ETF'},{proName:'TVC:US10Y',title:'10-yr yield'},{proName:'TVC:GOLD',title:'Gold'}],showSymbolLogo:true,isTransparent:true,displayMode:'adaptive',colorTheme:'dark',locale:'en'});
 </script>
+<script src="extract.js"></script>
 <script src="upcoming.js"></script>
 <script src="export.js"></script>
 <script>load();</script>

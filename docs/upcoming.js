@@ -119,6 +119,8 @@ function analyzeUpcoming(ipo){
   if (pat != null && pat <= 0 && avg < 60){ label = 'SKIP'; why = 'Loss-making and not strong enough on IPO research or revenue quality to justify the risk.'; }
   else if ((k.ps != null && k.ps > 20) || (v.mos != null && v.mos < -0.6)){ label = 'WAIT (rich price)';
     why = 'Good business on the numbers, but at this price band the market is paying for much more growth than the company has shown. If you still like it, consider buying after listing if the price settles.'; }
+  else if (pat != null && pat <= 0){ label = 'WAIT for listing';      // same guardrail as the IPO Desk: no "buy" while losing money
+    why = 'Good revenue quality, but still loss-making. Ritter finds unprofitable IPOs have the worst long-run returns. Wait for listing and proof that losses are shrinking.'; }
   else if (avg >= 65 && (v.mos == null || v.mos >= -0.25)){ label = 'SUBSCRIBE candidate (small)'; why = 'Strong on IPO research and revenue quality at a price the numbers can support. If you apply, keep it small.'; }
   else if (avg >= 52){ label = 'WAIT for listing'; why = 'Decent, not compelling. Let it list and report a quarter or two, then decide at a known price.'; }
   else { label = 'SKIP'; why = 'Weak on IPO research and revenue quality at this price.'; }
@@ -139,6 +141,7 @@ function analyzeUpcoming(ipo){
     detail:`${ipo.promoter_post_pct}% retained: ${ipo.promoter_post_pct >= 50 ? 'strong skin in the game' : 'check who controls the company'}.`});
   if (pat != null) C.push({label:'Profitable', status: pat > 0 ? 'pass' : 'warn', detail:`Net profit ${cm(ipo, pat)}${k.pat_margin != null ? ` (${pct(k.pat_margin, 1)} margin)` : ''}.`});
   if (k.peg != null) C.push({label:'Price vs growth (PEG)', status: k.peg <= 1 ? 'pass' : k.peg <= 2 ? 'warn' : 'fail', detail:`${k.peg.toFixed(2)}: P/E ${k.pe.toFixed(1)} on ${(k.pat_growth * 100).toFixed(0)}% profit growth.`});
+  if (ipo.anchor_amount) C.push({label:'Anchor investors', status:'info', detail:`${cm(ipo, ipo.anchor_amount)}${ipo.issue_size ? ` (${pct(ipo.anchor_amount / ipo.issue_size, 0)} of the issue)` : ''} committed by large institutions before the issue opened. A sign of demand, not of value: they can sell when their lock-in ends${ipo.lockup_end ? ` (${ipo.lockup_end}${ipo.lockup_end_2 ? ' and ' + ipo.lockup_end_2 : ''})` : ''}.`});
   C.push({label:'After listing', status:'info', detail:'Lock-up for pre-IPO investors and anchors typically ends a few months after listing; the prospectus has the exact terms. Prices often dip around then.'});
   C.push({label:'Read the prospectus', status:'info', detail:'Business, risk factors, related-party deals, litigation and lock-up terms. The numbers here were typed in from public sources; verify them.', link: ipo.prospectus_url || null});
 
@@ -164,7 +167,25 @@ function analyzeUpcoming(ipo){
     : 'Pass on this one.';
   const memo = {lead, bull: [...rp, ...gp].slice(0, 5), bear: [...rc, ...gc.filter(x => !x.startsWith('Moat, network'))].slice(0, 5), val, watch: watch.slice(0, 6), plan,
     buffett: 'Buffett almost never buys IPOs: the seller picks the time and the price. He wants years of public results first. Ritter & Welch (2002): US IPOs from 1980–2001 returned 22.6% over 3 years, 23.4 points below the market.'};
-  return {ipo, k, lenses: [ritter, gurley], overall: {label, rationale: why, score: Math.round(avg * 10) / 10}, valuation: v, checklist: C, memo, price, priceLo};
+  // ── Strategy: what to actually do, step by step ──
+  const lotCost = ipo.lot_size && price ? ipo.lot_size * price : null, strategy = [];
+  strategy.push({h: 'Apply or not', t:
+    label.startsWith('SUBSCRIBE') ? `Apply${lotCost ? ` for 1–2 lots (1 lot = ${ipo.lot_size} shares ≈ ${cp(ipo, lotCost)})` : ''}. Keep all your IPO money together under about 5% of the portfolio; when an issue is oversubscribed, allotment is a lottery anyway.`
+    : label.startsWith('WAIT (rich') ? 'Don’t apply. The price band already assumes years of fast growth, so the odds favor waiting for a lower price after listing.'
+    : label.startsWith('WAIT') ? 'Don’t apply. Nothing here is broken, but there’s no edge in buying before the market sets a price. Let it trade and report results first.'
+    : 'Don’t apply. The numbers don’t support the risk.'});
+  if (v.base) strategy.push({h: 'Buy zone after listing', t: `Fair value is about ${cp(ipo, v.base)} a share (bear ${cp(ipo, v.bear)}, bull ${cp(ipo, v.bull)}). A value buyer starts at ${cp(ipo, v.base * 0.75)} or lower, a 25% margin of safety${price && v.base * 0.75 < price ? ` (${pct(1 - v.base * 0.75 / price, 0)} below the top of the band)` : ''}. Between that and ${cp(ipo, v.base)}, buy in small steps. Above ${cp(ipo, v.bull)} you’re speculating, not investing.`});
+  strategy.push({h: 'If you get shares', t: v.bull ? `If it lists above the bull-case value (${cp(ipo, v.bull)}), consider selling half to bank the gain and keep the rest only while the story holds. If it lists below the band, don’t average down until the first results confirm the numbers. Ritter: first-day pops don’t predict long-run returns.` : 'Don’t buy more or sell on day one; first-day moves are noise. Decide after the first quarterly results.'});
+  const lk = ipo.lockup_end ? `Anchor lock-in ends ${ipo.lockup_end}${ipo.lockup_end_2 ? ` (half) and ${ipo.lockup_end_2} (the rest)` : ''}`
+    : ipo.currency === 'INR' ? 'Anchor investors’ lock-in ends 30 days (half) and 90 days (the rest) after allotment' : 'The insider lock-up usually ends about 180 days after listing';
+  strategy.push({h: 'Mark the lock-up dates', t: `${lk}. Big holders can sell from then, and prices often dip around these dates: a second, usually cheaper, chance to buy if you still like it.`});
+  const trig = [];
+  if (k.rev_growth != null) trig.push(`revenue growth drops below ${pct(Math.max(k.rev_growth / 2, 0.03), 0)}`);
+  if (k.pat_margin != null && k.pat_margin > 0) trig.push(`net margin falls under ${pct(Math.max(k.pat_margin - 0.05, 0), 0)}`);
+  if (k.debt_share_of_proceeds > 0.3) trig.push('debt climbs back up after the IPO money pays it down');
+  if (pat != null && pat <= 0) trig.push('losses don’t shrink over the next two reports');
+  strategy.push({h: 'Re-check or sell if', t: trig.length ? trig.join('; ') + '. Any of these means the story behind the price has changed.' : 'the next two quarterly reports miss the growth the prospectus implied.'});
+  return {ipo, k, lenses: [ritter, gurley], overall: {label, rationale: why, score: Math.round(avg * 10) / 10}, valuation: v, checklist: C, memo, strategy, price, priceLo};
 }
 
 // ── UI ──
@@ -179,14 +200,31 @@ function upCard(a){
     <div class="bars">${a.lenses.map(l => `<div class="bar"><span>${l.short}</span><div class="track"><i style="width:${l.score}%;background:${COL[l.key]}"></i></div><span>${Math.round(l.score)}</span></div>`).join('')}</div>
     ${i.draft ? '<div class="note" style="color:var(--hold)">● draft: only in this browser</div>' : ''}</div>`;
 }
-function renderUpcoming(){
-  const drafts = store.get('ltl-up-drafts', []).map(d => ({...d, draft: true}));
-  const all = [...drafts.filter(d => !UPCOMING.some(u => u.id === d.id)), ...UPCOMING].filter(u => !u.moved_to_ipo_desk);
-  const list = all.map(analyzeUpcoming).sort((a, b) => (daysTo(a.ipo.close_date) ?? 999) - (daysTo(b.ipo.close_date) ?? 999));
-  $('#upGrid').innerHTML = list.length ? list.map(upCard).join('') : '<div class="empty">No upcoming IPOs yet. Click <b>＋ Check an upcoming IPO</b>.</div>';
-  $('#cUp').textContent = list.length;
+// Saved IPOs plus this browser's drafts. A draft wins over the saved version when it's a newer edit;
+// drafts that match the saved copy, or whose IPO has since listed, are cleaned up.
+function upList(){
+  const drafts = store.get('ltl-up-drafts', []), byId = Object.fromEntries(UPCOMING.map(u => [u.id, u]));
+  const strip = x => { const c = {...x}; delete c.draft; delete c.moved_to_ipo_desk; return JSON.stringify(c); };
+  const keep = drafts.filter(d => { const u = byId[d.id]; return !u || (!u.moved_to_ipo_desk && strip(u) !== strip(d) && (d.updated || '') >= (u.updated || '')); });
+  if (keep.length !== drafts.length) store.set('ltl-up-drafts', keep);
+  const ids = new Set(keep.map(d => d.id));
+  return [...keep.map(d => ({...d, draft: true})), ...UPCOMING.filter(u => !ids.has(u.id))].filter(u => !u.moved_to_ipo_desk);
 }
-function findUp(id){ return UPCOMING.find(u => u.id === id) || store.get('ltl-up-drafts', []).find(u => u.id === id); }
+function renderUpcoming(){
+  const q = ($('#upQ') ? $('#upQ').value : '').trim(), ql = q.toLowerCase();
+  const every = upList(), all = every.filter(u => !ql || (u.name || '').toLowerCase().includes(ql) || (u.symbol || '').toLowerCase().includes(ql));
+  const req = $('#upReq');
+  if (req){
+    if (q.length >= 2 && !all.length){
+      req.innerHTML = `<p><b>${esc(q)}</b> isn’t on the list yet. Extract it from an IPO page (Chittorgarh, Groww, news) or the prospectus and get the full analysis and strategy in seconds.</p><button class="btn ipo" onclick='upX(${JSON.stringify(q)})'>⤓ Extract ${esc(q)}</button>`;
+      req.classList.add('on');
+    } else req.classList.remove('on');
+  }
+  const list = all.map(analyzeUpcoming).sort((a, b) => (daysTo(a.ipo.close_date) ?? 999) - (daysTo(b.ipo.close_date) ?? 999));
+  $('#upGrid').innerHTML = list.length ? list.map(upCard).join('') : q ? '' : '<div class="empty">No upcoming IPOs yet. Click <b>⤓ Extract IPO</b>.</div>';
+  $('#cUp').textContent = every.length;
+}
+function findUp(id){ return upList().find(u => u.id === id) || UPCOMING.find(u => u.id === id); }
 function openUp(id, given){
   const ipo = given || findUp(id); if (!ipo) return;
   const a = analyzeUpcoming(ipo), k = a.k, v = a.valuation;
@@ -209,6 +247,7 @@ function openUp(id, given){
       <p style="margin-top:8px;color:var(--soft)">${esc(a.overall.rationale)}</p>
       <p class="muted" style="font-size:12px;margin-top:6px">From prospectus numbers entered ${esc(ipo.updated || '')}${ipo.added_by ? ' by ' + esc(ipo.added_by) : ''}${ipo.draft ? ' · <b style="color:var(--hold)">draft, only in this browser</b>' : ''}</p></div>
       <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" onclick='editUp(${JSON.stringify(ipo.id)})'>✎ Edit numbers</button>${ipo.draft ? `<button class="btn primary" onclick='saveUp(${JSON.stringify(ipo.id)})'>Save for both of us ↗</button>` : ''}</div></div>
+    <div class="sec"><h4>🎯 Strategy</h4><div class="strat">${a.strategy.map((s, i) => `<div class="st"><b>${i + 1}. ${esc(s.h)}</b><span>${esc(s.t)}</span></div>`).join('')}</div></div>
     <div class="sec"><h4>📝 Research memo</h4><div class="memo"><div class="lead">${esc(a.memo.lead)}</div>
       <div class="cols"><div class="box"><h5 style="color:var(--buy)">Why it could work</h5>${li(a.memo.bull, 'p')}</div><div class="box"><h5 style="color:var(--pass)">What worries us</h5>${li(a.memo.bear, 'c')}</div></div>
       <div><b style="color:var(--text)">Valuation.</b> ${esc(a.memo.val)}</div>
@@ -235,10 +274,10 @@ const UP_FIELDS = [
   ['Company', [['name', 'Company name', 'text', 'Jio Platforms'], ['symbol', 'Expected ticker', 'text', 'JIOPLAT'], ['yahoo', 'Market symbol after listing (Yahoo)', 'text', 'e.g. JIO.NS', 'Used to move it to the IPO Desk on listing day. India: add .NS'],
     ['exchange', 'Exchange', 'text', 'NSE, BSE'], ['sector', 'Sector', 'text', 'Telecom & digital'], ['about', 'What the company does (one line)', 'text', "India's largest telecom and digital services company"]]],
   ['Money units', [['currency', 'Currency', 'select', ['USD', 'INR', 'EUR', 'GBP', 'CAD', 'AUD', 'HKD', 'JPY', 'CNY', 'SGD', 'CHF']], ['unit', 'All amounts and share counts in', 'select', ['million', 'crore', 'billion', 'lakh', 'thousand']]]],
-  ['Dates', [['open_date', 'Subscription opens', 'date'], ['close_date', 'Subscription closes', 'date'], ['listing_date', 'Listing date', 'date']]],
+  ['Dates', [['open_date', 'Subscription opens', 'date'], ['close_date', 'Subscription closes', 'date'], ['listing_date', 'Listing date', 'date'], ['lockup_end', 'Anchor lock-in ends (first half)', 'date'], ['lockup_end_2', 'Anchor lock-in ends (rest)', 'date']]],
   ['The offer', [['price_low', 'Price band low (per share)', 'number'], ['price_high', 'Price band high (per share)', 'number'], ['lot_size', 'Lot / minimum shares', 'number'],
     ['issue_size', 'Total issue size', 'number'], ['fresh_issue', 'Fresh issue (new money to company)', 'number'], ['ofs', 'Offer for sale (existing holders selling)', 'number'],
-    ['shares_post', 'Total shares after IPO', 'number', '', 'If unknown, fill the next two instead'], ['fresh_shares', 'New shares issued', 'number'], ['pct_sold', '% of company sold in IPO', 'number']]],
+    ['shares_post', 'Total shares after IPO', 'number', '', 'If unknown, fill the next two instead'], ['fresh_shares', 'New shares issued', 'number'], ['pct_sold', '% of company sold in IPO', 'number'], ['anchor_amount', 'Raised from anchor investors', 'number']]],
   ['Financials (oldest → latest, comma-separated)', [['years', 'Year labels', 'text', 'FY24, FY25, FY26'], ['revenue', 'Revenue', 'text', '110000, 128218, 146885'], ['ebitda', 'EBITDA', 'text'], ['net_profit', 'Net profit', 'text'], ['gross_margin', 'Gross margin % (optional)', 'number']]],
   ['Balance sheet & ownership', [['debt', 'Total debt before IPO', 'number'], ['cash', 'Cash before IPO', 'number'], ['proceeds_debt', 'Proceeds used to repay debt', 'number'], ['promoter_post_pct', 'Promoter / founder stake after IPO (%)', 'number']]],
   ['Context', [['use_of_proceeds', 'Use of proceeds', 'text'], ['risks', 'Key risks (one per line)', 'textarea'], ['prospectus_url', 'Prospectus link (S-1 / RHP)', 'url'], ['sources', 'Other sources (one URL per line)', 'textarea'], ['notes', 'Notes', 'textarea'], ['added_by', 'Your name (optional)', 'text']]]
@@ -284,4 +323,63 @@ function saveUp(id){
   const title = encodeURIComponent('Add upcoming IPO: ' + ipo.name);
   const body = encodeURIComponent('Saves this upcoming IPO to Long-Term Lab so both of us see it. Just press "Submit new issue".\n\n```json\n' + JSON.stringify(clean, null, 1) + '\n```\n');
   window.open(`https://github.com/${REPO}/issues/new?title=${title}&body=${body}`, '_blank', 'noopener');
+}
+
+// ── Extract: read an IPO page, prospectus, Word file or screenshot and analyze it ──
+const XLABEL = {name: 'company name', price_high: 'price band', lot_size: 'lot size', close_date: 'subscription dates', issue_size: 'issue size',
+  shares_post: 'total shares after the IPO', revenue: 'revenue', net_profit: 'net profit', ebitda: 'EBITDA', promoter_post_pct: 'promoter stake after the IPO'};
+function upX(name){
+  $('#xName').value = name || ($('#upQ') ? $('#upQ').value.trim() : '');
+  $('#xText').value = ''; $('#xUrl').value = ''; $('#xMsg').textContent = '';
+  upXLinks(); $('#upX').classList.add('on'); $('#shade').classList.add('on');
+}
+function closeUpX(){ $('#upX').classList.remove('on'); if (!$('#drawer').classList.contains('on') && !$('#upForm').classList.contains('on')) $('#shade').classList.remove('on'); }
+function upXLinks(){
+  const n = $('#xName').value.trim(), q = encodeURIComponent(`"${n || 'upcoming'}" IPO`);
+  $('#xLinks').innerHTML = [['Chittorgarh (India, most complete)', `https://www.google.com/search?q=${q}+site%3Achittorgarh.com`],
+    ['Groww / Zerodha', `https://www.google.com/search?q=${q}+site%3Agroww.in+OR+site%3Azerodha.com`],
+    ['US: SEC prospectus (S-1 / F-1)', `https://www.sec.gov/edgar/search/#/q=${encodeURIComponent('"' + (n || '') + '"')}&forms=S-1,F-1,424B4`],
+    ['News', `https://www.google.com/search?q=${q}+price+band&tbm=nws`]]
+    .map(([t, u]) => `<a class="btn" target="_blank" rel="noopener" href="${u}">${t} ↗</a>`).join('');
+}
+async function upXFile(input){
+  const f = input.files[0]; input.value = ''; if (!f) return;
+  const ext = (f.name.split('.').pop() || '').toLowerCase(), say = t => $('#xMsg').textContent = t;
+  try{
+    let text = '';
+    say('Reading ' + f.name + '…');
+    if (ext === 'pdf'){ await loadScript(LIBS.pdf); pdfjsLib.GlobalWorkerOptions.workerSrc = LIBS.pdfw;
+      const doc = await pdfjsLib.getDocument({data: await f.arrayBuffer()}).promise, n = Math.min(doc.numPages, 80), lines = [];
+      for (let p = 1; p <= n; p++){ if (p % 10 === 0) say(`Reading page ${p} of ${n}…`); lines.push(...groupLines((await (await doc.getPage(p)).getTextContent()).items)); }
+      text = lines.join('\n'); if (doc.numPages > n) say(`Read the first ${n} of ${doc.numPages} pages (the summary and financials are near the front).`); }
+    else if (ext === 'docx'){ await loadScript(LIBS.mammoth); text = (await mammoth.extractRawText({arrayBuffer: await f.arrayBuffer()})).value; }
+    else if (['png', 'jpg', 'jpeg', 'webp', 'bmp', 'gif'].includes(ext)){ await loadScript(LIBS.tess); say('Reading text from the image (OCR). This takes 10–40 seconds…');
+      text = (await Tesseract.recognize(f, 'eng')).data.text; }
+    else if (['html', 'htm', 'mhtml'].includes(ext)){ const d = new DOMParser().parseFromString(await f.text(), 'text/html'); d.querySelectorAll('script,style,noscript').forEach(e => e.remove()); text = d.body.innerText || d.body.textContent; }
+    else if (['txt', 'md', 'csv', 'json'].includes(ext)) text = await f.text();
+    else throw new Error('Use a PDF, Word (.docx), screenshot, saved web page (.html) or text file.');
+    $('#xText').value = ($('#xText').value ? $('#xText').value + '\n\n' : '') + text;
+    if (!/^Read the first/.test($('#xMsg').textContent)) say(`Read ${f.name}. Click Extract & analyze.`);
+  }catch(e){ say(e.message || 'Could not read that file.'); }
+}
+function runUpX(){
+  const text = $('#xText').value;
+  if (text.trim().length < 60){ $('#xMsg').textContent = 'Paste the page text or add a file first.'; return; }
+  const r = extractIpo(text, {name: $('#xName').value.trim() || null, url: $('#xUrl').value.trim()}), o = r.ipo;
+  o.updated = new Date().toISOString().slice(0, 10);
+  if (o.name) o.id = o.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') + '-' + (o.close_date || o.updated).slice(0, 7);
+  o.notes = 'Extracted automatically from ' + (o.sources ? o.sources[0].url : 'pasted text / a file') + ' on ' + o.updated + '. Check the numbers against the prospectus.';
+  const banner = `<div class="xban"><b>⤓ Extracted ${r.found.length} fields.</b> ${r.missing.length ? `Not found: <b>${r.missing.map(k => XLABEL[k] || k).join(', ')}</b>. ` : 'Everything the analysis needs was found. '}
+    ${r.warnings.map(w => `<div class="muted">• ${esc(w)}</div>`).join('')}
+    <div style="margin-top:8px">Check the numbers with <b>✎ Edit numbers</b>${r.missing.includes('shares_post') ? ' (the share count matters most: without it there is no valuation; Chittorgarh lists it as "Share Holding Post Issue")' : ''}, then <b>Save for both of us</b> so your friend sees it.</div></div>`;
+  closeUpX();
+  if (o.name && (o.price_high || o.price_low)){
+    const d = store.get('ltl-up-drafts', []).filter(x => x.id !== o.id); d.unshift(o); store.set('ltl-up-drafts', d.slice(0, 20));
+    if ($('#upQ')) $('#upQ').value = '';
+    renderUpcoming(); openUp(o.id, {...o, draft: true});
+    $('#dB').insertAdjacentHTML('afterbegin', banner);
+  } else {
+    upForm(o); $('#upForm').dataset.id = '';
+    $('#upFormBody').insertAdjacentHTML('afterbegin', banner.replace('Check the numbers with <b>✎ Edit numbers</b>', 'Fill in the missing ones below and click <b>Analyze</b>'));
+  }
 }
