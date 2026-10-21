@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-21T19:14:14+00:00",
+ "generated": "2026-10-21T19:25:57+00:00",
  "version": 2,
  "count": 27,
  "failed": [],
@@ -11,7 +11,7 @@
    "name": "Reddit, Inc.",
    "sector": "Communication Services",
    "industry": "Internet Content & Information",
-   "price": 153.93,
+   "price": 153.21,
    "week52_high": 263.5,
    "week52_low": 119.27,
    "overall": {
@@ -32,7 +32,7 @@
       "Revenue up 61% year over year since listing: operating performance is holding up."
      ],
      "cons": [
-      "Price/sales 10.7. Ritter: at high multiples 'the upside potential is more limited and the downside potential is greater' (historical tech-IPO norm ~6)."
+      "Price/sales 10.6. Ritter: at high multiples 'the upside potential is more limited and the downside potential is greater' (historical tech-IPO norm ~6)."
      ]
     },
     {
@@ -69,7 +69,7 @@
     }
    ],
    "classic": {
-    "buffett": 38.2,
+    "buffett": 38.3,
     "graham": 28.2,
     "lynch": 67.9,
     "greenblatt": 55.0
@@ -97,12 +97,12 @@
     "total_cash": 2786356992,
     "cash_runway_years": null,
     "rule_of_40": 85.7,
-    "market_cap": 29614710784,
-    "pe": 35.8,
-    "forward_pe": 15.9,
-    "pb": 9.01,
+    "market_cap": 29477070848,
+    "pe": 35.63,
+    "forward_pe": 15.82,
+    "pb": 8.97,
     "peg": 0.78,
-    "price_to_sales": 10.66,
+    "price_to_sales": 10.61,
     "ev_to_ebitda": 33.91,
     "earnings_yield": 0.0163,
     "graham_number": 40.66,
@@ -122,7 +122,7 @@
     "growth": 0.25,
     "method": "average free cash flow, last 3 years",
     "note": null,
-    "margin_of_safety": -0.4377
+    "margin_of_safety": -0.4311
    },
    "recent_ipo": true,
    "ipo": {
@@ -145,7 +145,7 @@
      {
       "label": "Price vs first-day open",
       "status": "warn",
-      "detail": "+228% vs $47.00 on day one. It has more than doubled, so check that the hype matches the numbers."
+      "detail": "+226% vs $47.00 on day one. It has more than doubled, so check that the hype matches the numbers."
      },
      {
       "label": "First-day move",
@@ -175,7 +175,7 @@
      {
       "label": "Valuation (price/sales)",
       "status": "warn",
-      "detail": "10.7x sales (historical tech-IPO norm ~6x)."
+      "detail": "10.6x sales (historical tech-IPO norm ~6x)."
      }
     ]
    },
@@ -185,10 +185,10 @@
     "Prospectus link unavailable: ticker not found in SEC's company list."
    ],
    "stale": false,
-   "updated": "2026-10-21T19:02:06+00:00",
+   "updated": "2026-10-21T19:25:18+00:00",
    "memo": {
     "headline": "BUY candidate (start small). Strong on IPO research and revenue quality at a reasonable price. If you buy, start small and add as it proves itself.",
-    "business": "Reddit, Inc. (RDDT) is an internet content & information company worth about $29.6B. It brought in $2.8B of revenue over the last year, up 61% from a year earlier. It keeps 29% of sales as operating profit. It has traded publicly for about 31 months.",
+    "business": "Reddit, Inc. (RDDT) is an internet content & information company worth about $29.5B. It brought in $2.8B of revenue over the last year, up 61% from a year earlier. It keeps 29% of sales as operating profit. It has traded publicly for about 31 months.",
     "bull": [
      "Gross margin 91%: high-quality revenue (Gurley factor #5). (Gurley)",
      "Revenue growing 61% a year (#10). Gurley adds that growth only counts if it ends in cash flow. (Gurley)",
@@ -197,14 +197,14 @@
     ],
     "bear": [
      "Share count up 37%. Fisher #13 warns against growth funded by diluting owners. (Fisher)",
-     "Price/sales 10.7. Ritter: at high multiples 'the upside potential is more limited and the downside potential is greater' (historical tech-IPO norm ~6). (Ritter)"
+     "Price/sales 10.6. Ritter: at high multiples 'the upside potential is more limited and the downside potential is greater' (historical tech-IPO norm ~6). (Ritter)"
     ],
-    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 25% growth fading to 3%, 9% discount rate), fair value is roughly $107.06 a share (bear $54.56, bull $178.53) against a price of $153.93. The price is 44% above the base-case value, so you're paying for growth that hasn't happened yet.",
+    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 25% growth fading to 3%, 9% discount rate), fair value is roughly $107.06 a share (bear $54.56, bull $178.53) against a price of $153.21. The price is 43% above the base-case value, so you're paying for growth that hasn't happened yet.",
     "watch": [
-     "Price vs first-day open: +228% vs $47.00 on day one. It has more than doubled, so check that the hype matches the numbers.",
+     "Price vs first-day open: +226% vs $47.00 on day one. It has more than doubled, so check that the hype matches the numbers.",
      "Insider ownership: 1% owned by insiders. Check the prospectus for dual-class voting.",
      "Short interest: 15% of the float is sold short.",
-     "Valuation (price/sales): 10.7x sales (historical tech-IPO norm ~6x).",
+     "Valuation (price/sales): 10.6x sales (historical tech-IPO norm ~6x).",
      "Revenue growth stays near or above 61% (last reading).",
      "Operating margin (29%) keeps rising as the company grows."
     ],
@@ -220,7 +220,7 @@
    "name": "Chime Financial, Inc.",
    "sector": "Technology",
    "industry": "Software - Application",
-   "price": 30.5,
+   "price": 30.53,
    "week52_high": 35.55,
    "week52_low": 15.88,
    "overall": {
@@ -304,10 +304,10 @@
     "total_cash": 1160823040,
     "cash_runway_years": null,
     "rule_of_40": 27.8,
-    "market_cap": 11544953856,
-    "pe": 34.65,
-    "forward_pe": 18.94,
-    "pb": 8.22,
+    "market_cap": 11558204416,
+    "pe": 34.69,
+    "forward_pe": 18.96,
+    "pb": 8.23,
     "peg": null,
     "price_to_sales": 4.7,
     "ev_to_ebitda": 27.49,
@@ -391,10 +391,10 @@
     "Prospectus link unavailable: ticker not found in SEC's company list."
    ],
    "stale": false,
-   "updated": "2026-10-21T19:02:33+00:00",
+   "updated": "2026-10-21T19:25:48+00:00",
    "memo": {
     "headline": "BUY candidate (start small). Strong on IPO research and revenue quality at a reasonable price. If you buy, start small and add as it proves itself.",
-    "business": "Chime Financial, Inc. (CHYM) is a software - application company worth about $11.5B. It brought in $2.5B of revenue over the last year, up 27% from a year earlier. It keeps 19% of sales as operating profit. It has traded publicly for about 16 months.",
+    "business": "Chime Financial, Inc. (CHYM) is a software - application company worth about $11.6B. It brought in $2.5B of revenue over the last year, up 27% from a year earlier. It keeps 19% of sales as operating profit. It has traded publicly for about 16 months.",
     "bull": [
      "Revenue of $2.46B. Ritter finds larger IPOs roughly match the market over time. (Ritter)",
      "Price/sales 4.7, near the historical tech-IPO norm of ~6. (Ritter)",
@@ -425,7 +425,7 @@
    "name": "CoreWeave, Inc.",
    "sector": "Technology",
    "industry": "Software - Infrastructure",
-   "price": 61.69,
+   "price": 61.82,
    "week52_high": 141.79,
    "week52_low": 57.23,
    "overall": {
@@ -512,12 +512,12 @@
     "total_cash": 5538999808,
     "cash_runway_years": 0.8,
     "rule_of_40": 17.0,
-    "market_cap": 34024290304,
+    "market_cap": 34095990784,
     "pe": null,
-    "forward_pe": -33.41,
-    "pb": 6.77,
+    "forward_pe": -33.48,
+    "pb": 6.78,
     "peg": null,
-    "price_to_sales": 4.48,
+    "price_to_sales": 4.49,
     "ev_to_ebitda": 21.2,
     "earnings_yield": 0.0002,
     "graham_number": null,
@@ -560,7 +560,7 @@
      {
       "label": "Price vs first-day open",
       "status": "info",
-      "detail": "+58% vs $39.00 on day one."
+      "detail": "+59% vs $39.00 on day one."
      },
      {
       "label": "First-day move",
@@ -599,10 +599,10 @@
     "Prospectus link unavailable: ticker not found in SEC's company list."
    ],
    "stale": false,
-   "updated": "2026-10-21T19:02:22+00:00",
+   "updated": "2026-10-21T19:25:36+00:00",
    "memo": {
     "headline": "PASS (cash risk). Only ~0.8 years of cash left at today's burn. Likely to raise money and dilute owners.",
-    "business": "CoreWeave, Inc. (CRWV) is a software - infrastructure company worth about $34.0B. It brought in $7.6B of revenue over the last year, up 112% from a year earlier. It is not yet profitable at the operating level. It has traded publicly for about 19 months.",
+    "business": "CoreWeave, Inc. (CRWV) is a software - infrastructure company worth about $34.1B. It brought in $7.6B of revenue over the last year, up 112% from a year earlier. It is not yet profitable at the operating level. It has traded publicly for about 19 months.",
     "bull": [
      "Revenue of $7.59B. Ritter finds larger IPOs roughly match the market over time. (Ritter)",
      "Price/sales 4.5, near the historical tech-IPO norm of ~6. (Ritter)",
@@ -636,7 +636,7 @@
    "name": "Rubrik, Inc.",
    "sector": "Technology",
    "industry": "Software - Infrastructure",
-   "price": 120.46,
+   "price": 120.26,
    "week52_high": 127.9,
    "week52_low": 42.25,
    "overall": {
@@ -723,12 +723,12 @@
     "total_cash": 1747649024,
     "cash_runway_years": null,
     "rule_of_40": 53.3,
-    "market_cap": 24794107904,
+    "market_cap": 24752943104,
     "pe": null,
-    "forward_pe": 156.92,
-    "pb": -49.98,
+    "forward_pe": 156.66,
+    "pb": -49.9,
     "peg": null,
-    "price_to_sales": 16.08,
+    "price_to_sales": 16.05,
     "ev_to_ebitda": -88.0,
     "earnings_yield": -0.0134,
     "graham_number": null,
@@ -748,7 +748,7 @@
     "growth": 0.25,
     "method": "average free cash flow, last 3 years",
     "note": null,
-    "margin_of_safety": -3.3006
+    "margin_of_safety": -3.2935
    },
    "recent_ipo": true,
    "ipo": {
@@ -810,7 +810,7 @@
     "Prospectus link unavailable: ticker not found in SEC's company list."
    ],
    "stale": false,
-   "updated": "2026-10-21T19:02:14+00:00",
+   "updated": "2026-10-21T19:25:27+00:00",
    "memo": {
     "headline": "WATCH (priced for perfection). Good business by the numbers, but the price is far above what its cash flow supports even with strong growth. Wait for a better price.",
     "business": "Rubrik, Inc. (RBRK) is a software - infrastructure company worth about $24.8B. It brought in $1.5B of revenue over the last year, up 38% from a year earlier. It is not yet profitable at the operating level. It has traded publicly for about 30 months.",
@@ -826,7 +826,7 @@
      "Price/sales 16.1. Ritter: at high multiples 'the upside potential is more limited and the downside potential is greater' (historical tech-IPO norm ~6). (Ritter)",
      "Not yet profitable. For tech IPOs Ritter sees only a weak link to later returns, but it raises the stakes on growth. (Ritter)"
     ],
-    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 25% growth fading to 3%, 9% discount rate), fair value is roughly $28.01 a share (bear $14.28, bull $46.71) against a price of $120.46. The price is more than 4x the base-case value: the market expects far more growth than this model assumes.",
+    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 25% growth fading to 3%, 9% discount rate), fair value is roughly $28.01 a share (bear $14.28, bull $46.71) against a price of $120.26. The price is more than 4x the base-case value: the market expects far more growth than this model assumes.",
     "watch": [
      "Price vs first-day open: +212% vs $38.60 on day one. It has more than doubled, so check that the hype matches the numbers.",
      "Profitable: Net margin -16%.",
@@ -847,12 +847,12 @@
    "name": "Astera Labs, Inc.",
    "sector": "Technology",
    "industry": "Semiconductors",
-   "price": 286.37,
+   "price": 288.61,
    "week52_high": 499.48,
    "week52_low": 97.89,
    "overall": {
     "label": "WATCH (priced for perfection)",
-    "rationale": "Good business by the numbers, but at 41x sales the price already assumes years of flawless growth. Ritter's research says this is where IPO returns disappoint.",
+    "rationale": "Good business by the numbers, but at 42x sales the price already assumes years of flawless growth. Ritter's research says this is where IPO returns disappoint.",
     "score": 73.5
    },
    "lenses": [
@@ -868,7 +868,7 @@
       "Revenue up 104% year over year since listing: operating performance is holding up."
      ],
      "cons": [
-      "Price/sales 41.3. Ritter: at high multiples 'the upside potential is more limited and the downside potential is greater' (historical tech-IPO norm ~6)."
+      "Price/sales 41.7. Ritter: at high multiples 'the upside potential is more limited and the downside potential is greater' (historical tech-IPO norm ~6)."
      ]
     },
     {
@@ -909,7 +909,7 @@
    "classic": {
     "buffett": 38.8,
     "graham": 28.2,
-    "lynch": 71.0,
+    "lynch": 70.8,
     "greenblatt": 55.0
    },
    "kpis": {
@@ -935,12 +935,12 @@
     "total_cash": 1252957952,
     "cash_runway_years": null,
     "rule_of_40": 127.9,
-    "market_cap": 49680928768,
-    "pe": 141.07,
-    "forward_pe": 44.72,
-    "pb": 28.79,
+    "market_cap": 50069532672,
+    "pe": 142.17,
+    "forward_pe": 45.07,
+    "pb": 29.01,
     "peg": 0.76,
-    "price_to_sales": 41.33,
+    "price_to_sales": 41.66,
     "ev_to_ebitda": 168.89,
     "earnings_yield": 0.0036,
     "graham_number": 21.31,
@@ -960,7 +960,7 @@
     "growth": 0.25,
     "method": "average free cash flow, last 3 years",
     "note": null,
-    "margin_of_safety": -6.0223
+    "margin_of_safety": -6.0772
    },
    "recent_ipo": true,
    "ipo": {
@@ -983,7 +983,7 @@
      {
       "label": "Price vs first-day open",
       "status": "warn",
-      "detail": "+445% vs $52.56 on day one. It has more than doubled, so check that the hype matches the numbers."
+      "detail": "+449% vs $52.56 on day one. It has more than doubled, so check that the hype matches the numbers."
      },
      {
       "label": "First-day move",
@@ -1013,7 +1013,7 @@
      {
       "label": "Valuation (price/sales)",
       "status": "fail",
-      "detail": "41.3x sales (historical tech-IPO norm ~6x)."
+      "detail": "41.7x sales (historical tech-IPO norm ~6x)."
      }
     ]
    },
@@ -1022,10 +1022,10 @@
     "Prospectus link unavailable: ticker not found in SEC's company list."
    ],
    "stale": false,
-   "updated": "2026-10-21T19:02:10+00:00",
+   "updated": "2026-10-21T19:25:23+00:00",
    "memo": {
-    "headline": "WATCH (priced for perfection). Good business by the numbers, but at 41x sales the price already assumes years of flawless growth. Ritter's research says this is where IPO returns disappoint.",
-    "business": "Astera Labs, Inc. (ALAB) is a semiconductors company worth about $49.7B. It brought in $1.2B of revenue over the last year, up 104% from a year earlier. It keeps 23% of sales as operating profit. It has traded publicly for about 31 months.",
+    "headline": "WATCH (priced for perfection). Good business by the numbers, but at 42x sales the price already assumes years of flawless growth. Ritter's research says this is where IPO returns disappoint.",
+    "business": "Astera Labs, Inc. (ALAB) is a semiconductors company worth about $50.1B. It brought in $1.2B of revenue over the last year, up 104% from a year earlier. It keeps 23% of sales as operating profit. It has traded publicly for about 31 months.",
     "bull": [
      "Gross margin 75%: high-quality revenue (Gurley factor #5). (Gurley)",
      "Revenue growing 104% a year (#10). Gurley adds that growth only counts if it ends in cash flow. (Gurley)",
@@ -1033,13 +1033,13 @@
      "Revenue rose every recent quarter: visible, predictable revenue (#3). (Gurley)"
     ],
     "bear": [
-     "Price/sales 41.3. Ritter: at high multiples 'the upside potential is more limited and the downside potential is greater' (historical tech-IPO norm ~6). (Ritter)",
+     "Price/sales 41.7. Ritter: at high multiples 'the upside potential is more limited and the downside potential is greater' (historical tech-IPO norm ~6). (Ritter)",
      "Share count up 38%. Fisher #13 warns against growth funded by diluting owners. (Fisher)"
     ],
-    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 25% growth fading to 3%, 9% discount rate), fair value is roughly $40.78 a share (bear $20.79, bull $68.01) against a price of $286.37. The price is more than 7x the base-case value: the market expects far more growth than this model assumes.",
+    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 25% growth fading to 3%, 9% discount rate), fair value is roughly $40.78 a share (bear $20.79, bull $68.01) against a price of $288.61. The price is more than 7x the base-case value: the market expects far more growth than this model assumes.",
     "watch": [
-     "Price vs first-day open: +445% vs $52.56 on day one. It has more than doubled, so check that the hype matches the numbers.",
-     "Valuation (price/sales): 41.3x sales (historical tech-IPO norm ~6x).",
+     "Price vs first-day open: +449% vs $52.56 on day one. It has more than doubled, so check that the hype matches the numbers.",
+     "Valuation (price/sales): 41.7x sales (historical tech-IPO norm ~6x).",
      "Revenue growth stays near or above 104% (last reading).",
      "Operating margin (23%) keeps rising as the company grows."
     ],
@@ -1055,7 +1055,7 @@
    "name": "Figma, Inc.",
    "sector": "Technology",
    "industry": "Software - Application",
-   "price": 22.98,
+   "price": 23.04,
    "week52_high": 55.48,
    "week52_low": 16.6,
    "overall": {
@@ -1141,12 +1141,12 @@
     "total_cash": 1667138048,
     "cash_runway_years": null,
     "rule_of_40": 66.7,
-    "market_cap": 12248565760,
+    "market_cap": 12280547328,
     "pe": null,
-    "forward_pe": 66.66,
-    "pb": 8.25,
+    "forward_pe": 66.83,
+    "pb": 8.27,
     "peg": 7.95,
-    "price_to_sales": 9.56,
+    "price_to_sales": 9.58,
     "ev_to_ebitda": -6.72,
     "earnings_yield": -0.1228,
     "graham_number": null,
@@ -1166,7 +1166,7 @@
     "growth": 0.25,
     "method": "average free cash flow, last 3 years",
     "note": null,
-    "margin_of_safety": 0.5492
+    "margin_of_safety": 0.5481
    },
    "recent_ipo": true,
    "ipo": {
@@ -1228,10 +1228,10 @@
     "Prospectus link unavailable: ticker not found in SEC's company list."
    ],
    "stale": false,
-   "updated": "2026-10-21T19:02:36+00:00",
+   "updated": "2026-10-21T19:25:53+00:00",
    "memo": {
     "headline": "BUY candidate (start small). Strong on IPO research and revenue quality at a reasonable price. If you buy, start small and add as it proves itself.",
-    "business": "Figma, Inc. (FIG) is a software - application company worth about $12.2B. It brought in $1.3B of revenue over the last year, up 48% from a year earlier. It is not yet profitable at the operating level. It has traded publicly for about 15 months.",
+    "business": "Figma, Inc. (FIG) is a software - application company worth about $12.3B. It brought in $1.3B of revenue over the last year, up 48% from a year earlier. It is not yet profitable at the operating level. It has traded publicly for about 15 months.",
     "bull": [
      "Gross margin 79%: high-quality revenue (Gurley factor #5). (Gurley)",
      "Revenue growing 48% a year (#10). Gurley adds that growth only counts if it ends in cash flow. (Gurley)",
@@ -1244,7 +1244,7 @@
      "Price/sales 9.6. Ritter: at high multiples 'the upside potential is more limited and the downside potential is greater' (historical tech-IPO norm ~6). (Ritter)",
      "Not yet profitable. For tech IPOs Ritter sees only a weak link to later returns, but it raises the stakes on growth. (Ritter)"
     ],
-    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 25% growth fading to 3%, 9% discount rate), fair value is roughly $50.98 a share (bear $25.98, bull $85.02) against a price of $22.98. That's a 55% margin of safety: Buffett and Graham wanted 25%+.",
+    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 25% growth fading to 3%, 9% discount rate), fair value is roughly $50.98 a share (bear $25.98, bull $85.02) against a price of $23.04. That's a 55% margin of safety: Buffett and Graham wanted 25%+.",
     "watch": [
      "Profitable: Net margin -123%.",
      "Insider ownership: 2% owned by insiders. Check the prospectus for dual-class voting.",
@@ -1265,7 +1265,7 @@
    "name": "Klarna Group plc",
    "sector": "Financial Services",
    "industry": "Credit Services",
-   "price": 13.11,
+   "price": 13.13,
    "week52_high": 40.05,
    "week52_low": 12.06,
    "overall": {
@@ -1351,9 +1351,9 @@
     "total_cash": 4814000128,
     "cash_runway_years": 4.5,
     "rule_of_40": 0.3,
-    "market_cap": 4968892416,
+    "market_cap": 4978333696,
     "pe": null,
-    "forward_pe": 16.41,
+    "forward_pe": 16.7,
     "pb": 2.04,
     "peg": 0.08,
     "price_to_sales": 1.23,
@@ -1433,7 +1433,7 @@
     "Prospectus link unavailable: ticker not found in SEC's company list."
    ],
    "stale": false,
-   "updated": "2026-10-21T19:02:40+00:00",
+   "updated": "2026-10-21T19:25:57+00:00",
    "memo": {
     "headline": "WATCH. Strong scores, but it isn't self-funding yet. Wait for free cash flow to turn positive.",
     "business": "Klarna Group plc (KLAR) is a credit services company worth about $5.0B. It brought in $4.0B of revenue over the last year, up 27% from a year earlier. It keeps 3% of sales as operating profit. It has traded publicly for about 13 months.",
@@ -1469,7 +1469,7 @@
    "name": "NVIDIA Corporation",
    "sector": "Technology",
    "industry": "Semiconductors",
-   "price": 220.56,
+   "price": 221.15,
    "week52_high": 243.37,
    "week52_low": 164.27,
    "overall": {
@@ -1493,7 +1493,7 @@
      ],
      "cons": [
       "Margins are unstable year to year \u2014 less predictable than Buffett prefers.",
-      "Trading ~50% above estimated intrinsic value \u2014 little to no margin of safety."
+      "Trading ~51% above estimated intrinsic value \u2014 little to no margin of safety."
      ]
     },
     {
@@ -1509,8 +1509,8 @@
       "Currently pays a dividend (yield ~0.5%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
      ],
      "cons": [
-      "Price ($220.56) exceeds the Graham Number ($41.08) \u2014 fails Graham's defensive-investor price test.",
-      "P/E \u00d7 P/B = 648.5, above Graham's 22.5 ceiling \u2014 pricey on a combined basis."
+      "Price ($221.15) exceeds the Graham Number ($41.08) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 651.9, above Graham's 22.5 ceiling \u2014 pricey on a combined basis."
      ]
     },
     {
@@ -1579,12 +1579,12 @@
     "total_cash": 62469001216,
     "cash_runway_years": null,
     "rule_of_40": 137.8,
-    "market_cap": 5325862207488,
-    "pe": 27.88,
-    "forward_pe": 13.86,
-    "pb": 23.26,
+    "market_cap": 5339867512832,
+    "pe": 27.96,
+    "forward_pe": 13.9,
+    "pb": 23.32,
     "peg": 0.26,
-    "price_to_sales": 17.58,
+    "price_to_sales": 17.63,
     "ev_to_ebitda": 25.8,
     "earnings_yield": 0.0273,
     "graham_number": 41.08,
@@ -1604,7 +1604,7 @@
     "growth": 0.25,
     "method": "average free cash flow, last 3 years",
     "note": null,
-    "margin_of_safety": -0.5039
+    "margin_of_safety": -0.5079
    },
    "recent_ipo": false,
    "ipo": {
@@ -1618,10 +1618,10 @@
    "news": [],
    "data_notes": [],
    "stale": false,
-   "updated": "2026-10-21T19:01:51+00:00",
+   "updated": "2026-10-21T19:24:58+00:00",
    "memo": {
     "headline": "BUY candidate. Most of the great investors' tests agree. This deserves serious research time.",
-    "business": "NVIDIA Corporation (NVDA) is a semiconductors company worth about $5.33T. It brought in $303.0B of revenue over the last year, up 106% from a year earlier. It keeps 66% of sales as operating profit.",
+    "business": "NVIDIA Corporation (NVDA) is a semiconductors company worth about $5.34T. It brought in $303.0B of revenue over the last year, up 106% from a year earlier. It keeps 66% of sales as operating profit.",
     "bull": [
      "PEG ratio of 0.26 is under 1.0 \u2014 Lynch's rule of thumb for a reasonably priced grower. (Lynch)",
      "Classified as a Fast Grower (>25% earnings growth) \u2014 Lynch's favorite hunting ground, though these also carry the most execution/valuation risk. (Lynch)",
@@ -1629,12 +1629,12 @@
      "Company is buying back shares alongside its growth story. (Lynch)"
     ],
     "bear": [
-     "Price ($220.56) exceeds the Graham Number ($41.08) \u2014 fails Graham's defensive-investor price test. (Graham)",
-     "P/E \u00d7 P/B = 648.5, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)",
+     "Price ($221.15) exceeds the Graham Number ($41.08) \u2014 fails Graham's defensive-investor price test. (Graham)",
+     "P/E \u00d7 P/B = 651.9, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)",
      "Earnings yield (EBIT \u00f7 EV) 2.7%: not cheap by the Magic Formula. (Greenblatt)",
      "Margins are unstable year to year \u2014 less predictable than Buffett prefers. (Buffett)"
     ],
-    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 25% growth fading to 3%, 9% discount rate), fair value is roughly $146.66 a share (bear $74.74, bull $244.56) against a price of $220.56. The price is 50% above the base-case value, so you're paying for growth that hasn't happened yet.",
+    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 25% growth fading to 3%, 9% discount rate), fair value is roughly $146.66 a share (bear $74.74, bull $244.56) against a price of $221.15. The price is 51% above the base-case value, so you're paying for growth that hasn't happened yet.",
     "watch": [
      "Revenue growth stays near or above 106% (last reading).",
      "Operating margin (66%) keeps rising as the company grows."
@@ -1651,7 +1651,7 @@
    "name": "Alphabet Inc.",
    "sector": "Communication Services",
    "industry": "Internet Content & Information",
-   "price": 333.35,
+   "price": 333.89,
    "week52_high": 408.61,
    "week52_low": 249.29,
    "overall": {
@@ -1691,8 +1691,8 @@
       "Currently pays a dividend (yield ~0.3%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
      ],
      "cons": [
-      "Price ($333.35) exceeds the Graham Number ($151.07) \u2014 fails Graham's defensive-investor price test.",
-      "P/E \u00d7 P/B = 109.5, above Graham's 22.5 ceiling \u2014 pricey on a combined basis."
+      "Price ($333.89) exceeds the Graham Number ($151.07) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 109.9, above Graham's 22.5 ceiling \u2014 pricey on a combined basis."
      ]
     },
     {
@@ -1762,12 +1762,12 @@
     "total_cash": 242473992192,
     "cash_runway_years": null,
     "rule_of_40": 40.6,
-    "market_cap": 4076849070080,
-    "pe": 16.73,
-    "forward_pe": 21.72,
-    "pb": 6.55,
+    "market_cap": 4083440943104,
+    "pe": 16.75,
+    "forward_pe": 21.75,
+    "pb": 6.56,
     "peg": 1.2,
-    "price_to_sales": 9.14,
+    "price_to_sales": 9.16,
     "ev_to_ebitda": 23.43,
     "earnings_yield": 0.0393,
     "graham_number": 151.07,
@@ -1787,7 +1787,7 @@
     "growth": 0.242,
     "method": "average free cash flow, last 3 years",
     "note": null,
-    "margin_of_safety": 0.5068
+    "margin_of_safety": 0.506
    },
    "recent_ipo": false,
    "ipo": {
@@ -1801,7 +1801,7 @@
    "news": [],
    "data_notes": [],
    "stale": false,
-   "updated": "2026-10-21T19:01:44+00:00",
+   "updated": "2026-10-21T19:24:49+00:00",
    "memo": {
     "headline": "WORTH RESEARCHING. Several lenses like it, others don't. Dig into the cons before buying.",
     "business": "Alphabet Inc. (GOOGL) is an internet content & information company worth about $4.08T. It brought in $445.9B of revenue over the last year, up 24% from a year earlier. It keeps 34% of sales as operating profit.",
@@ -1812,12 +1812,12 @@
      "Average ROE of 28% clears Buffett's 20% bar for elite businesses. (Buffett)"
     ],
     "bear": [
-     "Price ($333.35) exceeds the Graham Number ($151.07) \u2014 fails Graham's defensive-investor price test. (Graham)",
-     "P/E \u00d7 P/B = 109.5, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)",
+     "Price ($333.89) exceeds the Graham Number ($151.07) \u2014 fails Graham's defensive-investor price test. (Graham)",
+     "P/E \u00d7 P/B = 109.9, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)",
      "Earnings yield (EBIT \u00f7 EV) 3.9%: not cheap by the Magic Formula. (Greenblatt)",
      "PEG ratio of 1.20 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule. (Lynch)"
     ],
-    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 24% growth fading to 3%, 9% discount rate), fair value is roughly $675.93 a share (bear $351.37, bull $1,175.46) against a price of $333.35. That's a 51% margin of safety: Buffett and Graham wanted 25%+.",
+    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 24% growth fading to 3%, 9% discount rate), fair value is roughly $675.93 a share (bear $351.37, bull $1,175.46) against a price of $333.89. That's a 51% margin of safety: Buffett and Graham wanted 25%+.",
     "watch": [
      "Revenue growth stays near or above 24% (last reading).",
      "Operating margin (34%) keeps rising as the company grows."
@@ -1834,20 +1834,20 @@
    "name": "Microsoft Corporation",
    "sector": "Technology",
    "industry": "Software - Infrastructure",
-   "price": 530.81,
+   "price": 531.81,
    "week52_high": 553.72,
    "week52_low": 349.2,
    "overall": {
     "label": "WORTH RESEARCHING",
     "rationale": "Several lenses like it, others don't. Dig into the cons before buying.",
-    "score": 60.9
+    "score": 60.8
    },
    "lenses": [
     {
      "key": "buffett",
      "short": "Buffett",
      "name": "Buffett & Munger (Quality Compounding)",
-     "score": 70.5,
+     "score": 70.4,
      "verdict": "Partial fit",
      "pros": [
       "High gross margin (69%) suggests real pricing power / a moat.",
@@ -1871,8 +1871,8 @@
       "Currently pays a dividend (yield ~0.7%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
      ],
      "cons": [
-      "Price ($530.81) exceeds the Graham Number ($155.10) \u2014 fails Graham's defensive-investor price test.",
-      "P/E \u00d7 P/B = 263.5, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
+      "Price ($531.81) exceeds the Graham Number ($155.10) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 264.5, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
       "Current ratio of 1.23 is below Graham's 2.0 liquidity bar."
      ]
     },
@@ -1942,12 +1942,12 @@
     "total_cash": 76842999808,
     "cash_runway_years": null,
     "rule_of_40": 37.9,
-    "market_cap": 3941553930240,
-    "pe": 29.57,
-    "forward_pe": 22.4,
-    "pb": 8.91,
+    "market_cap": 3948979421184,
+    "pe": 29.63,
+    "forward_pe": 22.44,
+    "pb": 8.93,
     "peg": 1.72,
-    "price_to_sales": 11.88,
+    "price_to_sales": 11.9,
     "ev_to_ebitda": 20.6,
     "earnings_yield": 0.0422,
     "graham_number": 155.1,
@@ -1967,7 +1967,7 @@
     "growth": 0.177,
     "method": "average free cash flow, last 3 years",
     "note": null,
-    "margin_of_safety": -0.4251
+    "margin_of_safety": -0.4278
    },
    "recent_ipo": false,
    "ipo": {
@@ -1981,10 +1981,10 @@
    "news": [],
    "data_notes": [],
    "stale": false,
-   "updated": "2026-10-21T19:01:40+00:00",
+   "updated": "2026-10-21T19:24:45+00:00",
    "memo": {
     "headline": "WORTH RESEARCHING. Several lenses like it, others don't. Dig into the cons before buying.",
-    "business": "Microsoft Corporation (MSFT) is a software - infrastructure company worth about $3.94T. It brought in $331.8B of revenue over the last year, up 18% from a year earlier. It keeps 45% of sales as operating profit.",
+    "business": "Microsoft Corporation (MSFT) is a software - infrastructure company worth about $3.95T. It brought in $331.8B of revenue over the last year, up 18% from a year earlier. It keeps 45% of sales as operating profit.",
     "bull": [
      "Revenue grew 16% a year over the available history. Fisher's point #1 wants products with room for sales to keep growing for years. (Fisher)",
      "Spends 11% of revenue on R&D. Fisher (#2, #3) wants management investing in future products. (Fisher)",
@@ -1992,12 +1992,12 @@
      "Margins widened by 5.0 points. Fisher #6: improving margins. (Fisher)"
     ],
     "bear": [
-     "Price ($530.81) exceeds the Graham Number ($155.10) \u2014 fails Graham's defensive-investor price test. (Graham)",
-     "P/E \u00d7 P/B = 263.5, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)",
+     "Price ($531.81) exceeds the Graham Number ($155.10) \u2014 fails Graham's defensive-investor price test. (Graham)",
+     "P/E \u00d7 P/B = 264.5, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)",
      "Current ratio of 1.23 is below Graham's 2.0 liquidity bar. (Graham)",
      "PEG ratio of 1.72 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule. (Lynch)"
     ],
-    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 18% growth fading to 3%, 9% discount rate), fair value is roughly $372.46 a share (bear $228.47, bull $660.88) against a price of $530.81. The price is 43% above the base-case value, so you're paying for growth that hasn't happened yet.",
+    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 18% growth fading to 3%, 9% discount rate), fair value is roughly $372.46 a share (bear $228.47, bull $660.88) against a price of $531.81. The price is 43% above the base-case value, so you're paying for growth that hasn't happened yet.",
     "watch": [
      "Revenue growth stays near or above 18% (last reading).",
      "Operating margin (45%) keeps rising as the company grows."
@@ -2014,7 +2014,7 @@
    "name": "Berkshire Hathaway Inc.",
    "sector": "Financial Services",
    "industry": "Insurance - Diversified",
-   "price": 542.32,
+   "price": 542.34,
    "week52_high": 543.34,
    "week52_low": 464.01,
    "overall": {
@@ -2045,7 +2045,7 @@
      "score": 65.7,
      "verdict": "Partial fit",
      "pros": [
-      "Price ($542.32) is below the Graham Number ($21,614.42) \u2014 attractively priced by Graham's classic test.",
+      "Price ($542.34) is below the Graham Number ($21,614.42) \u2014 attractively priced by Graham's classic test.",
       "P/E \u00d7 P/B = 0.0, at or under Graham's 22.5 ceiling."
      ],
      "cons": [
@@ -2117,7 +2117,7 @@
     "total_cash": 365513998336,
     "cash_runway_years": null,
     "rule_of_40": 16.5,
-    "market_cap": 1160949792768,
+    "market_cap": 1160992653312,
     "pe": 13.64,
     "forward_pe": 24.41,
     "pb": 0.0,
@@ -2156,14 +2156,14 @@
    "news": [],
    "data_notes": [],
    "stale": false,
-   "updated": "2026-10-21T19:01:18+00:00",
+   "updated": "2026-10-21T19:24:21+00:00",
    "memo": {
     "headline": "WORTH RESEARCHING. Several lenses like it, others don't. Dig into the cons before buying.",
     "business": "Berkshire Hathaway Inc. (BRK-B) is an insurance - diversified company worth about $1.16T. It brought in $384.7B of revenue over the last year, up 10% from a year earlier. It keeps 33% of sales as operating profit.",
     "bull": [
      "Revenue grew 21% a year over the available history. Fisher's point #1 wants products with room for sales to keep growing for years. (Fisher)",
      "Operating margin 33%. Fisher #5: worthwhile profit margins. (Fisher)",
-     "Price ($542.32) is below the Graham Number ($21,614.42) \u2014 attractively priced by Graham's classic test. (Graham)",
+     "Price ($542.34) is below the Graham Number ($21,614.42) \u2014 attractively priced by Graham's classic test. (Graham)",
      "P/E \u00d7 P/B = 0.0, at or under Graham's 22.5 ceiling. (Graham)"
     ],
     "bear": [
@@ -2172,7 +2172,7 @@
      "At least one loss-making year in the available window. (Buffett)",
      "Average ROE of 9% falls short of Buffett's 15% minimum. (Buffett)"
     ],
-    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 21% growth fading to 3%, 9% discount rate), fair value is roughly $716.88 a share (bear $408.16, bull $1,357.72) against a price of $542.32. That's a thin 24% margin of safety.",
+    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 21% growth fading to 3%, 9% discount rate), fair value is roughly $716.88 a share (bear $408.16, bull $1,357.72) against a price of $542.34. That's a thin 24% margin of safety.",
     "watch": [
      "Revenue growth stays near or above 10% (last reading).",
      "Operating margin (33%) keeps rising as the company grows."
@@ -2189,7 +2189,7 @@
    "name": "SailPoint, Inc.",
    "sector": "Technology",
    "industry": "Software - Infrastructure",
-   "price": 19.57,
+   "price": 19.64,
    "week52_high": 23.05,
    "week52_low": 10.3,
    "overall": {
@@ -2272,12 +2272,12 @@
     "total_cash": 309849984,
     "cash_runway_years": null,
     "rule_of_40": 21.2,
-    "market_cap": 11172740096,
+    "market_cap": 11215558656,
     "pe": null,
-    "forward_pe": 48.56,
+    "forward_pe": 48.75,
     "pb": 1.63,
     "peg": 1.52,
-    "price_to_sales": 9.59,
+    "price_to_sales": 9.62,
     "ev_to_ebitda": -1129.9,
     "earnings_yield": -0.0282,
     "graham_number": null,
@@ -2359,7 +2359,7 @@
     "Prospectus link unavailable: ticker not found in SEC's company list."
    ],
    "stale": false,
-   "updated": "2026-10-21T19:02:18+00:00",
+   "updated": "2026-10-21T19:25:32+00:00",
    "memo": {
     "headline": "WATCH. Promising, but not yet convincing. Watch the next two quarters.",
     "business": "SailPoint, Inc. (SAIL) is a software - infrastructure company worth about $11.2B. It brought in $1.2B of revenue over the last year, up 17% from a year earlier. It is not yet profitable at the operating level. It has traded publicly for about 20 months.",
@@ -2396,7 +2396,7 @@
    "name": "McDonald's Corporation",
    "sector": "Consumer Cyclical",
    "industry": "Restaurants",
-   "price": 245.66,
+   "price": 245.68,
    "week52_high": 341.75,
    "week52_low": 229.2,
    "overall": {
@@ -2428,7 +2428,7 @@
      "score": 59.2,
      "verdict": "Partial fit",
      "pros": [
-      "P/E \u00d7 P/B = -3390.3, at or under Graham's 22.5 ceiling.",
+      "P/E \u00d7 P/B = -3390.9, at or under Graham's 22.5 ceiling.",
       "No loss-making years across the 4 most recent periods available.",
       "Currently pays a dividend (yield ~3.1%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
      ],
@@ -2504,10 +2504,10 @@
     "total_cash": 822000000,
     "cash_runway_years": null,
     "rule_of_40": 29.6,
-    "market_cap": 173839220736,
+    "market_cap": 173853360128,
     "pe": 19.96,
     "forward_pe": 17.87,
-    "pb": -169.89,
+    "pb": -169.9,
     "peg": 2.57,
     "price_to_sales": 6.28,
     "ev_to_ebitda": 15.29,
@@ -2529,7 +2529,7 @@
     "growth": 0.0506,
     "method": "average free cash flow, last 3 years",
     "note": null,
-    "margin_of_safety": -0.2788
+    "margin_of_safety": -0.2789
    },
    "recent_ipo": false,
    "ipo": {
@@ -2543,10 +2543,10 @@
    "news": [],
    "data_notes": [],
    "stale": false,
-   "updated": "2026-10-21T19:02:02+00:00",
+   "updated": "2026-10-21T19:25:10+00:00",
    "memo": {
     "headline": "WORTH RESEARCHING. Several lenses like it, others don't. Dig into the cons before buying.",
-    "business": "McDonald's Corporation (MCD) is a restaurants company worth about $173.8B. It brought in $27.7B of revenue over the last year, up 4% from a year earlier. It keeps 46% of sales as operating profit.",
+    "business": "McDonald's Corporation (MCD) is a restaurants company worth about $173.9B. It brought in $27.7B of revenue over the last year, up 4% from a year earlier. It keeps 46% of sales as operating profit.",
     "bull": [
      "High gross margin (57%) suggests real pricing power / a moat. (Buffett)",
      "Debt/Equity of -30.62 is comfortably below Buffett's 0.5 ceiling. (Buffett)",
@@ -2559,7 +2559,7 @@
      "Earnings yield (EBIT \u00f7 EV) 5.5%: not cheap by the Magic Formula. (Greenblatt)",
      "Not enough data (EPS/book value) to compute a Graham Number. (Graham)"
     ],
-    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 5% growth fading to 3%, 9% discount rate), fair value is roughly $192.10 a share (bear $166.20, bull $248.18) against a price of $245.66. The price is 28% above the base-case value, so you're paying for growth that hasn't happened yet.",
+    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 5% growth fading to 3%, 9% discount rate), fair value is roughly $192.10 a share (bear $166.20, bull $248.18) against a price of $245.68. The price is 28% above the base-case value, so you're paying for growth that hasn't happened yet.",
     "watch": [
      "Revenue growth stays near or above 4% (last reading).",
      "Operating margin (46%) keeps rising as the company grows."
@@ -2576,7 +2576,7 @@
    "name": "American Express Company",
    "sector": "Financial Services",
    "industry": "Credit Services",
-   "price": 322.49,
+   "price": 322.26,
    "week52_high": 387.49,
    "week52_low": 290.97,
    "overall": {
@@ -2613,8 +2613,8 @@
       "Currently pays a dividend (yield ~1.2%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
      ],
      "cons": [
-      "Price ($322.49) exceeds the Graham Number ($137.23) \u2014 fails Graham's defensive-investor price test.",
-      "P/E \u00d7 P/B = 124.3, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
+      "Price ($322.26) exceeds the Graham Number ($137.23) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 124.1, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
       "Current ratio unavailable \u2014 can't verify Graham's liquidity requirement."
      ]
     },
@@ -2682,9 +2682,9 @@
     "total_cash": 45752000512,
     "cash_runway_years": null,
     "rule_of_40": 35.4,
-    "market_cap": 217777274880,
-    "pe": 19.57,
-    "forward_pe": 16.0,
+    "market_cap": 217625346048,
+    "pe": 19.55,
+    "forward_pe": 15.99,
     "pb": 6.35,
     "peg": 1.26,
     "price_to_sales": 3.07,
@@ -2707,7 +2707,7 @@
     "growth": 0.11,
     "method": "average free cash flow, last 3 years",
     "note": null,
-    "margin_of_safety": 0.4638
+    "margin_of_safety": 0.4641
    },
    "recent_ipo": false,
    "ipo": {
@@ -2721,10 +2721,10 @@
    "news": [],
    "data_notes": [],
    "stale": false,
-   "updated": "2026-10-21T19:01:10+00:00",
+   "updated": "2026-10-21T19:24:13+00:00",
    "memo": {
     "headline": "HOLD / NEUTRAL. No strong signal either way on the available data.",
-    "business": "American Express Company (AXP) is a credit services company worth about $217.8B. It brought in $70.9B of revenue over the last year, up 13% from a year earlier. It keeps 20% of sales as operating profit.",
+    "business": "American Express Company (AXP) is a credit services company worth about $217.6B. It brought in $70.9B of revenue over the last year, up 13% from a year earlier. It keeps 20% of sales as operating profit.",
     "bull": [
      "Revenue grew 11% a year over the available history. Fisher's point #1 wants products with room for sales to keep growing for years. (Fisher)",
      "Operating margin 20%. Fisher #5: worthwhile profit margins. (Fisher)",
@@ -2732,12 +2732,12 @@
      "High gross margin (62%) suggests real pricing power / a moat. (Buffett)"
     ],
     "bear": [
-     "Price ($322.49) exceeds the Graham Number ($137.23) \u2014 fails Graham's defensive-investor price test. (Graham)",
-     "P/E \u00d7 P/B = 124.3, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)",
+     "Price ($322.26) exceeds the Graham Number ($137.23) \u2014 fails Graham's defensive-investor price test. (Graham)",
+     "P/E \u00d7 P/B = 124.1, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)",
      "Current ratio unavailable \u2014 can't verify Graham's liquidity requirement. (Graham)",
      "PEG ratio of 1.26 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule. (Lynch)"
     ],
-    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 11% growth fading to 3%, 9% discount rate), fair value is roughly $601.39 a share (bear $441.18, bull $907.68) against a price of $322.49. That's a 46% margin of safety: Buffett and Graham wanted 25%+.",
+    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 11% growth fading to 3%, 9% discount rate), fair value is roughly $601.39 a share (bear $441.18, bull $907.68) against a price of $322.26. That's a 46% margin of safety: Buffett and Graham wanted 25%+.",
     "watch": [
      "Revenue growth stays near or above 13% (last reading).",
      "Operating margin (20%) keeps rising as the company grows.",
@@ -2928,7 +2928,7 @@
     "Prospectus link unavailable: ticker not found in SEC's company list."
    ],
    "stale": false,
-   "updated": "2026-10-21T19:02:25+00:00",
+   "updated": "2026-10-21T19:25:40+00:00",
    "memo": {
     "headline": "WATCH. Promising, but not yet convincing. Watch the next two quarters.",
     "business": "eToro Group Ltd. (ETOR) is a capital markets company worth about $1.9B. It brought in $12.0B of revenue over the last year, down 24% from a year earlier. It keeps 4% of sales as operating profit. It has traded publicly for about 17 months.",
@@ -2961,7 +2961,7 @@
    "name": "Visa Inc.",
    "sector": "Financial Services",
    "industry": "Credit Services",
-   "price": 407.56,
+   "price": 407.19,
    "week52_high": 409.53,
    "week52_low": 293.89,
    "overall": {
@@ -2998,8 +2998,8 @@
       "Currently pays a dividend (yield ~0.7%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
      ],
      "cons": [
-      "Price ($407.56) exceeds the Graham Number ($70.63) \u2014 fails Graham's defensive-investor price test.",
-      "P/E \u00d7 P/B = 749.1, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
+      "Price ($407.19) exceeds the Graham Number ($70.63) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 747.8, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
       "Current ratio of 1.08 is below Graham's 2.0 liquidity bar.",
       "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test."
      ]
@@ -3067,12 +3067,12 @@
     "total_cash": 13792000000,
     "cash_runway_years": null,
     "rule_of_40": 62.9,
-    "market_cap": 765125525504,
-    "pe": 34.69,
-    "forward_pe": 27.13,
-    "pb": 21.6,
+    "market_cap": 764440281088,
+    "pe": 34.65,
+    "forward_pe": 27.1,
+    "pb": 21.58,
     "peg": 1.82,
-    "price_to_sales": 17.2,
+    "price_to_sales": 17.18,
     "ev_to_ebitda": 24.37,
     "earnings_yield": null,
     "graham_number": 70.63,
@@ -3092,7 +3092,7 @@
     "growth": 0.1092,
     "method": "average free cash flow, last 3 years",
     "note": null,
-    "margin_of_safety": -0.2929
+    "margin_of_safety": -0.2918
    },
    "recent_ipo": false,
    "ipo": {
@@ -3106,10 +3106,10 @@
    "news": [],
    "data_notes": [],
    "stale": false,
-   "updated": "2026-10-21T19:01:33+00:00",
+   "updated": "2026-10-21T19:24:37+00:00",
    "memo": {
     "headline": "HOLD / NEUTRAL. No strong signal either way on the available data.",
-    "business": "Visa Inc. (V) is a credit services company worth about $765.1B. It brought in $44.5B of revenue over the last year, up 14% from a year earlier. It keeps 66% of sales as operating profit.",
+    "business": "Visa Inc. (V) is a credit services company worth about $764.4B. It brought in $44.5B of revenue over the last year, up 14% from a year earlier. It keeps 66% of sales as operating profit.",
     "bull": [
      "High gross margin (80%) suggests real pricing power / a moat. (Buffett)",
      "Earnings grew in every available period with no loss years. (Buffett)",
@@ -3117,12 +3117,12 @@
      "Share count shrank 14.2% \u2014 management is buying back stock, not diluting. (Buffett)"
     ],
     "bear": [
-     "Price ($407.56) exceeds the Graham Number ($70.63) \u2014 fails Graham's defensive-investor price test. (Graham)",
-     "P/E \u00d7 P/B = 749.1, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)",
+     "Price ($407.19) exceeds the Graham Number ($70.63) \u2014 fails Graham's defensive-investor price test. (Graham)",
+     "P/E \u00d7 P/B = 747.8, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)",
      "Current ratio of 1.08 is below Graham's 2.0 liquidity bar. (Graham)",
      "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test. (Graham)"
     ],
-    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 11% growth fading to 3%, 9% discount rate), fair value is roughly $315.22 a share (bear $231.74, bull $474.82) against a price of $407.56. The price is 29% above the base-case value, so you're paying for growth that hasn't happened yet.",
+    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 11% growth fading to 3%, 9% discount rate), fair value is roughly $315.22 a share (bear $231.74, bull $474.82) against a price of $407.19. The price is 29% above the base-case value, so you're paying for growth that hasn't happened yet.",
     "watch": [
      "Revenue growth stays near or above 14% (last reading).",
      "Operating margin (66%) keeps rising as the company grows."
@@ -3139,7 +3139,7 @@
    "name": "Johnson & Johnson",
    "sector": "Healthcare",
    "industry": "Drug Manufacturers - General",
-   "price": 256.43,
+   "price": 257.08,
    "week52_high": 281.07,
    "week52_low": 184.66,
    "overall": {
@@ -3176,8 +3176,8 @@
       "Currently pays a dividend (yield ~2.1%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
      ],
      "cons": [
-      "Price ($256.43) exceeds the Graham Number ($72.33) \u2014 fails Graham's defensive-investor price test.",
-      "P/E \u00d7 P/B = 282.8, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
+      "Price ($257.08) exceeds the Graham Number ($72.33) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 284.2, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
       "Current ratio of 1.03 is below Graham's 2.0 liquidity bar.",
       "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test."
      ]
@@ -3248,16 +3248,16 @@
     "total_cash": 20757999616,
     "cash_runway_years": null,
     "rule_of_40": 25.3,
-    "market_cap": 617970532352,
-    "pe": 38.91,
-    "forward_pe": 22.07,
-    "pb": 7.27,
+    "market_cap": 619536646144,
+    "pe": 39.01,
+    "forward_pe": 22.13,
+    "pb": 7.29,
     "peg": 2.8,
-    "price_to_sales": 6.22,
+    "price_to_sales": 6.24,
     "ev_to_ebitda": 19.13,
     "earnings_yield": 0.0514,
     "graham_number": 72.33,
-    "dividend_yield": 0.0209,
+    "dividend_yield": 0.0208,
     "payout_ratio": 0.6072,
     "debt_to_equity": 0.59,
     "current_ratio": 1.03,
@@ -3273,7 +3273,7 @@
     "growth": 0.056,
     "method": "average free cash flow, last 3 years",
     "note": null,
-    "margin_of_safety": -0.6882
+    "margin_of_safety": -0.6924
    },
    "recent_ipo": false,
    "ipo": {
@@ -3287,10 +3287,10 @@
    "news": [],
    "data_notes": [],
    "stale": false,
-   "updated": "2026-10-21T19:01:22+00:00",
+   "updated": "2026-10-21T19:24:25+00:00",
    "memo": {
     "headline": "HOLD / NEUTRAL. No strong signal either way on the available data.",
-    "business": "Johnson & Johnson (JNJ) is a drug manufacturers - general company worth about $618.0B. It brought in $99.3B of revenue over the last year, up 6% from a year earlier. It keeps 25% of sales as operating profit.",
+    "business": "Johnson & Johnson (JNJ) is a drug manufacturers - general company worth about $619.5B. It brought in $99.3B of revenue over the last year, up 6% from a year earlier. It keeps 25% of sales as operating profit.",
     "bull": [
      "Return on capital ~31%: a good business by Greenblatt's first test. (Greenblatt)",
      "Spends 16% of revenue on R&D. Fisher (#2, #3) wants management investing in future products. (Fisher)",
@@ -3300,10 +3300,10 @@
     "bear": [
      "PEG ratio of 2.80 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule. (Lynch)",
      "Negative recent earnings growth \u2014 a Lynch 'turnaround' candidate: high risk, requires real evidence the business is being fixed. (Lynch)",
-     "Price ($256.43) exceeds the Graham Number ($72.33) \u2014 fails Graham's defensive-investor price test. (Graham)",
-     "P/E \u00d7 P/B = 282.8, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)"
+     "Price ($257.08) exceeds the Graham Number ($72.33) \u2014 fails Graham's defensive-investor price test. (Graham)",
+     "P/E \u00d7 P/B = 284.2, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)"
     ],
-    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 6% growth fading to 3%, 9% discount rate), fair value is roughly $151.90 a share (bear $129.46, bull $199.11) against a price of $256.43. The price is 69% above the base-case value, so you're paying for growth that hasn't happened yet.",
+    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 6% growth fading to 3%, 9% discount rate), fair value is roughly $151.90 a share (bear $129.46, bull $199.11) against a price of $257.08. The price is 69% above the base-case value, so you're paying for growth that hasn't happened yet.",
     "watch": [
      "Revenue growth stays near or above 6% (last reading).",
      "Operating margin (25%) keeps rising as the company grows."
@@ -3320,7 +3320,7 @@
    "name": "Circle Internet Group",
    "sector": "Financial Services",
    "industry": "Capital Markets",
-   "price": 90.91,
+   "price": 90.33,
    "week52_high": 147.44,
    "week52_low": 49.9,
    "overall": {
@@ -3373,7 +3373,7 @@
     }
    ],
    "classic": {
-    "buffett": 50.0,
+    "buffett": 50.1,
     "graham": 26.2,
     "lynch": 37.8,
     "greenblatt": 50.0
@@ -3401,12 +3401,12 @@
     "total_cash": 1730125952,
     "cash_runway_years": null,
     "rule_of_40": 23.3,
-    "market_cap": 23079858176,
-    "pe": 62.27,
-    "forward_pe": 61.92,
-    "pb": 6.55,
+    "market_cap": 22933878784,
+    "pe": 61.87,
+    "forward_pe": 61.26,
+    "pb": 6.51,
     "peg": 4.34,
-    "price_to_sales": 7.94,
+    "price_to_sales": 7.89,
     "ev_to_ebitda": 87.78,
     "earnings_yield": null,
     "graham_number": 21.36,
@@ -3426,7 +3426,7 @@
     "growth": 0.25,
     "method": "average free cash flow, last 3 years",
     "note": null,
-    "margin_of_safety": -0.2379
+    "margin_of_safety": -0.2301
    },
    "recent_ipo": true,
    "ipo": {
@@ -3449,7 +3449,7 @@
      {
       "label": "Price vs first-day open",
       "status": "info",
-      "detail": "+32% vs $69.00 on day one."
+      "detail": "+31% vs $69.00 on day one."
      },
      {
       "label": "First-day move",
@@ -3488,10 +3488,10 @@
     "Prospectus link unavailable: ticker not found in SEC's company list."
    ],
    "stale": false,
-   "updated": "2026-10-21T19:02:29+00:00",
+   "updated": "2026-10-21T19:25:44+00:00",
    "memo": {
     "headline": "WAIT for proof. Too many open questions on valuation or business quality.",
-    "business": "Circle Internet Group (CRCL) is a capital markets company worth about $23.1B. It brought in $2.9B of revenue over the last year, up 7% from a year earlier. It keeps 5% of sales as operating profit. It has traded publicly for about 16 months.",
+    "business": "Circle Internet Group (CRCL) is a capital markets company worth about $22.9B. It brought in $2.9B of revenue over the last year, up 7% from a year earlier. It keeps 5% of sales as operating profit. It has traded publicly for about 16 months.",
     "bull": [
      "Revenue of $2.91B. Ritter finds larger IPOs roughly match the market over time. (Ritter)",
      "Already profitable. (Ritter)",
@@ -3503,7 +3503,7 @@
      "Rule of 40 score 23: growth plus cash margin falls short of 40. (Gurley)",
      "Operating margin 5%, below what Fisher called a worthwhile margin (#5). (Fisher)"
     ],
-    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 25% growth fading to 3%, 9% discount rate), fair value is roughly $73.44 a share (bear $37.43, bull $122.46) against a price of $90.91. The price is 24% above the base-case value, so you're paying for growth that hasn't happened yet.",
+    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 25% growth fading to 3%, 9% discount rate), fair value is roughly $73.44 a share (bear $37.43, bull $122.46) against a price of $90.33. The price is 23% above the base-case value, so you're paying for growth that hasn't happened yet.",
     "watch": [
      "Insider ownership: 2% owned by insiders. Check the prospectus for dual-class voting.",
      "Short interest: 12% of the float is sold short.",
@@ -3524,7 +3524,7 @@
    "name": "JPMorgan Chase & Co.",
    "sector": "Financial Services",
    "industry": "Banks - Diversified",
-   "price": 334.12,
+   "price": 334.26,
    "week52_high": 366.5,
    "week52_low": 279.1,
    "overall": {
@@ -3559,7 +3559,7 @@
       "Currently pays a dividend (yield ~2.0%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
      ],
      "cons": [
-      "Price ($334.12) exceeds the Graham Number ($266.39) \u2014 fails Graham's defensive-investor price test.",
+      "Price ($334.26) exceeds the Graham Number ($266.39) \u2014 fails Graham's defensive-investor price test.",
       "P/E \u00d7 P/B = 35.4, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
       "Current ratio unavailable \u2014 can't verify Graham's liquidity requirement."
      ]
@@ -3627,7 +3627,7 @@
     "total_cash": 1881473941504,
     "cash_runway_years": 12.7,
     "rule_of_40": -67.3,
-    "market_cap": 887289085952,
+    "market_cap": 887660937216,
     "pe": 14.02,
     "forward_pe": 13.09,
     "pb": 2.53,
@@ -3636,7 +3636,7 @@
     "ev_to_ebitda": null,
     "earnings_yield": null,
     "graham_number": 266.39,
-    "dividend_yield": 0.0198,
+    "dividend_yield": 0.0197,
     "payout_ratio": 0.2571,
     "debt_to_equity": 1.46,
     "current_ratio": null,
@@ -3666,10 +3666,10 @@
    "news": [],
    "data_notes": [],
    "stale": false,
-   "updated": "2026-10-21T19:01:55+00:00",
+   "updated": "2026-10-21T19:25:01+00:00",
    "memo": {
     "headline": "HOLD / NEUTRAL. No strong signal either way on the available data.",
-    "business": "JPMorgan Chase & Co. (JPM) is a banks - diversified company worth about $887.3B. It brought in $190.7B of revenue over the last year, up 10% from a year earlier. It keeps 43% of sales as operating profit.",
+    "business": "JPMorgan Chase & Co. (JPM) is a banks - diversified company worth about $887.7B. It brought in $190.7B of revenue over the last year, up 10% from a year earlier. It keeps 43% of sales as operating profit.",
     "bull": [
      "Revenue grew 12% a year over the available history. Fisher's point #1 wants products with room for sales to keep growing for years. (Fisher)",
      "Operating margin 43%. Fisher #5: worthwhile profit margins. (Fisher)",
@@ -3680,7 +3680,7 @@
      "PEG ratio of 1.45 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule. (Lynch)",
      "Sits in a cyclical sector \u2014 Lynch warns timing matters enormously here; cheap-looking multiples near a cycle peak can be a trap. (Lynch)",
      "Debt/Equity of 1.46 is elevated \u2014 leverage adds fragility to a growth thesis. (Lynch)",
-     "Price ($334.12) exceeds the Graham Number ($266.39) \u2014 fails Graham's defensive-investor price test. (Graham)"
+     "Price ($334.26) exceeds the Graham Number ($266.39) \u2014 fails Graham's defensive-investor price test. (Graham)"
     ],
     "valuation": "Not meaningful: the company doesn't generate positive free cash flow yet. The market prices it at 4.7x sales.",
     "watch": [
@@ -3701,7 +3701,7 @@
    "name": "Mastercard Incorporated",
    "sector": "Financial Services",
    "industry": "Credit Services",
-   "price": 622.22,
+   "price": 620.9,
    "week52_high": 624.66,
    "week52_low": 464.52,
    "overall": {
@@ -3738,8 +3738,8 @@
       "Currently pays a dividend (yield ~0.6%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
      ],
      "cons": [
-      "Price ($622.22) exceeds the Graham Number ($51.15) \u2014 fails Graham's defensive-investor price test.",
-      "P/E \u00d7 P/B = 3329.5, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
+      "Price ($620.90) exceeds the Graham Number ($51.32) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 3293.7, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
       "Current ratio of 1.03 is below Graham's 2.0 liquidity bar.",
       "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test."
      ]
@@ -3809,15 +3809,15 @@
     "total_cash": 11608999936,
     "cash_runway_years": null,
     "rule_of_40": 60.9,
-    "market_cap": 545066549248,
-    "pe": 34.23,
-    "forward_pe": 26.97,
-    "pb": 97.28,
+    "market_cap": 543914590208,
+    "pe": 33.93,
+    "forward_pe": 26.92,
+    "pb": 97.08,
     "peg": 1.61,
-    "price_to_sales": 15.54,
+    "price_to_sales": 15.5,
     "ev_to_ebitda": 25.07,
     "earnings_yield": null,
-    "graham_number": 51.15,
+    "graham_number": 51.32,
     "dividend_yield": 0.0056,
     "payout_ratio": 0.1793,
     "debt_to_equity": 2.46,
@@ -3834,7 +3834,7 @@
     "growth": 0.141,
     "method": "average free cash flow, last 3 years",
     "note": null,
-    "margin_of_safety": -0.2378
+    "margin_of_safety": -0.2352
    },
    "recent_ipo": false,
    "ipo": {
@@ -3848,10 +3848,10 @@
    "news": [],
    "data_notes": [],
    "stale": false,
-   "updated": "2026-10-21T19:01:37+00:00",
+   "updated": "2026-10-21T19:24:41+00:00",
    "memo": {
     "headline": "HOLD / NEUTRAL. No strong signal either way on the available data.",
-    "business": "Mastercard Incorporated (MA) is a credit services company worth about $545.1B. It brought in $35.1B of revenue over the last year, up 14% from a year earlier. It keeps 61% of sales as operating profit.",
+    "business": "Mastercard Incorporated (MA) is a credit services company worth about $543.9B. It brought in $35.1B of revenue over the last year, up 14% from a year earlier. It keeps 61% of sales as operating profit.",
     "bull": [
      "Revenue grew 14% a year over the available history. Fisher's point #1 wants products with room for sales to keep growing for years. (Fisher)",
      "Operating margin 61%. Fisher #5: worthwhile profit margins. (Fisher)",
@@ -3862,9 +3862,9 @@
      "PEG ratio of 1.61 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule. (Lynch)",
      "Debt/Equity of 2.46 is elevated \u2014 leverage adds fragility to a growth thesis. (Lynch)",
      "Institutional ownership is very high (91%) \u2014 the easy discovery phase is likely already behind it. (Lynch)",
-     "Price ($622.22) exceeds the Graham Number ($51.15) \u2014 fails Graham's defensive-investor price test. (Graham)"
+     "Price ($620.90) exceeds the Graham Number ($51.32) \u2014 fails Graham's defensive-investor price test. (Graham)"
     ],
-    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 14% growth fading to 3%, 9% discount rate), fair value is roughly $502.68 a share (bear $339.12, bull $819.18) against a price of $622.22. The price is 24% above the base-case value, so you're paying for growth that hasn't happened yet.",
+    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 14% growth fading to 3%, 9% discount rate), fair value is roughly $502.68 a share (bear $339.12, bull $819.18) against a price of $620.90. The price is 24% above the base-case value, so you're paying for growth that hasn't happened yet.",
     "watch": [
      "Revenue growth stays near or above 14% (last reading).",
      "Operating margin (61%) keeps rising as the company grows.",
@@ -3882,7 +3882,7 @@
    "name": "The Coca-Cola Company",
    "sector": "Consumer Defensive",
    "industry": "Beverages - Non-Alcoholic",
-   "price": 92.61,
+   "price": 92.72,
    "week52_high": 94.1,
    "week52_low": 67.27,
    "overall": {
@@ -3917,8 +3917,8 @@
       "Currently pays a dividend (yield ~2.3%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
      ],
      "cons": [
-      "Price ($92.61) exceeds the Graham Number ($25.09) \u2014 fails Graham's defensive-investor price test.",
-      "P/E \u00d7 P/B = 306.6, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
+      "Price ($92.72) exceeds the Graham Number ($25.09) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 307.3, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
       "Current ratio of 1.46 is below Graham's 2.0 liquidity bar.",
       "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test."
      ]
@@ -3989,12 +3989,12 @@
     "total_cash": 16371000320,
     "cash_runway_years": null,
     "rule_of_40": 17.3,
-    "market_cap": 398480572416,
-    "pe": 27.81,
-    "forward_pe": 26.29,
-    "pb": 11.02,
+    "market_cap": 398910816256,
+    "pe": 27.84,
+    "forward_pe": 26.32,
+    "pb": 11.04,
     "peg": 4.27,
-    "price_to_sales": 7.95,
+    "price_to_sales": 7.96,
     "ev_to_ebitda": 25.43,
     "earnings_yield": 0.0408,
     "graham_number": 25.09,
@@ -4014,7 +4014,7 @@
     "growth": 0.067,
     "method": "average free cash flow, last 3 years",
     "note": null,
-    "margin_of_safety": -1.8506
+    "margin_of_safety": -1.8536
    },
    "recent_ipo": false,
    "ipo": {
@@ -4028,10 +4028,10 @@
    "news": [],
    "data_notes": [],
    "stale": false,
-   "updated": "2026-10-21T19:01:06+00:00",
+   "updated": "2026-10-21T19:24:09+00:00",
    "memo": {
     "headline": "HOLD / NEUTRAL. No strong signal either way on the available data.",
-    "business": "The Coca-Cola Company (KO) is a beverages - non-alcoholic company worth about $398.5B. It brought in $50.1B of revenue over the last year, up 7% from a year earlier. It keeps 35% of sales as operating profit.",
+    "business": "The Coca-Cola Company (KO) is a beverages - non-alcoholic company worth about $398.9B. It brought in $50.1B of revenue over the last year, up 7% from a year earlier. It keeps 35% of sales as operating profit.",
     "bull": [
      "Return on capital ~29%: a good business by Greenblatt's first test. (Greenblatt)",
      "Operating margin 35%. Fisher #5: worthwhile profit margins. (Fisher)",
@@ -4041,10 +4041,10 @@
     "bear": [
      "PEG ratio of 4.27 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule. (Lynch)",
      "Debt/Equity of 1.41 is elevated \u2014 leverage adds fragility to a growth thesis. (Lynch)",
-     "Price ($92.61) exceeds the Graham Number ($25.09) \u2014 fails Graham's defensive-investor price test. (Graham)",
-     "P/E \u00d7 P/B = 306.6, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)"
+     "Price ($92.72) exceeds the Graham Number ($25.09) \u2014 fails Graham's defensive-investor price test. (Graham)",
+     "P/E \u00d7 P/B = 307.3, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)"
     ],
-    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 7% growth fading to 3%, 9% discount rate), fair value is roughly $32.49 a share (bear $26.84, bull $43.86) against a price of $92.61. The price is more than 3x the base-case value: the market expects far more growth than this model assumes.",
+    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 7% growth fading to 3%, 9% discount rate), fair value is roughly $32.49 a share (bear $26.84, bull $43.86) against a price of $92.72. The price is more than 3x the base-case value: the market expects far more growth than this model assumes.",
     "watch": [
      "Revenue growth stays near or above 7% (last reading).",
      "Operating margin (35%) keeps rising as the company grows.",
@@ -4062,7 +4062,7 @@
    "name": "The Procter & Gamble Company",
    "sector": "Consumer Defensive",
    "industry": "Household & Personal Products",
-   "price": 157.28,
+   "price": 157.09,
    "week52_high": 167.25,
    "week52_low": 137.62,
    "overall": {
@@ -4099,8 +4099,8 @@
       "Currently pays a dividend (yield ~2.8%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
      ],
      "cons": [
-      "Price ($157.28) exceeds the Graham Number ($58.46) \u2014 fails Graham's defensive-investor price test.",
-      "P/E \u00d7 P/B = 162.8, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
+      "Price ($157.09) exceeds the Graham Number ($58.46) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 162.4, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
       "Current ratio of 0.68 is below Graham's 2.0 liquidity bar.",
       "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test."
      ]
@@ -4170,12 +4170,12 @@
     "total_cash": 9941999616,
     "cash_runway_years": null,
     "rule_of_40": 18.9,
-    "market_cap": 365586841600,
-    "pe": 23.76,
-    "forward_pe": 21.28,
+    "market_cap": 364868599808,
+    "pe": 23.73,
+    "forward_pe": 21.25,
     "pb": 6.85,
     "peg": 4.08,
-    "price_to_sales": 4.2,
+    "price_to_sales": 4.19,
     "ev_to_ebitda": 16.02,
     "earnings_yield": 0.0536,
     "graham_number": 58.46,
@@ -4189,13 +4189,13 @@
     "beta": 0.38
    },
    "valuation": {
-    "bear": 98.88,
-    "base": 103.25,
-    "bull": 120.88,
+    "bear": 98.95,
+    "base": 103.33,
+    "bull": 120.98,
     "growth": 0.015,
     "method": "average free cash flow, last 3 years",
     "note": null,
-    "margin_of_safety": -0.5233
+    "margin_of_safety": -0.5203
    },
    "recent_ipo": false,
    "ipo": {
@@ -4209,10 +4209,10 @@
    "news": [],
    "data_notes": [],
    "stale": false,
-   "updated": "2026-10-21T19:01:25+00:00",
+   "updated": "2026-10-21T19:24:29+00:00",
    "memo": {
     "headline": "HOLD / NEUTRAL. No strong signal either way on the available data.",
-    "business": "The Procter & Gamble Company (PG) is a household & personal products company worth about $365.6B. It brought in $87.0B of revenue over the last year, up 2% from a year earlier. It keeps 22% of sales as operating profit.",
+    "business": "The Procter & Gamble Company (PG) is a household & personal products company worth about $364.9B. It brought in $87.0B of revenue over the last year, up 2% from a year earlier. It keeps 22% of sales as operating profit.",
     "bull": [
      "Return on capital ~27%: a good business by Greenblatt's first test. (Greenblatt)",
      "Operating margin 22%. Fisher #5: worthwhile profit margins. (Fisher)",
@@ -4222,10 +4222,10 @@
     "bear": [
      "PEG ratio of 4.08 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule. (Lynch)",
      "Negative recent earnings growth \u2014 a Lynch 'turnaround' candidate: high risk, requires real evidence the business is being fixed. (Lynch)",
-     "Price ($157.28) exceeds the Graham Number ($58.46) \u2014 fails Graham's defensive-investor price test. (Graham)",
-     "P/E \u00d7 P/B = 162.8, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)"
+     "Price ($157.09) exceeds the Graham Number ($58.46) \u2014 fails Graham's defensive-investor price test. (Graham)",
+     "P/E \u00d7 P/B = 162.4, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)"
     ],
-    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 2% growth fading to 3%, 9% discount rate), fair value is roughly $103.25 a share (bear $98.88, bull $120.88) against a price of $157.28. The price is 52% above the base-case value, so you're paying for growth that hasn't happened yet.",
+    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 2% growth fading to 3%, 9% discount rate), fair value is roughly $103.33 a share (bear $98.95, bull $120.98) against a price of $157.09. The price is 52% above the base-case value, so you're paying for growth that hasn't happened yet.",
     "watch": [
      "Revenue growth stays near or above 2% (last reading).",
      "Operating margin (22%) keeps rising as the company grows."
@@ -4242,7 +4242,7 @@
    "name": "Costco Wholesale Corporation",
    "sector": "Consumer Defensive",
    "industry": "Discount Stores",
-   "price": 996.88,
+   "price": 997.07,
    "week52_high": 1096.5,
    "week52_low": 844.06,
    "overall": {
@@ -4278,8 +4278,8 @@
       "Currently pays a dividend (yield ~0.6%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
      ],
      "cons": [
-      "Price ($996.88) exceeds the Graham Number ($194.24) \u2014 fails Graham's defensive-investor price test.",
-      "P/E \u00d7 P/B = 592.7, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
+      "Price ($997.07) exceeds the Graham Number ($194.24) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 592.9, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
       "Current ratio of 1.03 is below Graham's 2.0 liquidity bar.",
       "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test."
      ]
@@ -4348,9 +4348,9 @@
     "total_cash": 21301000192,
     "cash_runway_years": null,
     "rule_of_40": 13.7,
-    "market_cap": 441746784256,
-    "pe": 48.02,
-    "forward_pe": 39.83,
+    "market_cap": 441830965248,
+    "pe": 48.03,
+    "forward_pe": 39.84,
     "pb": 12.34,
     "peg": 4.96,
     "price_to_sales": 1.46,
@@ -4387,10 +4387,10 @@
    "news": [],
    "data_notes": [],
    "stale": false,
-   "updated": "2026-10-21T19:01:29+00:00",
+   "updated": "2026-10-21T19:24:33+00:00",
    "memo": {
     "headline": "HOLD / NEUTRAL. No strong signal either way on the available data.",
-    "business": "Costco Wholesale Corporation (COST) is a discount stores company worth about $441.7B. It brought in $303.2B of revenue over the last year, up 11% from a year earlier. It keeps 4% of sales as operating profit.",
+    "business": "Costco Wholesale Corporation (COST) is a discount stores company worth about $441.8B. It brought in $303.2B of revenue over the last year, up 11% from a year earlier. It keeps 4% of sales as operating profit.",
     "bull": [
      "Debt/Equity of 0.28 is comfortably below Buffett's 0.5 ceiling. (Buffett)",
      "Earnings grew in every available period with no loss years. (Buffett)",
@@ -4398,8 +4398,8 @@
      "Return on capital ~68%: a good business by Greenblatt's first test. (Greenblatt)"
     ],
     "bear": [
-     "Price ($996.88) exceeds the Graham Number ($194.24) \u2014 fails Graham's defensive-investor price test. (Graham)",
-     "P/E \u00d7 P/B = 592.7, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)",
+     "Price ($997.07) exceeds the Graham Number ($194.24) \u2014 fails Graham's defensive-investor price test. (Graham)",
+     "P/E \u00d7 P/B = 592.9, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)",
      "Current ratio of 1.03 is below Graham's 2.0 liquidity bar. (Graham)",
      "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test. (Graham)"
     ],
@@ -4420,7 +4420,7 @@
    "name": "Amazon.com, Inc.",
    "sector": "Consumer Cyclical",
    "industry": "Internet Retail",
-   "price": 262.01,
+   "price": 261.94,
    "week52_high": 287.2,
    "week52_low": 196.0,
    "overall": {
@@ -4455,7 +4455,7 @@
      "verdict": "Poor fit",
      "pros": [],
      "cons": [
-      "Price ($262.01) exceeds the Graham Number ($119.61) \u2014 fails Graham's defensive-investor price test.",
+      "Price ($261.94) exceeds the Graham Number ($119.61) \u2014 fails Graham's defensive-investor price test.",
       "P/E \u00d7 P/B = 107.9, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
       "Current ratio of 1.05 is below Graham's 2.0 liquidity bar.",
       "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test.",
@@ -4530,9 +4530,9 @@
     "total_cash": 122988003328,
     "cash_runway_years": null,
     "rule_of_40": 20.6,
-    "market_cap": 2825852026880,
-    "pe": 21.08,
-    "forward_pe": 25.09,
+    "market_cap": 2825366798336,
+    "pe": 21.07,
+    "forward_pe": 25.08,
     "pb": 5.12,
     "peg": 1.45,
     "price_to_sales": 3.64,
@@ -4569,7 +4569,7 @@
    "news": [],
    "data_notes": [],
    "stale": false,
-   "updated": "2026-10-21T19:01:47+00:00",
+   "updated": "2026-10-21T19:24:53+00:00",
    "memo": {
     "headline": "HOLD / NEUTRAL. No strong signal either way on the available data.",
     "business": "Amazon.com, Inc. (AMZN) is an internet retail company worth about $2.83T. It brought in $775.7B of revenue over the last year, up 20% from a year earlier. It keeps 14% of sales as operating profit.",
@@ -4580,7 +4580,7 @@
      "Manageable Debt/Equity of 0.37 \u2014 Lynch was wary of highly leveraged growth stories. (Lynch)"
     ],
     "bear": [
-     "Price ($262.01) exceeds the Graham Number ($119.61) \u2014 fails Graham's defensive-investor price test. (Graham)",
+     "Price ($261.94) exceeds the Graham Number ($119.61) \u2014 fails Graham's defensive-investor price test. (Graham)",
      "P/E \u00d7 P/B = 107.9, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)",
      "Current ratio of 1.05 is below Graham's 2.0 liquidity bar. (Graham)",
      "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test. (Graham)"
@@ -4602,7 +4602,7 @@
    "name": "Apple Inc.",
    "sector": "Technology",
    "industry": "Consumer Electronics",
-   "price": 343.75,
+   "price": 343.79,
    "week52_high": 348.15,
    "week52_low": 243.42,
    "overall": {
@@ -4638,8 +4638,8 @@
       "Currently pays a dividend (yield ~0.3%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
      ],
      "cons": [
-      "Price ($343.75) exceeds the Graham Number ($38.00) \u2014 fails Graham's defensive-investor price test.",
-      "P/E \u00d7 P/B = 1841.3, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
+      "Price ($343.79) exceeds the Graham Number ($38.00) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 1841.5, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
       "Current ratio of 0.89 is below Graham's 2.0 liquidity bar.",
       "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test."
      ]
@@ -4711,7 +4711,7 @@
     "total_cash": 62399000576,
     "cash_runway_years": null,
     "rule_of_40": 37.6,
-    "market_cap": 5016895619072,
+    "market_cap": 5017187123200,
     "pe": 39.42,
     "forward_pe": 35.92,
     "pb": 46.71,
@@ -4736,7 +4736,7 @@
     "growth": 0.164,
     "method": "average free cash flow, last 3 years",
     "note": null,
-    "margin_of_safety": -0.3479
+    "margin_of_safety": -0.348
    },
    "recent_ipo": false,
    "ipo": {
@@ -4750,7 +4750,7 @@
    "news": [],
    "data_notes": [],
    "stale": false,
-   "updated": "2026-10-21T19:01:13+00:00",
+   "updated": "2026-10-21T19:24:17+00:00",
    "memo": {
     "headline": "HOLD / NEUTRAL. No strong signal either way on the available data.",
     "business": "Apple Inc. (AAPL) is a consumer electronics company worth about $5.02T. It brought in $466.8B of revenue over the last year, up 16% from a year earlier. It keeps 33% of sales as operating profit.",
@@ -4761,12 +4761,12 @@
      "High gross margin (45%) suggests real pricing power / a moat. (Buffett)"
     ],
     "bear": [
-     "Price ($343.75) exceeds the Graham Number ($38.00) \u2014 fails Graham's defensive-investor price test. (Graham)",
-     "P/E \u00d7 P/B = 1841.3, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)",
+     "Price ($343.79) exceeds the Graham Number ($38.00) \u2014 fails Graham's defensive-investor price test. (Graham)",
+     "P/E \u00d7 P/B = 1841.5, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)",
      "Current ratio of 0.89 is below Graham's 2.0 liquidity bar. (Graham)",
      "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test. (Graham)"
     ],
-    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 16% growth fading to 3%, 9% discount rate), fair value is roughly $255.03 a share (bear $161.86, bull $439.05) against a price of $343.75. The price is 35% above the base-case value, so you're paying for growth that hasn't happened yet.",
+    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 16% growth fading to 3%, 9% discount rate), fair value is roughly $255.03 a share (bear $161.86, bull $439.05) against a price of $343.79. The price is 35% above the base-case value, so you're paying for growth that hasn't happened yet.",
     "watch": [
      "Revenue growth stays near or above 16% (last reading).",
      "Operating margin (33%) keeps rising as the company grows.",
@@ -4784,7 +4784,7 @@
    "name": "PepsiCo, Inc.",
    "sector": "Consumer Defensive",
    "industry": "Beverages - Non-Alcoholic",
-   "price": 134.0,
+   "price": 134.22,
    "week52_high": 171.48,
    "week52_low": 123.47,
    "overall": {
@@ -4820,8 +4820,8 @@
       "Currently pays a dividend (yield ~4.4%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
      ],
      "cons": [
-      "Price ($134.00) exceeds the Graham Number ($54.07) \u2014 fails Graham's defensive-investor price test.",
-      "P/E \u00d7 P/B = 138.2, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
+      "Price ($134.22) exceeds the Graham Number ($54.07) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 138.7, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
       "Current ratio of 0.85 is below Graham's 2.0 liquidity bar.",
       "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test."
      ]
@@ -4892,16 +4892,16 @@
     "total_cash": 11162999808,
     "cash_runway_years": null,
     "rule_of_40": 13.4,
-    "market_cap": 182607462400,
-    "pe": 16.86,
-    "forward_pe": 15.51,
-    "pb": 8.2,
+    "market_cap": 182907109376,
+    "pe": 16.88,
+    "forward_pe": 15.54,
+    "pb": 8.21,
     "peg": 1.37,
     "price_to_sales": 1.86,
     "ev_to_ebitda": 11.66,
     "earnings_yield": 0.0508,
     "graham_number": 54.07,
-    "dividend_yield": 0.0442,
+    "dividend_yield": 0.0441,
     "payout_ratio": 0.7302,
     "debt_to_equity": 2.45,
     "current_ratio": 0.85,
@@ -4917,7 +4917,7 @@
     "growth": 0.056,
     "method": "average free cash flow, last 3 years",
     "note": null,
-    "margin_of_safety": -0.2073
+    "margin_of_safety": -0.2093
    },
    "recent_ipo": false,
    "ipo": {
@@ -4931,10 +4931,10 @@
    "news": [],
    "data_notes": [],
    "stale": false,
-   "updated": "2026-10-21T19:01:59+00:00",
+   "updated": "2026-10-21T19:25:05+00:00",
    "memo": {
     "headline": "HOLD / NEUTRAL. No strong signal either way on the available data.",
-    "business": "PepsiCo, Inc. (PEP) is a beverages - non-alcoholic company worth about $182.6B. It brought in $98.2B of revenue over the last year, up 6% from a year earlier. It keeps 17% of sales as operating profit.",
+    "business": "PepsiCo, Inc. (PEP) is a beverages - non-alcoholic company worth about $182.9B. It brought in $98.2B of revenue over the last year, up 6% from a year earlier. It keeps 17% of sales as operating profit.",
     "bull": [
      "Return on capital ~19%: a good business by Greenblatt's first test. (Greenblatt)",
      "Operating margin 17%. Fisher #5: worthwhile profit margins. (Fisher)",
@@ -4942,12 +4942,12 @@
      "Average ROE of 49% clears Buffett's 20% bar for elite businesses. (Buffett)"
     ],
     "bear": [
-     "Price ($134.00) exceeds the Graham Number ($54.07) \u2014 fails Graham's defensive-investor price test. (Graham)",
-     "P/E \u00d7 P/B = 138.2, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)",
+     "Price ($134.22) exceeds the Graham Number ($54.07) \u2014 fails Graham's defensive-investor price test. (Graham)",
+     "P/E \u00d7 P/B = 138.7, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)",
      "Current ratio of 0.85 is below Graham's 2.0 liquidity bar. (Graham)",
      "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test. (Graham)"
     ],
-    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 6% growth fading to 3%, 9% discount rate), fair value is roughly $110.99 a share (bear $94.58, bull $145.48) against a price of $134.00. The price is 21% above the base-case value, so you're paying for growth that hasn't happened yet.",
+    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 6% growth fading to 3%, 9% discount rate), fair value is roughly $110.99 a share (bear $94.58, bull $145.48) against a price of $134.22. The price is 21% above the base-case value, so you're paying for growth that hasn't happened yet.",
     "watch": [
      "Revenue growth stays near or above 6% (last reading).",
      "Operating margin (17%) keeps rising as the company grows.",
@@ -4961,11 +4961,11 @@
   {
    "ticker": "SPCX",
    "desk": "company",
-   "note": "",
+   "note": "added from the site's search",
    "name": "Space Exploration Technologies Corp.",
    "sector": "Industrials",
    "industry": "Aerospace & Defense",
-   "price": 158.38,
+   "price": 158.36,
    "week52_high": 225.64,
    "week52_low": 104.83,
    "overall": {
@@ -5073,12 +5073,12 @@
     "total_cash": 100009000960,
     "cash_runway_years": 7.1,
     "rule_of_40": 30.6,
-    "market_cap": 2087730413568,
+    "market_cap": 2087407321088,
     "pe": null,
-    "forward_pe": 73.21,
+    "forward_pe": 73.2,
     "pb": 16.4,
     "peg": null,
-    "price_to_sales": 90.6,
+    "price_to_sales": 90.58,
     "ev_to_ebitda": 650.5,
     "earnings_yield": -0.0006,
     "graham_number": null,
@@ -5112,7 +5112,7 @@
    "news": [],
    "data_notes": [],
    "stale": false,
-   "updated": "2026-10-21T19:14:14+00:00",
+   "updated": "2026-10-21T19:25:14+00:00",
    "memo": {
     "headline": "HOLD / NEUTRAL. No strong signal either way on the available data.",
     "business": "Space Exploration Technologies Corp. (SPCX) is an aerospace & defense company worth about $2.09T. It brought in $23.0B of revenue over the last year, up 92% from a year earlier. It is not yet profitable at the operating level.",
