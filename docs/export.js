@@ -86,22 +86,23 @@ function exportDeskPdf(btn){ return run(btn, async () => {
 
 // ── Upcoming IPOs PDF ──
 function exportUpcomingPdf(btn){ return run(btn, async () => {
-  const drafts = store.get('ltl-up-drafts', []).map(d => ({...d, draft: true}));
-  const all = [...drafts.filter(d => !UPCOMING.some(u => u.id === d.id)), ...UPCOMING].filter(u => !u.moved_to_ipo_desk);
+  const all = upList();
   if (!all.length) throw new Error('No upcoming IPOs to export yet.');
   const list = all.map(analyzeUpcoming).sort((a, b) => (daysTo(a.ipo.close_date) ?? 999) - (daysTo(b.ipo.close_date) ?? 999));
   const doc = await newDoc('landscape');
-  let y = titleBlock(doc, 'Long-Term Lab - Upcoming IPOs', `${list.length} IPO${list.length === 1 ? '' : 's'} before listing  |  numbers typed in from the prospectus and news, verify before applying  |  exported ${new Date().toLocaleString()}`);
+  let y = titleBlock(doc, 'Long-Term Lab - Upcoming IPOs', `${list.length} IPO${list.length === 1 ? '' : 's'} before listing  |  page 1 is the summary, then a full report with the strategy for each IPO  |  numbers from IPO pages and prospectuses, verify before applying  |  exported ${new Date().toLocaleString()}`);
   doc.autoTable({startY: y, headStyles: HEAD, styles: {fontSize: 8.5, cellPadding: 4}, alternateRowStyles: {fillColor: [245, 246, 248]},
     head: [['Company', 'Exchange', 'Subscription', 'Listing', 'Price band', 'Market value', 'P/E', 'P/S', 'Rev growth', 'Score', 'Verdict']],
-    body: list.map(a => { const i = a.ipo; return [i.name + (i.draft ? ' (draft)' : ''), i.exchange || '', `${i.open_date || '?'} to ${i.close_date || '?'}`, i.listing_date || '',
+    body: list.map(a => { const i = a.ipo; return [i.name + (i.draft ? ' (draft)' : ''), i.exchange || '', i.open_date || i.close_date ? `${i.open_date || '?'} to ${i.close_date || '?'}` : 'dates tbc', i.listing_date || 'tbc',
       `${cp(i, a.priceLo)}-${cp(i, a.price)}`, cm(i, a.k.mcap), num(a.k.pe, 1), num(a.k.ps, 1), pct(a.k.rev_growth, 0), Math.round(a.overall.score), a.overall.label].map(PA); }),
     didParseCell: c => { if (c.section === 'body' && c.column.index === 10){ c.cell.styles.textColor = VCOL(c.cell.raw); c.cell.styles.fontStyle = 'bold'; } }});
-  y = heading(doc, after(doc), 'Research notes');
-  doc.autoTable({startY: y, headStyles: HEAD, styles: {fontSize: 8, cellPadding: 5, valign: 'top'}, columnStyles: {0: {cellWidth: 100}, 1: {cellWidth: 190}},
-    head: [['IPO', 'Verdict and why', 'Why it could work', 'What worries us']],
-    body: list.map(a => [a.ipo.name, `${a.overall.label} (${Math.round(a.overall.score)})\n${a.overall.rationale}`,
-      a.memo.bull.slice(0, 3).map(x => '+ ' + x).join('\n'), a.memo.bear.slice(0, 3).map(x => '- ' + x).join('\n')].map(PA))});
+  y = heading(doc, after(doc), 'Strategy at a glance');
+  const st = (a, h) => (a.strategy.find(x => x.h === h) || {}).t || '-';
+  doc.autoTable({startY: y, headStyles: HEAD, styles: {fontSize: 8, cellPadding: 5, valign: 'top'}, columnStyles: {0: {cellWidth: 95}},
+    head: [['IPO', 'Apply or not', 'Buy zone after listing', 'Lock-up dates', 'Re-check or sell if']],
+    body: list.map(a => [`${a.ipo.name}\n${a.overall.label} (${Math.round(a.overall.score)})`, st(a, 'Apply or not'), st(a, 'Buy zone after listing'),
+      st(a, 'Mark the lock-up dates'), st(a, 'Re-check or sell if')].map(PA))});
+  for (const a of list){ doc.addPage('letter', 'portrait'); writeUpcoming(doc, a); }
   footer(doc); doc.save(fileName('upcoming-ipos'));
 }); }
 
@@ -149,12 +150,16 @@ function exportOnePdf(btn){ return run(btn, async () => {
   footer(doc); doc.save(fileName(s.ticker));
 }); }
 
-function onePdfUpcoming(doc, a){
+function onePdfUpcoming(doc, a){ writeUpcoming(doc, a); footer(doc); doc.save(fileName(a.ipo.name)); }
+// The full report for one upcoming IPO: strategy, memo, checklist, experts, key numbers, financials, risks.
+function writeUpcoming(doc, a){
   const i = a.ipo, k = a.k, v = a.valuation, M = a.memo;
   let y = titleBlock(doc, `${i.name}${i.symbol ? ' (' + i.symbol + ')' : ''}`, ['Upcoming IPO', i.exchange, i.sector, `price band ${cp(i, a.priceLo)}-${cp(i, a.price)}`, i.lot_size ? `lot ${i.lot_size}` : '', `subscription ${i.open_date || '?'} to ${i.close_date || '?'}`, i.listing_date ? `lists ${i.listing_date}` : ''].filter(Boolean).join('  |  '));
   y = flow(doc, y + 4, `${a.overall.label}  -  ${Math.round(a.overall.score)}/100`, {size: 15, bold: true, color: VCOL(a.overall.label)});
   y = flow(doc, y, a.overall.rationale, {size: 10.5});
-  y = flow(doc, y, `From prospectus numbers entered ${i.updated || ''}${i.added_by ? ' by ' + i.added_by : ''}${i.draft ? ' (draft, not saved to the site)' : ''}. Verify against the prospectus before applying.`, {size: 8.5, color: 120});
+  y = heading(doc, y, 'Strategy');
+  for (const [j, st] of a.strategy.entries()){ y = flow(doc, y, `${j + 1}. ${st.h}`, {bold: true, size: 10, color: [150, 110, 30], gap: 0}); y = flow(doc, y, st.t, {size: 9.5, indent: 12, gap: 3}); }
+  y = flow(doc, y + 4, `From prospectus numbers entered ${i.updated || ''}${i.added_by ? ' by ' + i.added_by : ''}${i.draft ? ' (draft, not saved to the site)' : ''}. Verify against the prospectus before applying.`, {size: 8.5, color: 120});
   y = heading(doc, y, 'Research memo');
   y = flow(doc, y, M.lead);
   y = flow(doc, y, 'Why it could work', {bold: true, color: [22, 140, 90], gap: 1}); y = bullets(doc, y, M.bull, '+');
@@ -189,5 +194,4 @@ function onePdfUpcoming(doc, a){
   if ((i.risks || []).length){ y = flow(doc, y, 'Risks from the prospectus', {bold: true, gap: 1}); y = bullets(doc, y, i.risks); }
   const src = [i.prospectus_url, ...(i.sources || []).map(s => s.url)].filter(Boolean);
   if (src.length){ y = flow(doc, y, 'Sources', {bold: true, gap: 1}); y = bullets(doc, y, src); }
-  footer(doc); doc.save(fileName(i.name));
 }

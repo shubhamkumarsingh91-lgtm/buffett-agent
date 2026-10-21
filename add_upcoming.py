@@ -22,9 +22,10 @@ from pathlib import Path
 
 OUT = Path(__file__).parent / "docs" / "data" / "upcoming.json"
 TEXT = {"name": 80, "symbol": 15, "yahoo": 20, "exchange": 40, "sector": 60, "about": 300, "use_of_proceeds": 400,
-        "prospectus_url": 400, "notes": 600, "added_by": 40, "updated": 10, "open_date": 10, "close_date": 10, "listing_date": 10}
+        "prospectus_url": 400, "notes": 600, "added_by": 40, "updated": 10, "open_date": 10, "close_date": 10, "listing_date": 10,
+        "lockup_end": 10, "lockup_end_2": 10}
 NUM = ["price_low", "price_high", "lot_size", "issue_size", "fresh_issue", "ofs", "shares_post", "fresh_shares", "pct_sold",
-       "gross_margin", "debt", "cash", "proceeds_debt", "promoter_post_pct", "discount_rate"]
+       "gross_margin", "debt", "cash", "proceeds_debt", "promoter_post_pct", "discount_rate", "anchor_amount"]
 NUM_LISTS = ["revenue", "ebitda", "net_profit"]
 CURRENCIES = {"USD", "INR", "EUR", "GBP", "CAD", "AUD", "HKD", "JPY", "CNY", "SGD", "CHF"}
 UNITS = {"million", "crore", "billion", "lakh", "thousand"}
@@ -45,7 +46,7 @@ def clean(raw: dict) -> dict:
     for k, n in TEXT.items():
         if isinstance(raw.get(k), str) and raw[k].strip():
             o[k] = raw[k].strip()[:n]
-    for k in ("open_date", "close_date", "listing_date", "updated"):
+    for k in ("open_date", "close_date", "listing_date", "updated", "lockup_end", "lockup_end_2"):
         if k in o:
             try:
                 date.fromisoformat(o[k])
