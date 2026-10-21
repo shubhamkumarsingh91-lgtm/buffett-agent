@@ -113,6 +113,31 @@ class StockData:
 
     rnd_to_revenue: Optional[float] = None
 
+    # ── v2: growth / cash / valuation KPIs ──
+    revenue_ttm: Optional[float] = None
+    revenue_growth_yoy: Optional[float] = None        # latest quarter vs year-ago quarter
+    quarterly_revenue: list = field(default_factory=list)   # oldest first
+    gross_margin_ttm: Optional[float] = None
+    operating_margin_ttm: Optional[float] = None
+    profit_margin_ttm: Optional[float] = None
+    ebit: Optional[float] = None
+    ebitda: Optional[float] = None
+    enterprise_value: Optional[float] = None
+    ev_to_ebitda: Optional[float] = None
+    price_to_sales: Optional[float] = None
+    total_cash: Optional[float] = None
+    operating_cash_flow: Optional[float] = None
+    free_cash_flow: Optional[float] = None
+    fcf_series: list = field(default_factory=list)          # annual, oldest first
+    return_on_assets: Optional[float] = None
+    short_pct_float: Optional[float] = None
+    float_shares: Optional[float] = None
+
+    # ── v2: IPO facts ──
+    first_trade_date: Optional[str] = None     # ISO date of first day of trading
+    first_day_open: Optional[float] = None     # proxy for IPO price (offer price isn't in free data)
+    first_day_close: Optional[float] = None
+
     news: list = field(default_factory=list)   # [{title, publisher, link}]
     data_notes: list = field(default_factory=list)
 
@@ -145,6 +170,40 @@ class StockData:
             return None
         return (22.5 * self.eps_ttm * self.book_value_per_share) ** 0.5
 
+    @property
+    def months_listed(self) -> Optional[float]:
+        if not self.first_trade_date:
+            return None
+        from datetime import date
+        d0 = date.fromisoformat(self.first_trade_date[:10])
+        return (date.today() - d0).days / 30.44
+
+    @property
+    def invested_capital(self) -> Optional[float]:
+        if self.total_debt is None or self.total_equity is None:
+            return None
+        return self.total_debt + self.total_equity - (self.total_cash or 0.0)
+
+    @property
+    def revenue_cagr(self) -> Optional[float]:
+        r = [v for v in self.revenue_series if v]
+        if len(r) < 2 or r[0] <= 0 or r[-1] <= 0:
+            return None
+        return (r[-1] / r[0]) ** (1 / (len(r) - 1)) - 1
+
+    @property
+    def fcf_margin(self) -> Optional[float]:
+        if self.free_cash_flow is None or not self.revenue_ttm:
+            return None
+        return self.free_cash_flow / self.revenue_ttm
+
+    @property
+    def cash_runway_years(self) -> Optional[float]:
+        """Only meaningful for cash-burning companies: years of cash left at today's burn."""
+        if self.free_cash_flow is None or self.free_cash_flow >= 0 or self.total_cash is None:
+            return None
+        return self.total_cash / abs(self.free_cash_flow)
+
     def owner_earnings(self) -> Optional[float]:
         if None in (self.net_income, self.depreciation_amortization, self.capital_expenditures):
             return None
@@ -171,7 +230,7 @@ def _series_from(df, row_names, most_recent_first=True):
     return []
 
 
-def fetch_stock_data(ticker: str) -> StockData:
+def fetch_stock_data(ticker: str, with_history: bool = False) -> StockData:
     try:
         import yfinance as yf
     except ImportError as e:
@@ -221,6 +280,31 @@ def fetch_stock_data(ticker: str) -> StockData:
                                    "DepreciationAndAmortization"])
     capex_series = _series_from(cf, ["Capital Expenditure", "CapitalExpenditure"])
     wc_series = _series_from(cf, ["Change In Working Capital", "ChangeInWorkingCapital"])
+
+    fcf_series = _series_from(cf, ["Free Cash Flow", "FreeCashFlow"])
+    ocf_series = _series_from(cf, ["Operating Cash Flow", "Cash Flow From Continuing Operating Activities"])
+    ebit_series = _series_from(fin, ["EBIT", "Operating Income"])
+
+    quarterly_revenue = []
+    try:
+        qf = _with_retries(lambda: t.quarterly_financials, retries=2)
+        quarterly_revenue = _series_from(qf, ["Total Revenue", "TotalRevenue"])
+    except Exception:
+        notes.append("Quarterly results unavailable.")
+
+    first_trade_date = first_open = first_close = None
+    ft = info.get("firstTradeDateEpochUtc") or (info.get("firstTradeDateMilliseconds") or 0) / 1000 or None
+    if ft:
+        from datetime import datetime as _dt, timezone as _tz
+        first_trade_date = _dt.fromtimestamp(ft, _tz.utc).date().isoformat()
+    if with_history:
+        try:
+            h = _with_retries(lambda: t.history(period="max", interval="1d", auto_adjust=False), retries=2)
+            if h is not None and len(h):
+                first_open, first_close = float(h["Open"].iloc[0]), float(h["Close"].iloc[0])
+                first_trade_date = first_trade_date or h.index[0].date().isoformat()
+        except Exception:
+            notes.append("Price history unavailable (first-day price unknown).")
 
     gross_margin_series = [g / r for g, r in zip(gross_profit_series, revenue_series) if r] \
         if gross_profit_series and revenue_series else []
@@ -316,6 +400,27 @@ def fetch_stock_data(ticker: str) -> StockData:
         capital_expenditures=capex_series[-1] if capex_series else None,
         change_in_working_capital=wc_series[-1] if wc_series else None,
         rnd_to_revenue=rnd_to_revenue,
+        revenue_ttm=info.get("totalRevenue"),
+        revenue_growth_yoy=info.get("revenueGrowth"),
+        quarterly_revenue=quarterly_revenue,
+        gross_margin_ttm=info.get("grossMargins"),
+        operating_margin_ttm=info.get("operatingMargins"),
+        profit_margin_ttm=info.get("profitMargins"),
+        ebit=ebit_series[-1] if ebit_series else None,
+        ebitda=info.get("ebitda"),
+        enterprise_value=info.get("enterpriseValue"),
+        ev_to_ebitda=info.get("enterpriseToEbitda"),
+        price_to_sales=info.get("priceToSalesTrailing12Months"),
+        total_cash=info.get("totalCash"),
+        operating_cash_flow=info.get("operatingCashflow") or (ocf_series[-1] if ocf_series else None),
+        free_cash_flow=(fcf_series[-1] if fcf_series else info.get("freeCashflow")),
+        fcf_series=fcf_series,
+        return_on_assets=info.get("returnOnAssets"),
+        short_pct_float=info.get("shortPercentOfFloat"),
+        float_shares=info.get("floatShares"),
+        first_trade_date=first_trade_date,
+        first_day_open=first_open,
+        first_day_close=first_close,
         news=news,
         data_notes=notes,
     )

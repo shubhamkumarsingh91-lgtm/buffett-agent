@@ -1,0 +1,12 @@
+# IPO Desk — recent listings (roughly the last 3 years), one ticker per line, optional note after '#'.
+# Add one here or use "Request analysis" on the website. Use Yahoo symbols.
+RDDT    # Reddit — listed Mar 2024
+ALAB    # Astera Labs — AI connectivity chips, listed Mar 2024
+RBRK    # Rubrik — data security, listed Apr 2024
+SAIL    # SailPoint — identity security, listed Feb 2025
+CRWV    # CoreWeave — AI cloud, listed Mar 2025
+ETOR    # eToro — trading platform, listed May 2025
+CRCL    # Circle — stablecoin issuer, listed Jun 2025
+CHYM    # Chime — consumer fintech, listed Jun 2025
+FIG     # Figma — design software, listed Jul 2025
+KLAR    # Klarna — buy now pay later, listed Sep 2025

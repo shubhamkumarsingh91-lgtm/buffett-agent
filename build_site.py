@@ -1,46 +1,49 @@
 #!/usr/bin/env python3
 """
-build_site.py — scores every ticker in watchlist.txt and writes the data the
-website reads (docs/data/scores.json and docs/data/history.json).
+build_site.py — scores both desks and writes the data the website reads.
 
 DISCLAIMER: Independent personal project. Not tied to any employer or agency.
-Public market data only (Yahoo Finance via yfinance). No internal or personal
-data (no SSNs/PHI). Educational research, not financial advice. Never trades.
+Public market data only (Yahoo Finance via yfinance, SEC EDGAR). No internal or
+personal data (no SSNs/PHI). Educational research, not financial advice. Never trades.
 
-How it runs:
-  * GitHub Actions runs it every weekday evening and whenever watchlist.txt
-    changes (see .github/workflows/update.yml).
-  * You can also run it on your laptop:  python build_site.py
-    then open docs/index.html through a tiny local server:
-        python -m http.server -d docs 8000   ->  http://localhost:8000
+Two desks:
+  * Company Desk  (watchlist.txt): Buffett & Munger, Graham, Lynch, Fisher, Greenblatt
+  * IPO Desk      (ipos.txt):      Jay Ritter (IPO research) + Bill Gurley (revenue quality),
+                                   Fisher as a growth-quality check, an IPO checklist and the
+                                   SEC prospectus link
+Every stock also gets KPIs, a bear/base/bull valuation and a written research memo.
 
-If Yahoo fails for one ticker, the previous good result is kept and marked
-"stale" so the site never loses a stock because of one bad night.
+Run locally:  python build_site.py && python -m http.server -d docs 8000
+If Yahoo fails for one ticker, the previous good result is kept and marked "stale".
 """
 from __future__ import annotations
 
 import json
 import sys
 import time
-from dataclasses import asdict
 from datetime import datetime, timezone
 from pathlib import Path
 
 from data import StockData, fetch_stock_data
-from strategies import buffett_score, graham_score, lynch_score, overall_verdict
+from strategies import (buffett_score, graham_score, lynch_score, fisher_score, greenblatt_score,
+                        ritter_score, gurley_score, valuation, ipo_checklist, company_verdict, ipo_verdict)
+from memo import build_memo
 
 ROOT = Path(__file__).parent
-WATCHLIST = ROOT / "watchlist.txt"
+LISTS = {"company": ROOT / "watchlist.txt", "ipo": ROOT / "ipos.txt"}
 OUT_DIR = ROOT / "docs" / "data"
 SCORES = OUT_DIR / "scores.json"
 HISTORY = OUT_DIR / "history.json"
-PAUSE_SECONDS = 2.0          # be gentle with Yahoo's rate limits
+PAUSE_SECONDS = 2.0
+SHORT = {"buffett": "Buffett", "graham": "Graham", "lynch": "Lynch", "fisher": "Fisher",
+         "greenblatt": "Greenblatt", "ritter": "Ritter", "gurley": "Gurley"}
 
 
-def read_watchlist() -> list[tuple[str, str]]:
-    """Lines like 'KO  # Coca-Cola, dividend compounder'. Returns [(ticker, note)]."""
+def read_list(path: Path) -> list[tuple[str, str]]:
     out, seen = [], set()
-    for line in WATCHLIST.read_text().splitlines():
+    if not path.exists():
+        return out
+    for line in path.read_text().splitlines():
         line = line.strip()
         if not line or line.startswith("#"):
             continue
@@ -56,56 +59,67 @@ def _r(x, n=4):
     return None if x is None else round(float(x), n)
 
 
-def score_stock(d: StockData, note: str = "") -> dict:
-    """Run the three lenses and flatten everything the website shows."""
-    b, g, l = buffett_score(d), graham_score(d), lynch_score(d)
-    overall = overall_verdict([b, g, l])
-    iv = d.intrinsic_value_per_share()
-    mos = (iv - d.price) / iv if (iv and iv > 0 and d.price) else None
+def _lens(key, r):
+    return {"key": key, "short": SHORT[key], "name": r.strategy, "score": r.score, "verdict": r.verdict,
+            "pros": r.pros, "cons": r.cons}
+
+
+def kpis(d: StockData) -> dict:
     roe = [v for v in d.roe_series if v is not None]
-    gm = [v for v in d.gross_margin_series if v is not None]
+    gb = greenblatt_score(d).metrics
     return {
-        "ticker": d.ticker,
-        "note": note,
-        "name": d.name,
-        "sector": d.sector,
-        "industry": d.industry,
-        "price": _r(d.price, 2),
-        "market_cap": d.market_cap,
-        "week52_high": _r(d.fifty_two_week_high, 2),
-        "week52_low": _r(d.fifty_two_week_low, 2),
-        "overall": {
-            "label": overall["label"],
-            "rationale": overall["rationale"],
-            "score": overall["average_score"],
-        },
-        "lenses": [
-            {"key": key, "name": r.strategy, "score": r.score, "verdict": r.verdict,
-             "pros": r.pros, "cons": r.cons}
-            for key, r in (("buffett", b), ("graham", g), ("lynch", l))
-        ],
-        "metrics": {
-            "pe": _r(d.pe_ratio, 2),
-            "forward_pe": _r(d.forward_pe, 2),
-            "pb": _r(d.pb_ratio, 2),
-            "peg": _r(d.peg_ratio, 2),
-            "dividend_yield": _r(d.dividend_yield),
-            "payout_ratio": _r(d.payout_ratio),
-            "roe_avg": _r(sum(roe) / len(roe)) if roe else None,
-            "gross_margin_avg": _r(sum(gm) / len(gm)) if gm else None,
-            "debt_to_equity": _r(d.debt_to_equity, 2),
-            "current_ratio": _r(d.current_ratio, 2),
-            "graham_number": _r(d.graham_number, 2),
-            "intrinsic_value": _r(iv, 2),
-            "margin_of_safety": _r(mos),
-            "earnings_growth": _r(d.earnings_growth_estimate),
-            "beta": _r(d.beta, 2),
-        },
-        "news": d.news[:5],
-        "data_notes": d.data_notes,
-        "stale": False,
+        # growth
+        "revenue_ttm": d.revenue_ttm, "revenue_growth_yoy": _r(d.revenue_growth_yoy), "revenue_cagr": _r(d.revenue_cagr),
+        "earnings_growth": _r(d.earnings_growth_estimate), "quarterly_revenue": [round(q) for q in d.quarterly_revenue[-8:] if q],
+        # profitability
+        "gross_margin": _r(d.gross_margin_ttm), "operating_margin": _r(d.operating_margin_ttm),
+        "profit_margin": _r(d.profit_margin_ttm), "roe_avg": _r(sum(roe) / len(roe)) if roe else None,
+        "roic": gb.get("roic"), "roa": _r(d.return_on_assets),
+        # cash
+        "free_cash_flow": d.free_cash_flow, "fcf_margin": _r(d.fcf_margin), "total_cash": d.total_cash,
+        "cash_runway_years": _r(d.cash_runway_years, 1),
+        "rule_of_40": _r(((d.revenue_growth_yoy or 0) + d.fcf_margin) * 100, 1)
+                      if (d.fcf_margin is not None and d.revenue_growth_yoy is not None) else None,
+        # valuation
+        "market_cap": d.market_cap, "pe": _r(d.pe_ratio, 2), "forward_pe": _r(d.forward_pe, 2), "pb": _r(d.pb_ratio, 2),
+        "peg": _r(d.peg_ratio, 2), "price_to_sales": _r(d.price_to_sales, 2), "ev_to_ebitda": _r(d.ev_to_ebitda, 2),
+        "earnings_yield": gb.get("earnings_yield"), "graham_number": _r(d.graham_number, 2),
+        "dividend_yield": _r(d.dividend_yield), "payout_ratio": _r(d.payout_ratio),
+        # balance sheet & ownership
+        "debt_to_equity": _r(d.debt_to_equity, 2), "current_ratio": _r(d.current_ratio, 2),
+        "insider_pct": _r(d.insider_ownership_pct), "institutional_pct": _r(d.institutional_ownership_pct),
+        "short_pct_float": _r(d.short_pct_float), "beta": _r(d.beta, 2),
+    }
+
+
+def score_stock(d: StockData, desk: str, note: str = "", prospectus: dict | None = None) -> dict:
+    v = valuation(d)
+    if desk == "ipo":
+        main = [("ritter", ritter_score(d)), ("gurley", gurley_score(d))]
+        overall = ipo_verdict([r for _, r in main], d)
+        lenses = [_lens(k, r) for k, r in main] + [_lens("fisher", fisher_score(d))]
+        classic = {k: f(d).score for k, f in (("buffett", buffett_score), ("graham", graham_score),
+                                                ("lynch", lynch_score), ("greenblatt", greenblatt_score))}
+    else:
+        res = [("buffett", buffett_score(d)), ("graham", graham_score(d)), ("lynch", lynch_score(d)),
+               ("fisher", fisher_score(d)), ("greenblatt", greenblatt_score(d))]
+        overall = company_verdict([r for _, r in res])
+        lenses, classic = [_lens(k, r) for k, r in res], None
+    m = d.months_listed
+    entry = {
+        "ticker": d.ticker, "desk": desk, "note": note, "name": d.name, "sector": d.sector, "industry": d.industry,
+        "price": _r(d.price, 2), "week52_high": _r(d.fifty_two_week_high, 2), "week52_low": _r(d.fifty_two_week_low, 2),
+        "overall": {"label": overall["label"], "rationale": overall["rationale"], "score": overall["average_score"]},
+        "lenses": lenses, "classic": classic, "kpis": kpis(d), "valuation": v,
+        "recent_ipo": m is not None and m < 36,
+        "ipo": {"months_listed": _r(m, 1), "first_trade_date": d.first_trade_date,
+                "first_day_open": _r(d.first_day_open, 2), "first_day_close": _r(d.first_day_close, 2),
+                "prospectus": prospectus, "checklist": ipo_checklist(d, prospectus) if desk == "ipo" else []},
+        "news": d.news[:5], "data_notes": d.data_notes, "stale": False,
         "updated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
     }
+    entry["memo"] = build_memo(entry)
+    return entry
 
 
 def _load(path: Path, default):
@@ -115,51 +129,58 @@ def _load(path: Path, default):
         return default
 
 
-def build(fetch=fetch_stock_data) -> dict:
+def default_fetch(ticker: str, desk: str):
+    d = fetch_stock_data(ticker, with_history=(desk == "ipo"))
+    pro = None
+    if desk == "ipo":
+        try:
+            from edgar import find_prospectus
+            pro = find_prospectus(ticker)
+        except Exception:
+            pro = None
+    return d, pro
+
+
+def build(fetch=default_fetch) -> dict:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    previous = {s["ticker"]: s for s in _load(SCORES, {}).get("stocks", [])}
+    previous = {(s.get("desk", "company"), s["ticker"]): s for s in _load(SCORES, {}).get("stocks", [])}
     history = _load(HISTORY, {})
     today = datetime.now(timezone.utc).date().isoformat()
-
     stocks, failed = [], []
-    watch = read_watchlist()
-    for i, (ticker, note) in enumerate(watch):
+    jobs = [(desk, t, n) for desk, path in LISTS.items() for t, n in read_list(path)]
+    for i, (desk, ticker, note) in enumerate(jobs):
         try:
-            entry = score_stock(fetch(ticker), note)
-            print(f"  ok   {ticker:7s} {entry['overall']['score']:5.1f}  {entry['overall']['label']}")
-            h = [p for p in history.get(ticker, []) if p["date"] != today]
+            d, pro = fetch(ticker, desk)
+            entry = score_stock(d, desk, note, pro)
+            print(f"  ok   {desk:7s} {ticker:7s} {entry['overall']['score']:5.1f}  {entry['overall']['label']}")
+            key = f"{desk}:{ticker}"
+            h = [p for p in history.get(key, []) if p["date"] != today]
             h.append({"date": today, "score": entry["overall"]["score"], "price": entry["price"],
-                      "b": entry["lenses"][0]["score"], "g": entry["lenses"][1]["score"],
-                      "l": entry["lenses"][2]["score"]})
-            history[ticker] = h[-400:]
-        except BaseException as e:            # SystemExit from data.py on fetch failure
+                      **{l["key"]: l["score"] for l in entry["lenses"]}})
+            history[key] = h[-400:]
+        except BaseException as e:
             if isinstance(e, KeyboardInterrupt):
                 raise
-            failed.append(ticker)
-            print(f"  FAIL {ticker:7s} {e}")
-            if ticker in previous:
-                entry = dict(previous[ticker], stale=True, note=note or previous[ticker].get("note", ""))
-            else:
+            failed.append(f"{desk}:{ticker}")
+            print(f"  FAIL {desk:7s} {ticker:7s} {e}")
+            prev = previous.get((desk, ticker))
+            if not prev or "memo" not in prev:      # skip v1-format leftovers
                 continue
+            entry = dict(prev, stale=True, note=note or prev.get("note", ""))
         stocks.append(entry)
-        if i < len(watch) - 1:
+        if i < len(jobs) - 1:
             time.sleep(PAUSE_SECONDS)
 
     stocks.sort(key=lambda s: -(s["overall"]["score"] or 0))
-    payload = {
-        "generated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "count": len(stocks),
-        "failed": failed,
-        "stocks": stocks,
-    }
+    payload = {"generated": datetime.now(timezone.utc).isoformat(timespec="seconds"), "version": 2,
+               "count": len(stocks), "failed": failed, "stocks": stocks}
     SCORES.write_text(json.dumps(payload, indent=1, default=str))
-    HISTORY.write_text(json.dumps({t: history[t] for t in sorted(history) if t in {s['ticker'] for s in stocks}},
-                                  separators=(",", ":")))
+    keep = {f"{s['desk']}:{s['ticker']}" for s in stocks}
+    HISTORY.write_text(json.dumps({k: history[k] for k in sorted(history) if k in keep}, separators=(",", ":")))
     print(f"\nWrote {len(stocks)} stocks ({len(failed)} failed) -> {SCORES.relative_to(ROOT)}")
     return payload
 
 
 if __name__ == "__main__":
     result = build()
-    # Fail the job only if nothing at all could be scored (e.g. Yahoo fully blocked).
     sys.exit(0 if result["count"] else 1)
