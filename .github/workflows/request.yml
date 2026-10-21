@@ -3,7 +3,7 @@
 #
 # "Request analysis" button on the website opens a GitHub issue titled
 #   "Analyze IPO: TICKER"   -> added to ipos.txt
-#   "Analyze: TICKER"       -> added to watchlist.txt
+#   "Analyze: TICKER"       -> added to watchlist.txt  (several allowed: "Analyze: AMD, MU")
 # Only the repo owner and collaborators can trigger it (add your friend under
 # Settings -> Collaborators). The job adds the ticker, re-scores, comments the
 # link on the issue and closes it.
@@ -38,13 +38,22 @@ jobs:
         id: req
         env:
           TITLE: ${{ github.event.issue.title }}
+          N: ${{ github.event.issue.number }}
         run: |
-          T=$(echo "$TITLE" | sed -E 's/^Analyze( IPO)?:[[:space:]]*//' | tr '[:lower:]' '[:upper:]' | tr -d '[:space:]')
-          if ! echo "$T" | grep -Eq '^[A-Z0-9.^-]{1,10}$'; then echo "bad=1" >> $GITHUB_OUTPUT; exit 0; fi
+          # Title: "Analyze: KO" or "Analyze: AMD, ASML, MU" or "Analyze IPO: RDDT" (max 15 tickers)
           case "$TITLE" in "Analyze IPO"*) F=ipos.txt; D="IPO Desk";; *) F=watchlist.txt; D="Company Desk";; esac
-          echo "ticker=$T" >> $GITHUB_OUTPUT; echo "file=$F" >> $GITHUB_OUTPUT; echo "desk=$D" >> $GITHUB_OUTPUT
-          if grep -Eq "^$T([[:space:]]|$)" "$F"; then echo "exists=1" >> $GITHUB_OUTPUT
-          else printf '%s    # requested via issue #%s\n' "$T" "${{ github.event.issue.number }}" >> "$F"; fi
+          LIST=$(echo "$TITLE" | sed -E 's/^Analyze( IPO)?:[[:space:]]*//' | tr '[:lower:]' '[:upper:]' | tr ',;' '  ')
+          ADDED=""; COUNT=0
+          for T in $LIST; do
+            COUNT=$((COUNT+1)); [ $COUNT -gt 15 ] && break
+            echo "$T" | grep -Eq '^[A-Z0-9^-]{1,6}([.-][A-Z]{1,2})?$' || continue
+            T=$(echo "$T" | sed -E 's/\.([A-Z]{1,2})$/-\1/')     # BRK.B -> BRK-B (Yahoo style)
+            grep -Eq "^$T([[:space:]]|$)" watchlist.txt ipos.txt && { ADDED="$ADDED $T"; continue; }
+            printf '%s    # requested via issue #%s\n' "$T" "$N" >> "$F"; ADDED="$ADDED $T"
+          done
+          ADDED=$(echo $ADDED)
+          if [ -z "$ADDED" ]; then echo "bad=1" >> $GITHUB_OUTPUT; exit 0; fi
+          echo "tickers=$ADDED" >> $GITHUB_OUTPUT; echo "first=${ADDED%% *}" >> $GITHUB_OUTPUT; echo "desk=$D" >> $GITHUB_OUTPUT
       - name: Score
         if: steps.req.outputs.bad != '1'
         env:
@@ -58,7 +67,7 @@ jobs:
           git config user.name "investing-site-bot"
           git config user.email "actions@github.com"
           git add watchlist.txt ipos.txt docs/data
-          git diff --cached --quiet || git commit -m "Add ${{ steps.req.outputs.ticker }} (issue #${{ github.event.issue.number }})"
+          git diff --cached --quiet || git commit -m "Add ${{ steps.req.outputs.tickers }} (issue #${{ github.event.issue.number }})"
           git pull --rebase && git push
       - name: Reply and close
         env:
@@ -66,9 +75,9 @@ jobs:
           N: ${{ github.event.issue.number }}
         run: |
           if [ "${{ steps.req.outputs.bad }}" = "1" ]; then
-            gh issue comment $N --repo ${{ github.repository }} --body "Couldn't read a ticker from the title. Use 'Analyze: KO' or 'Analyze IPO: RDDT'."
+            gh issue comment $N --repo ${{ github.repository }} --body "Couldn't read a ticker from the title. Use 'Analyze: KO', 'Analyze: AMD, MU' or 'Analyze IPO: RDDT'."
           else
-            URL="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/#${{ steps.req.outputs.ticker }}"
-            gh issue comment $N --repo ${{ github.repository }} --body "Done: ${{ steps.req.outputs.ticker }} is on the ${{ steps.req.outputs.desk }}. Open: $URL (the page refreshes within ~2 minutes)."
+            URL="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
+            gh issue comment $N --repo ${{ github.repository }} --body "Done: ${{ steps.req.outputs.tickers }} on the ${{ steps.req.outputs.desk }}. Open $URL and hard-refresh in ~2 minutes (Pages needs a moment to publish)."
           fi
           gh issue close $N --repo ${{ github.repository }}
