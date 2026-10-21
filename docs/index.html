@@ -185,6 +185,15 @@ td.n,th.n{text-align:right} td.n{font-family:"JetBrains Mono",monospace}
 .menu button{all:unset;cursor:pointer;padding:8px 10px;border-radius:7px;font-size:13px}
 .menu button:hover{background:#1d232c}
 .tvw{height:520px;border-radius:10px;overflow:hidden}
+.modal.wide{width:min(860px,96vw)}
+fieldset{border:1px solid var(--line);border-radius:12px;padding:10px 14px 14px;margin-top:12px}
+legend{font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--gold);padding:0 6px}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px 14px}
+.fld{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--mute)}
+.fld.wide{grid-column:1/-1}
+.fld input,.fld select,.fld textarea{background:#10141a;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:8px 10px;font:inherit;font-size:13px}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:none;border-color:var(--line2)}
+.fld small{color:var(--dim);font-size:11px}
 footer{margin-top:44px;color:var(--dim);font-size:11.5px;text-align:center;line-height:1.7}
 @media(max-width:860px){.stats{grid-template-columns:1fr 1fr}.cols{grid-template-columns:1fr}.ci{grid-template-columns:22px 1fr}.ci span{grid-column:2}}
 @media(max-width:560px){.stats{grid-template-columns:1fr 1fr}.wrap{padding:22px 16px}h1{font-size:30px}.db{padding:16px 14px 40px}}
@@ -206,6 +215,7 @@ footer{margin-top:44px;color:var(--dim);font-size:11.5px;text-align:center;line-
   <div id="tape" style="height:46px;margin:-6px 0 18px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel)"></div>
   <nav class="desks">
     <button class="desk ipo on" data-v="ipo">🚀 IPO Desk <span class="c" id="cIpo">0</span></button>
+    <button class="desk ipo" data-v="upcoming">🗓 Upcoming IPOs <span class="c" id="cUp">0</span></button>
     <button class="desk" data-v="company">🏛 Company Desk <span class="c" id="cCo">0</span></button>
     <button class="desk" data-v="port">💼 Our portfolio</button>
     <button class="desk" data-v="how">📖 How it works</button>
@@ -221,6 +231,16 @@ footer{margin-top:44px;color:var(--dim);font-size:11.5px;text-align:center;line-
     </div>
     <div class="req" id="req"></div>
     <div class="grid" id="grid"><div class="empty">Loading…</div></div>
+  </section>
+
+  <section id="v-up" hidden>
+    <div class="hero" style="--accent:var(--ipo)">
+      <h2>Upcoming IPOs</h2>
+      <p>For companies that haven't started trading yet, when the real decision is whether to <b>apply</b>. There's no market data before listing, so this desk works from the prospectus (S-1 / 424B4 in the US, DRHP / RHP in India): you type in the price band, share count and a few years of revenue and profit, and it runs the IPO checks, a valuation at the band and a written memo instantly. <b>Save for both of us</b> puts it on the site for your friend too. Once it lists, it moves to the IPO Desk by itself.</p>
+    </div>
+    <div class="search"><span class="muted" style="flex:1;font-size:12.5px">Sorted by subscription closing date. Numbers are typed in from public sources; always verify against the prospectus.</span>
+      <button class="btn ipo" onclick="upForm()">＋ Check an upcoming IPO</button></div>
+    <div class="grid" id="upGrid"><div class="empty">Loading…</div></div>
   </section>
 
   <section id="v-port" hidden>
@@ -264,6 +284,12 @@ footer{margin-top:44px;color:var(--dim);font-size:11.5px;text-align:center;line-
 </div>
 
 <div class="shade" id="shade" onclick="closeD();closeReview()"></div>
+<div class="modal wide" id="upForm" role="dialog" aria-modal="true">
+  <div class="dh"><div><div class="t" style="font-size:18px">Check an upcoming IPO</div><div class="muted" style="font-size:12.5px;margin-top:2px">Fill what you have from the prospectus or news. Only name and price band are required; more numbers give a better analysis.</div></div><button class="btn" onclick="closeUpForm()">✕</button></div>
+  <div id="upFormBody" style="padding:6px 20px 14px;overflow:auto;max-height:64vh"></div>
+  <div style="display:flex;gap:8px;justify-content:flex-end;align-items:center;padding:14px 20px;border-top:1px solid var(--line);flex-wrap:wrap">
+    <span id="upMsg" style="color:var(--pass);font-size:12.5px;margin-right:auto"></span><button class="btn" onclick="closeUpForm()">Cancel</button><button class="btn ipo" onclick="analyzeUpForm()">Analyze →</button></div>
+</div>
 <div class="modal" id="review" role="dialog" aria-modal="true">
   <div class="dh"><div><div class="t" id="rvTitle" style="font-size:18px">Review import</div><div class="muted" id="rvNote" style="font-size:12.5px;margin-top:2px"></div></div><button class="btn" onclick="closeReview()">✕</button></div>
   <div style="padding:14px 20px;overflow:auto;max-height:55vh"><table><thead><tr><th></th><th>Ticker</th><th>Shares</th><th>Cost / share</th><th class="n">Price</th><th></th></tr></thead><tbody id="rvBody"></tbody></table></div>
@@ -328,7 +354,8 @@ document.querySelectorAll('.desk').forEach(b => b.onclick = () => setView(b.data
 function setView(v){
   view = v; store.set('ltl-view', v);
   document.querySelectorAll('.desk').forEach(b => b.classList.toggle('on', b.dataset.v===v));
-  $('#v-desk').hidden = !(v==='ipo'||v==='company'); $('#v-port').hidden = v!=='port'; $('#v-how').hidden = v!=='how';
+  $('#v-desk').hidden = !(v==='ipo'||v==='company'); $('#v-port').hidden = v!=='port'; $('#v-how').hidden = v!=='how'; $('#v-up').hidden = v!=='upcoming';
+  if (v==='upcoming') renderUpcoming();
   if (v==='ipo'||v==='company'){ labelFilter='all'; $('#q').value=''; renderDesk(); }
   if (v==='port') renderPort();
 }
@@ -338,14 +365,18 @@ async function load(){
   try{
     const [s,h] = await Promise.all([
       fetch('data/scores.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null),
-      fetch('data/history.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():{}).catch(()=>({}))]);
+      fetch('data/history.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():{}).catch(()=>({})),
+      fetch('data/upcoming.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():{ipos:[]}).catch(()=>({ipos:[]})).then(u=>{ UPCOMING = (u.ipos||[]); })]);
     if (s && s.version===2){ DATA = s; HIST = h||{}; }
   }catch(e){}
   if (DATA.generated) $('#upd').textContent = new Date(DATA.generated).toLocaleString([], {month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
   $('#cIpo').textContent = DATA.stocks.filter(s=>s.desk==='ipo').length;
   $('#cCo').textContent = DATA.stocks.filter(s=>s.desk==='company').length;
-  setView(['ipo','company','port','how'].includes(view)?view:'ipo');
-  const hash = decodeURIComponent(location.hash.slice(1)).toUpperCase();
+  renderUpcoming();
+  const rawHash = decodeURIComponent(location.hash.slice(1));
+  if (rawHash.startsWith('up:')){ setView('upcoming'); openUp(rawHash.slice(3)); return; }
+  setView(['ipo','company','port','how','upcoming'].includes(view)?view:'ipo');
+  const hash = rawHash.toUpperCase();
   if (hash){ const [d,t] = hash.includes(':')?hash.split(':'):[null,hash]; const s = DATA.stocks.find(x=>x.ticker===t && (!d||x.desk===d.toLowerCase())); if (s) openD(s.desk, s.ticker); }
 }
 const deskStocks = () => DATA.stocks.filter(s => s.desk===view);
@@ -777,7 +808,8 @@ async function exportPdf(rows){
 document.addEventListener('click',e=>{ if(!e.target.closest('.exp')) $('#expMenu')?.classList.remove('on'); });
 
 tvEmbed($('#tape'),'embed-widget-ticker-tape.js',{symbols:[{proName:'AMEX:SPY',title:'S&P 500'},{proName:'NASDAQ:QQQ',title:'Nasdaq 100'},{proName:'AMEX:DIA',title:'Dow'},{proName:'AMEX:IWM',title:'Small caps'},{proName:'AMEX:IPO',title:'Renaissance IPO ETF'},{proName:'TVC:US10Y',title:'10-yr yield'},{proName:'TVC:GOLD',title:'Gold'}],showSymbolLogo:true,isTransparent:true,displayMode:'adaptive',colorTheme:'dark',locale:'en'});
-load();
 </script>
+<script src="upcoming.js"></script>
+<script>load();</script>
 </body>
 </html>

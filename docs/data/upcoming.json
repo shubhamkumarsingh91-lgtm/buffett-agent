@@ -1,0 +1,63 @@
+{
+ "ipos": [
+  {
+   "id": "jio-platforms-2026-10",
+   "name": "Jio Platforms",
+   "symbol": "JIO (tbc)",
+   "exchange": "NSE, BSE",
+   "sector": "Telecom & digital services",
+   "about": "India's largest telecom operator (524 million customers) plus digital platforms",
+   "currency": "INR",
+   "unit": "crore",
+   "open_date": "2026-10-21",
+   "close_date": "2026-10-23",
+   "listing_date": "2026-10-28",
+   "price_low": 1065,
+   "price_high": 1119,
+   "lot_size": 12,
+   "issue_size": 30213,
+   "fresh_issue": 30213,
+   "ofs": 0,
+   "fresh_shares": 27,
+   "pct_sold": 2.9,
+   "years": [
+    "FY25",
+    "FY26"
+   ],
+   "revenue": [
+    128218,
+    146885
+   ],
+   "ebitda": [
+    64170,
+    76255.4
+   ],
+   "net_profit": [
+    26120.3,
+    30049.7
+   ],
+   "proceeds_debt": 27500,
+   "use_of_proceeds": "Up to ₹27,500 crore to repay or prepay borrowings (mainly at Reliance Jio Infocomm); the rest for general corporate purposes.",
+   "risks": [
+    "Telecom is still the core business: tariff and price-war risk",
+    "Heavy ongoing capital spending (5G, fibre)",
+    "Regulatory changes in Indian telecom",
+    "Controlled by Reliance Industries; related-party dealings"
+   ],
+   "sources": [
+    {
+     "url": "https://groww.in/blog/jio-platforms-ipo-to-open-on-october-21-2026",
+     "title": "Groww: Jio Platforms IPO to open on October 21, 2026"
+    },
+    {
+     "url": "https://yourstory.com/2026/10/jio-ipo-nears-launch-drhp-filed-sebi-clears-path",
+     "title": "YourStory: Jio IPO nears launch, DRHP filed"
+    }
+   ],
+   "notes": "Entered from news coverage, not the RHP: verify every number there. Shares after IPO are estimated from 27 crore new shares being ~2.9% of the company. Reported issue size differs between sources (₹30,213 cr vs ~₹37,700 cr). Groww's Q1 FY27 revenue (₹3.9 lakh cr for one quarter) is larger than all of FY26 and looks like an error, so it's left out. Debt and cash before the IPO weren't in these sources, so EV/EBITDA isn't shown. Add the market symbol (e.g. JIO.NS) once announced so it moves to the IPO Desk after listing.",
+   "added_by": "Long-Term Lab",
+   "updated": "2026-10-21"
+  }
+ ],
+ "updated": "2026-10-21"
+}

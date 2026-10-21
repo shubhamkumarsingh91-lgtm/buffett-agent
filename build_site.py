@@ -144,8 +144,29 @@ def default_fetch(ticker: str, desk: str):
     return d, pro
 
 
+def promote_listed_ipos() -> list[str]:
+    """Upcoming IPOs whose listing date has passed and that have a market symbol move to ipos.txt."""
+    path = OUT_DIR / "upcoming.json"
+    data = _load(path, {"ipos": []})
+    have = {t for t, _ in read_list(LISTS["ipo"])} | {t for t, _ in read_list(LISTS["company"])}
+    today, moved = datetime.now(timezone.utc).date().isoformat(), []
+    for ipo in data.get("ipos", []):
+        sym, ld = (ipo.get("yahoo") or "").upper(), ipo.get("listing_date")
+        if sym and ld and ld <= today and not ipo.get("moved_to_ipo_desk"):
+            if sym not in have:
+                with LISTS["ipo"].open("a") as f:
+                    f.write(f"{sym}    # listed {ld}, moved from Upcoming IPOs: {ipo.get('name', '')}\n")
+            ipo["moved_to_ipo_desk"] = today
+            moved.append(sym)
+    if moved:
+        path.write_text(json.dumps(data, indent=1, ensure_ascii=False))
+        print(f"  Moved to IPO Desk after listing: {', '.join(moved)}")
+    return moved
+
+
 def build(fetch=default_fetch) -> dict:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
+    promote_listed_ipos()
     previous = {(s.get("desk", "company"), s["ticker"]): s for s in _load(SCORES, {}).get("stocks", [])}
     history = _load(HISTORY, {})
     today = datetime.now(timezone.utc).date().isoformat()
@@ -154,6 +175,10 @@ def build(fetch=default_fetch) -> dict:
     for i, (desk, ticker, note) in enumerate(jobs):
         try:
             d, pro = fetch(ticker, desk)
+            # No price and no name means Yahoo doesn't know this symbol (not listed yet, typo,
+            # or a non-US listing without its suffix, e.g. RELIANCE.NS). Don't invent a score.
+            if d.price is None and not d.name:
+                raise SystemExit("no market data for this symbol (not listed yet, or needs an exchange suffix like .NS)")
             entry = score_stock(d, desk, note, pro)
             print(f"  ok   {desk:7s} {ticker:7s} {entry['overall']['score']:5.1f}  {entry['overall']['label']}")
             key = f"{desk}:{ticker}"
