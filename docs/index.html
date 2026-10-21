@@ -165,6 +165,7 @@ h1 em{font-style:normal;background:linear-gradient(90deg,var(--gold),var(--gold2
 .news a{display:block;padding:9px 0;border-bottom:1px solid var(--line);text-decoration:none;font-size:13px}
 .news a:last-child{border:0}
 .news small{color:var(--dim)}
+.news30 .nsum{color:var(--soft);font-size:14px;line-height:1.6;margin:4px 0 10px}
 table{width:100%;border-collapse:collapse;font-size:13px}
 th{text-align:left;font-weight:500;color:var(--mute);font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:0 10px 10px}
 td{padding:10px;border-top:1px solid var(--line)}
@@ -464,6 +465,17 @@ function card(s){
     ${s.note?`<div class="note">${esc(s.note)}</div>`:''}</div>`;
 }
 
+// "Last 30 days": the month's news in one paragraph + the key headlines (built nightly by news.py)
+function newsSec(N){
+  const tc = {'mostly positive':'var(--buy)','mostly negative':'var(--pass)','mixed':'var(--hold)'}[N.tone] || 'var(--mute)';
+  const th = (N.themes||[]).filter(t=>t[0]!=='buy/sell opinion pieces' && t[1]>=2);
+  return `<div class="sec news news30"><h4>📰 Last 30 days <span class="mini" style="color:${tc};margin-left:6px">${esc(N.tone)} headlines</span>${N.by==='gemini'?'<span class="mini" style="margin-left:4px">AI summary</span>':''}</h4>
+    <p class="nsum">${esc(N.summary)}</p>
+    ${th.length?`<div class="tags" style="margin:2px 0 8px">${th.map(([t,c])=>`<span class="mini">${esc(t)} · ${c}</span>`).join('')}</div>`:''}
+    ${(N.items||[]).map(i=>`<a href="${esc(i.link)}" target="_blank" rel="noopener">${esc(i.title)} <small>· ${esc(i.source)} · ${esc(i.date)}</small></a>`).join('')}
+    <p class="muted" style="font-size:11.5px;margin-top:8px">${N.by==='gemini'?'Written by Gemini from the month\u2019s headlines.':'Built from the month\u2019s headlines (counts and keywords), not from reading each article.'} Source: Google News.${N.updated?' Updated '+esc(N.updated)+'.':''}</p></div>`;
+}
+
 function kpiPanel(k){
   const G = [
     ['Growth',[['Revenue (TTM)',big(k.revenue_ttm)],['Revenue growth (YoY)',pct(k.revenue_growth_yoy),'revenue_growth_yoy'],['Revenue CAGR',pct(k.revenue_cagr),'revenue_cagr'],['Earnings growth',pct(k.earnings_growth)]]],
@@ -499,6 +511,7 @@ function openD(desk, t){
       <div style="flex:1;min-width:240px"><span class="badge ${bc(s.overall.label)}">${esc(s.overall.label)}</span>
         <p style="margin-top:8px;color:var(--soft)">${esc(s.overall.rationale)}</p>
         <p class="muted" style="font-size:12px;margin-top:6px">Price ${money(s.price)} · updated ${new Date(s.updated).toLocaleDateString()}${s.stale?' · <span class="stale">stale: last fetch failed</span>':''}</p></div></div>
+    ${s.news30?newsSec(s.news30):''}
     <div class="sec"><h4>📝 Research memo</h4><div class="memo">
       <div class="lead">${esc(M.business)}</div>
       <div class="cols"><div class="box"><h5 style="color:var(--buy)">Why it could work</h5>${li(M.bull,'p')}</div>
@@ -523,7 +536,7 @@ function openD(desk, t){
     <div class="cols"><div class="sec"><h4>Technical rating · TradingView <i class="tip" data-t="TradingView's buy/sell gauge from moving averages and oscillators. Useful for timing an entry into a stock the research likes. It says nothing about long-term quality.">i</i></h4><div id="tvTech" style="height:440px"></div></div>
       <div class="sec"><h4>Company profile · TradingView</h4><div id="tvProf" style="height:440px"></div></div></div>
     <div class="sec"><h4>Financial statements · TradingView <i class="tip" data-t="A second source for the numbers. If something in Key numbers looks off, compare it here.">i</i></h4><div id="tvFin" class="tvw"></div></div>
-    ${s.news&&s.news.length?`<div class="sec news"><h4>Recent headlines</h4>${s.news.map(n=>`<a href="${esc(n.link)}" target="_blank" rel="noopener">${esc(n.title)} <small>· ${esc(n.publisher)}</small></a>`).join('')}</div>`:''}
+    ${!s.news30&&s.news&&s.news.length?`<div class="sec news"><h4>Recent headlines</h4>${s.news.map(n=>`<a href="${esc(n.link)}" target="_blank" rel="noopener">${esc(n.title)} <small>· ${esc(n.publisher)}</small></a>`).join('')}</div>`:''}
     ${s.data_notes&&s.data_notes.length?`<div class="sec"><h4>Data limitations</h4><ul style="padding-left:18px;color:var(--mute);font-size:12.5px">${s.data_notes.map(n=>`<li>${esc(n)}</li>`).join('')}</ul></div>`:''}`;
   $('#drawer').classList.add('on'); $('#shade').classList.add('on'); $('#drawer').setAttribute('aria-hidden','false'); $('#drawer').scrollTop = 0;
   drawCharts(s); drawTV(t);

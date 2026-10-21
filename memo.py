@@ -140,11 +140,19 @@ def _gemini_take(e: dict, memo: dict) -> Optional[str]:
         + json.dumps({"ticker": e["ticker"], "name": e.get("name"), "desk": e["desk"], "verdict": e["overall"],
                       "kpis": e["kpis"], "valuation": e["valuation"], "memo": {k: memo[k] for k in ("bull", "bear", "watch")}},
                      default=str)[:9000])
+    return gemini_text(prompt)
+
+
+def gemini_text(prompt: str, timeout: int = 40) -> Optional[str]:
+    """Free-tier Gemini call; None if there's no GEMINI_API_KEY secret or anything fails."""
+    key = os.environ.get("GEMINI_API_KEY")
+    if not key:
+        return None
     body = json.dumps({"contents": [{"parts": [{"text": prompt}]}]}).encode()
     url = ("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" + key)
     try:
         req = urllib.request.Request(url, data=body, headers={"Content-Type": "application/json"})
-        with urllib.request.urlopen(req, timeout=40) as r:
+        with urllib.request.urlopen(req, timeout=timeout) as r:
             out = json.loads(r.read().decode())
         return out["candidates"][0]["content"]["parts"][0]["text"].strip()
     except Exception:

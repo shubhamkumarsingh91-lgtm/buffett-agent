@@ -9,7 +9,7 @@ name: Update investing site
 on:
   push:
     branches: [main]
-    paths: ["watchlist.txt", "ipos.txt", "data.py", "strategies.py", "build_site.py", "memo.py", "edgar.py"]
+    paths: ["watchlist.txt", "ipos.txt", "data.py", "strategies.py", "build_site.py", "memo.py", "edgar.py", "news.py"]
   workflow_dispatch:
   schedule:
     - cron: "30 22 * * 1-5"   # backup only; GitHub's timer can be late
