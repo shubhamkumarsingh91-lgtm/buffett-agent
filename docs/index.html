@@ -237,7 +237,8 @@ footer{margin-top:44px;color:var(--dim);font-size:11.5px;text-align:center;line-
         <div class="exp"><button class="btn" onclick="event.stopPropagation();$('#expMenu').classList.toggle('on')">⬇ Export ▾</button>
           <div class="menu" id="expMenu"><button onclick="exportAs('pdf')">PDF report</button><button onclick="exportAs('xlsx')">Excel (.xlsx)</button><button onclick="exportAs('csv')">CSV</button><button onclick="exportAs('json')">Backup file (.json)</button></div></div>
       </div>
-      <div style="overflow-x:auto"><table><thead><tr><th>Ticker</th><th>Desk</th><th class="n">Shares</th><th class="n">Cost</th><th class="n">Price</th><th class="n">Value</th><th class="n">Gain</th><th class="n">Score</th><th>Verdict</th><th></th></tr></thead><tbody id="ptb"></tbody></table></div>
+      <div id="pAnalysis"></div>
+      <div style="overflow-x:auto"><table><thead><tr><th>Ticker</th><th>Type</th><th class="n">Shares</th><th class="n">Cost</th><th class="n">Price</th><th class="n">Value</th><th class="n">Gain</th><th class="n">Score</th><th>Verdict</th><th></th></tr></thead><tbody id="ptb"></tbody></table></div>
       <p class="muted" style="font-size:12px;margin-top:12px">Prices are from the last update, not live. To score a ticker you hold, request it on one of the desks.</p>
     </div>
   </section>
@@ -265,7 +266,7 @@ footer{margin-top:44px;color:var(--dim);font-size:11.5px;text-align:center;line-
 <div class="shade" id="shade" onclick="closeD();closeReview()"></div>
 <div class="modal" id="review" role="dialog" aria-modal="true">
   <div class="dh"><div><div class="t" id="rvTitle" style="font-size:18px">Review import</div><div class="muted" id="rvNote" style="font-size:12.5px;margin-top:2px"></div></div><button class="btn" onclick="closeReview()">✕</button></div>
-  <div style="padding:14px 20px;overflow:auto;max-height:55vh"><table><thead><tr><th></th><th>Ticker</th><th>Shares</th><th>Cost / share</th><th></th></tr></thead><tbody id="rvBody"></tbody></table></div>
+  <div style="padding:14px 20px;overflow:auto;max-height:55vh"><table><thead><tr><th></th><th>Ticker</th><th>Shares</th><th>Cost / share</th><th class="n">Price</th><th></th></tr></thead><tbody id="rvBody"></tbody></table></div>
   <div style="display:flex;gap:8px;justify-content:flex-end;padding:14px 20px;border-top:1px solid var(--line);flex-wrap:wrap">
     <button class="btn" onclick="closeReview()">Cancel</button><button class="btn" onclick="applyReview(true)">Replace portfolio</button><button class="btn primary" onclick="applyReview(false)">Add selected</button></div>
 </div>
@@ -505,26 +506,115 @@ function addHolding(){
   if(i>=0)p[i]=row; else p.push(row); store.set(PKEY,p); $('#pT').value=$('#pS').value=$('#pC').value=''; renderPort();
 }
 function removeHolding(t){ store.set(PKEY,store.get(PKEY,[]).filter(h=>h.ticker!==t)); renderPort(); }
+// ── Funds vs stocks. Investor lenses score businesses; an index fund is a basket, so it's
+//    classified (US / international / bonds / gold) instead of scored. ──
+const ETFS={VTI:'us',VOO:'us',SPY:'us',IVV:'us',QQQ:'us',SCHB:'us',ITOT:'us',SCHD:'us',VUG:'us',VTV:'us',VIG:'us',DIA:'us',IWM:'us',VB:'us',VO:'us',RSP:'us',
+  VXUS:'intl',VEA:'intl',VWO:'intl',IXUS:'intl',EFA:'intl',IEFA:'intl',IEMG:'intl',VT:'global',ACWI:'global',
+  BND:'bond',AGG:'bond',BNDX:'bond',TLT:'bond',IEF:'bond',SHY:'bond',SGOV:'bond',BIL:'bond',VGIT:'bond',SCHZ:'bond',
+  GLD:'gold',IAU:'gold',GLDM:'gold',SLV:'gold',VNQ:'reit',SCHH:'reit'};
+function fundKind(h){
+  const t=(h.ticker||'').toUpperCase(), d=(h.desc||'').toUpperCase();
+  if(ETFS[t]) return ETFS[t];
+  if(!/\b(ETF|INDEX|FUND|FDS|SPDR|ISHARES|TRUST|TR)\b/.test(d)) return null;
+  if(/BOND|BD |TREASURY|INCOME|FIXED/.test(d)) return 'bond';
+  if(/GOLD|SILVER|PRECIOUS/.test(d)) return 'gold';
+  if(/INTERNATIONAL|INTL|EX[- ]?US|WORLD|EMERGING|DEVELOPED/.test(d)) return 'intl';
+  if(/REIT|REAL ESTATE/.test(d)) return 'reit';
+  return /\b(ETF|INDEX)\b/.test(d)?'us':null;
+}
+const isFund=h=>!!fundKind(h);
+const KIND={us:'US stock index fund',intl:'International index fund',global:'Global index fund',bond:'Bond fund',gold:'Gold / commodity',reit:'Real-estate fund'};
 function portData(){
   let tv=0,tc=0,ws=0,wv=0;
   const rows=store.get(PKEY,[]).map(h=>{
     const s=DATA.stocks.find(x=>x.ticker===h.ticker && x.desk==='company')||DATA.stocks.find(x=>x.ticker===h.ticker);
-    const price=s?s.price:null, val=price!=null?price*h.shares:null, cost=h.cost!=null?h.cost*h.shares:null;
+    const fk=fundKind(h);
+    const price=s?s.price:(h.price??null), val=price!=null?price*h.shares:null, cost=h.cost!=null?h.cost*h.shares:null;
     if(val!=null)tv+=val; if(cost!=null&&val!=null)tc+=cost; if(s&&val!=null){ws+=s.overall.score*val;wv+=val;}
-    return {h,s,price,val,cost,g:(val!=null&&cost)?(val-cost)/cost:null};
+    return {h,s,fk,price,priceSrc:s?'site':(h.price!=null?'file':null),val,cost,g:(val!=null&&cost)?(val-cost)/cost:null};
   });
-  return {rows,tv,tc,tg:tc?(tv-tc)/tc:null,score:wv?ws/wv:null};
+  rows.forEach(r=>r.w=tv&&r.val!=null?r.val/tv:null);
+  rows.sort((a,b)=>(b.val||0)-(a.val||0));
+  return {rows,tv,tc,tg:tc?(tv-tc)/tc:null,score:wv?ws/wv:null,scoredValue:wv};
 }
 function renderPort(){
   const P=portData();
-  if(!P.rows.length){ $('#ptb').innerHTML='<tr><td colspan="10" class="muted">No holdings yet. Add one above or import a file. It stays private to this browser.</td></tr>'; return; }
-  const rows=P.rows.map(({h,s,price,val,g})=>`<tr><td class="mono" style="cursor:${s?'pointer':'default'}" ${s?`onclick="openD('${s.desk}','${esc(h.ticker)}')"`:''}>${esc(h.ticker)}</td><td class="muted">${s?(s.desk==='ipo'?'IPO':'Company'):'—'}</td>
-      <td class="n">${num(h.shares,h.shares%1?3:0)}</td><td class="n">${money(h.cost)}</td><td class="n">${money(price)}</td><td class="n">${money(val)}</td>
+  if(!P.rows.length){ $('#ptb').innerHTML='<tr><td colspan="10" class="muted">No holdings yet. Add one above or import a file. It stays private to this browser.</td></tr>'; $('#pAnalysis').innerHTML=''; return; }
+  const rows=P.rows.map(({h,s,fk,price,priceSrc,val,g,w})=>`<tr><td class="mono" style="cursor:${s?'pointer':'default'}" ${s?`onclick="openD('${s.desk}','${esc(h.ticker)}')"`:''}>${esc(h.ticker)}<div class="muted" style="font:11px Inter;max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(s?.name||h.desc||'')}</div></td>
+      <td class="muted">${s?(s.desk==='ipo'?'IPO':'Company'):fk?'Fund':'Stock'}</td>
+      <td class="n">${num(h.shares,h.shares%1?3:0)}</td><td class="n">${money(h.cost)}</td><td class="n">${money(price)}${priceSrc==='file'?`<div class="muted" style="font:10.5px Inter" title="Price from your imported file${h.asOf?' ('+esc(h.asOf)+')':''}">from file</div>`:''}</td><td class="n">${money(val)}${w!=null?`<div class="muted" style="font:10.5px Inter">${pct(w,1)}</div>`:''}</td>
       <td class="n ${g==null?'muted':g>=0?'up':'down'}">${g==null?'—':(g>=0?'+':'')+pct(g)}</td><td class="n">${s?Math.round(s.overall.score):'—'}</td>
-      <td>${s?`<span class="badge ${bc(s.overall.label)}">${esc(s.overall.label)}</span>`:'<span class="muted">not scored</span>'}</td>
+      <td>${s?`<span class="badge ${bc(s.overall.label)}">${esc(s.overall.label)}</span>`:fk?`<span class="badge b-research" title="Funds are baskets of companies; the investor lenses score individual businesses.">${esc(KIND[fk]||'Fund')}</span>`:'<span class="muted">not analyzed yet</span>'}</td>
       <td><button class="btn" style="padding:4px 8px" onclick="removeHolding('${esc(h.ticker)}')">✕</button></td></tr>`);
   rows.push(`<tr><td><b>Total</b></td><td></td><td></td><td class="n">${money(P.tc||null)}</td><td></td><td class="n"><b>${money(P.tv)}</b></td><td class="n ${P.tg==null?'muted':P.tg>=0?'up':'down'}"><b>${P.tg==null?'—':(P.tg>=0?'+':'')+pct(P.tg)}</b></td><td class="n"><b>${P.score?Math.round(P.score):'—'}</b></td><td class="muted" style="font-size:12px">value-weighted score</td><td></td></tr>`);
   $('#ptb').innerHTML=rows.join('');
+  renderAnalysis(P);
+}
+
+
+// ── Portfolio analysis: what the whole portfolio looks like through the investors' eyes ──
+let pCharts=[];
+function renderAnalysis(P){
+  const box=$('#pAnalysis'); if(!box) return;
+  const R=P.rows.filter(r=>r.val!=null), tv=P.tv||0;
+  if(!R.length||!tv){ box.innerHTML=''; return; }
+  const sum=f=>R.filter(f).reduce((a,r)=>a+r.val,0)/tv;
+  const stocks=R.filter(r=>!r.fk), funds=R.filter(r=>r.fk);
+  const wStocks=sum(r=>!r.fk), wIndex=sum(r=>['us','intl','global'].includes(r.fk)), wBond=sum(r=>r.fk==='bond'),
+        wGold=sum(r=>r.fk==='gold');
+  const top=R[0], top3=R.slice(0,3).reduce((a,r)=>a+r.w,0);
+  const unscored=stocks.filter(r=>!r.s).map(r=>r.h.ticker);
+  const scoredW=stocks.filter(r=>r.s).reduce((a,r)=>a+r.val,0)/tv;
+  const weak=stocks.filter(r=>r.s && /PASS/.test(r.s.overall.label));
+  // sector concentration from analyzed stocks (unanalyzed ones have no sector yet)
+  const sect={}; stocks.forEach(r=>{ const k=r.s?.industry||r.s?.sector; if(k) sect[k]=(sect[k]||0)+r.val/tv; });
+  const topSect=Object.entries(sect).sort((a,b)=>b[1]-a[1])[0];
+  const C=[];   // checks: [status, title, detail]
+  C.push(top.w>0.25 && !top.fk ? ['fail',`${top.h.ticker} is ${pct(top.w,0)} of the portfolio`,`One company is more than a quarter of your money. Buffett concentrates, but only in businesses he\u2019s studied for years. Most investors cap a single stock at 5–10%.`]
+       : top.w>0.10 && !top.fk ? ['warn',`Largest stock: ${top.h.ticker} at ${pct(top.w,0)}`,'Above the 5–10% cap many investors use for a single company.']
+       : ['pass','No single company dominates',`Largest holding is ${top.h.ticker} at ${pct(top.w,0)}${top.fk?' (a diversified fund)':''}.`]);
+  C.push(top3>0.6 ? ['warn',`Top 3 holdings = ${pct(top3,0)}`,'Most of the portfolio rides on three positions.'] : ['pass',`Top 3 holdings = ${pct(top3,0)}`,'Reasonably spread out.']);
+  C.push(wIndex>=0.5 ? ['pass',`${pct(wIndex,0)} in broad index funds`,'A low-cost index core is what Buffett recommends for most investors.']
+       : ['warn',`Only ${pct(wIndex,0)} in broad index funds`,'Buffett’s instructions for his own family’s money (2013 letter): 90% in a very low-cost S&P 500 index fund, 10% in short-term government bonds. Individual stocks on top of that core are where research matters.']);
+  C.push(wStocks>0.5 ? ['warn',`${pct(wStocks,0)} in individual stocks`,`That part only beats an index fund if each pick is genuinely researched. ${unscored.length?'Analyze the unscored ones below.':''}`]
+       : ['pass',`${pct(wStocks,0)} in individual stocks`,'Most of the money is diversified.']);
+  if(topSect && topSect[1]>0.3) C.push(['warn',`${pct(topSect[1],0)} in one industry: ${topSect[0]}`,'Several holdings can fall together when one industry turns. Diversify across industries, not just tickers.']);
+  C.push(wBond+wGold<0.05 ? ['info',`${pct(wBond,0)} bonds, ${pct(wGold,0)} gold`,'Little cushion for a falling market. That\u2019s fine for long horizons if you can sit through a 30–50% drop without selling.']
+       : ['pass',`${pct(wBond,0)} bonds, ${pct(wGold,0)} gold`,'Some ballast for down markets.']);
+  if(weak.length) C.push(['fail',`${weak.map(r=>r.h.ticker).join(', ')} rated PASS`,'The investor lenses see meaningful problems here. Re-read the memo before adding more.']);
+  if(unscored.length) C.push(['warn',`${unscored.length} stock${unscored.length>1?'s':''} not analyzed yet`,`${unscored.join(', ')}: ${pct(sum(r=>!r.fk&&!r.s),0)} of the portfolio has no research memo yet.`]);
+  // allocation by holding (donut) and by type (bars)
+  const types=[['Individual stocks',wStocks,'#d9b46c'],['US index funds',sum(r=>r.fk==='us'),'#6aa8ff'],['International / global',sum(r=>['intl','global'].includes(r.fk)),'#5fd3c6'],['Bonds',wBond,'#b993ff'],['Gold / commodities',wGold,'#f0d79c'],['Real estate',sum(r=>r.fk==='reit'),'#f08fb8']].filter(t=>t[1]>0.0001);
+  const scoredLine=P.score!=null?`<div class="kr"><span>Research score (analyzed stocks)</span><b style="color:${sc(P.score)}">${Math.round(P.score)}/100</b></div>`:'';
+  const title=encodeURIComponent('Analyze: '+unscored.join(', '));
+  const body=encodeURIComponent(`Please add ${unscored.join(', ')} to the Company Desk.\n\nJust press "Submit new issue". The site researches and scores them within a few minutes, then replies here.`);
+  box.innerHTML=`
+   <div class="sec" style="margin-bottom:14px">
+    <h4>📋 Portfolio analysis</h4>
+    <div class="stats" style="margin-bottom:14px">
+      <div class="stat"><div class="k">Value</div><div class="v">${money(tv)}</div></div>
+      <div class="stat"><div class="k">Gain</div><div class="v" style="color:${P.tg==null?'':P.tg>=0?'var(--buy)':'var(--pass)'}">${P.tg==null?'—':(P.tg>=0?'+':'')+pct(P.tg)}</div></div>
+      <div class="stat"><div class="k">Holdings</div><div class="v">${R.length}<span class="muted" style="font-size:13px;font-family:Inter"> · ${stocks.length} stocks, ${funds.length} funds</span></div></div>
+      <div class="stat"><div class="k">Researched</div><div class="v">${pct(scoredW+sum(r=>r.fk),0)}<span class="muted" style="font-size:13px;font-family:Inter"> of value</span></div></div>
+    </div>
+    <div class="cols">
+      <div class="box"><h5>Where the money is</h5><div style="height:220px"><canvas id="pDonut"></canvas></div></div>
+      <div class="box"><h5>By type</h5>${types.map(([n,w,c])=>`<div class="bar" style="grid-template-columns:150px 1fr 44px;margin:8px 0"><span>${n}</span><div class="track" style="height:8px"><i style="width:${(w*100).toFixed(1)}%;background:${c}"></i></div><span>${pct(w,0)}</span></div>`).join('')}
+        <div style="margin-top:12px">${scoredLine}</div></div>
+    </div>
+    <div class="check" style="margin-top:14px">${C.map(([st,t,d])=>`<div class="ci"><div class="s s-${st}">${{pass:'✓',warn:'!',fail:'✕',info:'i'}[st]}</div><b>${esc(t)}</b><span>${esc(d)}</span></div>`).join('')}</div>
+    ${unscored.length?`<div class="req on" style="margin:14px 0 0"><p><b>Get a research memo for ${unscored.join(', ')}.</b> Adds them to the Company Desk; scores and memos appear in a few minutes. Funds (${funds.map(r=>r.h.ticker).join(', ')||'none'}) aren\u2019t scored, because the investor lenses judge individual businesses.</p>
+      <a class="btn primary" target="_blank" rel="noopener" href="https://github.com/${REPO}/issues/new?title=${title}&body=${body}">Analyze my ${unscored.length} stock${unscored.length>1?'s':''} ↗</a></div>`:''}
+   </div>`;
+  pCharts.forEach(c=>c.destroy()); pCharts=[];
+  if(window.Chart){
+    const pal=['#d9b46c','#6aa8ff','#5fd3c6','#b993ff','#f08fb8','#9be27a','#ff8a5c','#7fb3ff','#f0d79c','#8a92a0'];
+    const top9=R.slice(0,9), rest=R.slice(9).reduce((a,r)=>a+r.val,0);
+    const labels=top9.map(r=>r.h.ticker).concat(rest?['Other']:[]), data=top9.map(r=>r.val).concat(rest?[rest]:[]);
+    pCharts.push(new Chart($('#pDonut'),{type:'doughnut',data:{labels,datasets:[{data,backgroundColor:pal,borderColor:'#10141a',borderWidth:2}]},
+      options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{position:'right',labels:{color:'#c7ccd4',boxWidth:10,font:{size:11}}},
+        tooltip:{callbacks:{label:c=>` ${c.label}: ${money(c.parsed)} (${pct(c.parsed/tv,1)})`}}}}}));
+  }
 }
 
 // ── File import: JSON, Excel/CSV, PDF, Word, screenshots (all in the browser, nothing uploaded) ──
@@ -542,7 +632,7 @@ function fromTables(tables){
   const out=[];
   for(const t of tables){
     const rows=t.map(r=>r.map(c=>String(c??'').trim()));
-    let hi=-1, cT=-1, cS=-1, cC=-1, costTotal=false;
+    let hi=-1, cT=-1, cS=-1, cC=-1, cP=-1, cD=-1, costTotal=false;
     for(let i=0;i<Math.min(rows.length,15);i++){
       const r=rows[i].map(c=>c.toLowerCase());
       const t1=r.findIndex(c=>/^(symbol|ticker|security symbol|stock symbol)\b|symbol|ticker/.test(c));
@@ -550,6 +640,8 @@ function fromTables(tables){
       if(t1>=0&&s1>=0){ hi=i; cT=t1; cS=s1;
         cC=r.findIndex(c=>/(avg|average).*(cost|price)|cost.*(per|\/)\s*share|unit cost|purchase price|price paid|cost basis per/.test(c));
         if(cC<0){ cC=r.findIndex(c=>/cost basis|total cost|^cost$|basis/.test(c)); costTotal=cC>=0 && !/per|avg|average/.test(r[cC]); }
+        cP=r.findIndex(c=>/^(last|current|market|closing)?\s*price$|last price|current price|market price/.test(c) && !/change|paid|purchase/.test(c));
+        cD=r.findIndex(c=>/description|security name|^name$|security$/.test(c));
         break; }
     }
     if(hi<0){ out.push(...fromText(rows.map(r=>r.join(' ')))); continue; }
@@ -557,7 +649,8 @@ function fromTables(tables){
       const tk=(r[cT]||'').toUpperCase().replace(/\*/g,'').split(/\s/)[0]; const sh=toNum(r[cS]);
       if(!isTicker(tk)||!(sh>0)) continue;
       let c=cC>=0?toNum(r[cC]):null; if(c!=null&&costTotal) c=c/sh;
-      out.push({ticker:yahoo(tk),shares:sh,cost:c!=null&&c>0?+c.toFixed(4):null,src:'table'});
+      const px=cP>=0?toNum(r[cP]):null;
+      out.push({ticker:yahoo(tk),shares:sh,cost:c!=null&&c>0?+c.toFixed(4):null,price:px!=null&&px>0?px:null,desc:cD>=0?r[cD]:'',src:'table'});
     }
   }
   return out;
@@ -599,11 +692,23 @@ async function importFile(input){
       const {data}=await Tesseract.recognize(f,'eng'); rows=fromText(data.text.split('\n')); }
     else if(ext==='doc'){ throw new Error('Old .doc files can\'t be read in the browser. Save it as .docx or PDF and try again.'); }
     else throw new Error('Unsupported file type: .'+ext);
-    const seen=new Set(); rows=rows.filter(r=>r.ticker&&!seen.has(r.ticker)&&seen.add(r.ticker));
+    rows=mergeRows(rows);
     msg('',true); openReview(rows,f.name,ext);
   }catch(e){ msg(e.message||'Could not read that file.'); }
 }
+// Same ticker in several accounts -> one holding: shares added, cost = share-weighted average.
+function mergeRows(rows){
+  const m=new Map();
+  for(const r of rows){ if(!r.ticker) continue; const k=r.ticker.toUpperCase();
+    if(!m.has(k)){ m.set(k,{...r,ticker:k,accounts:1}); continue; }
+    const a=m.get(k), sh=(a.shares||0)+(r.shares||0);
+    const cost=(a.cost!=null&&r.cost!=null&&sh)?(a.cost*a.shares+r.cost*r.shares)/sh:(a.cost??r.cost);
+    m.set(k,{...a,shares:+sh.toFixed(6),cost:cost!=null?+cost.toFixed(4):null,price:a.price??r.price,desc:a.desc||r.desc,accounts:a.accounts+1}); }
+  return [...m.values()];
+}
+let REVIEW=[];
 function openReview(rows,name,ext){
+  REVIEW=rows;
   const exact=['json','xlsx','xls','csv','ods','tsv'].includes(ext);
   $('#rvTitle').textContent=`${rows.length} holding${rows.length===1?'':'s'} found in ${name}`;
   $('#rvNote').innerHTML=rows.length?(exact?'Check the rows, untick anything wrong, then add.':'<b style="color:var(--hold)">Check every number.</b> PDFs, Word files and screenshots are read by pattern-matching, so shares and cost can land in the wrong column. Fix any row before adding.')
@@ -612,14 +717,17 @@ function openReview(rows,name,ext){
     <td><input class="rv" value="${esc(r.ticker)}" data-k="ticker" data-i="${i}" style="width:90px;text-transform:uppercase"></td>
     <td><input class="rv" type="number" step="any" value="${r.shares??''}" data-k="shares" data-i="${i}" style="width:110px"></td>
     <td><input class="rv" type="number" step="any" value="${r.cost??''}" data-k="cost" data-i="${i}" style="width:110px"></td>
-    <td class="muted">${DATA.stocks.some(s=>s.ticker===r.ticker.toUpperCase())?'scored':'not on a desk'}</td></tr>`).join('');
+    <td class="n muted">${r.price!=null?money(r.price):''}</td>
+    <td class="muted" style="font-size:12px">${isFund(r)?'fund':DATA.stocks.some(s=>s.ticker===r.ticker.toUpperCase())?'scored':'not analyzed yet'}${r.accounts>1?` · ${r.accounts} accounts merged`:''}</td></tr>`).join('');
   $('#review').classList.add('on'); $('#shade').classList.add('on');
 }
 function closeReview(){ $('#review').classList.remove('on'); if(!$('#drawer').classList.contains('on')) $('#shade').classList.remove('on'); }
 function applyReview(replace){
   const get=(i,k)=>$(`#rvBody input[data-i="${i}"][data-k="${k}"]`).value;
   const picked=[...$('#rvBody').querySelectorAll('input[type=checkbox]:checked')].map(cb=>{ const i=cb.dataset.i;
-    return {ticker:get(i,'ticker').trim().toUpperCase(),shares:parseFloat(get(i,'shares')),cost:get(i,'cost')===''?null:parseFloat(get(i,'cost'))}; })
+    const src=REVIEW[i]||{};
+    return {ticker:get(i,'ticker').trim().toUpperCase(),shares:parseFloat(get(i,'shares')),cost:get(i,'cost')===''?null:parseFloat(get(i,'cost')),
+            price:src.price??null,desc:src.desc||'',asOf:src.price!=null?new Date().toISOString().slice(0,10):null}; })
     .filter(h=>h.ticker&&h.shares>0);
   const p=replace?[]:store.get(PKEY,[]);
   picked.forEach(h=>{ const j=p.findIndex(x=>x.ticker===h.ticker); if(j>=0)p[j]=h; else p.push(h); });
