@@ -1,0 +1,1349 @@
+{
+ "generated": "2026-10-21T16:09:57+00:00",
+ "count": 16,
+ "failed": [],
+ "stocks": [
+  {
+   "ticker": "NVDA",
+   "note": "Nvidia \u2014 high growth, for contrast",
+   "name": "NVIDIA Corporation",
+   "sector": "Technology",
+   "industry": "Semiconductors",
+   "price": 220.25,
+   "market_cap": 5318379044864,
+   "week52_high": 243.37,
+   "week52_low": 164.27,
+   "overall": {
+    "label": "WORTH RESEARCHING",
+    "rationale": "Some lenses like it, others don't \u2014 a mixed picture that calls for deeper individual due diligence.",
+    "score": 66.5
+   },
+   "lenses": [
+    {
+     "key": "buffett",
+     "name": "Buffett & Munger (Quality Compounding)",
+     "score": 70.6,
+     "verdict": "Partial fit",
+     "pros": [
+      "High gross margin (69%) suggests real pricing power / a moat.",
+      "Debt/Equity of 0.07 is comfortably below Buffett's 0.5 ceiling.",
+      "Earnings grew in every available period with no loss years.",
+      "Average ROE of 64% clears Buffett's 20% bar for elite businesses.",
+      "Share count shrank 2.2% \u2014 management is buying back stock, not diluting."
+     ],
+     "cons": [
+      "Margins are unstable year to year \u2014 less predictable than Buffett prefers.",
+      "Trading ~163% above estimated intrinsic value \u2014 little to no margin of safety."
+     ]
+    },
+    {
+     "key": "graham",
+     "name": "Benjamin Graham (Deep Value)",
+     "score": 46.8,
+     "verdict": "Weak fit",
+     "pros": [
+      "Current ratio of 3.91 clears Graham's 2.0 liquidity bar.",
+      "Long-term debt is fully covered by net working capital \u2014 Graham's conservative debt test.",
+      "No loss-making years across the 4 most recent periods available.",
+      "Currently pays a dividend (yield ~0.5%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
+     ],
+     "cons": [
+      "Price ($220.25) exceeds the Graham Number ($41.08) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 646.7, above Graham's 22.5 ceiling \u2014 pricey on a combined basis."
+     ]
+    },
+    {
+     "key": "lynch",
+     "name": "Peter Lynch (GARP \u2014 Fast Grower)",
+     "score": 82.2,
+     "verdict": "Strong fit",
+     "pros": [
+      "PEG ratio of 0.26 is under 1.0 \u2014 Lynch's rule of thumb for a reasonably priced grower.",
+      "Classified as a Fast Grower (>25% earnings growth) \u2014 Lynch's favorite hunting ground, though these also carry the most execution/valuation risk.",
+      "Manageable Debt/Equity of 0.07 \u2014 Lynch was wary of highly leveraged growth stories.",
+      "Company is buying back shares alongside its growth story."
+     ],
+     "cons": []
+    }
+   ],
+   "metrics": {
+    "pe": 27.84,
+    "forward_pe": 13.84,
+    "pb": 23.23,
+    "peg": 0.26,
+    "dividend_yield": 0.0045,
+    "payout_ratio": 0.0354,
+    "roe_avg": 0.643,
+    "gross_margin_avg": 0.6893,
+    "debt_to_equity": 0.07,
+    "current_ratio": 3.91,
+    "graham_number": 41.08,
+    "intrinsic_value": 83.59,
+    "margin_of_safety": -1.635,
+    "earnings_growth": 1.278,
+    "beta": 2.22
+   },
+   "news": [],
+   "data_notes": [],
+   "stale": false,
+   "updated": "2026-10-21T16:09:48+00:00"
+  },
+  {
+   "ticker": "GOOGL",
+   "note": "Alphabet",
+   "name": "Alphabet Inc.",
+   "sector": "Communication Services",
+   "industry": "Internet Content & Information",
+   "price": 333.15,
+   "market_cap": 4074402742272,
+   "week52_high": 408.61,
+   "week52_low": 249.29,
+   "overall": {
+    "label": "WORTH RESEARCHING",
+    "rationale": "Some lenses like it, others don't \u2014 a mixed picture that calls for deeper individual due diligence.",
+    "score": 58.9
+   },
+   "lenses": [
+    {
+     "key": "buffett",
+     "name": "Buffett & Munger (Quality Compounding)",
+     "score": 68.3,
+     "verdict": "Partial fit",
+     "pros": [
+      "High gross margin (57%) suggests real pricing power / a moat.",
+      "Debt/Equity of 0.14 is comfortably below Buffett's 0.5 ceiling.",
+      "Earnings grew in every available period with no loss years.",
+      "Average ROE of 28% clears Buffett's 20% bar for elite businesses.",
+      "Share count shrank 7.1% \u2014 management is buying back stock, not diluting."
+     ],
+     "cons": [
+      "High R&D intensity (15% of revenue) \u2014 fast-moving, harder to forecast 10-20 years out, arguably outside a conservative circle of competence.",
+      "Trading ~78% above estimated intrinsic value \u2014 little to no margin of safety."
+     ]
+    },
+    {
+     "key": "graham",
+     "name": "Benjamin Graham (Deep Value)",
+     "score": 46.8,
+     "verdict": "Weak fit",
+     "pros": [
+      "Current ratio of 2.01 clears Graham's 2.0 liquidity bar.",
+      "Long-term debt is fully covered by net working capital \u2014 Graham's conservative debt test.",
+      "No loss-making years across the 4 most recent periods available.",
+      "Currently pays a dividend (yield ~0.3%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
+     ],
+     "cons": [
+      "Price ($333.15) exceeds the Graham Number ($151.07) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 109.4, above Graham's 22.5 ceiling \u2014 pricey on a combined basis."
+     ]
+    },
+    {
+     "key": "lynch",
+     "name": "Peter Lynch (GARP \u2014 Fast Grower)",
+     "score": 61.6,
+     "verdict": "Partial fit",
+     "pros": [
+      "Classified as a Fast Grower (>25% earnings growth) \u2014 Lynch's favorite hunting ground, though these also carry the most execution/valuation risk.",
+      "Manageable Debt/Equity of 0.14 \u2014 Lynch was wary of highly leveraged growth stories.",
+      "Company is buying back shares alongside its growth story."
+     ],
+     "cons": [
+      "PEG ratio of 1.20 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule."
+     ]
+    }
+   ],
+   "metrics": {
+    "pe": 16.72,
+    "forward_pe": 21.71,
+    "pb": 6.55,
+    "peg": 1.2,
+    "dividend_yield": 0.0026,
+    "payout_ratio": 0.0426,
+    "roe_avg": 0.2802,
+    "gross_margin_avg": 0.5746,
+    "debt_to_equity": 0.14,
+    "current_ratio": 2.01,
+    "graham_number": 151.07,
+    "intrinsic_value": 186.86,
+    "margin_of_safety": -0.7829,
+    "earnings_growth": 2.94,
+    "beta": 1.21
+   },
+   "news": [],
+   "data_notes": [],
+   "stale": false,
+   "updated": "2026-10-21T16:09:41+00:00"
+  },
+  {
+   "ticker": "BRK-B",
+   "note": "Berkshire Hathaway itself",
+   "name": "Berkshire Hathaway Inc.",
+   "sector": "Financial Services",
+   "industry": "Insurance - Diversified",
+   "price": 542.81,
+   "market_cap": 1161998630912,
+   "week52_high": 543.21,
+   "week52_low": 464.01,
+   "overall": {
+    "label": "WORTH RESEARCHING",
+    "rationale": "Some lenses like it, others don't \u2014 a mixed picture that calls for deeper individual due diligence.",
+    "score": 55.9
+   },
+   "lenses": [
+    {
+     "key": "buffett",
+     "name": "Buffett & Munger (Quality Compounding)",
+     "score": 61.3,
+     "verdict": "Partial fit",
+     "pros": [
+      "Debt/Equity of 0.18 is comfortably below Buffett's 0.5 ceiling.",
+      "Share count shrank 2.1% \u2014 management is buying back stock, not diluting.",
+      "Trading ~38% below estimated intrinsic value \u2014 a real margin of safety."
+     ],
+     "cons": [
+      "At least one loss-making year in the available window.",
+      "Average ROE of 9% falls short of Buffett's 15% minimum."
+     ]
+    },
+    {
+     "key": "graham",
+     "name": "Benjamin Graham (Deep Value)",
+     "score": 65.7,
+     "verdict": "Partial fit",
+     "pros": [
+      "Price ($542.81) is below the Graham Number ($21,614.42) \u2014 attractively priced by Graham's classic test.",
+      "P/E \u00d7 P/B = 0.0, at or under Graham's 22.5 ceiling."
+     ],
+     "cons": [
+      "Current ratio unavailable \u2014 can't verify Graham's liquidity requirement.",
+      "At least one loss-making year in the available window \u2014 Graham requires positive earnings every year (traditionally over 10 years).",
+      "No current dividend \u2014 fails Graham's income requirement for the defensive investor."
+     ]
+    },
+    {
+     "key": "lynch",
+     "name": "Peter Lynch (GARP \u2014 Fast Grower)",
+     "score": 40.6,
+     "verdict": "Weak fit",
+     "pros": [
+      "Classified as a Fast Grower (>25% earnings growth) \u2014 Lynch's favorite hunting ground, though these also carry the most execution/valuation risk.",
+      "Manageable Debt/Equity of 0.18 \u2014 Lynch was wary of highly leveraged growth stories.",
+      "Company is buying back shares alongside its growth story."
+     ],
+     "cons": [
+      "PEG ratio of 10.06 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule."
+     ]
+    }
+   ],
+   "metrics": {
+    "pe": 13.65,
+    "forward_pe": 24.43,
+    "pb": 0.0,
+    "peg": 10.06,
+    "dividend_yield": 0.0,
+    "payout_ratio": 0.0,
+    "roe_avg": 0.0884,
+    "gross_margin_avg": 0.3033,
+    "debt_to_equity": 0.18,
+    "current_ratio": null,
+    "graham_number": 21614.42,
+    "intrinsic_value": 878.84,
+    "margin_of_safety": 0.3824,
+    "earnings_growth": 1.078,
+    "beta": 0.59
+   },
+   "news": [],
+   "data_notes": [],
+   "stale": false,
+   "updated": "2026-10-21T16:09:19+00:00"
+  },
+  {
+   "ticker": "MCD",
+   "note": "McDonald's",
+   "name": "McDonald's Corporation",
+   "sector": "Consumer Cyclical",
+   "industry": "Restaurants",
+   "price": 245.69,
+   "market_cap": 173860454400,
+   "week52_high": 341.75,
+   "week52_low": 229.2,
+   "overall": {
+    "label": "HOLD / NEUTRAL",
+    "rationale": "No strong signal in either direction from the metrics available.",
+    "score": 54.4
+   },
+   "lenses": [
+    {
+     "key": "buffett",
+     "name": "Buffett & Munger (Quality Compounding)",
+     "score": 69.1,
+     "verdict": "Partial fit",
+     "pros": [
+      "High gross margin (57%) suggests real pricing power / a moat.",
+      "Debt/Equity of -30.62 is comfortably below Buffett's 0.5 ceiling.",
+      "Share count shrank 3.4% \u2014 management is buying back stock, not diluting."
+     ],
+     "cons": [
+      "Average ROE of -244% falls short of Buffett's 15% minimum.",
+      "Trading ~16% above estimated intrinsic value \u2014 little to no margin of safety."
+     ]
+    },
+    {
+     "key": "graham",
+     "name": "Benjamin Graham (Deep Value)",
+     "score": 59.2,
+     "verdict": "Partial fit",
+     "pros": [
+      "P/E \u00d7 P/B = -3391.2, at or under Graham's 22.5 ceiling.",
+      "No loss-making years across the 4 most recent periods available.",
+      "Currently pays a dividend (yield ~3.1%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
+     ],
+     "cons": [
+      "Not enough data (EPS/book value) to compute a Graham Number.",
+      "Current ratio of 0.95 is below Graham's 2.0 liquidity bar.",
+      "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test."
+     ]
+    },
+    {
+     "key": "lynch",
+     "name": "Peter Lynch (GARP \u2014 Cyclical)",
+     "score": 35.0,
+     "verdict": "Poor fit",
+     "pros": [
+      "Manageable Debt/Equity of -30.62 \u2014 Lynch was wary of highly leveraged growth stories.",
+      "Company is buying back shares alongside its growth story."
+     ],
+     "cons": [
+      "PEG ratio of 2.57 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule.",
+      "Sits in a cyclical sector \u2014 Lynch warns timing matters enormously here; cheap-looking multiples near a cycle peak can be a trap."
+     ]
+    }
+   ],
+   "metrics": {
+    "pe": 19.96,
+    "forward_pe": 17.87,
+    "pb": -169.91,
+    "peg": 2.57,
+    "dividend_yield": 0.0314,
+    "payout_ratio": 0.5971,
+    "roe_avg": -2.4446,
+    "gross_margin_avg": 0.5706,
+    "debt_to_equity": -30.62,
+    "current_ratio": 0.95,
+    "graham_number": null,
+    "intrinsic_value": 212.06,
+    "margin_of_safety": -0.1586,
+    "earnings_growth": 0.057,
+    "beta": 0.45
+   },
+   "news": [],
+   "data_notes": [],
+   "stale": false,
+   "updated": "2026-10-21T16:09:57+00:00"
+  },
+  {
+   "ticker": "MSFT",
+   "note": "Microsoft \u2014 software compounder",
+   "name": "Microsoft Corporation",
+   "sector": "Technology",
+   "industry": "Software - Infrastructure",
+   "price": 531.75,
+   "market_cap": 3948571000832,
+   "week52_high": 553.72,
+   "week52_low": 349.2,
+   "overall": {
+    "label": "HOLD / NEUTRAL",
+    "rationale": "No strong signal in either direction from the metrics available.",
+    "score": 52.4
+   },
+   "lenses": [
+    {
+     "key": "buffett",
+     "name": "Buffett & Munger (Quality Compounding)",
+     "score": 69.3,
+     "verdict": "Partial fit",
+     "pros": [
+      "High gross margin (69%) suggests real pricing power / a moat.",
+      "Debt/Equity of 0.13 is comfortably below Buffett's 0.5 ceiling.",
+      "Earnings grew in every available period with no loss years.",
+      "Average ROE of 32% clears Buffett's 20% bar for elite businesses."
+     ],
+     "cons": [
+      "Trading ~284% above estimated intrinsic value \u2014 little to no margin of safety."
+     ]
+    },
+    {
+     "key": "graham",
+     "name": "Benjamin Graham (Deep Value)",
+     "score": 41.0,
+     "verdict": "Weak fit",
+     "pros": [
+      "Long-term debt is fully covered by net working capital \u2014 Graham's conservative debt test.",
+      "No loss-making years across the 4 most recent periods available.",
+      "Currently pays a dividend (yield ~0.7%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
+     ],
+     "cons": [
+      "Price ($531.75) exceeds the Graham Number ($155.10) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 264.5, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
+      "Current ratio of 1.23 is below Graham's 2.0 liquidity bar."
+     ]
+    },
+    {
+     "key": "lynch",
+     "name": "Peter Lynch (GARP \u2014 Fast Grower)",
+     "score": 46.8,
+     "verdict": "Weak fit",
+     "pros": [
+      "Classified as a Fast Grower (>25% earnings growth) \u2014 Lynch's favorite hunting ground, though these also carry the most execution/valuation risk.",
+      "Manageable Debt/Equity of 0.13 \u2014 Lynch was wary of highly leveraged growth stories."
+     ],
+     "cons": [
+      "PEG ratio of 1.72 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule."
+     ]
+    }
+   ],
+   "metrics": {
+    "pe": 29.62,
+    "forward_pe": 22.43,
+    "pb": 8.93,
+    "peg": 1.72,
+    "dividend_yield": 0.0074,
+    "payout_ratio": 0.1983,
+    "roe_avg": 0.3195,
+    "gross_margin_avg": 0.6886,
+    "debt_to_equity": 0.13,
+    "current_ratio": 1.23,
+    "graham_number": 155.1,
+    "intrinsic_value": 138.55,
+    "margin_of_safety": -2.838,
+    "earnings_growth": 0.317,
+    "beta": 1.1
+   },
+   "news": [],
+   "data_notes": [],
+   "stale": false,
+   "updated": "2026-10-21T16:09:38+00:00"
+  },
+  {
+   "ticker": "AXP",
+   "note": "American Express \u2014 Buffett holding",
+   "name": "American Express Company",
+   "sector": "Financial Services",
+   "industry": "Credit Services",
+   "price": 323.98,
+   "market_cap": 218786889728,
+   "week52_high": 387.49,
+   "week52_low": 290.97,
+   "overall": {
+    "label": "HOLD / NEUTRAL",
+    "rationale": "No strong signal in either direction from the metrics available.",
+    "score": 44.3
+   },
+   "lenses": [
+    {
+     "key": "buffett",
+     "name": "Buffett & Munger (Quality Compounding)",
+     "score": 58.3,
+     "verdict": "Partial fit",
+     "pros": [
+      "High gross margin (62%) suggests real pricing power / a moat.",
+      "Earnings grew in every available period with no loss years.",
+      "Average ROE of 32% clears Buffett's 20% bar for elite businesses.",
+      "Share count shrank 7.4% \u2014 management is buying back stock, not diluting."
+     ],
+     "cons": [
+      "Debt/Equity of 1.73 exceeds Buffett's usual 0.5 comfort zone."
+     ]
+    },
+    {
+     "key": "graham",
+     "name": "Benjamin Graham (Deep Value)",
+     "score": 34.0,
+     "verdict": "Poor fit",
+     "pros": [
+      "No loss-making years across the 4 most recent periods available.",
+      "Currently pays a dividend (yield ~1.2%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
+     ],
+     "cons": [
+      "Price ($323.98) exceeds the Graham Number ($137.23) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 125.4, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
+      "Current ratio unavailable \u2014 can't verify Graham's liquidity requirement."
+     ]
+    },
+    {
+     "key": "lynch",
+     "name": "Peter Lynch (GARP \u2014 Cyclical)",
+     "score": 40.7,
+     "verdict": "Weak fit",
+     "pros": [
+      "Company is buying back shares alongside its growth story."
+     ],
+     "cons": [
+      "PEG ratio of 1.26 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule.",
+      "Sits in a cyclical sector \u2014 Lynch warns timing matters enormously here; cheap-looking multiples near a cycle peak can be a trap.",
+      "Debt/Equity of 1.73 is elevated \u2014 leverage adds fragility to a growth thesis."
+     ]
+    }
+   ],
+   "metrics": {
+    "pe": 19.66,
+    "forward_pe": 16.08,
+    "pb": 6.38,
+    "peg": 1.26,
+    "dividend_yield": 0.0117,
+    "payout_ratio": 0.2148,
+    "roe_avg": 0.3152,
+    "gross_margin_avg": 0.6234,
+    "debt_to_equity": 1.73,
+    "current_ratio": null,
+    "graham_number": 137.23,
+    "intrinsic_value": 327.23,
+    "margin_of_safety": 0.0099,
+    "earnings_growth": 0.11,
+    "beta": 1.08
+   },
+   "news": [],
+   "data_notes": [],
+   "stale": false,
+   "updated": "2026-10-21T16:09:12+00:00"
+  },
+  {
+   "ticker": "V",
+   "note": "Visa \u2014 payments network",
+   "name": "Visa Inc.",
+   "sector": "Financial Services",
+   "industry": "Credit Services",
+   "price": 409.22,
+   "market_cap": 768251330560,
+   "week52_high": 409.5,
+   "week52_low": 293.89,
+   "overall": {
+    "label": "LIKELY PASS",
+    "rationale": "Most lenses see meaningful gaps versus their criteria on the available data.",
+    "score": 43.4
+   },
+   "lenses": [
+    {
+     "key": "buffett",
+     "name": "Buffett & Munger (Quality Compounding)",
+     "score": 68.3,
+     "verdict": "Partial fit",
+     "pros": [
+      "High gross margin (80%) suggests real pricing power / a moat.",
+      "Earnings grew in every available period with no loss years.",
+      "Average ROE of 49% clears Buffett's 20% bar for elite businesses.",
+      "Share count shrank 14.2% \u2014 management is buying back stock, not diluting."
+     ],
+     "cons": [
+      "Debt/Equity of 0.68 exceeds Buffett's usual 0.5 comfort zone.",
+      "Trading ~654% above estimated intrinsic value \u2014 little to no margin of safety."
+     ]
+    },
+    {
+     "key": "graham",
+     "name": "Benjamin Graham (Deep Value)",
+     "score": 30.1,
+     "verdict": "Poor fit",
+     "pros": [
+      "No loss-making years across the 4 most recent periods available.",
+      "Currently pays a dividend (yield ~0.7%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
+     ],
+     "cons": [
+      "Price ($409.22) exceeds the Graham Number ($70.63) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 755.3, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
+      "Current ratio of 1.08 is below Graham's 2.0 liquidity bar.",
+      "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test."
+     ]
+    },
+    {
+     "key": "lynch",
+     "name": "Peter Lynch (GARP \u2014 Cyclical)",
+     "score": 31.9,
+     "verdict": "Poor fit",
+     "pros": [
+      "Company is buying back shares alongside its growth story."
+     ],
+     "cons": [
+      "PEG ratio of 1.82 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule.",
+      "Sits in a cyclical sector \u2014 Lynch warns timing matters enormously here; cheap-looking multiples near a cycle peak can be a trap.",
+      "Institutional ownership is very high (90%) \u2014 the easy discovery phase is likely already behind it."
+     ]
+    }
+   ],
+   "metrics": {
+    "pe": 34.83,
+    "forward_pe": 27.24,
+    "pb": 21.69,
+    "peg": 1.82,
+    "dividend_yield": 0.0065,
+    "payout_ratio": 0.2213,
+    "roe_avg": 0.4935,
+    "gross_margin_avg": 0.8027,
+    "debt_to_equity": 0.68,
+    "current_ratio": 1.08,
+    "graham_number": 70.63,
+    "intrinsic_value": 54.27,
+    "margin_of_safety": -6.5406,
+    "earnings_growth": 0.102,
+    "beta": 0.77
+   },
+   "news": [],
+   "data_notes": [],
+   "stale": false,
+   "updated": "2026-10-21T16:09:31+00:00"
+  },
+  {
+   "ticker": "JPM",
+   "note": "JPMorgan \u2014 bank",
+   "name": "JPMorgan Chase & Co.",
+   "sector": "Financial Services",
+   "industry": "Banks - Diversified",
+   "price": 333.56,
+   "market_cap": 885801943040,
+   "week52_high": 366.5,
+   "week52_low": 279.1,
+   "overall": {
+    "label": "HOLD / NEUTRAL",
+    "rationale": "No strong signal in either direction from the metrics available.",
+    "score": 41.9
+   },
+   "lenses": [
+    {
+     "key": "buffett",
+     "name": "Buffett & Munger (Quality Compounding)",
+     "score": 48.1,
+     "verdict": "Weak fit",
+     "pros": [
+      "Share count shrank 6.3% \u2014 management is buying back stock, not diluting."
+     ],
+     "cons": [
+      "Thin gross margin (0%) \u2014 little evidence of a durable moat.",
+      "Debt/Equity of 1.46 exceeds Buffett's usual 0.5 comfort zone.",
+      "Insufficient cash-flow data to estimate intrinsic value / margin of safety."
+     ]
+    },
+    {
+     "key": "graham",
+     "name": "Benjamin Graham (Deep Value)",
+     "score": 42.3,
+     "verdict": "Weak fit",
+     "pros": [
+      "No loss-making years across the 4 most recent periods available.",
+      "Currently pays a dividend (yield ~2.0%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
+     ],
+     "cons": [
+      "Price ($333.56) exceeds the Graham Number ($266.39) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 35.3, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
+      "Current ratio unavailable \u2014 can't verify Graham's liquidity requirement."
+     ]
+    },
+    {
+     "key": "lynch",
+     "name": "Peter Lynch (GARP \u2014 Cyclical)",
+     "score": 35.4,
+     "verdict": "Weak fit",
+     "pros": [
+      "Company is buying back shares alongside its growth story."
+     ],
+     "cons": [
+      "PEG ratio of 1.45 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule.",
+      "Sits in a cyclical sector \u2014 Lynch warns timing matters enormously here; cheap-looking multiples near a cycle peak can be a trap.",
+      "Debt/Equity of 1.46 is elevated \u2014 leverage adds fragility to a growth thesis."
+     ]
+    }
+   ],
+   "metrics": {
+    "pe": 13.99,
+    "forward_pe": 13.06,
+    "pb": 2.52,
+    "peg": 1.45,
+    "dividend_yield": 0.0198,
+    "payout_ratio": 0.2571,
+    "roe_avg": 0.1635,
+    "gross_margin_avg": 0.0,
+    "debt_to_equity": 1.46,
+    "current_ratio": null,
+    "graham_number": 266.39,
+    "intrinsic_value": null,
+    "margin_of_safety": null,
+    "earnings_growth": 0.099,
+    "beta": 1.01
+   },
+   "news": [],
+   "data_notes": [],
+   "stale": false,
+   "updated": "2026-10-21T16:09:51+00:00"
+  },
+  {
+   "ticker": "JNJ",
+   "note": "Johnson & Johnson \u2014 defensive healthcare",
+   "name": "Johnson & Johnson",
+   "sector": "Healthcare",
+   "industry": "Drug Manufacturers - General",
+   "price": 255.72,
+   "market_cap": 616259256320,
+   "week52_high": 281.07,
+   "week52_low": 184.66,
+   "overall": {
+    "label": "LIKELY PASS",
+    "rationale": "Most lenses see meaningful gaps versus their criteria on the available data.",
+    "score": 39.6
+   },
+   "lenses": [
+    {
+     "key": "buffett",
+     "name": "Buffett & Munger (Quality Compounding)",
+     "score": 60.9,
+     "verdict": "Partial fit",
+     "pros": [
+      "High gross margin (69%) suggests real pricing power / a moat.",
+      "Average ROE of 32% clears Buffett's 20% bar for elite businesses.",
+      "Share count shrank 8.8% \u2014 management is buying back stock, not diluting."
+     ],
+     "cons": [
+      "Debt/Equity of 0.59 exceeds Buffett's usual 0.5 comfort zone.",
+      "High R&D intensity (16% of revenue) \u2014 fast-moving, harder to forecast 10-20 years out, arguably outside a conservative circle of competence.",
+      "Trading ~88% above estimated intrinsic value \u2014 little to no margin of safety."
+     ]
+    },
+    {
+     "key": "graham",
+     "name": "Benjamin Graham (Deep Value)",
+     "score": 29.7,
+     "verdict": "Poor fit",
+     "pros": [
+      "No loss-making years across the 4 most recent periods available.",
+      "Currently pays a dividend (yield ~2.1%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
+     ],
+     "cons": [
+      "Price ($255.72) exceeds the Graham Number ($72.33) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 281.2, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
+      "Current ratio of 1.03 is below Graham's 2.0 liquidity bar.",
+      "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test."
+     ]
+    },
+    {
+     "key": "lynch",
+     "name": "Peter Lynch (GARP \u2014 Turnaround (negative recent earnings growth))",
+     "score": 28.2,
+     "verdict": "Poor fit",
+     "pros": [
+      "Company is buying back shares alongside its growth story."
+     ],
+     "cons": [
+      "PEG ratio of 2.80 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule.",
+      "Negative recent earnings growth \u2014 a Lynch 'turnaround' candidate: high risk, requires real evidence the business is being fixed."
+     ]
+    }
+   ],
+   "metrics": {
+    "pe": 38.8,
+    "forward_pe": 22.01,
+    "pb": 7.25,
+    "peg": 2.8,
+    "dividend_yield": 0.021,
+    "payout_ratio": 0.6072,
+    "roe_avg": 0.3175,
+    "gross_margin_avg": 0.6876,
+    "debt_to_equity": 0.59,
+    "current_ratio": 1.03,
+    "graham_number": 72.33,
+    "intrinsic_value": 135.87,
+    "margin_of_safety": -0.8821,
+    "earnings_growth": -0.96,
+    "beta": 0.21
+   },
+   "news": [],
+   "data_notes": [],
+   "stale": false,
+   "updated": "2026-10-21T16:09:22+00:00"
+  },
+  {
+   "ticker": "MA",
+   "note": "Mastercard \u2014 payments network",
+   "name": "Mastercard Incorporated",
+   "sector": "Financial Services",
+   "industry": "Credit Services",
+   "price": 623.38,
+   "market_cap": 546082684928,
+   "week52_high": 624.66,
+   "week52_low": 464.52,
+   "overall": {
+    "label": "LIKELY PASS",
+    "rationale": "Most lenses see meaningful gaps versus their criteria on the available data.",
+    "score": 38.4
+   },
+   "lenses": [
+    {
+     "key": "buffett",
+     "name": "Buffett & Munger (Quality Compounding)",
+     "score": 56.4,
+     "verdict": "Partial fit",
+     "pros": [
+      "High gross margin (77%) suggests real pricing power / a moat.",
+      "Earnings grew in every available period with no loss years.",
+      "Average ROE of 178% clears Buffett's 20% bar for elite businesses.",
+      "Share count shrank 6.7% \u2014 management is buying back stock, not diluting."
+     ],
+     "cons": [
+      "Debt/Equity of 2.46 exceeds Buffett's usual 0.5 comfort zone.",
+      "Trading ~101% above estimated intrinsic value \u2014 little to no margin of safety."
+     ]
+    },
+    {
+     "key": "graham",
+     "name": "Benjamin Graham (Deep Value)",
+     "score": 29.8,
+     "verdict": "Poor fit",
+     "pros": [
+      "No loss-making years across the 4 most recent periods available.",
+      "Currently pays a dividend (yield ~0.6%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
+     ],
+     "cons": [
+      "Price ($623.38) exceeds the Graham Number ($51.32) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 3320.0, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
+      "Current ratio of 1.03 is below Graham's 2.0 liquidity bar.",
+      "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test."
+     ]
+    },
+    {
+     "key": "lynch",
+     "name": "Peter Lynch (GARP \u2014 Stalwart)",
+     "score": 28.9,
+     "verdict": "Poor fit",
+     "pros": [
+      "Classified as a Stalwart (10-25% growth) \u2014 steady compounding, good downside protection.",
+      "Company is buying back shares alongside its growth story."
+     ],
+     "cons": [
+      "PEG ratio of 1.61 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule.",
+      "Debt/Equity of 2.46 is elevated \u2014 leverage adds fragility to a growth thesis.",
+      "Institutional ownership is very high (91%) \u2014 the easy discovery phase is likely already behind it."
+     ]
+    }
+   ],
+   "metrics": {
+    "pe": 34.06,
+    "forward_pe": 27.02,
+    "pb": 97.46,
+    "peg": 1.61,
+    "dividend_yield": 0.0056,
+    "payout_ratio": 0.1793,
+    "roe_avg": 1.778,
+    "gross_margin_avg": 0.7663,
+    "debt_to_equity": 2.46,
+    "current_ratio": 1.03,
+    "graham_number": 51.32,
+    "intrinsic_value": 309.48,
+    "margin_of_safety": -1.0143,
+    "earnings_growth": 0.221,
+    "beta": 0.76
+   },
+   "news": [],
+   "data_notes": [],
+   "stale": false,
+   "updated": "2026-10-21T16:09:34+00:00"
+  },
+  {
+   "ticker": "COST",
+   "note": "Costco \u2014 quality retailer",
+   "name": "Costco Wholesale Corporation",
+   "sector": "Consumer Defensive",
+   "industry": "Discount Stores",
+   "price": 995.61,
+   "market_cap": 441183993856,
+   "week52_high": 1096.5,
+   "week52_low": 844.06,
+   "overall": {
+    "label": "LIKELY PASS",
+    "rationale": "Most lenses see meaningful gaps versus their criteria on the available data.",
+    "score": 37.5
+   },
+   "lenses": [
+    {
+     "key": "buffett",
+     "name": "Buffett & Munger (Quality Compounding)",
+     "score": 48.4,
+     "verdict": "Weak fit",
+     "pros": [
+      "Debt/Equity of 0.28 is comfortably below Buffett's 0.5 ceiling.",
+      "Earnings grew in every available period with no loss years.",
+      "Average ROE of 28% clears Buffett's 20% bar for elite businesses."
+     ],
+     "cons": [
+      "Thin gross margin (12%) \u2014 little evidence of a durable moat.",
+      "Trading ~225% above estimated intrinsic value \u2014 little to no margin of safety."
+     ]
+    },
+    {
+     "key": "graham",
+     "name": "Benjamin Graham (Deep Value)",
+     "score": 29.8,
+     "verdict": "Poor fit",
+     "pros": [
+      "No loss-making years across the 4 most recent periods available.",
+      "Currently pays a dividend (yield ~0.6%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
+     ],
+     "cons": [
+      "Price ($995.61) exceeds the Graham Number ($194.24) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 591.1, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
+      "Current ratio of 1.03 is below Graham's 2.0 liquidity bar.",
+      "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test."
+     ]
+    },
+    {
+     "key": "lynch",
+     "name": "Peter Lynch (GARP \u2014 Stalwart)",
+     "score": 34.2,
+     "verdict": "Poor fit",
+     "pros": [
+      "Classified as a Stalwart (10-25% growth) \u2014 steady compounding, good downside protection.",
+      "Manageable Debt/Equity of 0.28 \u2014 Lynch was wary of highly leveraged growth stories."
+     ],
+     "cons": [
+      "PEG ratio of 4.96 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule."
+     ]
+    }
+   ],
+   "metrics": {
+    "pe": 47.96,
+    "forward_pe": 39.78,
+    "pb": 12.33,
+    "peg": 4.96,
+    "dividend_yield": 0.0059,
+    "payout_ratio": 0.2669,
+    "roe_avg": 0.2809,
+    "gross_margin_avg": 0.1247,
+    "debt_to_equity": 0.28,
+    "current_ratio": 1.03,
+    "graham_number": 194.24,
+    "intrinsic_value": 306.5,
+    "margin_of_safety": -2.2483,
+    "earnings_growth": 0.15,
+    "beta": 0.87
+   },
+   "news": [],
+   "data_notes": [],
+   "stale": false,
+   "updated": "2026-10-21T16:09:28+00:00"
+  },
+  {
+   "ticker": "PG",
+   "note": "Procter & Gamble \u2014 consumer staples",
+   "name": "The Procter & Gamble Company",
+   "sector": "Consumer Defensive",
+   "industry": "Household & Personal Products",
+   "price": 157.86,
+   "market_cap": 366657077248,
+   "week52_high": 167.25,
+   "week52_low": 137.62,
+   "overall": {
+    "label": "LIKELY PASS",
+    "rationale": "Most lenses see meaningful gaps versus their criteria on the available data.",
+    "score": 37.4
+   },
+   "lenses": [
+    {
+     "key": "buffett",
+     "name": "Buffett & Munger (Quality Compounding)",
+     "score": 58.3,
+     "verdict": "Partial fit",
+     "pros": [
+      "High gross margin (50%) suggests real pricing power / a moat.",
+      "Earnings grew in every available period with no loss years.",
+      "Average ROE of 31% clears Buffett's 20% bar for elite businesses.",
+      "Share count shrank 2.5% \u2014 management is buying back stock, not diluting."
+     ],
+     "cons": [
+      "Debt/Equity of 0.66 exceeds Buffett's usual 0.5 comfort zone.",
+      "Trading ~21% above estimated intrinsic value \u2014 little to no margin of safety."
+     ]
+    },
+    {
+     "key": "graham",
+     "name": "Benjamin Graham (Deep Value)",
+     "score": 27.1,
+     "verdict": "Poor fit",
+     "pros": [
+      "No loss-making years across the 4 most recent periods available.",
+      "Currently pays a dividend (yield ~2.8%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
+     ],
+     "cons": [
+      "Price ($157.86) exceeds the Graham Number ($58.46) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 164.0, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
+      "Current ratio of 0.68 is below Graham's 2.0 liquidity bar.",
+      "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test."
+     ]
+    },
+    {
+     "key": "lynch",
+     "name": "Peter Lynch (GARP \u2014 Turnaround (negative recent earnings growth))",
+     "score": 26.8,
+     "verdict": "Poor fit",
+     "pros": [
+      "Company is buying back shares alongside its growth story."
+     ],
+     "cons": [
+      "PEG ratio of 4.08 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule.",
+      "Negative recent earnings growth \u2014 a Lynch 'turnaround' candidate: high risk, requires real evidence the business is being fixed."
+     ]
+    }
+   ],
+   "metrics": {
+    "pe": 23.85,
+    "forward_pe": 21.36,
+    "pb": 6.88,
+    "peg": 4.08,
+    "dividend_yield": 0.0276,
+    "payout_ratio": 0.6433,
+    "roe_avg": 0.308,
+    "gross_margin_avg": 0.5015,
+    "debt_to_equity": 0.66,
+    "current_ratio": 0.68,
+    "graham_number": 58.46,
+    "intrinsic_value": 130.53,
+    "margin_of_safety": -0.2094,
+    "earnings_growth": -0.155,
+    "beta": 0.38
+   },
+   "news": [],
+   "data_notes": [],
+   "stale": false,
+   "updated": "2026-10-21T16:09:25+00:00"
+  },
+  {
+   "ticker": "AMZN",
+   "note": "Amazon",
+   "name": "Amazon.com, Inc.",
+   "sector": "Consumer Cyclical",
+   "industry": "Internet Retail",
+   "price": 262.74,
+   "market_cap": 2833995792384,
+   "week52_high": 287.2,
+   "week52_low": 196.0,
+   "overall": {
+    "label": "HOLD / NEUTRAL",
+    "rationale": "No strong signal in either direction from the metrics available.",
+    "score": 36.5
+   },
+   "lenses": [
+    {
+     "key": "buffett",
+     "name": "Buffett & Munger (Quality Compounding)",
+     "score": 41.4,
+     "verdict": "Weak fit",
+     "pros": [
+      "High gross margin (47%) suggests real pricing power / a moat.",
+      "Debt/Equity of 0.37 is comfortably below Buffett's 0.5 ceiling."
+     ],
+     "cons": [
+      "Margins are unstable year to year \u2014 less predictable than Buffett prefers.",
+      "At least one loss-making year in the available window.",
+      "Average ROE of 13% falls short of Buffett's 15% minimum.",
+      "Share count grew 6.3% \u2014 dilution works against per-share owner value.",
+      "Owner earnings are too weak/negative to support a going-concern valuation."
+     ]
+    },
+    {
+     "key": "graham",
+     "name": "Benjamin Graham (Deep Value)",
+     "score": 16.6,
+     "verdict": "Poor fit",
+     "pros": [],
+     "cons": [
+      "Price ($262.74) exceeds the Graham Number ($119.61) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 108.6, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
+      "Current ratio of 1.05 is below Graham's 2.0 liquidity bar.",
+      "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test.",
+      "At least one loss-making year in the available window \u2014 Graham requires positive earnings every year (traditionally over 10 years).",
+      "No current dividend \u2014 fails Graham's income requirement for the defensive investor."
+     ]
+    },
+    {
+     "key": "lynch",
+     "name": "Peter Lynch (GARP \u2014 Fast Grower)",
+     "score": 51.4,
+     "verdict": "Weak fit",
+     "pros": [
+      "Classified as a Fast Grower (>25% earnings growth) \u2014 Lynch's favorite hunting ground, though these also carry the most execution/valuation risk.",
+      "Manageable Debt/Equity of 0.37 \u2014 Lynch was wary of highly leveraged growth stories."
+     ],
+     "cons": [
+      "PEG ratio of 1.45 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule."
+     ]
+    }
+   ],
+   "metrics": {
+    "pe": 21.14,
+    "forward_pe": 25.16,
+    "pb": 5.14,
+    "peg": 1.45,
+    "dividend_yield": 0.0,
+    "payout_ratio": 0.0,
+    "roe_avg": 0.1321,
+    "gross_margin_avg": 0.4748,
+    "debt_to_equity": 0.37,
+    "current_ratio": 1.05,
+    "graham_number": 119.61,
+    "intrinsic_value": -15.5,
+    "margin_of_safety": null,
+    "earnings_growth": 2.423,
+    "beta": 1.46
+   },
+   "news": [],
+   "data_notes": [],
+   "stale": false,
+   "updated": "2026-10-21T16:09:45+00:00"
+  },
+  {
+   "ticker": "PEP",
+   "note": "PepsiCo",
+   "name": "PepsiCo, Inc.",
+   "sector": "Consumer Defensive",
+   "industry": "Beverages - Non-Alcoholic",
+   "price": 135.07,
+   "market_cap": 184065458176,
+   "week52_high": 171.48,
+   "week52_low": 123.47,
+   "overall": {
+    "label": "LIKELY PASS",
+    "rationale": "Most lenses see meaningful gaps versus their criteria on the available data.",
+    "score": 34.7
+   },
+   "lenses": [
+    {
+     "key": "buffett",
+     "name": "Buffett & Munger (Quality Compounding)",
+     "score": 40.0,
+     "verdict": "Weak fit",
+     "pros": [
+      "High gross margin (54%) suggests real pricing power / a moat.",
+      "Average ROE of 49% clears Buffett's 20% bar for elite businesses.",
+      "Share count shrank 1.0% \u2014 management is buying back stock, not diluting."
+     ],
+     "cons": [
+      "Debt/Equity of 2.45 exceeds Buffett's usual 0.5 comfort zone.",
+      "Trading ~45% above estimated intrinsic value \u2014 little to no margin of safety."
+     ]
+    },
+    {
+     "key": "graham",
+     "name": "Benjamin Graham (Deep Value)",
+     "score": 28.4,
+     "verdict": "Poor fit",
+     "pros": [
+      "No loss-making years across the 4 most recent periods available.",
+      "Currently pays a dividend (yield ~4.4%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
+     ],
+     "cons": [
+      "Price ($135.07) exceeds the Graham Number ($54.07) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 140.4, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
+      "Current ratio of 0.85 is below Graham's 2.0 liquidity bar.",
+      "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test."
+     ]
+    },
+    {
+     "key": "lynch",
+     "name": "Peter Lynch (GARP \u2014 Stalwart)",
+     "score": 35.8,
+     "verdict": "Weak fit",
+     "pros": [
+      "Classified as a Stalwart (10-25% growth) \u2014 steady compounding, good downside protection.",
+      "Company is buying back shares alongside its growth story."
+     ],
+     "cons": [
+      "PEG ratio of 1.37 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule.",
+      "Debt/Equity of 2.45 is elevated \u2014 leverage adds fragility to a growth thesis."
+     ]
+    }
+   ],
+   "metrics": {
+    "pe": 16.99,
+    "forward_pe": 15.64,
+    "pb": 8.26,
+    "peg": 1.37,
+    "dividend_yield": 0.0438,
+    "payout_ratio": 0.7302,
+    "roe_avg": 0.4862,
+    "gross_margin_avg": 0.5399,
+    "debt_to_equity": 2.45,
+    "current_ratio": 0.85,
+    "graham_number": 54.07,
+    "intrinsic_value": 93.31,
+    "margin_of_safety": -0.4475,
+    "earnings_growth": 0.174,
+    "beta": 0.36
+   },
+   "news": [],
+   "data_notes": [],
+   "stale": false,
+   "updated": "2026-10-21T16:09:54+00:00"
+  },
+  {
+   "ticker": "KO",
+   "note": "Coca-Cola \u2014 Buffett holding, dividend compounder",
+   "name": "The Coca-Cola Company",
+   "sector": "Consumer Defensive",
+   "industry": "Beverages - Non-Alcoholic",
+   "price": 92.92,
+   "market_cap": 399771336704,
+   "week52_high": 94.1,
+   "week52_low": 67.27,
+   "overall": {
+    "label": "LIKELY PASS",
+    "rationale": "Most lenses see meaningful gaps versus their criteria on the available data.",
+    "score": 34.2
+   },
+   "lenses": [
+    {
+     "key": "buffett",
+     "name": "Buffett & Munger (Quality Compounding)",
+     "score": 46.3,
+     "verdict": "Weak fit",
+     "pros": [
+      "High gross margin (60%) suggests real pricing power / a moat.",
+      "Average ROE of 41% clears Buffett's 20% bar for elite businesses."
+     ],
+     "cons": [
+      "Debt/Equity of 1.41 exceeds Buffett's usual 0.5 comfort zone.",
+      "Trading ~313% above estimated intrinsic value \u2014 little to no margin of safety."
+     ]
+    },
+    {
+     "key": "graham",
+     "name": "Benjamin Graham (Deep Value)",
+     "score": 32.9,
+     "verdict": "Poor fit",
+     "pros": [
+      "No loss-making years across the 4 most recent periods available.",
+      "Currently pays a dividend (yield ~2.3%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
+     ],
+     "cons": [
+      "Price ($92.92) exceeds the Graham Number ($25.09) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 308.6, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
+      "Current ratio of 1.46 is below Graham's 2.0 liquidity bar.",
+      "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test."
+     ]
+    },
+    {
+     "key": "lynch",
+     "name": "Peter Lynch (GARP \u2014 Stalwart)",
+     "score": 23.5,
+     "verdict": "Poor fit",
+     "pros": [
+      "Classified as a Stalwart (10-25% growth) \u2014 steady compounding, good downside protection."
+     ],
+     "cons": [
+      "PEG ratio of 4.27 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule.",
+      "Debt/Equity of 1.41 is elevated \u2014 leverage adds fragility to a growth thesis."
+     ]
+    }
+   ],
+   "metrics": {
+    "pe": 27.9,
+    "forward_pe": 26.37,
+    "pb": 11.06,
+    "peg": 4.27,
+    "dividend_yield": 0.0228,
+    "payout_ratio": 0.6246,
+    "roe_avg": 0.411,
+    "gross_margin_avg": 0.6009,
+    "debt_to_equity": 1.41,
+    "current_ratio": 1.46,
+    "graham_number": 25.09,
+    "intrinsic_value": 22.48,
+    "margin_of_safety": -3.1324,
+    "earnings_growth": 0.169,
+    "beta": 0.32
+   },
+   "news": [],
+   "data_notes": [],
+   "stale": false,
+   "updated": "2026-10-21T16:09:09+00:00"
+  },
+  {
+   "ticker": "AAPL",
+   "note": "Apple \u2014 Buffett's largest position for years",
+   "name": "Apple Inc.",
+   "sector": "Technology",
+   "industry": "Consumer Electronics",
+   "price": 343.95,
+   "market_cap": 5019524923392,
+   "week52_high": 348.15,
+   "week52_low": 243.42,
+   "overall": {
+    "label": "LIKELY PASS",
+    "rationale": "Most lenses see meaningful gaps versus their criteria on the available data.",
+    "score": 34.2
+   },
+   "lenses": [
+    {
+     "key": "buffett",
+     "name": "Buffett & Munger (Quality Compounding)",
+     "score": 44.2,
+     "verdict": "Weak fit",
+     "pros": [
+      "High gross margin (45%) suggests real pricing power / a moat.",
+      "Average ROE of 167% clears Buffett's 20% bar for elite businesses.",
+      "Share count shrank 8.1% \u2014 management is buying back stock, not diluting."
+     ],
+     "cons": [
+      "Debt/Equity of 1.34 exceeds Buffett's usual 0.5 comfort zone.",
+      "Trading ~192% above estimated intrinsic value \u2014 little to no margin of safety."
+     ]
+    },
+    {
+     "key": "graham",
+     "name": "Benjamin Graham (Deep Value)",
+     "score": 28.7,
+     "verdict": "Poor fit",
+     "pros": [
+      "No loss-making years across the 4 most recent periods available.",
+      "Currently pays a dividend (yield ~0.3%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
+     ],
+     "cons": [
+      "Price ($343.95) exceeds the Graham Number ($38.00) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 1843.2, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
+      "Current ratio of 0.89 is below Graham's 2.0 liquidity bar.",
+      "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test."
+     ]
+    },
+    {
+     "key": "lynch",
+     "name": "Peter Lynch (GARP \u2014 Fast Grower)",
+     "score": 29.8,
+     "verdict": "Poor fit",
+     "pros": [
+      "Classified as a Fast Grower (>25% earnings growth) \u2014 Lynch's favorite hunting ground, though these also carry the most execution/valuation risk.",
+      "Company is buying back shares alongside its growth story."
+     ],
+     "cons": [
+      "PEG ratio of 2.75 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule.",
+      "Debt/Equity of 1.34 is elevated \u2014 leverage adds fragility to a growth thesis."
+     ]
+    }
+   ],
+   "metrics": {
+    "pe": 39.44,
+    "forward_pe": 35.94,
+    "pb": 46.73,
+    "peg": 2.75,
+    "dividend_yield": 0.0031,
+    "payout_ratio": 0.1204,
+    "roe_avg": 1.6739,
+    "gross_margin_avg": 0.4514,
+    "debt_to_equity": 1.34,
+    "current_ratio": 0.89,
+    "graham_number": 38.0,
+    "intrinsic_value": 117.85,
+    "margin_of_safety": -1.9187,
+    "earnings_growth": 0.287,
+    "beta": 1.07
+   },
+   "news": [],
+   "data_notes": [],
+   "stale": false,
+   "updated": "2026-10-21T16:09:15+00:00"
+  }
+ ]
+}
