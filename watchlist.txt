@@ -19,3 +19,4 @@ JPM     # JPMorgan — bank
 PEP     # PepsiCo
 MCD     # McDonald's
 SPCX    # added from the site's search
+NOW    # added from the site's search

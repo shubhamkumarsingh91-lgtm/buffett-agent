@@ -1,7 +1,7 @@
 {
- "generated": "2026-10-21T19:25:57+00:00",
+ "generated": "2026-10-21T19:35:55+00:00",
  "version": 2,
- "count": 27,
+ "count": 28,
  "failed": [],
  "stocks": [
   {
@@ -3310,6 +3310,187 @@
     ],
     "plan": "Pass for now. Revisit only if the business or the price changes materially.",
     "buffett_view": "On Buffett's own tests this scores 61/100.",
+    "ai": null
+   }
+  },
+  {
+   "ticker": "NOW",
+   "desk": "company",
+   "note": "",
+   "name": "ServiceNow, Inc.",
+   "sector": "Technology",
+   "industry": "Software - Application",
+   "price": 153.28,
+   "week52_high": 192.97,
+   "week52_low": 81.24,
+   "overall": {
+    "label": "HOLD / NEUTRAL",
+    "rationale": "No strong signal either way on the available data.",
+    "score": 50.3
+   },
+   "lenses": [
+    {
+     "key": "buffett",
+     "short": "Buffett",
+     "name": "Buffett & Munger (Quality Compounding)",
+     "score": 58.7,
+     "verdict": "Partial fit",
+     "pros": [
+      "High gross margin (78%) suggests real pricing power / a moat.",
+      "Debt/Equity of 0.19 is comfortably below Buffett's 0.5 ceiling."
+     ],
+     "cons": [
+      "Average ROE of 14% falls short of Buffett's 15% minimum.",
+      "Share count grew 2.6% \u2014 dilution works against per-share owner value.",
+      "High R&D intensity (22% of revenue) \u2014 fast-moving, harder to forecast 10-20 years out, arguably outside a conservative circle of competence."
+     ]
+    },
+    {
+     "key": "graham",
+     "short": "Graham",
+     "name": "Benjamin Graham (Deep Value)",
+     "score": 26.0,
+     "verdict": "Poor fit",
+     "pros": [
+      "No loss-making years across the 4 most recent periods available."
+     ],
+     "cons": [
+      "Price ($153.28) exceeds the Graham Number ($20.88) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 1213.0, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
+      "Current ratio of 1.00 is below Graham's 2.0 liquidity bar.",
+      "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test.",
+      "No current dividend \u2014 fails Graham's income requirement for the defensive investor."
+     ]
+    },
+    {
+     "key": "lynch",
+     "short": "Lynch",
+     "name": "Peter Lynch (GARP \u2014 Turnaround (negative recent earnings growth))",
+     "score": 55.2,
+     "verdict": "Partial fit",
+     "pros": [
+      "Manageable Debt/Equity of 0.19 \u2014 Lynch was wary of highly leveraged growth stories."
+     ],
+     "cons": [
+      "PEG ratio of 1.02 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule.",
+      "Negative recent earnings growth \u2014 a Lynch 'turnaround' candidate: high risk, requires real evidence the business is being fixed."
+     ]
+    },
+    {
+     "key": "fisher",
+     "short": "Fisher",
+     "name": "Philip Fisher (Growth Quality)",
+     "score": 66.5,
+     "verdict": "Partial fit",
+     "pros": [
+      "Revenue grew 22% a year over the available history. Fisher's point #1 wants products with room for sales to keep growing for years.",
+      "Spends 22% of revenue on R&D. Fisher (#2, #3) wants management investing in future products.",
+      "Margins widened by 8.8 points. Fisher #6: improving margins."
+     ],
+     "cons": [
+      "Operating margin 4%, below what Fisher called a worthwhile margin (#5)."
+     ]
+    },
+    {
+     "key": "greenblatt",
+     "short": "Greenblatt",
+     "name": "Joel Greenblatt (Magic Formula)",
+     "score": 45.0,
+     "verdict": "Weak fit",
+     "pros": [
+      "Return on capital ~21%: a good business by Greenblatt's first test."
+     ],
+     "cons": [
+      "Earnings yield (EBIT \u00f7 EV) 1.4%: not cheap by the Magic Formula."
+     ]
+    }
+   ],
+   "classic": null,
+   "kpis": {
+    "revenue_ttm": 14732000256,
+    "revenue_growth_yoy": 0.24,
+    "revenue_cagr": 0.2238,
+    "earnings_growth": -0.219,
+    "quarterly_revenue": [
+     3215000000,
+     3407000000,
+     3568000000,
+     3770000000,
+     3987000000
+    ],
+    "gross_margin": 0.7477,
+    "operating_margin": 0.0406,
+    "profit_margin": 0.1134,
+    "roe_avg": 0.1437,
+    "roic": 0.2134,
+    "roa": 0.0425,
+    "free_cash_flow": 4533000000.0,
+    "fcf_margin": 0.3077,
+    "total_cash": 4664000000,
+    "cash_runway_years": null,
+    "rule_of_40": 54.8,
+    "market_cap": 158470373376,
+    "pe": 95.8,
+    "forward_pe": 30.62,
+    "pb": 12.66,
+    "peg": 1.02,
+    "price_to_sales": 10.76,
+    "ev_to_ebitda": 54.67,
+    "earnings_yield": 0.0144,
+    "graham_number": 20.88,
+    "dividend_yield": 0.0,
+    "payout_ratio": 0.0,
+    "debt_to_equity": 0.19,
+    "current_ratio": 1.0,
+    "insider_pct": 0.0017,
+    "institutional_pct": 0.8483,
+    "short_pct_float": 0.0287,
+    "beta": 0.99
+   },
+   "valuation": {
+    "bear": 93.3,
+    "base": 171.48,
+    "bull": 328.36,
+    "growth": 0.2238,
+    "method": "average free cash flow, last 3 years",
+    "note": null,
+    "margin_of_safety": 0.1061
+   },
+   "recent_ipo": false,
+   "ipo": {
+    "months_listed": 171.7,
+    "first_trade_date": "2012-06-29",
+    "first_day_open": null,
+    "first_day_close": null,
+    "prospectus": null,
+    "checklist": []
+   },
+   "news": [],
+   "data_notes": [],
+   "stale": false,
+   "updated": "2026-10-21T19:35:55+00:00",
+   "memo": {
+    "headline": "HOLD / NEUTRAL. No strong signal either way on the available data.",
+    "business": "ServiceNow, Inc. (NOW) is a software - application company worth about $158.5B. It brought in $14.7B of revenue over the last year, up 24% from a year earlier. It keeps 4% of sales as operating profit.",
+    "bull": [
+     "Revenue grew 22% a year over the available history. Fisher's point #1 wants products with room for sales to keep growing for years. (Fisher)",
+     "Spends 22% of revenue on R&D. Fisher (#2, #3) wants management investing in future products. (Fisher)",
+     "Margins widened by 8.8 points. Fisher #6: improving margins. (Fisher)",
+     "High gross margin (78%) suggests real pricing power / a moat. (Buffett)"
+    ],
+    "bear": [
+     "Price ($153.28) exceeds the Graham Number ($20.88) \u2014 fails Graham's defensive-investor price test. (Graham)",
+     "P/E \u00d7 P/B = 1213.0, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)",
+     "Current ratio of 1.00 is below Graham's 2.0 liquidity bar. (Graham)",
+     "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test. (Graham)"
+    ],
+    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 22% growth fading to 3%, 9% discount rate), fair value is roughly $171.48 a share (bear $93.30, bull $328.36) against a price of $153.28. That's a thin 11% margin of safety.",
+    "watch": [
+     "Revenue growth stays near or above 24% (last reading).",
+     "Operating margin (4%) keeps rising as the company grows."
+    ],
+    "plan": "Pass for now. Revisit only if the business or the price changes materially.",
+    "buffett_view": "On Buffett's own tests this scores 59/100.",
     "ai": null
    }
   },
