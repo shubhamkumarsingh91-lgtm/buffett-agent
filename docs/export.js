@@ -116,6 +116,11 @@ function exportOnePdf(btn){ return run(btn, async () => {
   y = flow(doc, y + 4, `${s.overall.label}  -  ${Math.round(s.overall.score)}/100`, {size: 15, bold: true, color: VCOL(s.overall.label)});
   y = flow(doc, y, s.overall.rationale, {size: 10.5});
   if (s.stale) y = flow(doc, y, 'Note: the last data update failed, so this is the previous result.', {size: 9, color: [190, 60, 60]});
+  if (s.news30){
+    y = heading(doc, y, 'Last 30 days (news)');
+    y = flow(doc, y, s.news30.summary, {size: 10});
+    for (const i of (s.news30.items || []).slice(0, 4)) y = flow(doc, y, `-  ${i.title} (${i.source}, ${i.date})`, {size: 8.5, color: 90, indent: 8, gap: 1});
+  }
   y = heading(doc, y, 'Research memo');
   y = flow(doc, y, M.business);
   y = flow(doc, y, 'Why it could work', {bold: true, color: [22, 140, 90], gap: 1}); y = bullets(doc, y, M.bull, '+');

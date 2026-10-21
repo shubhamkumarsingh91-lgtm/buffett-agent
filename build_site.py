@@ -145,6 +145,15 @@ def default_fetch(ticker: str, desk: str):
     return d, pro
 
 
+def attach_news(entry: dict) -> None:
+    """Adds the "Last 30 days" news paragraph + key headlines (never fails the build)."""
+    try:
+        from news import build_news
+        entry["news30"] = build_news(entry.get("name") or entry["ticker"], entry["ticker"], entry.get("price"))
+    except Exception:
+        entry["news30"] = None
+
+
 def promote_listed_ipos() -> list[str]:
     """Upcoming IPOs whose listing date has passed and that have a market symbol move to ipos.txt."""
     path = OUT_DIR / "upcoming.json"
@@ -181,6 +190,7 @@ def build(fetch=default_fetch) -> dict:
             if d.price is None and not d.name:
                 raise SystemExit("no market data for this symbol (not listed yet, or needs an exchange suffix like .NS)")
             entry = score_stock(d, desk, note, pro)
+            attach_news(entry)
             print(f"  ok   {desk:7s} {ticker:7s} {entry['overall']['score']:5.1f}  {entry['overall']['label']}")
             key = f"{desk}:{ticker}"
             h = [p for p in history.get(key, []) if p["date"] != today]
@@ -234,6 +244,7 @@ def analyze_one(ticker: str, desk: str, fetch=default_fetch) -> dict:
     have = {t for t, _ in read_list(LISTS[desk])}
     note = next((n for t, n in read_list(LISTS[desk]) if t == ticker), "")
     entry = score_stock(d, desk, note, pro)
+    attach_news(entry)
     data = _load(SCORES, {"stocks": [], "version": 2})
     stocks = [s for s in data.get("stocks", []) if not (s.get("desk", "company") == desk and s["ticker"] == ticker)]
     stocks.append(entry)
