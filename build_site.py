@@ -19,6 +19,7 @@ If Yahoo fails for one ticker, the previous good result is kept and marked "stal
 from __future__ import annotations
 
 import json
+import re
 import sys
 import time
 from datetime import datetime, timezone
@@ -209,6 +210,59 @@ def build(fetch=default_fetch) -> dict:
     return payload
 
 
+EXCHANGE_SUFFIXES = {"NS", "BO", "L", "TO", "V", "HK", "T", "AX", "DE", "PA", "AS", "SW", "MI", "MC", "SI", "KS", "SS", "SZ", "SA", "MX"}
+
+
+def normalize_ticker(raw: str) -> str:
+    """BRK.B -> BRK-B (Yahoo style) but keep exchange suffixes like RELIANCE.NS or SHOP.TO."""
+    t = raw.strip().upper()
+    if not re.fullmatch(r"[A-Z0-9][A-Z0-9.\-^]{0,14}", t):
+        raise SystemExit(f"{raw!r} doesn't look like a ticker")
+    base, dot, suf = t.rpartition(".")
+    return t if dot and suf in EXCHANGE_SUFFIXES else t.replace(".", "-")
+
+
+def analyze_one(ticker: str, desk: str, fetch=default_fetch) -> dict:
+    """Scores one ticker right away (the site's "Analyze now" button) and merges it into the
+    published data, without re-scoring everything else. Adds it to the desk's list so the
+    nightly update keeps it fresh. Raises SystemExit with a plain message if there's no data."""
+    if desk not in LISTS:
+        raise SystemExit(f"unknown desk {desk!r}")
+    d, pro = fetch(ticker, desk)
+    if d.price is None and not d.name:
+        raise SystemExit(f"No market data for {ticker}: not listed yet, a typo, or a non-US listing that needs a suffix like .NS")
+    have = {t for t, _ in read_list(LISTS[desk])}
+    note = next((n for t, n in read_list(LISTS[desk]) if t == ticker), "")
+    entry = score_stock(d, desk, note, pro)
+    data = _load(SCORES, {"stocks": [], "version": 2})
+    stocks = [s for s in data.get("stocks", []) if not (s.get("desk", "company") == desk and s["ticker"] == ticker)]
+    stocks.append(entry)
+    stocks.sort(key=lambda s: -(s["overall"]["score"] or 0))
+    data.update({"generated": datetime.now(timezone.utc).isoformat(timespec="seconds"), "version": 2,
+                 "count": len(stocks), "stocks": stocks})
+    SCORES.write_text(json.dumps(data, indent=1, default=str))
+    history, today = _load(HISTORY, {}), datetime.now(timezone.utc).date().isoformat()
+    key = f"{desk}:{ticker}"
+    h = [p for p in history.get(key, []) if p["date"] != today]
+    h.append({"date": today, "score": entry["overall"]["score"], "price": entry["price"],
+              **{l["key"]: l["score"] for l in entry["lenses"]}})
+    history[key] = h[-400:]
+    HISTORY.write_text(json.dumps({k: history[k] for k in sorted(history)}, separators=(",", ":")))
+    if ticker not in have:
+        with LISTS[desk].open("a") as f:
+            f.write(f"{ticker}    # added from the site's search\n")
+    print(f"  ok   {desk:7s} {ticker:7s} {entry['overall']['score']:5.1f}  {entry['overall']['label']}")
+    return entry
+
+
 if __name__ == "__main__":
+    # python build_site.py                       -> score everything
+    # python build_site.py --only SPCX --desk ipo -> score one ticker now
+    if "--only" in sys.argv:
+        t = normalize_ticker(sys.argv[sys.argv.index("--only") + 1])
+        dk = sys.argv[sys.argv.index("--desk") + 1] if "--desk" in sys.argv else "company"
+        OUT_DIR.mkdir(parents=True, exist_ok=True)
+        analyze_one(t, dk)
+        sys.exit(0)
     result = build()
     sys.exit(0 if result["count"] else 1)

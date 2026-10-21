@@ -1,0 +1,52 @@
+# DISCLAIMER: Independent personal project. Not tied to any employer or agency.
+# Public market data only. No internal or personal data (no SSNs/PHI). Not financial advice.
+#
+# "⚡ Analyze now" on the website starts this with a ticker. It scores just that one
+# stock (about a minute end to end), adds it to the desk, and commits the data.
+# The site watches this run and opens the result as soon as it finishes.
+name: Analyze one stock
+run-name: Analyze ${{ inputs.ticker }} (${{ inputs.desk }})
+
+on:
+  workflow_dispatch:
+    inputs:
+      ticker:
+        description: "Ticker, e.g. SPCX, BRK.B, RELIANCE.NS"
+        required: true
+      desk:
+        description: "Which desk"
+        type: choice
+        options: [ipo, company]
+        default: company
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-site          # same group as the nightly update so two jobs never push at once
+  cancel-in-progress: false
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -q -r requirements.txt
+      - name: Score it
+        env:
+          TICKER: ${{ inputs.ticker }}         # passed through env, never pasted into the script
+          DESK: ${{ inputs.desk }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python build_site.py --only "$TICKER" --desk "$DESK"
+      - name: Save
+        run: |
+          git config user.name "investing-site-bot"
+          git config user.email "actions@github.com"
+          git add docs/data ipos.txt watchlist.txt
+          git diff --cached --quiet || git commit -m "Analyze ${{ inputs.ticker }} from the site"
+          git pull --rebase && git push

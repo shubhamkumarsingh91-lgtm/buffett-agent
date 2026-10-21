@@ -186,6 +186,11 @@ td.n,th.n{text-align:right} td.n{font-family:"JetBrains Mono",monospace}
 .menu button:hover{background:#1d232c}
 .tvw{height:520px;border-radius:10px;overflow:hidden}
 .modal.wide{width:min(860px,96vw)}
+.job{display:none;border:1px solid var(--line2);border-radius:12px;padding:12px 16px;margin-bottom:16px;font-size:13px;color:var(--soft);background:#0d1117}
+.job.on{display:block}.job.ok{border-color:rgba(70,200,140,.5)}.job.bad{border-color:rgba(230,90,90,.55)}.job.warn{border-color:rgba(217,180,108,.5)}
+.job .jh{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:8px}.job .jh b{color:var(--text)}
+.job .steps{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px}.job .steps span{color:var(--mute)}.job .steps .done{color:var(--buy)}.job .steps .now{color:var(--gold);font-weight:600}
+.job .btn{margin-left:6px;padding:4px 10px;font-size:12px}
 .strat{display:grid;gap:8px}
 .st{display:grid;grid-template-columns:190px 1fr;gap:14px;padding:11px 14px;border:1px solid var(--line);border-radius:10px;background:#0d1117}
 .st b{color:var(--gold);font-size:13px}.st span{color:var(--soft);font-size:13px;line-height:1.5}
@@ -237,6 +242,7 @@ footer{margin-top:44px;color:var(--dim);font-size:11.5px;text-align:center;line-
       <button class="btn" onclick="exportDeskPdf(this)" title="Download every stock on this desk (search and sort applied) as a PDF">⬇ PDF</button>
     </div>
     <div class="req" id="req"></div>
+    <div class="job" id="job"></div>
     <div class="grid" id="grid"><div class="empty">Loading…</div></div>
   </section>
 
@@ -436,10 +442,7 @@ function renderGrid(){
   const req = $('#req');
   if (/^[A-Z0-9.\-]{1,10}$/.test(qu) && !list.some(s=>s.ticker===qu)){
     const other = exact && exact.desk!==view ? `<button class="btn" onclick="setView('${exact.desk}');openD('${exact.desk}','${esc(qu)}')">Open on the ${DESKS[exact.desk].title} →</button>` : '';
-    const title = encodeURIComponent((view==='ipo'?'Analyze IPO: ':'Analyze: ')+qu);
-    const body = encodeURIComponent(`Please add ${qu} to the ${D.title}.\n\nJust press "Submit new issue". The site adds and scores it within a few minutes, then replies here with the link.`);
-    req.innerHTML = `<p><b class="mono">${esc(qu)}</b> isn't on the ${D.title} yet.${exact&&exact.desk!==view?` It's on the ${DESKS[exact.desk].title}.`:' Request it and it\'ll be researched and scored in a few minutes.'}</p>${other}
-      <a class="btn ${D.btn}" target="_blank" rel="noopener" href="https://github.com/${REPO}/issues/new?title=${title}&body=${body}">Request analysis of ${esc(qu)} ↗</a>`;
+    req.innerHTML = reqHtml(qu, D, other, exact && exact.desk!==view ? exact.desk : null);
     req.classList.add('on');
   } else req.classList.remove('on');
   GRID_LIST = list;
@@ -837,6 +840,7 @@ document.addEventListener('click',e=>{ if(!e.target.closest('.exp')) $('#expMenu
 
 tvEmbed($('#tape'),'embed-widget-ticker-tape.js',{symbols:[{proName:'AMEX:SPY',title:'S&P 500'},{proName:'NASDAQ:QQQ',title:'Nasdaq 100'},{proName:'AMEX:DIA',title:'Dow'},{proName:'AMEX:IWM',title:'Small caps'},{proName:'AMEX:IPO',title:'Renaissance IPO ETF'},{proName:'TVC:US10Y',title:'10-yr yield'},{proName:'TVC:GOLD',title:'Gold'}],showSymbolLogo:true,isTransparent:true,displayMode:'adaptive',colorTheme:'dark',locale:'en'});
 </script>
+<script src="analyze.js"></script>
 <script src="extract.js"></script>
 <script src="upcoming.js"></script>
 <script src="export.js"></script>
