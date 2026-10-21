@@ -10,3 +10,4 @@ CRCL    # Circle — stablecoin issuer, listed Jun 2025
 CHYM    # Chime — consumer fintech, listed Jun 2025
 FIG     # Figma — design software, listed Jul 2025
 KLAR    # Klarna — buy now pay later, listed Sep 2025
+JIO    # requested via issue #5
