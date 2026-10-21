@@ -1,7 +1,7 @@
 {
- "generated": "2026-10-21T19:37:45+00:00",
+ "generated": "2026-10-21T19:50:29+00:00",
  "version": 2,
- "count": 30,
+ "count": 31,
  "failed": [],
  "stocks": [
   {
@@ -2386,6 +2386,187 @@
     ],
     "plan": "Put it on watch. Re-check after the next earnings report.",
     "buffett_view": "Buffett almost never buys IPOs: the seller picks the time and the price, so the odds favor them. He prefers businesses with years of public results.",
+    "ai": null
+   }
+  },
+  {
+   "ticker": "NFLX",
+   "desk": "company",
+   "note": "",
+   "name": "Netflix, Inc.",
+   "sector": "Communication Services",
+   "industry": "Entertainment",
+   "price": 65.11,
+   "week52_high": 116.73,
+   "week52_low": 64.1,
+   "overall": {
+    "label": "WORTH RESEARCHING",
+    "rationale": "Several lenses like it, others don't. Dig into the cons before buying.",
+    "score": 57.4
+   },
+   "lenses": [
+    {
+     "key": "buffett",
+     "short": "Buffett",
+     "name": "Buffett & Munger (Quality Compounding)",
+     "score": 61.3,
+     "verdict": "Partial fit",
+     "pros": [
+      "Earnings grew in every available period with no loss years.",
+      "Average ROE of 31% clears Buffett's 20% bar for elite businesses.",
+      "Share count shrank 3.7% \u2014 management is buying back stock, not diluting."
+     ],
+     "cons": [
+      "Margins are unstable year to year \u2014 less predictable than Buffett prefers.",
+      "Debt/Equity of 0.54 exceeds Buffett's usual 0.5 comfort zone.",
+      "Trading ~18% above estimated intrinsic value \u2014 little to no margin of safety."
+     ]
+    },
+    {
+     "key": "graham",
+     "short": "Graham",
+     "name": "Benjamin Graham (Deep Value)",
+     "score": 27.4,
+     "verdict": "Poor fit",
+     "pros": [
+      "No loss-making years across the 4 most recent periods available."
+     ],
+     "cons": [
+      "Price ($65.11) exceeds the Graham Number ($23.48) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 173.0, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
+      "Current ratio of 1.19 is below Graham's 2.0 liquidity bar.",
+      "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test.",
+      "No current dividend \u2014 fails Graham's income requirement for the defensive investor."
+     ]
+    },
+    {
+     "key": "lynch",
+     "short": "Lynch",
+     "name": "Peter Lynch (GARP \u2014 Fast Grower)",
+     "score": 55.8,
+     "verdict": "Partial fit",
+     "pros": [
+      "Classified as a Fast Grower (>25% earnings growth) \u2014 Lynch's favorite hunting ground, though these also carry the most execution/valuation risk.",
+      "Company is buying back shares alongside its growth story."
+     ],
+     "cons": [
+      "PEG ratio of 1.21 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule."
+     ]
+    },
+    {
+     "key": "fisher",
+     "short": "Fisher",
+     "name": "Philip Fisher (Growth Quality)",
+     "score": 74.8,
+     "verdict": "Partial fit",
+     "pros": [
+      "Revenue grew 13% a year over the available history. Fisher's point #1 wants products with room for sales to keep growing for years.",
+      "Spends 8% of revenue on R&D. Fisher (#2, #3) wants management investing in future products.",
+      "Operating margin 35%. Fisher #5: worthwhile profit margins.",
+      "Margins widened by 11.7 points. Fisher #6: improving margins."
+     ],
+     "cons": []
+    },
+    {
+     "key": "greenblatt",
+     "short": "Greenblatt",
+     "name": "Joel Greenblatt (Magic Formula)",
+     "score": 67.5,
+     "verdict": "Partial fit",
+     "pros": [
+      "Return on capital ~41%: a good business by Greenblatt's first test."
+     ],
+     "cons": [
+      "Earnings yield (EBIT \u00f7 EV) 4.6%: not cheap by the Magic Formula."
+     ]
+    }
+   ],
+   "classic": null,
+   "kpis": {
+    "revenue_ttm": 49734631424,
+    "revenue_growth_yoy": 0.118,
+    "revenue_cagr": 0.1264,
+    "earnings_growth": 0.482,
+    "quarterly_revenue": [
+     11079166000,
+     11510307000,
+     12050762000,
+     12249757000,
+     12559938000
+    ],
+    "gross_margin": 0.5069,
+    "operating_margin": 0.3463,
+    "profit_margin": 0.2969,
+    "roe_avg": 0.3109,
+    "roic": 0.4109,
+    "roa": 0.1712,
+    "free_cash_flow": 9461053000.0,
+    "fcf_margin": 0.1902,
+    "total_cash": 8222952960,
+    "cash_runway_years": null,
+    "rule_of_40": 30.8,
+    "market_cap": 271114108928,
+    "pe": 18.82,
+    "forward_pe": 17.23,
+    "pb": 9.19,
+    "peg": 1.21,
+    "price_to_sales": 5.45,
+    "ev_to_ebitda": 18.23,
+    "earnings_yield": 0.0464,
+    "graham_number": 23.48,
+    "dividend_yield": 0.0,
+    "payout_ratio": 0.0,
+    "debt_to_equity": 0.54,
+    "current_ratio": 1.19,
+    "insider_pct": 0.0057,
+    "institutional_pct": 0.842,
+    "short_pct_float": 0.0199,
+    "beta": null
+   },
+   "valuation": {
+    "bear": 38.71,
+    "base": 55.17,
+    "bull": 86.75,
+    "growth": 0.1264,
+    "method": "average free cash flow, last 3 years",
+    "note": null,
+    "margin_of_safety": -0.1802
+   },
+   "recent_ipo": false,
+   "ipo": {
+    "months_listed": 292.9,
+    "first_trade_date": "2002-05-23",
+    "first_day_open": null,
+    "first_day_close": null,
+    "prospectus": null,
+    "checklist": []
+   },
+   "news": [],
+   "data_notes": [],
+   "stale": false,
+   "updated": "2026-10-21T19:50:29+00:00",
+   "memo": {
+    "headline": "WORTH RESEARCHING. Several lenses like it, others don't. Dig into the cons before buying.",
+    "business": "Netflix, Inc. (NFLX) is an entertainment company worth about $271.1B. It brought in $49.7B of revenue over the last year, up 12% from a year earlier. It keeps 35% of sales as operating profit.",
+    "bull": [
+     "Revenue grew 13% a year over the available history. Fisher's point #1 wants products with room for sales to keep growing for years. (Fisher)",
+     "Spends 8% of revenue on R&D. Fisher (#2, #3) wants management investing in future products. (Fisher)",
+     "Operating margin 35%. Fisher #5: worthwhile profit margins. (Fisher)",
+     "Margins widened by 11.7 points. Fisher #6: improving margins. (Fisher)"
+    ],
+    "bear": [
+     "Price ($65.11) exceeds the Graham Number ($23.48) \u2014 fails Graham's defensive-investor price test. (Graham)",
+     "P/E \u00d7 P/B = 173.0, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)",
+     "Current ratio of 1.19 is below Graham's 2.0 liquidity bar. (Graham)",
+     "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test. (Graham)"
+    ],
+    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 13% growth fading to 3%, 9% discount rate), fair value is roughly $55.17 a share (bear $38.71, bull $86.75) against a price of $65.11. The price is 18% above the base-case value, so you're paying for growth that hasn't happened yet.",
+    "watch": [
+     "Revenue growth stays near or above 12% (last reading).",
+     "Operating margin (35%) keeps rising as the company grows."
+    ],
+    "plan": "Put it on watch. A price around $41.38 would give the 25% margin of safety value investors look for. Re-check after the next earnings report.",
+    "buffett_view": "On Buffett's own tests this scores 61/100.",
     "ai": null
    }
   },

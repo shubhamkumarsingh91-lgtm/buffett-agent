@@ -22,3 +22,4 @@ SPCX    # added from the site's search
 NOW    # added from the site's search
 PNC    # added from the site's search
 UNH    # added from the site's search
+NFLX    # added from the site's search
