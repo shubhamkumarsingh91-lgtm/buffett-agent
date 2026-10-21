@@ -1,0 +1,20 @@
+# Shared long-term watchlist — one ticker per line, optional note after '#'.
+# Edit this file on GitHub (pencil icon) to add or remove stocks; the site
+# re-scores everything a few minutes after you save.
+# Use Yahoo's symbols, e.g. BRK-B (not BRK.B).
+KO      # Coca-Cola — Buffett holding, dividend compounder
+AXP     # American Express — Buffett holding
+AAPL    # Apple — Buffett's largest position for years
+BRK-B   # Berkshire Hathaway itself
+JNJ     # Johnson & Johnson — defensive healthcare
+PG      # Procter & Gamble — consumer staples
+COST    # Costco — quality retailer
+V       # Visa — payments network
+MA      # Mastercard — payments network
+MSFT    # Microsoft — software compounder
+GOOGL   # Alphabet
+AMZN    # Amazon
+NVDA    # Nvidia — high growth, for contrast
+JPM     # JPMorgan — bank
+PEP     # PepsiCo
+MCD     # McDonald's

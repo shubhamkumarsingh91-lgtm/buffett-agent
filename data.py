@@ -148,8 +148,10 @@ class StockData:
     def owner_earnings(self) -> Optional[float]:
         if None in (self.net_income, self.depreciation_amortization, self.capital_expenditures):
             return None
+        # FIX (Oct 2026): Yahoo's cash-flow "Change In Working Capital" is already the
+        # cash effect (negative = cash tied up), so it is ADDED, not subtracted.
         wc = self.change_in_working_capital or 0.0
-        return self.net_income + self.depreciation_amortization - abs(self.capital_expenditures) - wc
+        return self.net_income + self.depreciation_amortization - abs(self.capital_expenditures) + wc
 
     def intrinsic_value_per_share(self, discount_rate: float = 0.09, growth_rate: float = 0.04) -> Optional[float]:
         oe = self.owner_earnings()
@@ -210,6 +212,10 @@ def fetch_stock_data(ticker: str) -> StockData:
     equity_series = _series_from(bs, ["Common Stock Equity", "Stockholders Equity", "StockholdersEquity"])
     debt_series = _series_from(bs, ["Total Debt", "TotalDebt"])
     lt_debt_series = _series_from(bs, ["Long Term Debt", "LongTermDebt"])
+    # FIX (Oct 2026): Yahoo's .info has no totalCurrentAssets/Liabilities fields,
+    # so read them from the balance sheet (Graham's liquidity tests depend on them).
+    ca_series = _series_from(bs, ["Current Assets", "Total Current Assets", "CurrentAssets"])
+    cl_series = _series_from(bs, ["Current Liabilities", "Total Current Liabilities", "CurrentLiabilities"])
 
     da_series = _series_from(cf, ["Depreciation And Amortization", "Depreciation Amortization Depletion",
                                    "DepreciationAndAmortization"])
@@ -254,6 +260,17 @@ def fetch_stock_data(ticker: str) -> StockData:
     except Exception:
         notes.append("News feed unavailable.")
 
+    # FIX (Oct 2026): yfinance now reports dividendYield in percent (3.1 = 3.1%).
+    # Prefer dividendRate / price (always a true fraction); otherwise normalise.
+    price_now = info.get("currentPrice") or info.get("regularMarketPrice")
+    div_rate = info.get("dividendRate")
+    if div_rate and price_now:
+        dividend_yield = div_rate / price_now
+    else:
+        dividend_yield = info.get("dividendYield")
+        if dividend_yield is not None and dividend_yield > 0.25:
+            dividend_yield = dividend_yield / 100.0
+
     earnings_growth = info.get("earningsGrowth") or info.get("earningsQuarterlyGrowth")
     peg = info.get("pegRatio") or info.get("trailingPegRatio")
     pe = info.get("trailingPE")
@@ -278,7 +295,7 @@ def fetch_stock_data(ticker: str) -> StockData:
         eps_ttm=info.get("trailingEps"),
         earnings_growth_estimate=earnings_growth,
         peg_ratio=peg,
-        dividend_yield=info.get("dividendYield"),
+        dividend_yield=dividend_yield,
         dividend_rate=info.get("dividendRate"),
         payout_ratio=info.get("payoutRatio"),
         institutional_ownership_pct=info.get("heldPercentInstitutions"),
@@ -291,8 +308,8 @@ def fetch_stock_data(ticker: str) -> StockData:
         revenue_series=revenue_series,
         total_debt=debt_series[-1] if debt_series else info.get("totalDebt"),
         total_equity=equity_series[-1] if equity_series else None,
-        current_assets=info.get("totalCurrentAssets"),
-        current_liabilities=info.get("totalCurrentLiabilities"),
+        current_assets=ca_series[-1] if ca_series else None,
+        current_liabilities=cl_series[-1] if cl_series else None,
         long_term_debt=lt_debt_series[-1] if lt_debt_series else None,
         net_income=net_income_series[-1] if net_income_series else info.get("netIncomeToCommon"),
         depreciation_amortization=da_series[-1] if da_series else None,
