@@ -77,7 +77,57 @@ jobs:
           if [ "${{ steps.req.outputs.bad }}" = "1" ]; then
             gh issue comment $N --repo ${{ github.repository }} --body "Couldn't read a ticker from the title. Use 'Analyze: KO', 'Analyze: AMD, MU' or 'Analyze IPO: RDDT'."
           else
+            MISSING=$(python3 -c "import json,sys; d=json.load(open('docs/data/scores.json')); have={s['ticker'] for s in d['stocks']}; print(' '.join(t for t in sys.argv[1:] if t not in have))" ${{ steps.req.outputs.tickers }})
+            if [ -n "$MISSING" ]; then
+              gh issue comment $N --repo ${{ github.repository }} --body "No market data found for: $MISSING. Either it hasn't started trading yet (use **Upcoming IPOs → Check an upcoming IPO** on the site to analyze it from its prospectus), or it needs an exchange suffix, e.g. RELIANCE.NS for India or SHOP.TO for Canada. Removed from the list."
+              for T in $MISSING; do sed -i "/^$T[[:space:]]/d;/^$T\$/d" watchlist.txt ipos.txt; done
+              git add watchlist.txt ipos.txt && git commit -m "Remove $MISSING (no market data)" && git pull --rebase && git push || true
+            fi
             URL="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
             gh issue comment $N --repo ${{ github.repository }} --body "Done: ${{ steps.req.outputs.tickers }} on the ${{ steps.req.outputs.desk }}. Open $URL and hard-refresh in ~2 minutes (Pages needs a moment to publish)."
+          fi
+          gh issue close $N --repo ${{ github.repository }}
+
+  # "Save for both of us" on the Upcoming IPOs desk opens an issue titled
+  # "Add upcoming IPO: NAME" with the numbers as a ```json block.
+  upcoming:
+    if: >-
+      startsWith(github.event.issue.title, 'Add upcoming IPO') &&
+      contains(fromJSON('["OWNER","COLLABORATOR","MEMBER"]'), github.event.issue.author_association)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Validate and save
+        id: save
+        env:
+          BODY: ${{ github.event.issue.body }}
+        run: |
+          printf '%s' "$BODY" > /tmp/issue_body.txt
+          if ID=$(python add_upcoming.py /tmp/issue_body.txt 2>/tmp/err.txt); then
+            echo "id=$ID" >> $GITHUB_OUTPUT
+          else
+            echo "error=$(head -c 300 /tmp/err.txt | tr '\n' ' ')" >> $GITHUB_OUTPUT
+          fi
+      - name: Commit
+        if: steps.save.outputs.id != ''
+        run: |
+          git config user.name "investing-site-bot"
+          git config user.email "actions@github.com"
+          git add docs/data/upcoming.json
+          git diff --cached --quiet || git commit -m "Upcoming IPO: ${{ steps.save.outputs.id }} (issue #${{ github.event.issue.number }})"
+          git pull --rebase && git push
+      - name: Reply and close
+        env:
+          GH_TOKEN: ${{ github.token }}
+          N: ${{ github.event.issue.number }}
+        run: |
+          if [ -n "${{ steps.save.outputs.id }}" ]; then
+            gh issue comment $N --repo ${{ github.repository }} --body "Saved. Open https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/#up:${{ steps.save.outputs.id }} and hard-refresh in ~2 minutes."
+          else
+            gh issue comment $N --repo ${{ github.repository }} --body "Couldn't save: ${{ steps.save.outputs.error }} Use the Save button on the site so the numbers are in the right format."
           fi
           gh issue close $N --repo ${{ github.repository }}
