@@ -228,6 +228,7 @@ footer{margin-top:44px;color:var(--dim);font-size:11.5px;text-align:center;line-
     <div class="search">
       <label class="sbox"><span class="muted">⌕</span><input id="q" placeholder="Search or type a ticker to request it…" autocomplete="off"></label>
       <select id="sort"></select>
+      <button class="btn" onclick="exportDeskPdf(this)" title="Download every stock on this desk (search and sort applied) as a PDF">⬇ PDF</button>
     </div>
     <div class="req" id="req"></div>
     <div class="grid" id="grid"><div class="empty">Loading…</div></div>
@@ -239,6 +240,7 @@ footer{margin-top:44px;color:var(--dim);font-size:11.5px;text-align:center;line-
       <p>For companies that haven't started trading yet, when the real decision is whether to <b>apply</b>. There's no market data before listing, so this desk works from the prospectus (S-1 / 424B4 in the US, DRHP / RHP in India): you type in the price band, share count and a few years of revenue and profit, and it runs the IPO checks, a valuation at the band and a written memo instantly. <b>Save for both of us</b> puts it on the site for your friend too. Once it lists, it moves to the IPO Desk by itself.</p>
     </div>
     <div class="search"><span class="muted" style="flex:1;font-size:12.5px">Sorted by subscription closing date. Numbers are typed in from public sources; always verify against the prospectus.</span>
+      <button class="btn" onclick="exportUpcomingPdf(this)" title="Download all upcoming IPOs as a PDF">⬇ PDF</button>
       <button class="btn ipo" onclick="upForm()">＋ Check an upcoming IPO</button></div>
     <div class="grid" id="upGrid"><div class="empty">Loading…</div></div>
   </section>
@@ -297,7 +299,7 @@ footer{margin-top:44px;color:var(--dim);font-size:11.5px;text-align:center;line-
     <button class="btn" onclick="closeReview()">Cancel</button><button class="btn" onclick="applyReview(true)">Replace portfolio</button><button class="btn primary" onclick="applyReview(false)">Add selected</button></div>
 </div>
 <aside class="drawer" id="drawer" aria-hidden="true">
-  <div class="dh"><div><div class="t" id="dT">—</div><div class="muted" id="dS" style="font-size:12.5px"></div></div><button class="btn" onclick="closeD()">Close ✕</button></div>
+  <div class="dh"><div><div class="t" id="dT">—</div><div class="muted" id="dS" style="font-size:12.5px"></div></div><div style="display:flex;gap:8px"><button class="btn" onclick="exportOnePdf(this)" title="Download this full research memo as a PDF">⬇ PDF</button><button class="btn" onclick="closeD()">Close ✕</button></div></div>
   <div class="db" id="dB"></div>
 </aside>
 
@@ -416,6 +418,7 @@ function renderGrid(){
       <a class="btn ${D.btn}" target="_blank" rel="noopener" href="https://github.com/${REPO}/issues/new?title=${title}&body=${body}">Request analysis of ${esc(qu)} ↗</a>`;
     req.classList.add('on');
   } else req.classList.remove('on');
+  GRID_LIST = list;
   $('#grid').innerHTML = list.length ? list.map(card).join('') : (q ? '' : `<div class="empty">No stocks on this desk yet. Type a ticker above to request one.</div>`);
 }
 
@@ -458,6 +461,7 @@ function valRange(v, price){
 
 function openD(desk, t){
   const s = DATA.stocks.find(x=>x.ticker===t && x.desk===desk); if (!s) return;
+  DRAWER_ITEM = {kind:'stock', s};
   history.replaceState(null,'','#'+desk+':'+t);
   const ipo = desk==='ipo', M = s.memo, k = s.kpis;
   $('#dT').innerHTML = `<span class="mono">${esc(s.ticker)}</span> · ${esc(s.name||'')}`;
@@ -810,6 +814,7 @@ document.addEventListener('click',e=>{ if(!e.target.closest('.exp')) $('#expMenu
 tvEmbed($('#tape'),'embed-widget-ticker-tape.js',{symbols:[{proName:'AMEX:SPY',title:'S&P 500'},{proName:'NASDAQ:QQQ',title:'Nasdaq 100'},{proName:'AMEX:DIA',title:'Dow'},{proName:'AMEX:IWM',title:'Small caps'},{proName:'AMEX:IPO',title:'Renaissance IPO ETF'},{proName:'TVC:US10Y',title:'10-yr yield'},{proName:'TVC:GOLD',title:'Gold'}],showSymbolLogo:true,isTransparent:true,displayMode:'adaptive',colorTheme:'dark',locale:'en'});
 </script>
 <script src="upcoming.js"></script>
+<script src="export.js"></script>
 <script>load();</script>
 </body>
 </html>
