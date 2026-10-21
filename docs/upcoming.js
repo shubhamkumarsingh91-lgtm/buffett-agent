@@ -190,6 +190,7 @@ function findUp(id){ return UPCOMING.find(u => u.id === id) || store.get('ltl-up
 function openUp(id, given){
   const ipo = given || findUp(id); if (!ipo) return;
   const a = analyzeUpcoming(ipo), k = a.k, v = a.valuation;
+  DRAWER_ITEM = {kind: 'up', ipo};
   if (!given) history.replaceState(null, '', '#up:' + id);
   $('#dT').innerHTML = `${esc(ipo.name)} <span class="mono" style="font-size:14px;color:var(--mute)">${esc(ipo.symbol || '')}</span>`;
   $('#dS').textContent = ['Upcoming IPO', ipo.exchange, ipo.sector, `price band ${cp(ipo, a.priceLo)}–${cp(ipo, a.price)}`, ipo.lot_size ? `lot ${ipo.lot_size}` : ''].filter(Boolean).join('  ·  ');
