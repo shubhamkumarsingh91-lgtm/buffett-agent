@@ -9,7 +9,7 @@ name: Update investing site
 on:
   push:
     branches: [main]
-    paths: ["watchlist.txt", "data.py", "strategies.py", "build_site.py"]
+    paths: ["watchlist.txt", "ipos.txt", "data.py", "strategies.py", "build_site.py", "memo.py", "edgar.py"]
   workflow_dispatch:
   schedule:
     - cron: "30 22 * * 1-5"   # backup only; GitHub's timer can be late
@@ -32,7 +32,9 @@ jobs:
           python-version: "3.11"
           cache: pip
       - run: pip install -r requirements.txt
-      - name: Score the watchlist
+      - name: Score both desks
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}   # optional; memo works without it
         run: python build_site.py
       - name: Save results
         if: always()

@@ -154,7 +154,9 @@ def buffett_score(d: StockData, discount_rate: float = 0.09, growth_rate: float 
         scores.append(60.0); weights.append(0.10)
 
     # Margin of safety
-    iv = d.intrinsic_value_per_share(discount_rate, growth_rate)
+    # v2: use the bear/base/bull DCF (company's own growth rate) instead of a flat 20x owner earnings,
+    # which made almost every quality business look 100%+ overpriced.
+    iv = valuation(d)["base"]
     if iv is not None and d.price:
         if iv <= 0:
             scores.append(0.0); weights.append(0.15)
@@ -171,7 +173,7 @@ def buffett_score(d: StockData, discount_rate: float = 0.09, growth_rate: float 
                 cons.append(f"Trading ~{abs(mos):.0%} above estimated intrinsic value — little to no margin of safety.")
     else:
         scores.append(50.0); weights.append(0.15)
-        cons.append("Insufficient cash-flow data to estimate intrinsic value / margin of safety.")
+        cons.append("No positive free cash flow yet, so there's no intrinsic value / margin of safety to estimate.")
 
     total_w = sum(weights)
     composite = sum(s * w for s, w in zip(scores, weights)) / total_w if total_w else 50.0
@@ -427,3 +429,345 @@ def overall_verdict(results: list) -> dict:
         "pros": all_pros,
         "cons": all_cons,
     }
+
+
+# ══════════════════════════════════════════════════════════════════════════
+# v2 (Oct 2026): valuation range, two more company lenses, two IPO lenses,
+# IPO checklist and desk-level verdicts.
+# ══════════════════════════════════════════════════════════════════════════
+
+def _band(x, steps):
+    """steps: list of (threshold, score) checked top-down with x >= threshold; last item is the floor score."""
+    for th, sc in steps[:-1]:
+        if x >= th:
+            return sc
+    return steps[-1][1]
+
+
+def growth_estimate(d: StockData) -> Optional[float]:
+    """Middle of the growth signals we have, clamped to a sane long-run range."""
+    cands = [g for g in (d.earnings_growth_estimate, d.revenue_cagr, d.revenue_growth_yoy) if g is not None]
+    if not cands:
+        return None
+    return max(-0.05, min(0.25, statistics.median(cands)))
+
+
+def _dcf_per_share(base: float, g: float, r: float = 0.09, tg: float = 0.03, years: int = 10) -> float:
+    """Two-stage DCF: growth g for 5 years, fading linearly to tg by year 10, then a terminal value."""
+    pv, cf = 0.0, base
+    for y in range(1, years + 1):
+        gy = g if y <= 5 else g + (tg - g) * (y - 5) / (years - 5)
+        cf *= 1 + gy
+        pv += cf / (1 + r) ** y
+    terminal = cf * (1 + tg) / (r - tg)
+    return pv + terminal / (1 + r) ** years
+
+
+def valuation(d: StockData) -> dict:
+    """Bear / base / bull value per share from free cash flow (or owner earnings)."""
+    out = {"bear": None, "base": None, "bull": None, "growth": None, "method": None, "note": None,
+           "margin_of_safety": None}
+    shares = d.shares_outstanding
+    if not shares:
+        out["note"] = "Share count unavailable."
+        return out
+    if d.free_cash_flow is not None and d.free_cash_flow > 0:
+        base_cf, out["method"] = d.free_cash_flow / shares, "free cash flow"
+    elif (d.owner_earnings() or 0) > 0:
+        base_cf, out["method"] = d.owner_earnings() / shares, "owner earnings"
+    else:
+        out["note"] = "Not meaningful: the company doesn't generate positive free cash flow yet."
+        return out
+    g = growth_estimate(d)
+    g = 0.04 if g is None else g
+    out["growth"] = round(g, 4)
+    bear_g = g * 0.5 if g > 0 else g - 0.03
+    bull_g = min(g * 1.5 + 0.02, 0.35)
+    out["bear"] = round(_dcf_per_share(base_cf, bear_g), 2)
+    out["base"] = round(_dcf_per_share(base_cf, g), 2)
+    out["bull"] = round(_dcf_per_share(base_cf, bull_g), 2)
+    if d.price and out["base"] > 0:
+        out["margin_of_safety"] = round((out["base"] - d.price) / out["base"], 4)
+    return out
+
+
+# ── Philip Fisher — growth quality (Common Stocks and Uncommon Profits, 1958) ──
+def fisher_score(d: StockData) -> StrategyResult:
+    pros, cons, parts = [], [], []
+    cagr = d.revenue_cagr
+    if cagr is not None:
+        parts.append((_band(cagr, [(0.15, 90), (0.10, 75), (0.05, 55), (0.0, 40), (None, 20)]), 0.25))
+        (pros if cagr >= 0.10 else cons).append(
+            f"Revenue grew {cagr:.0%} a year over the available history. Fisher's point #1 wants products "
+            f"with room for sales to keep growing for years." if cagr >= 0.10 else
+            f"Revenue grew only {cagr:.0%} a year, weak on Fisher's point #1 (sales growth potential).")
+    else:
+        parts.append((50, 0.25))
+    if d.rnd_to_revenue is not None:
+        r = d.rnd_to_revenue
+        parts.append((75 if 0.03 <= r <= 0.15 else 65 if r > 0.15 else 45, 0.10))
+        if r >= 0.03:
+            pros.append(f"Spends {r:.0%} of revenue on R&D. Fisher (#2, #3) wants management investing in future products.")
+    else:
+        parts.append((50, 0.10))
+    om = d.operating_margin_ttm
+    if om is not None:
+        parts.append((_band(om, [(0.20, 85), (0.10, 65), (0.0, 45), (None, 20)]), 0.20))
+        (pros if om >= 0.15 else cons).append(
+            f"Operating margin {om:.0%}. Fisher #5: worthwhile profit margins." if om >= 0.15 else
+            f"Operating margin {om:.0%}, below what Fisher called a worthwhile margin (#5).")
+    else:
+        parts.append((50, 0.20))
+    oms = [v for v in d.operating_margin_series if v is not None]
+    if len(oms) >= 2:
+        delta = oms[-1] - oms[0]
+        parts.append((85 if delta >= 0.02 else 60 if delta > -0.02 else 30, 0.15))
+        if delta >= 0.02:
+            pros.append(f"Margins widened by {delta*100:.1f} points. Fisher #6: improving margins.")
+        elif delta <= -0.02:
+            cons.append(f"Margins shrank by {abs(delta)*100:.1f} points. Fisher #6 looks for improvement.")
+    else:
+        parts.append((55, 0.15))
+    sh = [v for v in d.shares_series if v]
+    if len(sh) >= 2:
+        ch = (sh[-1] - sh[0]) / sh[0]
+        parts.append((80 if ch <= 0 else 60 if ch <= 0.03 else 30, 0.15))
+        if ch > 0.03:
+            cons.append(f"Share count up {ch:.0%}. Fisher #13 warns against growth funded by diluting owners.")
+    else:
+        parts.append((50, 0.15))
+    ins = d.insider_ownership_pct
+    if ins is not None:
+        parts.append((85 if ins >= 0.10 else 60 if ins >= 0.02 else 45, 0.15))
+        if ins >= 0.10:
+            pros.append(f"Insiders own {ins:.0%}. Management has real skin in the game (Fisher #14–15).")
+    else:
+        parts.append((50, 0.15))
+    sc = sum(s * w for s, w in parts) / sum(w for _, w in parts)
+    return StrategyResult("Philip Fisher (Growth Quality)", round(sc, 1), _verdict_from_score(sc), pros, cons)
+
+
+# ── Joel Greenblatt — Magic Formula (The Little Book That Beats the Market, 2005) ──
+_GB_EXCLUDED = {"financial services", "financials", "utilities"}
+
+
+def greenblatt_score(d: StockData) -> StrategyResult:
+    pros, cons, metrics = [], [], {}
+    if (d.sector or "").lower() in _GB_EXCLUDED:
+        return StrategyResult("Joel Greenblatt (Magic Formula)", 50.0, "Not applicable",
+                              [], [f"Greenblatt excludes {d.sector} companies; their balance sheets don't fit the formula."])
+    ic, ev, ebit = d.invested_capital, d.enterprise_value, d.ebit
+    parts = []
+    if ebit is not None and ic and ic > 0:
+        roic = ebit / ic
+        metrics["roic"] = round(roic, 4)
+        parts.append(_band(roic, [(0.25, 90), (0.15, 70), (0.08, 50), (None, 25)]))
+        (pros if roic >= 0.15 else cons).append(
+            f"Return on capital ~{roic:.0%}: a good business by Greenblatt's first test." if roic >= 0.15 else
+            f"Return on capital ~{roic:.0%}: below what the Magic Formula looks for.")
+    else:
+        parts.append(50)
+    if ebit is not None and ev and ev > 0:
+        ey = ebit / ev
+        metrics["earnings_yield"] = round(ey, 4)
+        parts.append(_band(ey, [(0.10, 90), (0.07, 70), (0.04, 45), (None, 20)]))
+        (pros if ey >= 0.07 else cons).append(
+            f"Earnings yield (EBIT ÷ EV) {ey:.1%}: a cheap price by Greenblatt's second test." if ey >= 0.07 else
+            f"Earnings yield (EBIT ÷ EV) {ey:.1%}: not cheap by the Magic Formula.")
+    else:
+        parts.append(50)
+    sc = sum(parts) / len(parts)
+    return StrategyResult("Joel Greenblatt (Magic Formula)", round(sc, 1), _verdict_from_score(sc), pros, cons, metrics)
+
+
+# ── Jay Ritter — what decades of IPO research says predicts long-run returns ──
+def ritter_score(d: StockData) -> StrategyResult:
+    pros, cons, parts = [], [], []
+    rev = d.revenue_ttm
+    if rev:
+        parts.append((_band(rev, [(1e9, 80), (2.5e8, 65), (5e7, 45), (None, 25)]), 0.25))
+        if rev < 2.5e8:
+            cons.append(f"Small company (${rev/1e6:,.0f}M revenue). Ritter's data shows the smallest IPOs drive "
+                        f"the long-run underperformance.")
+        else:
+            pros.append(f"Revenue of ${rev/1e9:,.2f}B. Ritter finds larger IPOs roughly match the market over time.")
+    else:
+        parts.append((40, 0.25))
+    ps = d.price_to_sales
+    if ps:
+        parts.append((_band(-ps, [(-6, 85), (-12, 60), (-24, 35), (None, 15)]), 0.30))
+        if ps <= 6:
+            pros.append(f"Price/sales {ps:.1f}, near the historical tech-IPO norm of ~6.")
+        else:
+            cons.append(f"Price/sales {ps:.1f}. Ritter: at high multiples 'the upside potential is more limited and "
+                        f"the downside potential is greater' (historical tech-IPO norm ~6).")
+    else:
+        parts.append((50, 0.30))
+    pm = d.profit_margin_ttm
+    if pm is not None:
+        parts.append((70 if pm > 0 else 45, 0.10))
+        (pros if pm > 0 else cons).append("Already profitable." if pm > 0 else
+            "Not yet profitable. For tech IPOs Ritter sees only a weak link to later returns, but it raises the stakes on growth.")
+    else:
+        parts.append((50, 0.10))
+    m = d.months_listed
+    if m is not None:
+        parts.append((30 if m < 6 else 55 if m < 12 else 75, 0.15))
+        if m < 6:
+            cons.append(f"Listed {m:.0f} months ago. Studies find prices tend to drop when the ~180-day lock-up ends, "
+                        f"especially for VC-backed IPOs.")
+    else:
+        parts.append((50, 0.15))
+    rg = d.revenue_growth_yoy
+    if rg is not None:
+        parts.append((_band(rg, [(0.20, 80), (0.0, 60), (None, 25)]), 0.20))
+        if rg < 0:
+            cons.append(f"Revenue shrinking {rg:.0%} year over year. Weak post-IPO operating performance is one of "
+                        f"the clearest predictors of poor IPO returns.")
+        elif rg >= 0.20:
+            pros.append(f"Revenue up {rg:.0%} year over year since listing: operating performance is holding up.")
+    else:
+        parts.append((50, 0.20))
+    sc = sum(s * w for s, w in parts) / sum(w for _, w in parts)
+    return StrategyResult("Jay Ritter (IPO Research)", round(sc, 1), _verdict_from_score(sc), pros, cons)
+
+
+# ── Bill Gurley — revenue quality ("All Revenue Is Not Created Equal", 2011) ──
+def gurley_score(d: StockData) -> StrategyResult:
+    pros, cons, parts = [], [], []
+    gm = d.gross_margin_ttm
+    if gm is not None:
+        parts.append((_band(gm, [(0.70, 90), (0.50, 70), (0.30, 45), (None, 20)]), 0.25))
+        (pros if gm >= 0.50 else cons).append(
+            f"Gross margin {gm:.0%}: high-quality revenue (Gurley factor #5)." if gm >= 0.50 else
+            f"Gross margin {gm:.0%}: Gurley notes low-margin businesses deserve lower multiples (#5).")
+    else:
+        parts.append((50, 0.25))
+    rg = d.revenue_growth_yoy
+    if rg is not None:
+        parts.append((_band(rg, [(0.40, 90), (0.25, 75), (0.10, 55), (None, 30)]), 0.20))
+        if rg >= 0.25:
+            pros.append(f"Revenue growing {rg:.0%} a year (#10). Gurley adds that growth only counts if it ends in cash flow.")
+    else:
+        parts.append((50, 0.20))
+    oms = [v for v in d.operating_margin_series if v is not None]
+    if len(oms) >= 2:
+        delta = oms[-1] - oms[0]
+        parts.append((90 if delta >= 0.05 else 70 if delta >= 0.01 else 55 if delta > -0.01 else 25, 0.20))
+        (pros if delta >= 0.01 else cons).append(
+            f"Margins up {delta*100:.1f} points as it grows: it scales efficiently (#6 marginal profitability)." if delta >= 0.01 else
+            f"Margins not improving with scale ({delta*100:+.1f} points). Gurley's #6 warning sign.")
+    else:
+        parts.append((50, 0.20))
+    q = [v for v in d.quarterly_revenue if v]
+    if len(q) >= 3:
+        ups = sum(1 for a, b in zip(q, q[1:]) if b > a) / (len(q) - 1)
+        parts.append((85 if ups >= 0.99 else 65 if ups >= 0.66 else 35, 0.15))
+        if ups >= 0.99:
+            pros.append("Revenue rose every recent quarter: visible, predictable revenue (#3).")
+        elif ups < 0.66:
+            cons.append("Quarterly revenue is bumpy: low visibility (#3).")
+    else:
+        parts.append((50, 0.15))
+    if rg is not None and d.fcf_margin is not None:
+        r40 = (rg + d.fcf_margin) * 100
+        parts.append((85 if r40 >= 40 else 60 if r40 >= 25 else 30, 0.20))
+        (pros if r40 >= 40 else cons).append(
+            f"Rule of 40 score {r40:.0f} (growth % + free-cash-flow margin %): healthy balance of growth and cash." if r40 >= 40 else
+            f"Rule of 40 score {r40:.0f}: growth plus cash margin falls short of 40.")
+    else:
+        parts.append((50, 0.20))
+    cons.append("Gurley's moat, network-effect, lock-in, customer-concentration, partner-dependency and "
+                "organic-demand factors need the prospectus: see the checklist.")
+    sc = sum(s * w for s, w in parts) / sum(w for _, w in parts)
+    return StrategyResult("Bill Gurley (Revenue Quality)", round(sc, 1), _verdict_from_score(sc), pros, cons)
+
+
+def ipo_checklist(d: StockData, prospectus: Optional[dict] = None) -> list:
+    """The things to check before buying a recent IPO. status: pass | warn | fail | info."""
+    from datetime import date, timedelta
+    items = []
+    m = d.months_listed
+    if d.first_trade_date and m is not None:
+        lock = date.fromisoformat(d.first_trade_date[:10]) + timedelta(days=180)
+        if lock > date.today():
+            items.append({"label": "Lock-up expiry", "status": "fail",
+                          "detail": f"Estimated {lock:%b %d, %Y} (~180 days after listing). Insiders can sell after this; prices often dip."})
+        else:
+            items.append({"label": "Lock-up expiry", "status": "pass", "detail": f"Passed around {lock:%b %Y} (estimated)."})
+        items.append({"label": "Track record as a public company", "status": "pass" if m >= 9 else "warn",
+                      "detail": f"{m:.0f} months listed (~{int(m // 3)} quarterly reports). Graham warned against buying new issues; a few public quarters give real evidence."})
+    else:
+        items.append({"label": "Listing date", "status": "info", "detail": "Not available from free data."})
+    if d.first_day_open and d.price:
+        vs = d.price / d.first_day_open - 1
+        items.append({"label": "Price vs first-day open", "status": "warn" if vs > 1.0 else "info",
+                      "detail": f"{vs:+.0%} vs ${d.first_day_open:,.2f} on day one" +
+                                (". It has more than doubled, so check that the hype matches the numbers." if vs > 1 else ".")})
+    if d.first_day_open and d.first_day_close:
+        pop = d.first_day_close / d.first_day_open - 1
+        items.append({"label": "First-day move", "status": "info",
+                      "detail": f"{pop:+.0%} open-to-close. Research finds the first-day move doesn't predict long-run returns."})
+    if d.profit_margin_ttm is not None:
+        items.append({"label": "Profitable", "status": "pass" if d.profit_margin_ttm > 0 else "warn",
+                      "detail": f"Net margin {d.profit_margin_ttm:.0%}."})
+    run = d.cash_runway_years
+    if d.free_cash_flow is not None:
+        if d.free_cash_flow >= 0:
+            items.append({"label": "Cash runway", "status": "pass", "detail": "Generates its own cash; no funding risk."})
+        elif run is not None:
+            items.append({"label": "Cash runway", "status": "fail" if run < 2 else "warn",
+                          "detail": f"About {run:.1f} years of cash at the current burn rate."})
+    if d.insider_ownership_pct is not None:
+        items.append({"label": "Insider ownership", "status": "pass" if d.insider_ownership_pct >= 0.10 else "warn",
+                      "detail": f"{d.insider_ownership_pct:.0%} owned by insiders. Check the prospectus for dual-class voting."})
+    if d.short_pct_float is not None:
+        items.append({"label": "Short interest", "status": "warn" if d.short_pct_float >= 0.10 else "pass",
+                      "detail": f"{d.short_pct_float:.0%} of the float is sold short."})
+    if d.price_to_sales:
+        items.append({"label": "Valuation (price/sales)", "status": "pass" if d.price_to_sales <= 6 else "warn" if d.price_to_sales <= 15 else "fail",
+                      "detail": f"{d.price_to_sales:.1f}x sales (historical tech-IPO norm ~6x)."})
+    if prospectus and prospectus.get("url"):
+        items.append({"label": "Read the prospectus", "status": "info",
+                      "detail": f"{prospectus['form']} filed {prospectus['date']}: business, risk factors, use of proceeds, share classes, lock-up terms.",
+                      "link": prospectus["url"]})
+    elif prospectus and prospectus.get("company_url"):
+        items.append({"label": "Read the prospectus", "status": "info",
+                      "detail": "Find the S-1 / 424B4 in the company's SEC filings.", "link": prospectus["company_url"]})
+    return items
+
+
+def company_verdict(results: list) -> dict:
+    """Company desk: average of all five lenses."""
+    scored = [r for r in results if r.verdict != "Not applicable"]
+    avg = sum(r.score for r in scored) / len(scored) if scored else 0.0
+    strong = sum(1 for r in scored if r.score >= 65)
+    weak = sum(1 for r in scored if r.score < 40)
+    if avg >= 65 and strong >= 3:
+        label, why = "BUY candidate", "Most of the great investors' tests agree. This deserves serious research time."
+    elif avg >= 55:
+        label, why = "WORTH RESEARCHING", "Several lenses like it, others don't. Dig into the cons before buying."
+    elif weak >= 3:
+        label, why = "LIKELY PASS", "Most lenses see meaningful gaps versus their criteria."
+    else:
+        label, why = "HOLD / NEUTRAL", "No strong signal either way on the available data."
+    return {"label": label, "rationale": why, "average_score": round(avg, 1)}
+
+
+def ipo_verdict(results: list, d: StockData) -> dict:
+    """IPO desk: Ritter + Gurley average, with hard rules for lock-up and cash risk."""
+    avg = sum(r.score for r in results) / len(results) if results else 0.0
+    m, run = d.months_listed, d.cash_runway_years
+    if run is not None and run < 1.5:
+        label, why = "PASS (cash risk)", f"Only ~{run:.1f} years of cash left at today's burn. Likely to raise money and dilute owners."
+    elif m is not None and m < 6:
+        label, why = "WAIT (lock-up)", "Too new: let the lock-up expire and see two quarterly reports before deciding."
+    elif avg >= 65:
+        label, why = "BUY candidate (start small)", "Strong on IPO research and revenue quality. If you buy, start small and add as it proves itself."
+    elif avg >= 52:
+        label, why = "WATCH", "Promising, but not yet convincing. Watch the next two quarters."
+    elif avg >= 40:
+        label, why = "WAIT for proof", "Too many open questions on valuation or business quality."
+    else:
+        label, why = "PASS", "Weak on both IPO research and revenue quality."
+    return {"label": label, "rationale": why, "average_score": round(avg, 1)}

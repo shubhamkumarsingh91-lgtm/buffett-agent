@@ -1,0 +1,74 @@
+# DISCLAIMER: Independent personal project. Not tied to any employer or agency.
+# Public market data only. No internal or personal data (no SSNs/PHI). Not financial advice.
+#
+# "Request analysis" button on the website opens a GitHub issue titled
+#   "Analyze IPO: TICKER"   -> added to ipos.txt
+#   "Analyze: TICKER"       -> added to watchlist.txt
+# Only the repo owner and collaborators can trigger it (add your friend under
+# Settings -> Collaborators). The job adds the ticker, re-scores, comments the
+# link on the issue and closes it.
+name: Request analysis
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: update-site
+  cancel-in-progress: false
+
+jobs:
+  add:
+    if: >-
+      startsWith(github.event.issue.title, 'Analyze') &&
+      contains(fromJSON('["OWNER","COLLABORATOR","MEMBER"]'), github.event.issue.author_association)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Parse request
+        id: req
+        env:
+          TITLE: ${{ github.event.issue.title }}
+        run: |
+          T=$(echo "$TITLE" | sed -E 's/^Analyze( IPO)?:[[:space:]]*//' | tr '[:lower:]' '[:upper:]' | tr -d '[:space:]')
+          if ! echo "$T" | grep -Eq '^[A-Z0-9.^-]{1,10}$'; then echo "bad=1" >> $GITHUB_OUTPUT; exit 0; fi
+          case "$TITLE" in "Analyze IPO"*) F=ipos.txt; D="IPO Desk";; *) F=watchlist.txt; D="Company Desk";; esac
+          echo "ticker=$T" >> $GITHUB_OUTPUT; echo "file=$F" >> $GITHUB_OUTPUT; echo "desk=$D" >> $GITHUB_OUTPUT
+          if grep -Eq "^$T([[:space:]]|$)" "$F"; then echo "exists=1" >> $GITHUB_OUTPUT
+          else printf '%s    # requested via issue #%s\n' "$T" "${{ github.event.issue.number }}" >> "$F"; fi
+      - name: Score
+        if: steps.req.outputs.bad != '1'
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          pip install -r requirements.txt
+          python build_site.py
+      - name: Save
+        if: steps.req.outputs.bad != '1'
+        run: |
+          git config user.name "investing-site-bot"
+          git config user.email "actions@github.com"
+          git add watchlist.txt ipos.txt docs/data
+          git diff --cached --quiet || git commit -m "Add ${{ steps.req.outputs.ticker }} (issue #${{ github.event.issue.number }})"
+          git pull --rebase && git push
+      - name: Reply and close
+        env:
+          GH_TOKEN: ${{ github.token }}
+          N: ${{ github.event.issue.number }}
+        run: |
+          if [ "${{ steps.req.outputs.bad }}" = "1" ]; then
+            gh issue comment $N --repo ${{ github.repository }} --body "Couldn't read a ticker from the title. Use 'Analyze: KO' or 'Analyze IPO: RDDT'."
+          else
+            URL="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/#${{ steps.req.outputs.ticker }}"
+            gh issue comment $N --repo ${{ github.repository }} --body "Done: ${{ steps.req.outputs.ticker }} is on the ${{ steps.req.outputs.desk }}. Open: $URL (the page refreshes within ~2 minutes)."
+          fi
+          gh issue close $N --repo ${{ github.repository }}

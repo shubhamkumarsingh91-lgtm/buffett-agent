@@ -5,22 +5,21 @@
 > data (no SSNs/PHI). Educational research only, **not financial advice**. This
 > project never connects to a brokerage and never places trades.
 
-A shareable website for long-term investing research. Every stock on a shared
-watchlist is scored 0–100 through three classic investors' public criteria:
+A shareable website for long-term investing research with **two desks**:
 
-| Lens | What it rewards |
-|---|---|
-| **Buffett & Munger** (quality compounding) | High, stable margins (moat), low debt, high ROE, buybacks, margin of safety vs. an owner-earnings value estimate |
-| **Benjamin Graham** (deep value) | Price below the Graham Number, P/E × P/B under 22.5, current ratio ≥ 2, debt covered by working capital, no loss years, dividends |
-| **Peter Lynch** (growth at a reasonable price) | PEG under 1, growth category, manageable debt, low institutional ownership |
+| Desk | List file | Judged by |
+|---|---|---|
+| 🚀 **IPO Desk** (listed in the last ~3 years) | `ipos.txt` | **Jay Ritter** (decades of IPO research: size, price/sales, post-IPO operating performance, lock-up) and **Bill Gurley** ("All Revenue Is Not Created Equal": gross margin, growth, marginal profitability, predictability, Rule of 40), with **Philip Fisher** as a growth-quality check, an **IPO checklist** (lock-up, track record, first-day move, cash runway, insider ownership, short interest, valuation) and a link to the **SEC prospectus** |
+| 🏛 **Company Desk** | `watchlist.txt` | **Buffett & Munger**, **Benjamin Graham**, **Peter Lynch**, **Philip Fisher**, **Joel Greenblatt** (Magic Formula) |
 
-The average gives a headline verdict: **BUY candidate / WORTH RESEARCHING /
-HOLD-NEUTRAL / LIKELY PASS**, with plain-English pros and cons for each lens.
+Every stock gets a **research memo** (business in plain words, bull and bear case, valuation, what to watch, what to do if you act), a **KPI panel** (growth, profitability, cash, valuation, balance sheet, ownership) and a **bear/base/bull valuation** from a two-stage DCF. The memo is written by rules from the numbers, so **no API key is needed**. If you add a free `GEMINI_API_KEY` repo secret, an extra AI "analyst's take" paragraph appears.
+
+**Request analysis:** type a ticker in a desk's search box and click *Request analysis*. This opens a pre-filled GitHub issue; submitting it runs `.github/workflows/request.yml`, which adds the ticker, re-scores and replies with the link. Only the owner and collaborators can trigger it.
 
 ## How it works
 
 ```
-watchlist.txt ──► GitHub Action (build_site.py) ──► docs/data/scores.json ──► docs/index.html (GitHub Pages)
+watchlist.txt + ipos.txt ──► GitHub Action (build_site.py) ──► docs/data/scores.json ──► docs/index.html (GitHub Pages)
                   fetches Yahoo data, runs the        + history.json            reads the JSON, no keys,
                   three lenses, keeps last good                                 no server
                   result if a fetch fails
@@ -61,9 +60,20 @@ python -m http.server -d docs 8000        # open http://localhost:8000
 |---|---|
 | `data.py` | Fetches fundamentals from `yfinance` into a `StockData` object; retries on rate limits. |
 | `strategies.py` | The three scoring lenses and `overall_verdict()`. Pure functions, no network. |
-| `build_site.py` | Scores the watchlist, writes `docs/data/scores.json` and `history.json`. |
+| `build_site.py` | Scores both desks, writes `docs/data/scores.json` and `history.json`. |
+| `memo.py` | Writes each stock's research memo (optional Gemini paragraph). |
+| `edgar.py` | Finds the IPO prospectus (424B4 / S-1) on SEC EDGAR, no key needed. |
+| `ipos.txt` | The IPO Desk list. |
 | `docs/index.html` | The website (single file). |
 | `watchlist.txt` | The shared list of tickers. |
+
+## v2 (Oct 2026)
+
+* Two desks (IPO + Company); new lenses: Fisher, Greenblatt, Ritter, Gurley.
+* Valuation is now a two-stage DCF on free cash flow with the company's own growth rate
+  (bear/base/bull). The old flat 20x-owner-earnings estimate made quality businesses like
+  Coca-Cola and Apple look 100%+ overpriced.
+* KPI panel, research memo, IPO checklist, SEC prospectus link, request-analysis workflow.
 
 ## Fixes in the October 2026 rebuild
 
