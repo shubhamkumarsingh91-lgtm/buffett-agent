@@ -37,17 +37,19 @@ function jobLine(stage, detail){
   const s = JOB ? Math.round((Date.now() - JOB.start) / 1000) : 0;
   const steps = ['Starting', 'Waiting for a server', 'Fetching data & scoring', 'Loading the result'];
   const i = steps.indexOf(stage);
-  jobShow(`<div class="jh"><b>⚡ Analyzing <span class="mono">${esc(JOB.t)}</span> for the ${DESKS[JOB.desk].title}</b><span class="muted">${s}s · usually about a minute</span></div>
+  jobShow(`<div class="jh"><b>⚡ Analyzing <span class="mono">${esc(JOB.list.join(', '))}</span> for the ${DESKS[JOB.desk].title}</b><span class="muted">${s}s · usually ${JOB.list.length > 3 ? 'a minute or two' : 'about a minute'}</span></div>
     <div class="steps">${steps.map((x, j) => `<span class="${j < i ? 'done' : j === i ? 'now' : ''}">${j < i ? '✓' : j === i ? '◌' : '○'} ${x}</span>`).join('')}</div>
     ${detail ? `<div class="muted" style="font-size:12px;margin-top:6px">${detail}</div>` : ''}`);
 }
 
 async function analyzeNow(t, desk){
-  t = String(t || '').trim().toUpperCase();
-  if (!/^[A-Z0-9][A-Z0-9.\-^]{0,14}$/.test(t)) return;
+  // one ticker, or a comma-separated list from the portfolio (max 15, one run)
+  const list = [...new Set(String(t || '').toUpperCase().split(/[,\s]+/).filter(x => /^[A-Z0-9][A-Z0-9.\-^]{0,14}$/.test(x)))].slice(0, 15);
+  if (!list.length) return;
+  t = list.join(',');
   if (!ghToken()){ ghSetup(() => analyzeNow(t, desk)); return; }
-  if (JOB && !JOB.done){ jobShow(`Already analyzing <b class="mono">${esc(JOB.t)}</b>. One at a time; this one will be ready shortly.`, 'warn'); return; }
-  JOB = {t, desk, start: Date.now(), done: false, stage: 'Starting', run: null};
+  if (JOB && !JOB.done){ jobShow(`Already analyzing <b class="mono">${esc(JOB.list.join(', '))}</b>. One at a time; this one will be ready shortly.`, 'warn'); return; }
+  JOB = {t, list, desk, from: view, start: Date.now(), done: false, stage: 'Starting', run: null};
   jobLine('Starting');
   JOB.tick = setInterval(() => JOB && !JOB.done && jobLine(JOB.stage, JOB.detail), 1000);
   try {
@@ -89,7 +91,7 @@ async function failReason(run){
     const r = await gh(`/actions/runs/${run.id}/jobs`);
     const steps = ((await r.json()).jobs || [])[0]?.steps || [];
     const bad = steps.find(s => s.conclusion === 'failure');
-    if (bad && bad.name === 'Score it') return `No market data for <b class="mono">${esc(JOB.t)}</b>. It may not be listed yet, be a typo, or need an exchange suffix (India: <span class="mono">.NS</span>, Canada: <span class="mono">.TO</span>). If it's an IPO that hasn't listed, use <b>Upcoming IPOs → ⤓ Extract</b>.`;
+    if (bad && bad.name === 'Score it') return `No market data for <b class="mono">${esc(JOB.list.join(', '))}</b>. It may not be listed yet, be a typo, or need an exchange suffix (India: <span class="mono">.NS</span>, Canada: <span class="mono">.TO</span>). If it's an IPO that hasn't listed, use <b>Upcoming IPOs → ⤓ Extract</b>.`;
   } catch (e){}
   return `The analysis didn't finish. <a href="${run.html_url}" target="_blank" rel="noopener">See what happened on GitHub ↗</a>`;
 }
@@ -105,17 +107,26 @@ async function finish(){
     DATA = s; HIST = h || HIST;
     $('#cIpo').textContent = DATA.stocks.filter(x => x.desk === 'ipo').length;
     $('#cCo').textContent = DATA.stocks.filter(x => x.desk === 'company').length;
-    const {t, desk} = JOB, secs = Math.round((Date.now() - JOB.start) / 1000);
+    const {list, desk, from} = JOB, secs = Math.round((Date.now() - JOB.start) / 1000);
     stopJob();
+    const norm = x => /\.(NS|BO|L|TO|V|HK|T|AX|DE|PA|AS|SW|MI|MC|SI|KS|SS|SZ|SA|MX)$/.test(x) ? x : x.replace(/\./g, '-');
+    const got = list.map(x => DATA.stocks.find(s => s.ticker === norm(x) && s.desk === desk)), miss = list.filter((x, i) => !got[i]);
+    const close = '<button class="btn" onclick="this.parentNode.classList.remove(\'on\')">OK</button>';
+    const tail = miss.length ? ` No market data for <b class="mono">${esc(miss.join(', '))}</b> (not listed, a typo, or needs a suffix like .NS).` : '';
+    if (from === 'port'){                   // stay on the portfolio and refresh it with the new scores
+      renderPort();
+      jobShow(`✓ Analyzed in ${secs}s: ${got.filter(Boolean).map(e => `<b class="mono">${esc(e.ticker)}</b> ${esc(e.overall.label)} (${Math.round(e.overall.score)})`).join(' · ') || 'nothing'}.${tail} They're on the Company Desk now. ${close}`, miss.length ? 'warn' : 'ok');
+      return;
+    }
     if (view !== desk) setView(desk); else { $('#q').value = ''; renderDesk(); }
-    const e = DATA.stocks.find(x => x.ticker === t && x.desk === desk);
-    jobShow(`✓ <b class="mono">${esc(t)}</b> analyzed in ${secs}s and added to the ${DESKS[desk].title}${e ? `: <b>${esc(e.overall.label)}</b> (${Math.round(e.overall.score)}/100)` : ''}. Your friend sees it too once the site refreshes (about a minute). <button class="btn" onclick="this.parentNode.classList.remove('on')">OK</button>`, 'ok');
-    if (e) openD(desk, t);
+    const e = got[0];
+    jobShow(`✓ ${list.length > 1 ? `${got.filter(Boolean).length} stocks` : `<b class="mono">${esc(list[0])}</b>`} analyzed in ${secs}s and added to the ${DESKS[desk].title}${e && list.length === 1 ? `: <b>${esc(e.overall.label)}</b> (${Math.round(e.overall.score)}/100)` : ''}.${tail} Your friend sees it too once the site refreshes (about a minute). ${close}`, miss.length ? 'warn' : 'ok');
+    if (e && list.length === 1) openD(desk, e.ticker);
   } catch (e){ jobFail('The analysis finished, but loading it failed. Refresh the page in a minute.'); }
 }
 function stopJob(){ if (JOB){ clearInterval(JOB.tick); JOB.done = true; } }
 function jobFail(msg, reconnect){
-  const t = JOB && JOB.t; stopJob();
+  const t = JOB && JOB.list.join(', '); stopJob();
   jobShow(`<b>Couldn't analyze ${t ? `<span class="mono">${esc(t)}</span>` : 'that'}.</b> ${msg} ${reconnect ? '<button class="btn" onclick="ghSetup()">Fix the key</button>' : ''} <button class="btn" onclick="this.parentNode.classList.remove('on')">Close</button>`, 'bad');
 }
 

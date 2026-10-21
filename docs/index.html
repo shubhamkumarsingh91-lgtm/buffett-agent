@@ -232,6 +232,7 @@ footer{margin-top:44px;color:var(--dim);font-size:11.5px;text-align:center;line-
     <button class="desk" data-v="how">📖 How it works</button>
   </nav>
 
+  <div class="job" id="job"></div>
   <!-- DESK VIEW (shared by IPO + Company) -->
   <section id="v-desk">
     <div class="hero" id="hero"></div>
@@ -242,7 +243,6 @@ footer{margin-top:44px;color:var(--dim);font-size:11.5px;text-align:center;line-
       <button class="btn" onclick="exportDeskPdf(this)" title="Download every stock on this desk (search and sort applied) as a PDF">⬇ PDF</button>
     </div>
     <div class="req" id="req"></div>
-    <div class="job" id="job"></div>
     <div class="grid" id="grid"><div class="empty">Loading…</div></div>
   </section>
 
@@ -665,8 +665,9 @@ function renderAnalysis(P){
         <div style="margin-top:12px">${scoredLine}</div></div>
     </div>
     <div class="check" style="margin-top:14px">${C.map(([st,t,d])=>`<div class="ci"><div class="s s-${st}">${{pass:'✓',warn:'!',fail:'✕',info:'i'}[st]}</div><b>${esc(t)}</b><span>${esc(d)}</span></div>`).join('')}</div>
-    ${unscored.length?`<div class="req on" style="margin:14px 0 0"><p><b>Get a research memo for ${unscored.join(', ')}.</b> Adds them to the Company Desk; scores and memos appear in a few minutes. Funds (${funds.map(r=>r.h.ticker).join(', ')||'none'}) aren\u2019t scored, because the investor lenses judge individual businesses.</p>
-      <a class="btn primary" target="_blank" rel="noopener" href="https://github.com/${REPO}/issues/new?title=${title}&body=${body}">Analyze my ${unscored.length} stock${unscored.length>1?'s':''} ↗</a></div>`:''}
+    ${unscored.length?`<div class="req on" style="margin:14px 0 0"><p><b>Get a research memo for ${unscored.join(', ')}.</b> Adds them to the Company Desk; results show up here in a minute or two. Funds (${funds.map(r=>r.h.ticker).join(', ')||'none'}) aren\u2019t scored, because the investor lenses judge individual businesses.</p>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px"><button class="btn primary" onclick="analyzeNow('${unscored.map(esc).join(',')}','company')">⚡ Analyze my ${unscored.length} stock${unscored.length>1?'s':''} now</button>
+      <a class="muted" style="font-size:12px" target="_blank" rel="noopener" href="https://github.com/${REPO}/issues/new?title=${title}&body=${body}">or request on GitHub ↗</a></div></div>`:''}
    </div>`;
   pCharts.forEach(c=>c.destroy()); pCharts=[];
   if(window.Chart){

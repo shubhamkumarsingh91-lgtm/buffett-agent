@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
     inputs:
       ticker:
-        description: "Ticker, e.g. SPCX, BRK.B, RELIANCE.NS"
+        description: "Ticker(s), e.g. SPCX or ENVA,AMD,MU (max 15)"
         required: true
       desk:
         description: "Which desk"
@@ -29,7 +29,7 @@ concurrency:
 jobs:
   analyze:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

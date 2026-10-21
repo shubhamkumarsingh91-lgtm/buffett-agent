@@ -259,10 +259,24 @@ if __name__ == "__main__":
     # python build_site.py                       -> score everything
     # python build_site.py --only SPCX --desk ipo -> score one ticker now
     if "--only" in sys.argv:
-        t = normalize_ticker(sys.argv[sys.argv.index("--only") + 1])
+        # one ticker or a comma-separated list (the portfolio's "Analyze my stocks"), max 15
+        raw = [x for x in sys.argv[sys.argv.index("--only") + 1].split(",") if x.strip()][:15]
         dk = sys.argv[sys.argv.index("--desk") + 1] if "--desk" in sys.argv else "company"
         OUT_DIR.mkdir(parents=True, exist_ok=True)
-        analyze_one(t, dk)
-        sys.exit(0)
+        ok, bad = [], []
+        for i, x in enumerate(raw):
+            try:
+                t = normalize_ticker(x)
+                analyze_one(t, dk)
+                ok.append(t)
+            except BaseException as e:
+                if isinstance(e, KeyboardInterrupt):
+                    raise
+                bad.append(x.strip().upper())
+                print(f"  FAIL {dk:7s} {x.strip().upper():7s} {e}")
+            if i < len(raw) - 1:
+                time.sleep(PAUSE_SECONDS)
+        print(f"\nAnalyzed {len(ok)}: {', '.join(ok) or '-'}" + (f"  |  no data: {', '.join(bad)}" if bad else ""))
+        sys.exit(0 if ok else 1)          # partial success still saves what worked
     result = build()
     sys.exit(0 if result["count"] else 1)
