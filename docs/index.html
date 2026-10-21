@@ -175,6 +175,16 @@ td.n,th.n{text-align:right} td.n{font-family:"JetBrains Mono",monospace}
 .how{line-height:1.75;color:var(--soft)}
 .how h3{font-family:Fraunces,serif;color:var(--text);font-size:17px;margin:16px 0 4px}
 .how h3:first-child{margin-top:0}
+.modal{position:fixed;left:50%;top:50%;transform:translate(-50%,-46%);width:min(640px,94vw);max-height:86vh;background:var(--bg2);border:1px solid var(--line2);border-radius:16px;z-index:22;opacity:0;pointer-events:none;transition:.2s;display:flex;flex-direction:column;overflow:hidden}
+.modal.on{opacity:1;pointer-events:auto;transform:translate(-50%,-50%)}
+.modal .dh{position:static}
+.rv,.modal input[type=number]{background:#10141a;border:1px solid var(--line);color:var(--text);border-radius:7px;padding:6px 8px;font:inherit;font-size:13px}
+.exp{position:relative}
+.menu{position:absolute;right:0;top:calc(100% + 6px);background:var(--panel2);border:1px solid var(--line2);border-radius:10px;padding:5px;display:none;z-index:15;min-width:170px;box-shadow:0 12px 30px rgba(0,0,0,.4)}
+.menu.on{display:grid}
+.menu button{all:unset;cursor:pointer;padding:8px 10px;border-radius:7px;font-size:13px}
+.menu button:hover{background:#1d232c}
+.tvw{height:520px;border-radius:10px;overflow:hidden}
 footer{margin-top:44px;color:var(--dim);font-size:11.5px;text-align:center;line-height:1.7}
 @media(max-width:860px){.stats{grid-template-columns:1fr 1fr}.cols{grid-template-columns:1fr}.ci{grid-template-columns:22px 1fr}.ci span{grid-column:2}}
 @media(max-width:560px){.stats{grid-template-columns:1fr 1fr}.wrap{padding:22px 16px}h1{font-size:30px}.db{padding:16px 14px 40px}}
@@ -193,6 +203,7 @@ footer{margin-top:44px;color:var(--dim);font-size:11.5px;text-align:center;line-
     </div>
   </header>
 
+  <div id="tape" style="height:46px;margin:-6px 0 18px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel)"></div>
   <nav class="desks">
     <button class="desk ipo on" data-v="ipo">🚀 IPO Desk <span class="c" id="cIpo">0</span></button>
     <button class="desk" data-v="company">🏛 Company Desk <span class="c" id="cCo">0</span></button>
@@ -214,15 +225,17 @@ footer{margin-top:44px;color:var(--dim);font-size:11.5px;text-align:center;line-
 
   <section id="v-port" hidden>
     <div class="sec">
-      <h4>Our portfolio <i class="tip" data-t="Saved only in this browser on this device. Nothing is uploaded or published. Use Export/Import to share it with each other.">i</i></h4>
+      <h4>Our portfolio <i class="tip" data-t="Saved only in this browser on this device. Files you import are read inside your browser and never uploaded. Use Export/Import to share it with each other.">i</i></h4>
+      <p class="muted" style="font-size:12.5px;margin:-4px 0 12px">Import from your broker's Excel/CSV export, a PDF statement, a Word file or a screenshot. Everything is read inside your browser; nothing is uploaded.</p>
       <div class="form">
         <input id="pT" placeholder="Ticker (e.g. KO)"><input id="pS" type="number" step="any" placeholder="Shares">
         <input id="pC" type="number" step="any" placeholder="Cost / share ($)">
         <button class="btn" onclick="addHolding()">Add / update</button>
         <span id="pMsg" style="color:var(--pass);font-size:12px;align-self:center"></span>
         <span style="flex:1"></span>
-        <button class="btn" onclick="exportPort()">Export</button>
-        <label class="btn">Import<input type="file" accept=".json" hidden onchange="importPort(this)"></label>
+        <label class="btn" title="Excel, CSV, PDF statement, Word, screenshot or a previous export">⬆ Import file<input type="file" hidden accept=".xlsx,.xls,.csv,.tsv,.ods,.pdf,.docx,.doc,.png,.jpg,.jpeg,.webp,.bmp,.gif,.json" onchange="importFile(this)"></label>
+        <div class="exp"><button class="btn" onclick="event.stopPropagation();$('#expMenu').classList.toggle('on')">⬇ Export ▾</button>
+          <div class="menu" id="expMenu"><button onclick="exportAs('pdf')">PDF report</button><button onclick="exportAs('xlsx')">Excel (.xlsx)</button><button onclick="exportAs('csv')">CSV</button><button onclick="exportAs('json')">Backup file (.json)</button></div></div>
       </div>
       <div style="overflow-x:auto"><table><thead><tr><th>Ticker</th><th>Desk</th><th class="n">Shares</th><th class="n">Cost</th><th class="n">Price</th><th class="n">Value</th><th class="n">Gain</th><th class="n">Score</th><th>Verdict</th><th></th></tr></thead><tbody id="ptb"></tbody></table></div>
       <p class="muted" style="font-size:12px;margin-top:12px">Prices are from the last update, not live. To score a ticker you hold, request it on one of the desks.</p>
@@ -249,7 +262,13 @@ footer{margin-top:44px;color:var(--dim);font-size:11.5px;text-align:center;line-
   </footer>
 </div>
 
-<div class="shade" id="shade" onclick="closeD()"></div>
+<div class="shade" id="shade" onclick="closeD();closeReview()"></div>
+<div class="modal" id="review" role="dialog" aria-modal="true">
+  <div class="dh"><div><div class="t" id="rvTitle" style="font-size:18px">Review import</div><div class="muted" id="rvNote" style="font-size:12.5px;margin-top:2px"></div></div><button class="btn" onclick="closeReview()">✕</button></div>
+  <div style="padding:14px 20px;overflow:auto;max-height:55vh"><table><thead><tr><th></th><th>Ticker</th><th>Shares</th><th>Cost / share</th><th></th></tr></thead><tbody id="rvBody"></tbody></table></div>
+  <div style="display:flex;gap:8px;justify-content:flex-end;padding:14px 20px;border-top:1px solid var(--line);flex-wrap:wrap">
+    <button class="btn" onclick="closeReview()">Cancel</button><button class="btn" onclick="applyReview(true)">Replace portfolio</button><button class="btn primary" onclick="applyReview(false)">Add selected</button></div>
+</div>
 <aside class="drawer" id="drawer" aria-hidden="true">
   <div class="dh"><div><div class="t" id="dT">—</div><div class="muted" id="dS" style="font-size:12.5px"></div></div><button class="btn" onclick="closeD()">Close ✕</button></div>
   <div class="db" id="dB"></div>
@@ -437,7 +456,10 @@ function openD(desk, t){
     <div class="sec"><h4>💰 Valuation range</h4>${valRange(s.valuation, s.price)}</div>
     ${k.quarterly_revenue&&k.quarterly_revenue.length>1?`<div class="sec"><h4>Quarterly revenue</h4><div style="height:170px"><canvas id="qc"></canvas></div></div>`:''}
     <div class="sec"><h4>Score history</h4><div style="height:190px"><canvas id="hc"></canvas></div><p class="muted" id="hcNote" style="font-size:12px;margin-top:6px"></p></div>
-    <div class="sec"><h4>Price chart (weekly)</h4><div id="tv"></div></div>
+    <div class="sec"><h4>Price chart (weekly) · TradingView</h4><div id="tv"></div></div>
+    <div class="cols"><div class="sec"><h4>Technical rating · TradingView <i class="tip" data-t="TradingView's buy/sell gauge from moving averages and oscillators. Useful for timing an entry into a stock the research likes. It says nothing about long-term quality.">i</i></h4><div id="tvTech" style="height:440px"></div></div>
+      <div class="sec"><h4>Company profile · TradingView</h4><div id="tvProf" style="height:440px"></div></div></div>
+    <div class="sec"><h4>Financial statements · TradingView <i class="tip" data-t="A second source for the numbers. If something in Key numbers looks off, compare it here.">i</i></h4><div id="tvFin" class="tvw"></div></div>
     ${s.news&&s.news.length?`<div class="sec news"><h4>Recent headlines</h4>${s.news.map(n=>`<a href="${esc(n.link)}" target="_blank" rel="noopener">${esc(n.title)} <small>· ${esc(n.publisher)}</small></a>`).join('')}</div>`:''}
     ${s.data_notes&&s.data_notes.length?`<div class="sec"><h4>Data limitations</h4><ul style="padding-left:18px;color:var(--mute);font-size:12.5px">${s.data_notes.map(n=>`<li>${esc(n)}</li>`).join('')}</ul></div>`:''}`;
   $('#drawer').classList.add('on'); $('#shade').classList.add('on'); $('#drawer').setAttribute('aria-hidden','false'); $('#drawer').scrollTop = 0;
@@ -459,18 +481,23 @@ function drawCharts(s){
   ds.unshift({label:'Overall',data:h.map(p=>p.score),borderColor:'#ebedf0',borderWidth:2.4,pointRadius:h.length<10?3:0,tension:.3});
   charts.push(new Chart($('#hc'),{type:'line',data:{labels:h.map(p=>p.date),datasets:ds},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{boxWidth:10,boxHeight:2}}},scales:{y:{min:0,max:100,grid:{color:'#1b2129'}},x:{grid:{display:false}}}}}));
 }
-function drawTV(t){
-  const box=$('#tv'); box.innerHTML='';
+function tvEmbed(box, script, cfg){
+  if(!box) return; box.innerHTML='';
   const w=document.createElement('div'); w.className='tradingview-widget-container'; w.style.height='100%';
-  const inner=document.createElement('div'); inner.style.height='100%';
-  const sc2=document.createElement('script'); sc2.async=true; sc2.src='https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
-  sc2.textContent=JSON.stringify({autosize:true,symbol:t.replace('-','.'),interval:'W',theme:'dark',style:'1',locale:'en',backgroundColor:'rgba(18,22,28,1)',hide_side_toolbar:true,allow_symbol_change:false,range:'60M',support_host:'https://www.tradingview.com'});
+  const inner=document.createElement('div'); inner.className='tradingview-widget-container__widget'; inner.style.height='100%';
+  const sc2=document.createElement('script'); sc2.async=true; sc2.src='https://s3.tradingview.com/external-embedding/'+script; sc2.textContent=JSON.stringify(cfg);
   w.appendChild(inner); w.appendChild(sc2); box.appendChild(w);
 }
-
+function drawTV(t){
+  const sym=t.replace('-','.'), base={colorTheme:'dark',isTransparent:true,locale:'en',width:'100%',height:'100%',symbol:sym};
+  tvEmbed($('#tv'),'embed-widget-advanced-chart.js',{autosize:true,symbol:sym,interval:'W',theme:'dark',style:'1',locale:'en',backgroundColor:'rgba(18,22,28,1)',hide_side_toolbar:true,allow_symbol_change:false,range:'60M',support_host:'https://www.tradingview.com'});
+  tvEmbed($('#tvTech'),'embed-widget-technical-analysis.js',{...base,interval:'1W',showIntervalTabs:true,displayMode:'single'});
+  tvEmbed($('#tvProf'),'embed-widget-symbol-profile.js',base);
+  tvEmbed($('#tvFin'),'embed-widget-financials.js',{...base,displayMode:'regular'});
+}
 // ── Our portfolio (browser-only) ──
 const PKEY='ltl-portfolio';
-function msg(m){ $('#pMsg').textContent=m; setTimeout(()=>$('#pMsg').textContent='',4000); }
+function msg(m,ok){ const el=$('#pMsg'); el.style.color=ok?'var(--mute)':'var(--pass)'; el.textContent=m; clearTimeout(msg._t); if(!ok) msg._t=setTimeout(()=>el.textContent='',6000); }
 function addHolding(){
   const t=$('#pT').value.trim().toUpperCase(), sh=parseFloat($('#pS').value), c=parseFloat($('#pC').value);
   if(!t||!(sh>0)){ msg('Enter a ticker and a share count.'); return; }
@@ -478,27 +505,170 @@ function addHolding(){
   if(i>=0)p[i]=row; else p.push(row); store.set(PKEY,p); $('#pT').value=$('#pS').value=$('#pC').value=''; renderPort();
 }
 function removeHolding(t){ store.set(PKEY,store.get(PKEY,[]).filter(h=>h.ticker!==t)); renderPort(); }
-function renderPort(){
-  const p=store.get(PKEY,[]);
-  if(!p.length){ $('#ptb').innerHTML='<tr><td colspan="10" class="muted">No holdings yet. Add one above; it stays private to this browser.</td></tr>'; return; }
+function portData(){
   let tv=0,tc=0,ws=0,wv=0;
-  const rows=p.map(h=>{
+  const rows=store.get(PKEY,[]).map(h=>{
     const s=DATA.stocks.find(x=>x.ticker===h.ticker && x.desk==='company')||DATA.stocks.find(x=>x.ticker===h.ticker);
     const price=s?s.price:null, val=price!=null?price*h.shares:null, cost=h.cost!=null?h.cost*h.shares:null;
     if(val!=null)tv+=val; if(cost!=null&&val!=null)tc+=cost; if(s&&val!=null){ws+=s.overall.score*val;wv+=val;}
-    const g=(val!=null&&cost)?(val-cost)/cost:null;
-    return `<tr><td class="mono" style="cursor:${s?'pointer':'default'}" ${s?`onclick="openD('${s.desk}','${esc(h.ticker)}')"`:''}>${esc(h.ticker)}</td><td class="muted">${s?(s.desk==='ipo'?'IPO':'Company'):'—'}</td>
+    return {h,s,price,val,cost,g:(val!=null&&cost)?(val-cost)/cost:null};
+  });
+  return {rows,tv,tc,tg:tc?(tv-tc)/tc:null,score:wv?ws/wv:null};
+}
+function renderPort(){
+  const P=portData();
+  if(!P.rows.length){ $('#ptb').innerHTML='<tr><td colspan="10" class="muted">No holdings yet. Add one above or import a file. It stays private to this browser.</td></tr>'; return; }
+  const rows=P.rows.map(({h,s,price,val,g})=>`<tr><td class="mono" style="cursor:${s?'pointer':'default'}" ${s?`onclick="openD('${s.desk}','${esc(h.ticker)}')"`:''}>${esc(h.ticker)}</td><td class="muted">${s?(s.desk==='ipo'?'IPO':'Company'):'—'}</td>
       <td class="n">${num(h.shares,h.shares%1?3:0)}</td><td class="n">${money(h.cost)}</td><td class="n">${money(price)}</td><td class="n">${money(val)}</td>
       <td class="n ${g==null?'muted':g>=0?'up':'down'}">${g==null?'—':(g>=0?'+':'')+pct(g)}</td><td class="n">${s?Math.round(s.overall.score):'—'}</td>
       <td>${s?`<span class="badge ${bc(s.overall.label)}">${esc(s.overall.label)}</span>`:'<span class="muted">not scored</span>'}</td>
-      <td><button class="btn" style="padding:4px 8px" onclick="removeHolding('${esc(h.ticker)}')">✕</button></td></tr>`;});
-  const tg=tc?(tv-tc)/tc:null;
-  rows.push(`<tr><td><b>Total</b></td><td></td><td></td><td class="n">${money(tc||null)}</td><td></td><td class="n"><b>${money(tv)}</b></td><td class="n ${tg==null?'muted':tg>=0?'up':'down'}"><b>${tg==null?'—':(tg>=0?'+':'')+pct(tg)}</b></td><td class="n"><b>${wv?Math.round(ws/wv):'—'}</b></td><td class="muted" style="font-size:12px">value-weighted score</td><td></td></tr>`);
+      <td><button class="btn" style="padding:4px 8px" onclick="removeHolding('${esc(h.ticker)}')">✕</button></td></tr>`);
+  rows.push(`<tr><td><b>Total</b></td><td></td><td></td><td class="n">${money(P.tc||null)}</td><td></td><td class="n"><b>${money(P.tv)}</b></td><td class="n ${P.tg==null?'muted':P.tg>=0?'up':'down'}"><b>${P.tg==null?'—':(P.tg>=0?'+':'')+pct(P.tg)}</b></td><td class="n"><b>${P.score?Math.round(P.score):'—'}</b></td><td class="muted" style="font-size:12px">value-weighted score</td><td></td></tr>`);
   $('#ptb').innerHTML=rows.join('');
 }
-function exportPort(){ const b=new Blob([JSON.stringify(store.get(PKEY,[]),null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download='long-term-lab-portfolio.json'; a.click(); }
-function importPort(input){ const f=input.files[0]; if(!f)return; f.text().then(t=>{const p=JSON.parse(t); if(Array.isArray(p)){store.set(PKEY,p.filter(h=>h.ticker&&h.shares>0)); renderPort();}}).catch(()=>msg('Could not read that file.')); input.value=''; }
 
+// ── File import: JSON, Excel/CSV, PDF, Word, screenshots (all in the browser, nothing uploaded) ──
+const CDN='https://cdn.jsdelivr.net/npm/';
+const LIBS={xlsx:CDN+'xlsx@0.18.5/dist/xlsx.full.min.js', pdf:CDN+'pdfjs-dist@3.11.174/build/pdf.min.js', pdfw:CDN+'pdfjs-dist@3.11.174/build/pdf.worker.min.js',
+  mammoth:CDN+'mammoth@1.6.0/mammoth.browser.min.js', tess:CDN+'tesseract.js@5.0.5/dist/tesseract.min.js',
+  jspdf:CDN+'jspdf@2.5.1/dist/jspdf.umd.min.js', autotable:CDN+'jspdf-autotable@3.8.2/dist/jspdf.plugin.autotable.min.js'};
+function loadScript(u){ return new Promise((res,rej)=>{ if(document.querySelector(`script[data-src="${u}"]`)) return res();
+  const s=document.createElement('script'); s.src=u; s.dataset.src=u; s.onload=res; s.onerror=()=>rej(new Error('Could not load a helper library. Check your connection and try again.')); document.head.appendChild(s); }); }
+const STOP=new Set('USD CASH TOTAL TOTALS ETF INC CORP CO LLC LTD THE AND FOR OF ACCT ACCOUNT PAGE NA N A I AM PM YTD QTY US DATE BUY SELL NET GAIN LOSS VALUE PRICE DAY MKT SYMBOL SHARES IRA ROTH EST TAX ID NO CUSIP CLASS CL SHS COM ORD ADR NEW FUND TRUST MONEY MARKET SPAXX FDRXX DIV REINV PCT YES OR AS AT ON IN BY TO IS IT BE'.split(' '));
+const toNum=v=>{ if(typeof v==='number') return v; const t=String(v??'').replace(/[$,\s]/g,''); if(!t) return null; const neg=/^\(.*\)$/.test(t)||t.startsWith('-'); const n=parseFloat(t.replace(/[()\-+]/g,'')); return isFinite(n)?(neg?-n:n):null; };
+const yahoo=t=>t.toUpperCase().replace(/\.(?=[A-Z]{1,2}$)/,'-');   // BRK.B -> BRK-B (Yahoo style)
+const isTicker=t=>/^[A-Z]{1,5}(?:[.\-][A-Z]{1,2})?$/.test(t)&&!STOP.has(t);
+function fromTables(tables){
+  const out=[];
+  for(const t of tables){
+    const rows=t.map(r=>r.map(c=>String(c??'').trim()));
+    let hi=-1, cT=-1, cS=-1, cC=-1, costTotal=false;
+    for(let i=0;i<Math.min(rows.length,15);i++){
+      const r=rows[i].map(c=>c.toLowerCase());
+      const t1=r.findIndex(c=>/^(symbol|ticker|security symbol|stock symbol)\b|symbol|ticker/.test(c));
+      const s1=r.findIndex(c=>/quantity|shares|qty|units|position/.test(c));
+      if(t1>=0&&s1>=0){ hi=i; cT=t1; cS=s1;
+        cC=r.findIndex(c=>/(avg|average).*(cost|price)|cost.*(per|\/)\s*share|unit cost|purchase price|price paid|cost basis per/.test(c));
+        if(cC<0){ cC=r.findIndex(c=>/cost basis|total cost|^cost$|basis/.test(c)); costTotal=cC>=0 && !/per|avg|average/.test(r[cC]); }
+        break; }
+    }
+    if(hi<0){ out.push(...fromText(rows.map(r=>r.join(' ')))); continue; }
+    for(const r of rows.slice(hi+1)){
+      const tk=(r[cT]||'').toUpperCase().replace(/\*/g,'').split(/\s/)[0]; const sh=toNum(r[cS]);
+      if(!isTicker(tk)||!(sh>0)) continue;
+      let c=cC>=0?toNum(r[cC]):null; if(c!=null&&costTotal) c=c/sh;
+      out.push({ticker:yahoo(tk),shares:sh,cost:c!=null&&c>0?+c.toFixed(4):null,src:'table'});
+    }
+  }
+  return out;
+}
+function fromText(lines){
+  const out=[];
+  for(const raw of lines){
+    const line=String(raw).replace(/\s+/g,' ').trim(); if(!line) continue;
+    const toks=line.split(' '); const ti=toks.findIndex(x=>isTicker(x.replace(/[*:,]/g,'')));
+    if(ti<0) continue;
+    const nums=toks.slice(ti+1).map(toNum).filter(n=>n!=null&&n>0&&!(n>=1900&&n<=2100&&Number.isInteger(n)));
+    if(!nums.length) continue;
+    out.push({ticker:yahoo(toks[ti].replace(/[*:,]/g,'')),shares:nums[0],cost:nums.length>1?nums[1]:null,src:'text'});
+  }
+  return out;
+}
+function groupLines(items){
+  const rows={}; items.forEach(it=>{ const y=Math.round(it.transform[5]/3); (rows[y]=rows[y]||[]).push(it); });
+  return Object.keys(rows).sort((a,b)=>b-a).map(y=>rows[y].sort((a,b)=>a.transform[4]-b.transform[4]).map(i=>i.str).join(' '));
+}
+async function importFile(input){
+  const f=input.files[0]; input.value=''; if(!f) return;
+  const ext=(f.name.split('.').pop()||'').toLowerCase(); msg('Reading '+f.name+'…',true);
+  try{
+    let rows=[];
+    if(ext==='json'){ const p=JSON.parse(await f.text()); rows=(Array.isArray(p)?p:[]).map(h=>({ticker:String(h.ticker||'').toUpperCase(),shares:toNum(h.shares),cost:toNum(h.cost),src:'json'})); }
+    else if(['xlsx','xls','csv','ods','tsv'].includes(ext)){ await loadScript(LIBS.xlsx); const wb=XLSX.read(await f.arrayBuffer());
+      rows=fromTables(wb.SheetNames.map(n=>XLSX.utils.sheet_to_json(wb.Sheets[n],{header:1,raw:true,defval:''}))); }
+    else if(ext==='pdf'){ await loadScript(LIBS.pdf); pdfjsLib.GlobalWorkerOptions.workerSrc=LIBS.pdfw;
+      const doc=await pdfjsLib.getDocument({data:await f.arrayBuffer()}).promise; const lines=[];
+      for(let p=1;p<=Math.min(doc.numPages,30);p++){ const tc=await (await doc.getPage(p)).getTextContent(); lines.push(...groupLines(tc.items)); }
+      rows=fromText(lines); }
+    else if(ext==='docx'){ await loadScript(LIBS.mammoth); const r=await mammoth.convertToHtml({arrayBuffer:await f.arrayBuffer()});
+      const d=new DOMParser().parseFromString(r.value,'text/html');
+      const tables=[...d.querySelectorAll('table')].map(t=>[...t.rows].map(tr=>[...tr.cells].map(c=>c.textContent.trim())));
+      rows=tables.length?fromTables(tables):[]; if(!rows.length) rows=fromText([...d.body.querySelectorAll('p,li')].map(p=>p.textContent)); }
+    else if(['png','jpg','jpeg','webp','bmp','gif'].includes(ext)){ await loadScript(LIBS.tess);
+      msg('Reading text from the screenshot (OCR). This takes 10–40 seconds…',true);
+      const {data}=await Tesseract.recognize(f,'eng'); rows=fromText(data.text.split('\n')); }
+    else if(ext==='doc'){ throw new Error('Old .doc files can\'t be read in the browser. Save it as .docx or PDF and try again.'); }
+    else throw new Error('Unsupported file type: .'+ext);
+    const seen=new Set(); rows=rows.filter(r=>r.ticker&&!seen.has(r.ticker)&&seen.add(r.ticker));
+    msg('',true); openReview(rows,f.name,ext);
+  }catch(e){ msg(e.message||'Could not read that file.'); }
+}
+function openReview(rows,name,ext){
+  const exact=['json','xlsx','xls','csv','ods','tsv'].includes(ext);
+  $('#rvTitle').textContent=`${rows.length} holding${rows.length===1?'':'s'} found in ${name}`;
+  $('#rvNote').innerHTML=rows.length?(exact?'Check the rows, untick anything wrong, then add.':'<b style="color:var(--hold)">Check every number.</b> PDFs, Word files and screenshots are read by pattern-matching, so shares and cost can land in the wrong column. Fix any row before adding.')
+    :'Nothing recognisable was found. For best results, export positions from your broker as Excel/CSV with Symbol and Quantity columns.';
+  $('#rvBody').innerHTML=rows.map((r,i)=>`<tr><td><input type="checkbox" ${r.ticker&&r.shares>0?'checked':''} data-i="${i}"></td>
+    <td><input class="rv" value="${esc(r.ticker)}" data-k="ticker" data-i="${i}" style="width:90px;text-transform:uppercase"></td>
+    <td><input class="rv" type="number" step="any" value="${r.shares??''}" data-k="shares" data-i="${i}" style="width:110px"></td>
+    <td><input class="rv" type="number" step="any" value="${r.cost??''}" data-k="cost" data-i="${i}" style="width:110px"></td>
+    <td class="muted">${DATA.stocks.some(s=>s.ticker===r.ticker.toUpperCase())?'scored':'not on a desk'}</td></tr>`).join('');
+  $('#review').classList.add('on'); $('#shade').classList.add('on');
+}
+function closeReview(){ $('#review').classList.remove('on'); if(!$('#drawer').classList.contains('on')) $('#shade').classList.remove('on'); }
+function applyReview(replace){
+  const get=(i,k)=>$(`#rvBody input[data-i="${i}"][data-k="${k}"]`).value;
+  const picked=[...$('#rvBody').querySelectorAll('input[type=checkbox]:checked')].map(cb=>{ const i=cb.dataset.i;
+    return {ticker:get(i,'ticker').trim().toUpperCase(),shares:parseFloat(get(i,'shares')),cost:get(i,'cost')===''?null:parseFloat(get(i,'cost'))}; })
+    .filter(h=>h.ticker&&h.shares>0);
+  const p=replace?[]:store.get(PKEY,[]);
+  picked.forEach(h=>{ const j=p.findIndex(x=>x.ticker===h.ticker); if(j>=0)p[j]=h; else p.push(h); });
+  store.set(PKEY,p); closeReview(); renderPort(); msg(`Added ${picked.length} holding${picked.length===1?'':'s'}.`,true);
+}
+
+// ── Export: PDF report, Excel, CSV, JSON ──
+function exportRows(){ return portData().rows.map(({h,s,price,val,g})=>({Ticker:h.ticker,Desk:s?(s.desk==='ipo'?'IPO':'Company'):'',Shares:h.shares,'Cost / share':h.cost,
+  Price:price,Value:val!=null?+val.toFixed(2):null,'Gain %':g!=null?+(g*100).toFixed(2):null,Score:s?Math.round(s.overall.score):null,Verdict:s?s.overall.label:'not scored'})); }
+function download(blob,name){ const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),2000); }
+const stamp=()=>new Date().toISOString().slice(0,10);
+async function exportAs(kind){
+  $('#expMenu').classList.remove('on');
+  const rows=exportRows(); if(!rows.length){ msg('Nothing to export yet.'); return; }
+  try{
+    if(kind==='json') download(new Blob([JSON.stringify(store.get(PKEY,[]),null,2)],{type:'application/json'}),`long-term-lab-portfolio-${stamp()}.json`);
+    else if(kind==='csv'){ const cols=Object.keys(rows[0]); const q=v=>v==null?'':/[",\n]/.test(String(v))?'"'+String(v).replace(/"/g,'""')+'"':v;
+      download(new Blob([[cols.join(','),...rows.map(r=>cols.map(c=>q(r[c])).join(','))].join('\n')],{type:'text/csv'}),`long-term-lab-portfolio-${stamp()}.csv`); }
+    else if(kind==='xlsx'){ await loadScript(LIBS.xlsx); const wb=XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet(rows),'Portfolio');
+      XLSX.writeFile(wb,`long-term-lab-portfolio-${stamp()}.xlsx`); }
+    else if(kind==='pdf') await exportPdf(rows);
+  }catch(e){ msg(e.message||'Export failed.'); }
+}
+async function exportPdf(rows){
+  await loadScript(LIBS.jspdf); await loadScript(LIBS.autotable);
+  const A=t=>String(t??'').replace(/[–—]/g,'-').replace(/[‘’]/g,"'").replace(/[“”]/g,'"').replace(/·/g,'|').replace(/[^\x20-\x7E]/g,'');
+  const P=portData(), doc=new jspdf.jsPDF({orientation:'landscape',unit:'pt',format:'letter'}), W=doc.internal.pageSize.getWidth();
+  doc.setFont('helvetica','bold'); doc.setFontSize(20); doc.text('Long-Term Lab - Portfolio report',40,50);
+  doc.setFont('helvetica','normal'); doc.setFontSize(10); doc.setTextColor(110);
+  doc.text(A(`${new Date().toLocaleString()}  |  prices from the update of ${DATA.generated?new Date(DATA.generated).toLocaleDateString():'n/a'}`),40,68);
+  doc.setTextColor(20); doc.setFontSize(12);
+  doc.text(A(`Value ${money(P.tv)}   |   Cost ${money(P.tc||null)}   |   Gain ${P.tg==null?'n/a':(P.tg>=0?'+':'')+pct(P.tg)}   |   Value-weighted score ${P.score?Math.round(P.score):'n/a'}/100`),40,90);
+  doc.autoTable({startY:104,head:[Object.keys(rows[0])],body:rows.map(r=>Object.values(r).map(v=>v==null?'':typeof v==='number'?v.toLocaleString():A(v))),
+    styles:{fontSize:9},headStyles:{fillColor:[30,34,42]},alternateRowStyles:{fillColor:[245,246,248]}});
+  let y=doc.lastAutoTable.finalY+28;
+  const scored=P.rows.filter(r=>r.s);
+  if(scored.length){ doc.setFont('helvetica','bold'); doc.setFontSize(14); doc.text('Research notes',40,y); y+=8;
+    doc.autoTable({startY:y+6,head:[['Stock','Verdict','Why it could work','What worries us']],
+      body:scored.map(({s})=>[A(s.ticker+' - '+(s.name||'')),A(s.overall.label+' ('+Math.round(s.overall.score)+')'),A((s.memo.bull||[])[0]||''),A((s.memo.bear||[])[0]||'')]),
+      styles:{fontSize:8.5,cellPadding:5,valign:'top'},columnStyles:{0:{cellWidth:120},1:{cellWidth:110}},headStyles:{fillColor:[30,34,42]}}); }
+  const pages=doc.getNumberOfPages();
+  for(let i=1;i<=pages;i++){ doc.setPage(i); doc.setFontSize(7.5); doc.setTextColor(120);
+    doc.text('Independent personal project, not tied to any employer or agency. Public market data only. Educational research, not financial advice.',40,doc.internal.pageSize.getHeight()-20);
+    doc.text(`${i}/${pages}`,W-60,doc.internal.pageSize.getHeight()-20); }
+  doc.save(`long-term-lab-portfolio-${stamp()}.pdf`);
+}
+document.addEventListener('click',e=>{ if(!e.target.closest('.exp')) $('#expMenu')?.classList.remove('on'); });
+
+tvEmbed($('#tape'),'embed-widget-ticker-tape.js',{symbols:[{proName:'AMEX:SPY',title:'S&P 500'},{proName:'NASDAQ:QQQ',title:'Nasdaq 100'},{proName:'AMEX:DIA',title:'Dow'},{proName:'AMEX:IWM',title:'Small caps'},{proName:'AMEX:IPO',title:'Renaissance IPO ETF'},{proName:'TVC:US10Y',title:'10-yr yield'},{proName:'TVC:GOLD',title:'Gold'}],showSymbolLogo:true,isTransparent:true,displayMode:'adaptive',colorTheme:'dark',locale:'en'});
 load();
 </script>
 </body>
