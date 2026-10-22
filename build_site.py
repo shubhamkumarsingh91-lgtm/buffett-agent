@@ -168,6 +168,11 @@ def promote_listed_ipos() -> list[str]:
                     f.write(f"{sym}    # listed {ld}, moved from Upcoming IPOs: {ipo.get('name', '')}\n")
             ipo["moved_to_ipo_desk"] = today
             moved.append(sym)
+            try:
+                import hq_events
+                hq_events.add(f"{ipo.get('name', sym)} started trading as {sym}: moved it from Upcoming IPOs to the IPO Desk.", "ipo", "listed")
+            except Exception:
+                pass
     if moved:
         path.write_text(json.dumps(data, indent=1, ensure_ascii=False))
         print(f"  Moved to IPO Desk after listing: {', '.join(moved)}")
@@ -214,6 +219,11 @@ def build(fetch=default_fetch) -> dict:
     payload = {"generated": datetime.now(timezone.utc).isoformat(timespec="seconds"), "version": 2,
                "count": len(stocks), "failed": failed, "stocks": stocks}
     SCORES.write_text(json.dumps(payload, indent=1, default=str))
+    try:
+        import hq_events
+        hq_events.after_build(previous, stocks)
+    except Exception as e:
+        print(f"  (Agent HQ event skipped: {e})")
     keep = {f"{s['desk']}:{s['ticker']}" for s in stocks}
     HISTORY.write_text(json.dumps({k: history[k] for k in sorted(history) if k in keep}, separators=(",", ":")))
     print(f"\nWrote {len(stocks)} stocks ({len(failed)} failed) -> {SCORES.relative_to(ROOT)}")
@@ -263,6 +273,12 @@ def analyze_one(ticker: str, desk: str, fetch=default_fetch) -> dict:
         with LISTS[desk].open("a") as f:
             f.write(f"{ticker}    # added from the site's search\n")
     print(f"  ok   {desk:7s} {ticker:7s} {entry['overall']['score']:5.1f}  {entry['overall']['label']}")
+    try:
+        import hq_events
+        hq_events.add(f"Analyzed {hq_events.describe_stock(entry)}. Added to the {'IPO Desk' if desk == 'ipo' else 'Company Desk'}.",
+                      "research", "analyze", ticker=ticker)
+    except Exception as e:
+        print(f"  (Agent HQ event skipped: {e})")
     return entry
 
 

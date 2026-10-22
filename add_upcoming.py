@@ -94,6 +94,12 @@ def main(body_path: str) -> str:
     data["updated"] = date.today().isoformat()
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(data, indent=1, ensure_ascii=False))
+    try:
+        import hq_events
+        band = f"{ipo.get('price_low', '')}–{ipo.get('price_high', '')} {ipo.get('currency', '')}".strip()
+        hq_events.add(f"Studied the {ipo['name']} IPO before it lists (price band {band}) and saved it to Upcoming IPOs for both of you.", "ipo", "upcoming")
+    except Exception:
+        pass
     return ipo["id"]
 
 
