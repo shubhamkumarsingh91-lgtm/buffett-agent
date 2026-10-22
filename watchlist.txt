@@ -23,3 +23,7 @@ NOW    # added from the site's search
 PNC    # added from the site's search
 UNH    # added from the site's search
 NFLX    # added from the site's search
+ENVA    # added from the site's search
+AMD    # added from the site's search
+MU    # added from the site's search
+ASML    # added from the site's search

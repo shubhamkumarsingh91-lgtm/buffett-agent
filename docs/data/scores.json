@@ -1,7 +1,7 @@
 {
- "generated": "2026-10-22T00:48:16+00:00",
+ "generated": "2026-10-22T14:49:36+00:00",
  "version": 2,
- "count": 31,
+ "count": 35,
  "failed": [],
  "stocks": [
   {
@@ -2391,6 +2391,250 @@
    }
   },
   {
+   "ticker": "ASML",
+   "desk": "company",
+   "note": "",
+   "name": "ASML Holding N.V.",
+   "sector": "Technology",
+   "industry": "Semiconductor Equipment & Materials",
+   "price": 1595.28,
+   "week52_high": 1999.96,
+   "week52_low": 946.11,
+   "overall": {
+    "label": "WORTH RESEARCHING",
+    "rationale": "Several lenses like it, others don't. Dig into the cons before buying.",
+    "score": 62.8
+   },
+   "lenses": [
+    {
+     "key": "buffett",
+     "short": "Buffett",
+     "name": "Buffett & Munger (Quality Compounding)",
+     "score": 62.2,
+     "verdict": "Partial fit",
+     "pros": [
+      "High gross margin (51%) suggests real pricing power / a moat.",
+      "Debt/Equity of 0.22 is comfortably below Buffett's 0.5 ceiling.",
+      "Average ROE of 53% clears Buffett's 20% bar for elite businesses.",
+      "Share count shrank 2.3% \u2014 management is buying back stock, not diluting."
+     ],
+     "cons": [
+      "Trading ~37% above estimated intrinsic value \u2014 little to no margin of safety."
+     ]
+    },
+    {
+     "key": "graham",
+     "short": "Graham",
+     "name": "Benjamin Graham (Deep Value)",
+     "score": 41.2,
+     "verdict": "Weak fit",
+     "pros": [
+      "Long-term debt is fully covered by net working capital \u2014 Graham's conservative debt test.",
+      "No loss-making years across the 4 most recent periods available.",
+      "Currently pays a dividend (yield ~0.6%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
+     ],
+     "cons": [
+      "Price ($1,595.28) exceeds the Graham Number ($32.62) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 53808.9, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
+      "Current ratio of 1.26 is below Graham's 2.0 liquidity bar."
+     ]
+    },
+    {
+     "key": "lynch",
+     "short": "Lynch",
+     "name": "Peter Lynch (GARP \u2014 Fast Grower)",
+     "score": 77.2,
+     "verdict": "Strong fit",
+     "pros": [
+      "PEG ratio of 0.95 is under 1.0 \u2014 Lynch's rule of thumb for a reasonably priced grower.",
+      "Classified as a Fast Grower (>25% earnings growth) \u2014 Lynch's favorite hunting ground, though these also carry the most execution/valuation risk.",
+      "Manageable Debt/Equity of 0.22 \u2014 Lynch was wary of highly leveraged growth stories.",
+      "Institutional ownership is relatively low (20%) \u2014 by Lynch's logic, more room for the stock to be 'discovered'.",
+      "Company is buying back shares alongside its growth story."
+     ],
+     "cons": []
+    },
+    {
+     "key": "fisher",
+     "short": "Fisher",
+     "name": "Philip Fisher (Growth Quality)",
+     "score": 78.5,
+     "verdict": "Strong fit",
+     "pros": [
+      "Revenue grew 16% a year over the available history. Fisher's point #1 wants products with room for sales to keep growing for years.",
+      "Spends 14% of revenue on R&D. Fisher (#2, #3) wants management investing in future products.",
+      "Operating margin 44%. Fisher #5: worthwhile profit margins.",
+      "Margins widened by 3.9 points. Fisher #6: improving margins."
+     ],
+     "cons": []
+    },
+    {
+     "key": "greenblatt",
+     "short": "Greenblatt",
+     "name": "Joel Greenblatt (Magic Formula)",
+     "score": 55.0,
+     "verdict": "Partial fit",
+     "pros": [
+      "Return on capital ~102%: a good business by Greenblatt's first test."
+     ],
+     "cons": [
+      "Earnings yield (EBIT \u00f7 EV) 0.0%: not cheap by the Magic Formula."
+     ]
+    }
+   ],
+   "classic": null,
+   "kpis": {
+    "revenue_ttm": 39473500160,
+    "revenue_growth_yoy": 0.552,
+    "revenue_cagr": 0.1555,
+    "earnings_growth": 1.359,
+    "quarterly_revenue": [
+     7691700000,
+     7516000000,
+     9718100000,
+     8766900000,
+     9326500000
+    ],
+    "gross_margin": 0.5434,
+    "operating_margin": 0.4436,
+    "profit_margin": 0.3413,
+    "roe_avg": 0.5302,
+    "roic": 1.0228,
+    "roa": 0.1828,
+    "free_cash_flow": 11027300000.0,
+    "fcf_margin": 0.2794,
+    "total_cash": 12735099904,
+    "cash_runway_years": null,
+    "rule_of_40": 83.1,
+    "market_cap": 614847283200,
+    "pe": 39.25,
+    "forward_pe": 25.41,
+    "pb": 1370.79,
+    "peg": 0.95,
+    "price_to_sales": 15.58,
+    "ev_to_ebitda": 2204.73,
+    "earnings_yield": 0.0003,
+    "graham_number": 32.62,
+    "dividend_yield": 0.0057,
+    "payout_ratio": 0.2226,
+    "debt_to_equity": 0.22,
+    "current_ratio": 1.26,
+    "insider_pct": 0.0001,
+    "institutional_pct": 0.2034,
+    "short_pct_float": 0.0038,
+    "beta": 1.3
+   },
+   "valuation": {
+    "bear": 592.68,
+    "base": 1162.96,
+    "bull": 1939.26,
+    "growth": 0.25,
+    "method": "average free cash flow, last 3 years",
+    "note": null,
+    "margin_of_safety": -0.3717
+   },
+   "recent_ipo": false,
+   "ipo": {
+    "months_listed": 379.2,
+    "first_trade_date": "1995-03-15",
+    "first_day_open": null,
+    "first_day_close": null,
+    "prospectus": null,
+    "checklist": []
+   },
+   "news": [],
+   "data_notes": [],
+   "stale": false,
+   "updated": "2026-10-22T14:49:35+00:00",
+   "memo": {
+    "headline": "WORTH RESEARCHING. Several lenses like it, others don't. Dig into the cons before buying.",
+    "business": "ASML Holding N.V. (ASML) is a semiconductor equipment & materials company worth about $614.8B. It brought in $39.5B of revenue over the last year, up 55% from a year earlier. It keeps 44% of sales as operating profit.",
+    "bull": [
+     "Revenue grew 16% a year over the available history. Fisher's point #1 wants products with room for sales to keep growing for years. (Fisher)",
+     "Spends 14% of revenue on R&D. Fisher (#2, #3) wants management investing in future products. (Fisher)",
+     "Operating margin 44%. Fisher #5: worthwhile profit margins. (Fisher)",
+     "Margins widened by 3.9 points. Fisher #6: improving margins. (Fisher)"
+    ],
+    "bear": [
+     "Price ($1,595.28) exceeds the Graham Number ($32.62) \u2014 fails Graham's defensive-investor price test. (Graham)",
+     "P/E \u00d7 P/B = 53808.9, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)",
+     "Current ratio of 1.26 is below Graham's 2.0 liquidity bar. (Graham)",
+     "Earnings yield (EBIT \u00f7 EV) 0.0%: not cheap by the Magic Formula. (Greenblatt)"
+    ],
+    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 25% growth fading to 3%, 9% discount rate), fair value is roughly $1,162.96 a share (bear $592.68, bull $1,939.26) against a price of $1,595.28. The price is 37% above the base-case value, so you're paying for growth that hasn't happened yet.",
+    "watch": [
+     "Revenue growth stays near or above 55% (last reading).",
+     "Operating margin (44%) keeps rising as the company grows."
+    ],
+    "plan": "Put it on watch. A price around $872.22 would give the 25% margin of safety value investors look for. Re-check after the next earnings report.",
+    "buffett_view": "On Buffett's own tests this scores 62/100.",
+    "ai": null
+   },
+   "news30": {
+    "summary": "Over the last 30 days ASML Holding N.V shares fell 9% (now $1,595.28). News flow was heavy (91 stories) and the headlines were mostly positive (16 upbeat, 1 downbeat). Most coverage was about earnings & guidance (38), analyst calls (17) and products & technology (15). Analyst calls leaned positive: 13 upgrade or target-raise headlines vs 0 cuts. Key headline: \u201cDBS Sticks to Their Buy Rating for ASML Holding NV (0QB8)\u201d (The Globe and Mail, 2026-10-21).",
+    "count": 91,
+    "tone": "mostly positive",
+    "positive": 16,
+    "negative": 1,
+    "themes": [
+     [
+      "earnings & guidance",
+      38
+     ],
+     [
+      "analyst calls",
+      17
+     ],
+     [
+      "products & technology",
+      15
+     ],
+     [
+      "buy/sell opinion pieces",
+      12
+     ],
+     [
+      "stock moves",
+      8
+     ]
+    ],
+    "items": [
+     {
+      "title": "DBS Sticks to Their Buy Rating for ASML Holding NV (0QB8)",
+      "source": "The Globe and Mail",
+      "date": "2026-10-21",
+      "link": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxORHpQSnE3VUx3dmNFRXVaa0JSdGhIM3NvVjF1SmxlZFZzUk9VUUl1SVNWdDU0LVU3dkdUS0drU3ZTZjdrcXNVdW9jMFNfWkdPVzBNdzY3QTJCczZtVTY2a0FYMlYycC1DajFLaXFVNjM1ZXpKYlAySGN6XzRYaGl3LTNaaXdzc19GVi1JdktnNU1SZl9hQk1QY21OYVlFRng4ekdxbF9MVU5JcWZGd09ISGlNRGVfYXQwM2pPQjFfS0JTRXlhSi1JNk9mVC1BQThVMHBHZlplaw?oc=5"
+     },
+     {
+      "title": "ASML Forecast \u2014 Price Target \u2014 Prediction for 2027",
+      "source": "TradingView",
+      "date": "2026-10-21",
+      "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE95Uk1KaTN3bWpqTmVMWkFsTEZyWjhER1FHelRKUzloZ2hBaUtaOGtDTW4xaDFscWZWTEV1QTdxeXB0bmo4dmV3aHlFVElPNEtTRlBVWDlMOWJRdXJ6bTdfbWlmOVVwWlVXUDhtWExQR21Ja1AwdGc?oc=5"
+     },
+     {
+      "title": "Investors Heavily Search ASML Holding N.V. (ASML): Here is What You Need to Know",
+      "source": "Yahoo Finance",
+      "date": "2026-10-21",
+      "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxONlBFdFk0UlJnUklrUzIyVEZhRXV2Y2o2X3JSUHRvdzR5SzVwVlFKZU9sUFY0ZFU5YXgxdDRSQ3dBQnVzT1RzN3hjNDJDNGxFQTlfTDNkNzJRcXF3cndkU3RlTHItWkpFX3NxVGNoSlljWWhYZFl1VVhjS1liZXdyN1B6Z3JKNS00Q1J5NS03a0tqU2ZucWJFcDJULXlvLUlfamYyNw?oc=5"
+     },
+     {
+      "title": "ASML Holding N.V. : Bernstein reiterates its Buy rating",
+      "source": "www.marketscreener.com",
+      "date": "2026-10-19",
+      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQMUFzeWFoT2FmN2Foa0l2LVpUa0Q5c1V5UnFNM21vV1dRbUp0OUJuSU42eU1lNTdkQzV4a2s0UjloZjNDZUItdWptTW5kakwtQkxnc19iUFBJcjJqUklKMGo4b2dfM093dFBRN3RqYlFBY0hXanlJdVNibFNRT2V4VmRaejBYYjRPSlFxRUxLVkVxYXlleUh5elhXOTRoZmdWZ2ZHUTdKVmI?oc=5"
+     },
+     {
+      "title": "AI Chip Earnings Soared\u2014Why Micron, TSMC And ASML Shares May Fall",
+      "source": "Forbes",
+      "date": "2026-10-16",
+      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPd2FzM29rXzRDWVIwTTRKdUN5Y0o5c1hqbTFpeVBQcjBqWkZsTjBNOFVleVVVZzczTlk5WE15dE84RGY4Nno5TjB0dGszbkMzY1RPSzUwaFhJNlNOV2R6NGNpaTQ0dEhfM0VNWjBRNjl4aU9oX2xaTFpwd05PT1BrTktVcmpiUXNHM1dWTV9YTUphY1NVbFRYYW5YZGJ4Wk43NVhIYjYtQUNRbkJMYmQ4RWZKZlA?oc=5"
+     }
+    ],
+    "by": "rules",
+    "updated": "2026-10-22"
+   }
+  },
+  {
    "ticker": "MSFT",
    "desk": "company",
    "note": "Microsoft \u2014 software compounder",
@@ -2865,6 +3109,250 @@
       "source": "Axios",
       "date": "2026-10-15",
       "link": "https://news.google.com/rss/articles/CBMiekFVX3lxTFA2eG1XZmZiS2NOMThjQ2hKZ0RxVHpPc25EUlZEdXgwTEpBS09EYk5CUHJpdmJlbDVoMTdJeXc5Z29paWEtVGdaNGQ0aVI1dl95VnF3Sk5kVllPV3A0UjNpdl9DOWNBVU10N05vOGwtUnhfdE9yNHlnQ2pn?oc=5"
+     }
+    ],
+    "by": "rules",
+    "updated": "2026-10-22"
+   }
+  },
+  {
+   "ticker": "ENVA",
+   "desk": "company",
+   "note": "",
+   "name": "Enova International, Inc.",
+   "sector": "Financial Services",
+   "industry": "Credit Services",
+   "price": 177.87,
+   "week52_high": 267.45,
+   "week52_low": 111.93,
+   "overall": {
+    "label": "WORTH RESEARCHING",
+    "rationale": "Several lenses like it, others don't. Dig into the cons before buying.",
+    "score": 59.1
+   },
+   "lenses": [
+    {
+     "key": "buffett",
+     "short": "Buffett",
+     "name": "Buffett & Munger (Quality Compounding)",
+     "score": 55.3,
+     "verdict": "Partial fit",
+     "pros": [
+      "High gross margin (50%) suggests real pricing power / a moat.",
+      "Share count shrank 20.0% \u2014 management is buying back stock, not diluting.",
+      "Trading ~95% below estimated intrinsic value \u2014 a real margin of safety."
+     ],
+     "cons": [
+      "Margins are unstable year to year \u2014 less predictable than Buffett prefers.",
+      "Debt/Equity of 3.39 exceeds Buffett's usual 0.5 comfort zone."
+     ]
+    },
+    {
+     "key": "graham",
+     "short": "Graham",
+     "name": "Benjamin Graham (Deep Value)",
+     "score": 48.7,
+     "verdict": "Weak fit",
+     "pros": [
+      "Current ratio of 15.16 clears Graham's 2.0 liquidity bar.",
+      "Long-term debt is fully covered by net working capital \u2014 Graham's conservative debt test.",
+      "No loss-making years across the 4 most recent periods available."
+     ],
+     "cons": [
+      "Price ($177.87) exceeds the Graham Number ($135.03) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 39.0, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
+      "No current dividend \u2014 fails Graham's income requirement for the defensive investor."
+     ]
+    },
+    {
+     "key": "lynch",
+     "short": "Lynch",
+     "name": "Peter Lynch (GARP \u2014 Fast Grower)",
+     "score": 62.4,
+     "verdict": "Partial fit",
+     "pros": [
+      "PEG ratio of 0.33 is under 1.0 \u2014 Lynch's rule of thumb for a reasonably priced grower.",
+      "Classified as a Fast Grower (>25% earnings growth) \u2014 Lynch's favorite hunting ground, though these also carry the most execution/valuation risk.",
+      "Company is buying back shares alongside its growth story."
+     ],
+     "cons": [
+      "Debt/Equity of 3.39 is elevated \u2014 leverage adds fragility to a growth thesis.",
+      "Institutional ownership is very high (98%) \u2014 the easy discovery phase is likely already behind it."
+     ]
+    },
+    {
+     "key": "fisher",
+     "short": "Fisher",
+     "name": "Philip Fisher (Growth Quality)",
+     "score": 70.0,
+     "verdict": "Partial fit",
+     "pros": [
+      "Revenue grew 22% a year over the available history. Fisher's point #1 wants products with room for sales to keep growing for years.",
+      "Operating margin 30%. Fisher #5: worthwhile profit margins."
+     ],
+     "cons": [
+      "Margins shrank by 2.5 points. Fisher #6 looks for improvement."
+     ]
+    },
+    {
+     "key": "greenblatt",
+     "short": "Greenblatt",
+     "name": "Joel Greenblatt (Magic Formula)",
+     "score": 50.0,
+     "verdict": "Not applicable",
+     "pros": [],
+     "cons": [
+      "Greenblatt excludes Financial Services companies; their balance sheets don't fit the formula."
+     ]
+    }
+   ],
+   "classic": null,
+   "kpis": {
+    "revenue_ttm": 1691782016,
+    "revenue_growth_yoy": 0.311,
+    "revenue_cagr": 0.2199,
+    "earnings_growth": 0.399,
+    "quarterly_revenue": [
+     764043000,
+     802678000,
+     839391000,
+     875142000,
+     928927000
+    ],
+    "gross_margin": 0.8329,
+    "operating_margin": 0.2994,
+    "profit_margin": 0.2101,
+    "roe_avg": 0.1804,
+    "roic": null,
+    "roa": 0.0549,
+    "free_cash_flow": 1771981000.0,
+    "fcf_margin": 1.0474,
+    "total_cash": 135266000,
+    "cash_runway_years": null,
+    "rule_of_40": 135.8,
+    "market_cap": 4428673536,
+    "pe": 13.2,
+    "forward_pe": 8.49,
+    "pb": 2.96,
+    "peg": 0.33,
+    "price_to_sales": 2.62,
+    "ev_to_ebitda": null,
+    "earnings_yield": null,
+    "graham_number": 135.03,
+    "dividend_yield": 0.0,
+    "payout_ratio": 0.0,
+    "debt_to_equity": 3.39,
+    "current_ratio": 15.16,
+    "insider_pct": 0.0453,
+    "institutional_pct": 0.9786,
+    "short_pct_float": 0.0948,
+    "beta": 1.28
+   },
+   "valuation": {
+    "bear": 1723.84,
+    "base": 3382.5,
+    "bull": 5640.41,
+    "growth": 0.25,
+    "method": "average free cash flow, last 3 years",
+    "note": null,
+    "margin_of_safety": 0.9474
+   },
+   "recent_ipo": false,
+   "ipo": {
+    "months_listed": 143.3,
+    "first_trade_date": "2014-11-13",
+    "first_day_open": null,
+    "first_day_close": null,
+    "prospectus": null,
+    "checklist": []
+   },
+   "news": [],
+   "data_notes": [],
+   "stale": false,
+   "updated": "2026-10-22T14:49:22+00:00",
+   "memo": {
+    "headline": "WORTH RESEARCHING. Several lenses like it, others don't. Dig into the cons before buying.",
+    "business": "Enova International, Inc. (ENVA) is a credit services company worth about $4.4B. It brought in $1.7B of revenue over the last year, up 31% from a year earlier. It keeps 30% of sales as operating profit.",
+    "bull": [
+     "Revenue grew 22% a year over the available history. Fisher's point #1 wants products with room for sales to keep growing for years. (Fisher)",
+     "Operating margin 30%. Fisher #5: worthwhile profit margins. (Fisher)",
+     "PEG ratio of 0.33 is under 1.0 \u2014 Lynch's rule of thumb for a reasonably priced grower. (Lynch)",
+     "Classified as a Fast Grower (>25% earnings growth) \u2014 Lynch's favorite hunting ground, though these also carry the most execution/valuation risk. (Lynch)"
+    ],
+    "bear": [
+     "Price ($177.87) exceeds the Graham Number ($135.03) \u2014 fails Graham's defensive-investor price test. (Graham)",
+     "P/E \u00d7 P/B = 39.0, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)",
+     "No current dividend \u2014 fails Graham's income requirement for the defensive investor. (Graham)",
+     "Greenblatt excludes Financial Services companies; their balance sheets don't fit the formula. (Greenblatt)"
+    ],
+    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 25% growth fading to 3%, 9% discount rate), fair value is roughly $3,382.50 a share (bear $1,723.84, bull $5,640.41) against a price of $177.87. That's a 95% margin of safety: Buffett and Graham wanted 25%+.",
+    "watch": [
+     "Revenue growth stays near or above 31% (last reading).",
+     "Operating margin (30%) keeps rising as the company grows.",
+     "Debt (debt/equity 3.4) comes down."
+    ],
+    "plan": "Put it on watch. A price around $2,536.88 would give the 25% margin of safety value investors look for. Re-check after the next earnings report.",
+    "buffett_view": "On Buffett's own tests this scores 55/100.",
+    "ai": null
+   },
+   "news30": {
+    "summary": "Over the last 30 days Enova shares rose 5% (now $177.87). News flow was heavy (64 stories) and the headlines were mixed (10 upbeat, 13 downbeat). Most coverage was about deals & partnerships (15), legal & regulation (10) and earnings & guidance (8). Analyst calls leaned split: 1 upgrade or target-raise headline vs 1 cut. Key headline: \u201cEnova International (ENVA) Set to Report Q3 Earnings on October 22, 2026\u201d (GuruFocus, 2026-10-22).",
+    "count": 64,
+    "tone": "mixed",
+    "positive": 10,
+    "negative": 13,
+    "themes": [
+     [
+      "deals & partnerships",
+      15
+     ],
+     [
+      "legal & regulation",
+      10
+     ],
+     [
+      "earnings & guidance",
+      8
+     ],
+     [
+      "products & technology",
+      7
+     ],
+     [
+      "buy/sell opinion pieces",
+      6
+     ]
+    ],
+    "items": [
+     {
+      "title": "Enova International (ENVA) Set to Report Q3 Earnings on October 22, 2026",
+      "source": "GuruFocus",
+      "date": "2026-10-22",
+      "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQd0l2Q1RVVkZCSU44OENhWVZueGRybHFWVFZWZjl2NVJUclJrUmZxY0tDU2ZrMi1Ta1ZzbkNNM2VSRWhGZjRxVTBZOEVnV0JxWWNnQ2NPNzVQNXVaYlJwS0RfN1R0ZzFhaDgwNlhXaTF1a2otcVExM21MbFhmcUVPM2VzY3lxWG1qOFBqV0RadlFtTUctakxiQUZvZXlwZEdjNzNmc2YzaTBRSGw4?oc=5"
+     },
+     {
+      "title": "Blue Tower on Enova International\u2019s Grasshopper Bank Deal Termination",
+      "source": "Yahoo Finance",
+      "date": "2026-10-21",
+      "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPSDA0N0NHcGZhVEdtNThGeVl0cmVsVDJnQ3VyYTg1R2xhdFU1R2NBcjZ4RkwxR2FDZDM4djk5ZFVURlEySnZFWkhRZE9CaFh0MGJQYV9mckduOHY2WVljTElaVlgtMmNDaTVPeUVSODhTUnEyNUh2ZGtQWGlZajgxOHhqcmVxRklWZDRBdzh3R1luOExJZ3dTX3JoOHVYaDhHU3RreEg0RFZHRmc?oc=5"
+     },
+     {
+      "title": "Enova withdraws bank acquisition applications, shares plunge 23% amid regulatory concerns",
+      "source": "Pluang",
+      "date": "2026-10-21",
+      "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQR2xLVUVYY1o4b2xmR0F2NUF5eVRfRS1GemxvT1RuNFZEM2p0R1RTU3FTXzdrU0gyZDNreXhvWXNtVHFBb0o0c1h4VkZ1Q2ZTZGtheHJDak5RRV9rSFBTWUl2bVZZaXJ0SFlIa1U0MV9meGxqcVZnQlR3VmREQ3dROTg4ZmxQVXhmX3lsMGdHaVZGZ1NSNGRDM2ZNSG0ycVBYbmk5Ql93?oc=5"
+     },
+     {
+      "title": "What To Expect From Enova\u2019s (ENVA) Q3 Earnings",
+      "source": "Yahoo Finance",
+      "date": "2026-10-21",
+      "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQd3o1NmZGT2ZJTE5Ga3R2cUFVQVp5U1l0VHNuZXFmaUZjRkZ0TEM1R3dIamJJQjItdU9UY3hQZG1DcmVZLTd0bHFHbV9PMEwzZEZ0dUhUUUpSZXJlZ2ZITXRoQkxwZF8yR1E5cGVqMGNXcHVVd01XUlFSZHk2NXJCNnJkd1RvQXlvbDB3bUdpakswdnQ0S0ltcFhn?oc=5"
+     },
+     {
+      "title": "Investigation launched into Enova over withdraw...",
+      "source": "Pluang",
+      "date": "2026-10-20",
+      "link": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOdEZONVdhaVBMVXo5aEYxeDhWSVhhWGdteGhLRlJJVDhOaWNNVzRET2VlMlNTY2tFSGlyWkV2eTZ3Y1FFcERVaThOQXJYNGVlYklLb2dqZTBILWZYRTBRdWVpbkJ1Rlcwc2stVE1MQVFGeDYzWHdtd2h0WkY5UDBVNzFpdHc2c2dPcHc?oc=5"
      }
     ],
     "by": "rules",
@@ -3869,6 +4357,250 @@
    }
   },
   {
+   "ticker": "MU",
+   "desk": "company",
+   "note": "",
+   "name": "Micron Technology, Inc.",
+   "sector": "Technology",
+   "industry": "Semiconductors",
+   "price": 873.7,
+   "week52_high": 1255.0,
+   "week52_low": 192.59,
+   "overall": {
+    "label": "HOLD / NEUTRAL",
+    "rationale": "No strong signal either way on the available data.",
+    "score": 53.4
+   },
+   "lenses": [
+    {
+     "key": "buffett",
+     "short": "Buffett",
+     "name": "Buffett & Munger (Quality Compounding)",
+     "score": 38.7,
+     "verdict": "Weak fit",
+     "pros": [
+      "Debt/Equity of 0.28 is comfortably below Buffett's 0.5 ceiling."
+     ],
+     "cons": [
+      "Thin gross margin (25%) \u2014 little evidence of a durable moat.",
+      "Margins are unstable year to year \u2014 less predictable than Buffett prefers.",
+      "At least one loss-making year in the available window.",
+      "Average ROE of 5% falls short of Buffett's 15% minimum.",
+      "Trading ~4567% above estimated intrinsic value \u2014 little to no margin of safety."
+     ]
+    },
+    {
+     "key": "graham",
+     "short": "Graham",
+     "name": "Benjamin Graham (Deep Value)",
+     "score": 37.0,
+     "verdict": "Weak fit",
+     "pros": [
+      "Current ratio of 2.52 clears Graham's 2.0 liquidity bar.",
+      "Long-term debt is fully covered by net working capital \u2014 Graham's conservative debt test.",
+      "Currently pays a dividend (yield ~0.1%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
+     ],
+     "cons": [
+      "Price ($873.70) exceeds the Graham Number ($452.35) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 83.9, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
+      "At least one loss-making year in the available window \u2014 Graham requires positive earnings every year (traditionally over 10 years)."
+     ]
+    },
+    {
+     "key": "lynch",
+     "short": "Lynch",
+     "name": "Peter Lynch (GARP \u2014 Fast Grower)",
+     "score": 77.8,
+     "verdict": "Strong fit",
+     "pros": [
+      "PEG ratio of 0.16 is under 1.0 \u2014 Lynch's rule of thumb for a reasonably priced grower.",
+      "Classified as a Fast Grower (>25% earnings growth) \u2014 Lynch's favorite hunting ground, though these also carry the most execution/valuation risk.",
+      "Manageable Debt/Equity of 0.28 \u2014 Lynch was wary of highly leveraged growth stories."
+     ],
+     "cons": []
+    },
+    {
+     "key": "fisher",
+     "short": "Fisher",
+     "name": "Philip Fisher (Growth Quality)",
+     "score": 58.5,
+     "verdict": "Partial fit",
+     "pros": [
+      "Spends 10% of revenue on R&D. Fisher (#2, #3) wants management investing in future products.",
+      "Operating margin 81%. Fisher #5: worthwhile profit margins."
+     ],
+     "cons": [
+      "Revenue grew only 7% a year, weak on Fisher's point #1 (sales growth potential).",
+      "Margins shrank by 5.3 points. Fisher #6 looks for improvement."
+     ]
+    },
+    {
+     "key": "greenblatt",
+     "short": "Greenblatt",
+     "name": "Joel Greenblatt (Magic Formula)",
+     "score": 55.0,
+     "verdict": "Partial fit",
+     "pros": [
+      "Return on capital ~39%: a good business by Greenblatt's first test."
+     ],
+     "cons": [
+      "Earnings yield (EBIT \u00f7 EV) 1.0%: not cheap by the Magic Formula."
+     ]
+    }
+   ],
+   "classic": null,
+   "kpis": {
+    "revenue_ttm": 133188001792,
+    "revenue_growth_yoy": 3.793,
+    "revenue_cagr": 0.0671,
+    "earnings_growth": 10.595,
+    "quarterly_revenue": [
+     9301000000,
+     11315000000,
+     13643000000,
+     23860000000,
+     41456000000
+    ],
+    "gross_margin": 0.8072,
+    "operating_margin": 0.8068,
+    "profit_margin": 0.638,
+    "roe_avg": 0.0542,
+    "roic": 0.3895,
+    "roa": 0.4456,
+    "free_cash_flow": 1668000000.0,
+    "fcf_margin": 0.0125,
+    "total_cash": 43434000384,
+    "cash_runway_years": null,
+    "rule_of_40": 380.6,
+    "market_cap": 988524511232,
+    "pe": 11.75,
+    "forward_pe": 4.22,
+    "pb": 7.14,
+    "peg": 0.16,
+    "price_to_sales": 7.42,
+    "ev_to_ebitda": 9.15,
+    "earnings_yield": 0.0102,
+    "graham_number": 452.35,
+    "dividend_yield": 0.0007,
+    "payout_ratio": 0.0071,
+    "debt_to_equity": 0.28,
+    "current_ratio": 2.52,
+    "insider_pct": 0.0024,
+    "institutional_pct": 0.8007,
+    "short_pct_float": 0.0231,
+    "beta": 2.23
+   },
+   "valuation": {
+    "bear": 9.54,
+    "base": 18.72,
+    "bull": 31.22,
+    "growth": 0.25,
+    "method": "owner earnings",
+    "note": null,
+    "margin_of_safety": -45.672
+   },
+   "recent_ipo": false,
+   "ipo": {
+    "months_listed": 508.6,
+    "first_trade_date": "1984-06-01",
+    "first_day_open": null,
+    "first_day_close": null,
+    "prospectus": null,
+    "checklist": []
+   },
+   "news": [],
+   "data_notes": [],
+   "stale": false,
+   "updated": "2026-10-22T14:49:30+00:00",
+   "memo": {
+    "headline": "HOLD / NEUTRAL. No strong signal either way on the available data.",
+    "business": "Micron Technology, Inc. (MU) is a semiconductors company worth about $988.5B. It brought in $133.2B of revenue over the last year, up 379% from a year earlier. It keeps 81% of sales as operating profit.",
+    "bull": [
+     "PEG ratio of 0.16 is under 1.0 \u2014 Lynch's rule of thumb for a reasonably priced grower. (Lynch)",
+     "Classified as a Fast Grower (>25% earnings growth) \u2014 Lynch's favorite hunting ground, though these also carry the most execution/valuation risk. (Lynch)",
+     "Manageable Debt/Equity of 0.28 \u2014 Lynch was wary of highly leveraged growth stories. (Lynch)",
+     "Spends 10% of revenue on R&D. Fisher (#2, #3) wants management investing in future products. (Fisher)"
+    ],
+    "bear": [
+     "Price ($873.70) exceeds the Graham Number ($452.35) \u2014 fails Graham's defensive-investor price test. (Graham)",
+     "P/E \u00d7 P/B = 83.9, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)",
+     "At least one loss-making year in the available window \u2014 Graham requires positive earnings every year (traditionally over 10 years). (Graham)",
+     "Thin gross margin (25%) \u2014 little evidence of a durable moat. (Buffett)"
+    ],
+    "valuation": "Using a simple two-stage cash-flow model (owner earnings, 25% growth fading to 3%, 9% discount rate), fair value is roughly $18.72 a share (bear $9.54, bull $31.22) against a price of $873.70. The price is more than 47x the base-case value: the market expects far more growth than this model assumes.",
+    "watch": [
+     "Revenue growth stays near or above 379% (last reading).",
+     "Operating margin (81%) keeps rising as the company grows."
+    ],
+    "plan": "Pass for now. Revisit only if the business or the price changes materially.",
+    "buffett_view": "On Buffett's own tests this scores 39/100.",
+    "ai": null
+   },
+   "news30": {
+    "summary": "Over the last 30 days Micron Technology shares fell 20% (now $873.70). News flow was heavy (90 stories) and the headlines were mixed (11 upbeat, 11 downbeat). Most coverage was about products & technology (16), earnings & guidance (13) and stock moves (10). Analyst calls leaned positive: 5 upgrade or target-raise headlines vs 0 cuts. Insider activity: 1 selling and 0 buying headlines (latest: \u201cForm 4 Micron Technology Inc For: 21 October By Investing.com\u201d). Key headline: \u201cMicron (MU) Stock Looks Fully Valued After A Critical Minerals Deal\u201d (Yahoo Finance, 2026-10-22).",
+    "count": 90,
+    "tone": "mixed",
+    "positive": 11,
+    "negative": 11,
+    "themes": [
+     [
+      "buy/sell opinion pieces",
+      17
+     ],
+     [
+      "products & technology",
+      16
+     ],
+     [
+      "earnings & guidance",
+      13
+     ],
+     [
+      "stock moves",
+      10
+     ],
+     [
+      "analyst calls",
+      9
+     ]
+    ],
+    "items": [
+     {
+      "title": "Micron (MU) Stock Looks Fully Valued After A Critical Minerals Deal",
+      "source": "Yahoo Finance",
+      "date": "2026-10-22",
+      "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNUEdGRmdiWk0xMkVvSG9zT1ZZWVBMR0JQNUt6Vkk2OXpIVjRFeWVrTXdCSm9DT0lWQXluSnhtaXhYR0ZVbXR4NUNLclluWnRGTVVodkJnWGUyQnNiTFRMZVZOaTN0TXhGU1AzQ0Z4dWZ1Y1o4dTFIWVRHcVVQZVZZWmVsZkZsOW9rSVRxS20zckxIekI1VmtJ?oc=5"
+     },
+     {
+      "title": "Abandoning 4F\u00b2 and HBM4 mass production, accelerating G11 NAND\u2026 Micron's technology symposium laid out its roadmap, while Morgan Stanley maintained an \"Overweight\" rating.",
+      "source": "\u5bcc\u9014\u725b\u725b",
+      "date": "2026-10-22",
+      "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPN3NqMXhFb2pwSWpaNFF5WEgzZXZnazAxdEpsLTJDYlgtMnlqU3dLaWFkVktwOTZMcEJaY3dud1VuN2J4SGVwM0tnNlNJbWZmSFVrTW9RMzFnQ3Nob1hWbXJ6UkdyaWRPVXo1NU1EaEgtSzFFcE1MSUREUEx1STIwbU1xWmNSTXRqTzNuQjRURkVBRV9Ec2RHV3hKcFBET0c4YjZHU3VSdEVVV09rRm84?oc=5"
+     },
+     {
+      "title": "Micron Technology stock drops 2.65 percent pre-market before the open",
+      "source": "AD HOC NEWS",
+      "date": "2026-10-22",
+      "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNcDFlYjhhQTJqSUlGU3lFMkJhVWdqQ2p4Q09mWEVZSWJ1MGx2eUxpb1VsbkpxRlNFaGEzYS1Uelk5QTlST0hFcHdkc3MtWUxfbTVydnU3SGRuX3BUMzJoclBURG81QXA2WDJTbFNmdXZDZk9rNHZoeTI2dEhUWlF6Z3J5RDhHeGdZbFlnc2ZnUFpUMG4weGI1UktMYkRVTGNzT21HendPbWUxcFZLZEZQdlc2cU15RXpGb2t0c3RtZjFzOFZnLUE?oc=5"
+     },
+     {
+      "title": "$Micron Technology (MU.US)$$SK hynix (SKHY.US)$$SanDisk (SNDK.US)$ @longkiller Black Thursday",
+      "source": "Moomoo",
+      "date": "2026-10-22",
+      "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPeDgxbmw3aXhhVW5jTEw4NTJubl9hcTJldlBHX0RvSjFaR0dpZFdGVTJjTm52eDdDdGQ0Q0plR2JTX1o3YjFSN1pLNXEwblNEc0prUks4RFJlTHlHODNaZTF4SFh3dTFFdUNOVWRKT1FLQUlSbTd6bXk2SkhYMFJ5YmtvN3Y1Ry1DR0FyMG1nM19PYlhlenpyUDhIaWowT1YwTVlUa3hPM016SGs?oc=5"
+     },
+     {
+      "title": "Micron Technology stock: Earnings are tentatively due December 23, 2026 for Micron Technology stock",
+      "source": "AD HOC NEWS",
+      "date": "2026-10-21",
+      "link": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxORUtDWENMWHcybzAzMnlyZFkxWWNYbjlxZVY4UHplMENYLWdQTVhpSllCeDZlVnpYLUE3U0dDQmdRWGFROG5DeGZQeXNESUw4Nk5WQ2F4eUxsR01OSktUckxaWjVpTmNEZGVuS2dKWl9LTElydFBVUEg0VVV3Q1ZYZzJManFuNnlKU3RBdDNJYnVJa21VclpXaHVXNUljTzBPbDQxWXVZRWxVaGs4d09QN0g5WXBuX2ZHN2c3dS1vbmMxTjVxTjRLS0RJS1JTZkNFSUphcHRmUlIwVzdJam8tQV8zTnBmcVNVVXV2eXU2MXNjUQ?oc=5"
+     }
+    ],
+    "by": "rules",
+    "updated": "2026-10-22"
+   }
+  },
+  {
    "ticker": "AXP",
    "desk": "company",
    "note": "American Express \u2014 Buffett holding",
@@ -4858,6 +5590,251 @@
       "source": "Yahoo Finance",
       "date": "2026-10-16",
       "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOVHBUQlA2M0dOZ254V2dURHJEbGRWcmxBX2tiXzg5b0pxNDdCbmpXYW51eXVkWUY0WE5PRExJZkVHUzBET25ZZlFrbzFta0xJQW1tV3M0QlAtM1VYOEFLSWNaQXd2Qzhxb1o1aGx0Uy1JaFJScWdEODFHR2dhNF8tN0ZwM2Q2VWJMTVEteDdyZjNidE9hRnp3?oc=5"
+     }
+    ],
+    "by": "rules",
+    "updated": "2026-10-22"
+   }
+  },
+  {
+   "ticker": "AMD",
+   "desk": "company",
+   "note": "",
+   "name": "Advanced Micro Devices, Inc.",
+   "sector": "Technology",
+   "industry": "Semiconductors",
+   "price": 513.51,
+   "week52_high": 658.52,
+   "week52_low": 188.22,
+   "overall": {
+    "label": "HOLD / NEUTRAL",
+    "rationale": "No strong signal either way on the available data.",
+    "score": 50.3
+   },
+   "lenses": [
+    {
+     "key": "buffett",
+     "short": "Buffett",
+     "name": "Buffett & Munger (Quality Compounding)",
+     "score": 44.8,
+     "verdict": "Weak fit",
+     "pros": [
+      "High gross margin (47%) suggests real pricing power / a moat.",
+      "Debt/Equity of 0.06 is comfortably below Buffett's 0.5 ceiling."
+     ],
+     "cons": [
+      "Margins are unstable year to year \u2014 less predictable than Buffett prefers.",
+      "Average ROE of 3% falls short of Buffett's 15% minimum.",
+      "Share count grew 4.1% \u2014 dilution works against per-share owner value.",
+      "High R&D intensity (23% of revenue) \u2014 fast-moving, harder to forecast 10-20 years out, arguably outside a conservative circle of competence.",
+      "Trading ~326% above estimated intrinsic value \u2014 little to no margin of safety."
+     ]
+    },
+    {
+     "key": "graham",
+     "short": "Graham",
+     "name": "Benjamin Graham (Deep Value)",
+     "score": 43.2,
+     "verdict": "Weak fit",
+     "pros": [
+      "Current ratio of 2.85 clears Graham's 2.0 liquidity bar.",
+      "Long-term debt is fully covered by net working capital \u2014 Graham's conservative debt test.",
+      "No loss-making years across the 4 most recent periods available."
+     ],
+     "cons": [
+      "Price ($513.51) exceeds the Graham Number ($60.27) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 1633.1, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
+      "No current dividend \u2014 fails Graham's income requirement for the defensive investor."
+     ]
+    },
+    {
+     "key": "lynch",
+     "short": "Lynch",
+     "name": "Peter Lynch (GARP \u2014 Fast Grower)",
+     "score": 78.7,
+     "verdict": "Strong fit",
+     "pros": [
+      "PEG ratio of 0.55 is under 1.0 \u2014 Lynch's rule of thumb for a reasonably priced grower.",
+      "Classified as a Fast Grower (>25% earnings growth) \u2014 Lynch's favorite hunting ground, though these also carry the most execution/valuation risk.",
+      "Manageable Debt/Equity of 0.06 \u2014 Lynch was wary of highly leveraged growth stories."
+     ],
+     "cons": []
+    },
+    {
+     "key": "fisher",
+     "short": "Fisher",
+     "name": "Philip Fisher (Growth Quality)",
+     "score": 62.2,
+     "verdict": "Partial fit",
+     "pros": [
+      "Revenue grew 14% a year over the available history. Fisher's point #1 wants products with room for sales to keep growing for years.",
+      "Spends 23% of revenue on R&D. Fisher (#2, #3) wants management investing in future products.",
+      "Operating margin 17%. Fisher #5: worthwhile profit margins.",
+      "Margins widened by 5.3 points. Fisher #6: improving margins."
+     ],
+     "cons": [
+      "Share count up 4%. Fisher #13 warns against growth funded by diluting owners."
+     ]
+    },
+    {
+     "key": "greenblatt",
+     "short": "Greenblatt",
+     "name": "Joel Greenblatt (Magic Formula)",
+     "score": 22.5,
+     "verdict": "Poor fit",
+     "pros": [],
+     "cons": [
+      "Return on capital ~8%: below what the Magic Formula looks for.",
+      "Earnings yield (EBIT \u00f7 EV) 0.5%: not cheap by the Magic Formula."
+     ]
+    }
+   ],
+   "classic": null,
+   "kpis": {
+    "revenue_ttm": 41305001984,
+    "revenue_growth_yoy": 0.501,
+    "revenue_cagr": 0.1364,
+    "earnings_growth": 1.595,
+    "quarterly_revenue": [
+     7685000000,
+     9246000000,
+     10270000000,
+     10253000000,
+     11536000000
+    ],
+    "gross_margin": 0.5572,
+    "operating_margin": 0.1725,
+    "profit_margin": 0.1558,
+    "roe_avg": 0.0342,
+    "roic": 0.0795,
+    "roa": 0.0513,
+    "free_cash_flow": 6735000000.0,
+    "fcf_margin": 0.1631,
+    "total_cash": 13111000064,
+    "cash_runway_years": null,
+    "rule_of_40": 66.4,
+    "market_cap": 838300401664,
+    "pe": 131.0,
+    "forward_pe": 32.58,
+    "pb": 12.47,
+    "peg": 0.55,
+    "price_to_sales": 20.3,
+    "ev_to_ebitda": 93.44,
+    "earnings_yield": 0.0048,
+    "graham_number": 60.27,
+    "dividend_yield": 0.0,
+    "payout_ratio": 0.0,
+    "debt_to_equity": 0.06,
+    "current_ratio": 2.85,
+    "insider_pct": 0.0042,
+    "institutional_pct": 0.7535,
+    "short_pct_float": 0.0242,
+    "beta": 2.45
+   },
+   "valuation": {
+    "bear": 61.47,
+    "base": 120.62,
+    "bull": 201.13,
+    "growth": 0.25,
+    "method": "average free cash flow, last 3 years",
+    "note": null,
+    "margin_of_safety": -3.2573
+   },
+   "recent_ipo": false,
+   "ipo": {
+    "months_listed": 559.1,
+    "first_trade_date": "1980-03-17",
+    "first_day_open": null,
+    "first_day_close": null,
+    "prospectus": null,
+    "checklist": []
+   },
+   "news": [],
+   "data_notes": [],
+   "stale": false,
+   "updated": "2026-10-22T14:49:26+00:00",
+   "memo": {
+    "headline": "HOLD / NEUTRAL. No strong signal either way on the available data.",
+    "business": "Advanced Micro Devices, Inc. (AMD) is a semiconductors company worth about $838.3B. It brought in $41.3B of revenue over the last year, up 50% from a year earlier. It keeps 17% of sales as operating profit.",
+    "bull": [
+     "PEG ratio of 0.55 is under 1.0 \u2014 Lynch's rule of thumb for a reasonably priced grower. (Lynch)",
+     "Classified as a Fast Grower (>25% earnings growth) \u2014 Lynch's favorite hunting ground, though these also carry the most execution/valuation risk. (Lynch)",
+     "Manageable Debt/Equity of 0.06 \u2014 Lynch was wary of highly leveraged growth stories. (Lynch)",
+     "Revenue grew 14% a year over the available history. Fisher's point #1 wants products with room for sales to keep growing for years. (Fisher)"
+    ],
+    "bear": [
+     "Return on capital ~8%: below what the Magic Formula looks for. (Greenblatt)",
+     "Earnings yield (EBIT \u00f7 EV) 0.5%: not cheap by the Magic Formula. (Greenblatt)",
+     "Price ($513.51) exceeds the Graham Number ($60.27) \u2014 fails Graham's defensive-investor price test. (Graham)",
+     "P/E \u00d7 P/B = 1633.1, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)"
+    ],
+    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 25% growth fading to 3%, 9% discount rate), fair value is roughly $120.62 a share (bear $61.47, bull $201.13) against a price of $513.51. The price is more than 4x the base-case value: the market expects far more growth than this model assumes.",
+    "watch": [
+     "Revenue growth stays near or above 50% (last reading).",
+     "Operating margin (17%) keeps rising as the company grows."
+    ],
+    "plan": "Pass for now. Revisit only if the business or the price changes materially.",
+    "buffett_view": "On Buffett's own tests this scores 45/100.",
+    "ai": null
+   },
+   "news30": {
+    "summary": "Over the last 30 days Advanced Micro Devices shares fell 18% (now $513.51). News flow was heavy (88 stories) and the headlines were mixed (7 upbeat, 4 downbeat). Most coverage was about products & technology (20), analyst calls (8) and earnings & guidance (5). Analyst calls leaned positive: 5 upgrade or target-raise headlines vs 0 cuts. 29 of the 88 were buy-or-sell opinion pieces, which show attention more than new facts. Insider activity: 1 selling and 0 buying headlines (latest: \u201cAdvanced Micro Devices Insider Sold Shares Worth $9,333,585, According to a Recent SEC Filing\u201d). Key headline: \u201cAMD Stock Forecast for 2026, 2027, 2028\u20132030 and Beyond\u201d (LiteFinance, 2026-10-21).",
+    "count": 88,
+    "tone": "mixed",
+    "positive": 7,
+    "negative": 4,
+    "themes": [
+     [
+      "buy/sell opinion pieces",
+      29
+     ],
+     [
+      "products & technology",
+      20
+     ],
+     [
+      "analyst calls",
+      8
+     ],
+     [
+      "earnings & guidance",
+      5
+     ],
+     [
+      "stock moves",
+      5
+     ]
+    ],
+    "items": [
+     {
+      "title": "Advanced Micro Devices (AMD) Lands New AI Infrastructure Builds In Europe And India",
+      "source": "Yahoo Finance",
+      "date": "2026-10-22",
+      "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNRGdLYzBDX1dqOHo0RTJNRU1BLXhpMUNsaVpjVUlMbWdKOEdSV2dSRTFBU2x6QUdmNlRES3ZqWEtTV3c0OTFoR2ZyalZLUW12b0tHTm1LblZZbWRPdjJqcmJ1VWxJeU1BQjRjZ1FpYWlyQ2dvMVltQl9Wb3lPb01vRGdaRWxYM19JckkxcXZXTE9jQ3hXRUFSMFloN1k?oc=5"
+     },
+     {
+      "title": "AMD Stock Forecast for 2026, 2027, 2028\u20132030 and Beyond",
+      "source": "LiteFinance",
+      "date": "2026-10-21",
+      "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNOHJoMzFPekd2UWJ5dWt1TVl5RU9DQkRZdm9FZnlvdWxnVVVHVzJNbWx6eUwtcnROSXl2MHZCdDVuUXdjbDlqZmF6SGpGc2Exck9keE5wTHAxSkN0SzVEdFBMekdFaEFyM050bGdFaGtMQ19BZ0FCT0E3VkJDYUZjLWF0UUU?oc=5"
+     },
+     {
+      "title": "Teradyne, Vishay Intertechnology, Allegro MicroSystems, Entegris, and AMD shares are soaring, what you need to know",
+      "source": "Yahoo Finance",
+      "date": "2026-10-21",
+      "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOa1FnZFpPd2FUZmlRODFVWjl4SUlQQnp3b3RMeEtoSkN0RU44U1AycF9ySFF1amhQNTFwZHFERnFvOFY5eEpwMkRvaldrU3kyMUJOZHdRMk9mVWpyaXZrUVNMRjFzSjJ4ZGZ0bEYzVnh4TEYxUUg3WElKNm14cG5YUE5sQVFiM0FmQUx1MldXcmRocVl2dnhXMi1YSm81UExnOU8wUWZGSUp6MDMtSjB3dS1Ealg4N3d6?oc=5"
+     },
+     {
+      "title": "Wedbush reiterates Outperform rating on Advanced Micro Devices, $600 price target",
+      "source": "TradingView",
+      "date": "2026-10-20",
+      "link": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQb1hkeGQ0X29fZTVuUXhOVTd1MnI2SzVYOURYMjZxTFVqaWZVckF3RmUwaXlPMVBoNDV4VGxxVEJER2VxWlFObi1vYU5DUXl3NVE4VFdYMjFBcXNrV2FKeTFIak5yb3ZMeTkzYVpoQ19KRTJ4a2lYblR6ZUdjVEgtUWQ4aUJ5TDhBYk1McjUyQ2dlbFZKNTAtSk91dFJFQ2t2c1ZySFZMN2NNdkh1dzNKUUlIWGRvSVRidXN4M3hYS2VSZ3lYSTJxY25fcHJHMlhlMy1uckNrZGI?oc=5"
+     },
+     {
+      "title": "Advanced Micro Devices Server CPU Demand Seen Driving Q3 Upside, Wedbush Says",
+      "source": "Yahoo Finance",
+      "date": "2026-10-20",
+      "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPcWJId0F6WGRyc1VWSDJ3V0ZoYVktSjBqZjN4ZXVOQVREX2lobGxaeFZTYTdPRmhDZnE0QUhwRnBCUWw0dE5mR01nMTZRYkZLS1hrdzl5dUtCd2FoOEtSNWRld25uQ3RnZnhPc25yZXBRX1pUaEh1dUNtV214ZDBGMVhJUlZHN2NBc2tSNUZSTXhOdFhmY3AwMVdKcjM5VjQ?oc=5"
      }
     ],
     "by": "rules",
