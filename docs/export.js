@@ -130,7 +130,7 @@ function exportOnePdf(btn){ return run(btn, async () => {
   y = flow(doc, y, 'If we act on it: ' + M.plan, {bold: true, size: 10});
   y = flow(doc, y, "Buffett's view: " + M.buffett_view, {size: 9.5, color: 90});
   if (M.ai) { y = flow(doc, y, "Analyst's take (AI, Gemini)", {bold: true, gap: 1}); y = flow(doc, y, M.ai, {size: 9.5}); }
-  if (v.base) y = flow(doc, y, `Fair value per share: bear ${money(v.bear)} | base ${money(v.base)} | bull ${money(v.bull)} vs price ${money(s.price)}${v.margin_of_safety != null ? ` | margin of safety ${pct(v.margin_of_safety, 0)}` : ''}. Two-stage DCF on ${v.method}, ${pct(v.growth, 0)} growth fading to 3%, 9% discount rate.`, {size: 9.5});
+  if (v.base) y = flow(doc, y, `Fair value per share: bear ${money(v.bear)} | base ${money(v.base)} | bull ${money(v.bull)} vs price ${money(s.price)}${v.margin_of_safety != null ? ` | margin of safety ${pct(v.margin_of_safety, 0)}` : ''}. Two-stage DCF on ${v.method}, ${pct(v.growth, 0)} growth fading to 3%, ${pct(v.discount_rate ?? 0.09, 0)} discount rate.${v.confidence === 'low' ? ' Low confidence: cash flow and earnings disagree a lot.' : ''}`, {size: 9.5});
   if (ipo && s.ipo.checklist && s.ipo.checklist.length){
     y = heading(doc, y, 'IPO checklist');
     doc.autoTable({startY: y, headStyles: HEAD, styles: {fontSize: 8.5, cellPadding: 4}, columnStyles: {0: {cellWidth: 40}, 1: {cellWidth: 130}},

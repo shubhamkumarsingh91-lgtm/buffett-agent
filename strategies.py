@@ -463,38 +463,71 @@ def _dcf_per_share(base: float, g: float, r: float = 0.09, tg: float = 0.03, yea
     return pv + terminal / (1 + r) ** years
 
 
+FINANCIAL_SECTORS = ("Financial Services", "Financial")
+
+
 def valuation(d: StockData) -> dict:
-    """Bear / base / bull value per share from free cash flow (or owner earnings)."""
+    """Bear / base / bull value per share, two-stage DCF.
+
+    What gets projected (the "anchor"), per share:
+      * banks, lenders, insurers: earnings. Their operating cash flow mixes in loan and deposit
+        flows (Enova showed 5x its profit as "cash flow"), so cash flow is meaningless for them.
+        Uses the lower of trailing and forward EPS, an 11% discount rate (leverage) and growth <= 8%.
+        Payment networks like Visa, whose cash flow matches their profit, stay on cash flow.
+      * everyone else: average free cash flow (last 3 years). If cash flow and earnings disagree by
+        more than 2x (a heavy building phase like Micron's, or a one-off payment), the two are
+        averaged, growth is capped at 15% and the result is marked low confidence.
+      * "not meaningful" only when neither cash flow nor earnings is positive.
+    """
     out = {"bear": None, "base": None, "bull": None, "growth": None, "method": None, "note": None,
-           "margin_of_safety": None}
+           "margin_of_safety": None, "confidence": None}
     shares = d.shares_outstanding
     if not shares:
         out["note"] = "Share count unavailable."
         return out
-    # Normalise: average the last 3 years of free cash flow so one odd year (a tax payment,
-    # a capex spike) doesn't swing the value. Skip when FCF is a sliver of revenue: a young
-    # company earning 1-4% FCF margins can't be valued on cash flow yet.
     fcfs = [v for v in d.fcf_series[-3:] if v is not None]
     fcf = sum(fcfs) / len(fcfs) if fcfs else d.free_cash_flow
-    if fcf is not None and fcf > 0 and d.revenue_ttm and fcf / d.revenue_ttm < 0.05:
-        out["note"] = (f"Not meaningful yet: free cash flow is only {fcf / d.revenue_ttm:.0%} of revenue, "
-                       f"too thin to value on cash flow. Judge it on growth and price/sales instead.")
-        return out
-    if fcf is not None and fcf > 0:
-        base_cf, out["method"] = fcf / shares, ("average free cash flow, last 3 years" if len(fcfs) > 1 else "free cash flow")
-    elif (d.owner_earnings() or 0) > 0:
-        base_cf, out["method"] = d.owner_earnings() / shares, "owner earnings"
-    else:
-        out["note"] = "Not meaningful: the company doesn't generate positive free cash flow yet."
-        return out
+    cash = fcf / shares if fcf is not None and fcf > 0 else None
+    fwd_eps = d.price / d.forward_pe if d.price and d.forward_pe and d.forward_pe > 0 else None
+    eps_c = [e for e in (d.eps_ttm, fwd_eps) if e is not None and e > 0]
+    eps = min(eps_c) if eps_c else None                      # conservative: lower of trailing / forward
+    thin = fcf is not None and fcf > 0 and d.revenue_ttm and fcf / d.revenue_ttm < 0.05
     g = growth_estimate(d)
     g = 0.04 if g is None else g
+    r = 0.09
+
+    financial = (d.sector or "") in FINANCIAL_SECTORS
+    if financial and eps and not (cash and 0.75 <= cash / eps <= 1.33):
+        # banks, lenders, insurers (but not Visa/Mastercard, whose cash flow matches their profit)
+        anchor, g, r = eps, min(g, 0.08), 0.11
+        out["method"] = "earnings per share (banks, lenders and insurers: their cash flow mixes in loan and deposit flows)"
+        out["confidence"] = "medium"
+    elif financial and not eps and not cash:
+        out["note"] = "Not meaningful: no positive earnings to value (banks and lenders are valued on earnings, not cash flow)."
+        return out
+    elif cash and eps and (cash < 0.5 * eps or cash > 2 * eps or thin):
+        anchor, g = (cash + eps) / 2, min(g, 0.15)
+        out["method"] = "blend of cash flow and earnings (they disagree a lot: heavy investment, a one-off, or a cycle)"
+        out["confidence"] = "low"
+    elif cash and not thin:
+        anchor = cash
+        out["method"] = "average free cash flow, last 3 years" if len(fcfs) > 1 else "free cash flow"
+        out["confidence"] = "medium"
+    elif eps:
+        anchor, g = eps, min(g, 0.15)
+        out["method"] = "earnings per share (free cash flow too small or negative)"
+        out["confidence"] = "low"
+    else:
+        out["note"] = "Not meaningful: the company doesn't generate positive cash flow or earnings yet. Judge it on growth and price/sales instead."
+        return out
+
     out["growth"] = round(g, 4)
     bear_g = g * 0.5 if g > 0 else g - 0.03
     bull_g = min(g * 1.5 + 0.02, 0.35)
-    out["bear"] = round(_dcf_per_share(base_cf, bear_g), 2)
-    out["base"] = round(_dcf_per_share(base_cf, g), 2)
-    out["bull"] = round(_dcf_per_share(base_cf, bull_g), 2)
+    out["bear"] = round(_dcf_per_share(anchor, bear_g, r), 2)
+    out["base"] = round(_dcf_per_share(anchor, g, r), 2)
+    out["bull"] = round(_dcf_per_share(anchor, bull_g, r), 2)
+    out["discount_rate"] = r
     if d.price and out["base"] > 0:
         out["margin_of_safety"] = round((out["base"] - d.price) / out["base"], 4)
     return out
