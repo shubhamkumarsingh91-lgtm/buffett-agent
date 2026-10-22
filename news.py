@@ -34,21 +34,32 @@ THEMES = [  # (label, regex on the headline); a headline can count toward more t
     ("management", r"\bCEO\b|\bCFO\b|executive|resign|appoint|steps down|\bboard\b|chairman|founder"),
     ("dividends & buybacks", r"dividend|buyback|repurchase|stock split|\bsplit\b"),
     ("stock moves", r"\bshares? (jump|surge|soar|rall|fall|drop|slide|slip|plunge|tumble|sink|climb|rise|gain)|\bstock (jump|surge|soar|rall|fall|drop|slide|slip|plunge|tumble|sink|climb|rise|gain)|record high|52-week|all-time high"),
-    ("insider trades", r"insider|officer (sells|buys|sold|bought)|director (sells|buys|sold|bought)|(sells|sold|buys|bought) (US)?\$?[\d.,]+ ?(million|billion|M|B)? (in|of|worth)|form 4"),
+    ("insider trades", r"insiders? (sells?|sold|buys?|bought|selling|buying|trading|trades)|(officer|director|ceo|cfo|coo|chairman|co-founder|founder|executive|evp|svp|\bvp)\b[^.]{0,40}\b(sells?|sold|buys?|bought|unloads?|dumps?)\b|(sells?|sold|buys?|bought) (US)?\$?[\d.,]+ ?(million|billion|M|B)? (in|of|worth) (common )?(stock|shares)|form 4\b|\bwithholds? [\d,]+ shares"),
     ("buy/sell opinion pieces", r"should you|\bis it (a|time)|buy now|\btop stock|best stock|no-brainer|undervalued|overvalued|expensive|\bcheap\b|\bbargain|millionaire|forever|prediction:|here'?s (why|what|how)|history says|\bI think\b|will be worth|could (soar|surge|double)|\?$|\bmy (top|favorite)|\bbuy and hold"),
     ("IPO & listing", r"\bIPO\b|listing|debut|lock-?up|\bfloat\b"),
 ]
 POS = r"\bbeats?\b|surge|soar|\bjump|rall(y|ies|ied)|record|upgrade|\braise[sd]?\b|strong|\bgains?\b|\bwins?\b|approv|boost|climb|top(s|ped)? estimates|outperform|bullish|\bhigher\b"
 NEG = r"\bmiss(es|ed)?\b|\bfall(s|ing)?\b|\bfell\b|\bdrop|plunge|tumble|\bcut[s]?\b|downgrade|lawsuit|probe|\bweak|slump|\bloss(es)?\b|\bwarn|recall|delay|\bsink|slide|slip|bearish|\blower\b|layoff|investigat|\bsell-?off"
-STOP = {"inc", "inc.", "corp", "corp.", "corporation", "co", "co.", "company", "the", "ltd", "ltd.", "limited", "plc", "holdings", "group",
-        "class", "a", "b", "n.v.", "s.a.", "sa", "ag", "se", "&", "and", "international", "incorporated"}
+STOP = {"inc", "corp", "corporation", "co", "company", "the", "ltd", "limited", "plc", "holding", "holdings", "group",
+        "class", "a", "b", "nv", "sa", "ag", "se", "and", "international", "incorporated", "llc", "lp"}
+# Publishers whose headlines are about markets/business, and words that put a headline in a business context.
+# Used to keep "Visa Expands U.K. Merchant Reach" but drop "Latvia calls for visa ban" or "Jeremy Lin's Reddit AMA".
+FIN_SOURCES = r"reuters|bloomberg|cnbc|wall street journal|\bwsj\b|barron|marketwatch|financial times|yahoo|motley fool|seeking alpha|marketbeat|investing\.com|tipranks|zacks|benzinga|tradingview|simply wall|business wire|pr ?newswire|globe ?newswire|forbes|business insider|fortune|axios|the information|techcrunch|quartz|globe and mail|morningstar|kiplinger|nasdaq|stocktwits|24/7 wall|moomoo|gurufocus|insider monkey|investopedia|the street|thestreet|fool\.com|marketscreener|stock titan|tikr|pymnts|american banker|fierce|s&p global|\bft\b|economist|associated press|\bap\b|cnn business|fox business|investor's business|ibd|kiplinger|sec\.gov"
+BIZ_WORDS = r"\bstock|\bshares?\b|earnings|revenue|profit|\bsales\b|quarter|\bQ[1-4]\b|analyst|price target|rating|upgrade|downgrade|dividend|buyback|investor|\bCEO\b|\bCFO\b|executive|acqui|merger|\bdeal\b|partnership|partners? with|lawsuit|\bsued?\b|regulator|antitrust|\bfine[sd]?\b|guidance|forecast|outlook|valuation|market cap|\bIPO\b|layoffs?|jobs|launch|unveil|expands?|\bNYSE\b|\bNASDAQ\b|insider|stake|billion|million|\bfiling\b|\bSEC\b"
+JUNK = r"stock price, news, quote|live share price|share price today|stock price today|stock quote|stock forecast|price prediction|forecast for 20\d\d|stock price forecast|\(.*\) stock forecasts?$"
 
 
 def short_name(name: str, ticker: str) -> str:
-    """'Micron Technology, Inc.' -> 'Micron Technology'; 'The Coca-Cola Company' -> 'Coca-Cola'."""
-    words = [w.strip(",.") for w in (name or "").split()]
-    keep = [w for w in words if w.lower().strip(",.") not in STOP]
-    return " ".join(keep[:3]) or ticker.split(".")[0]
+    """'Micron Technology, Inc.' -> 'Micron Technology'; 'The Coca-Cola Company' -> 'Coca-Cola';
+    'Johnson & Johnson' stays whole; 'ASML Holding N.V.' -> 'ASML'."""
+    words = [w.strip(",") for w in (name or "").split()]
+    keep = [w for w in words if w == "&" or w.lower().strip(".,").replace(".", "") not in STOP]
+    keep = keep[:4]
+    while keep and keep[-1] == "&":
+        keep.pop()
+    while keep and keep[0] == "&":
+        keep.pop(0)
+    return " ".join(w.rstrip(".") for w in keep) or ticker.split(".")[0]
 
 
 def feed_url(name: str, ticker: str) -> str:
@@ -68,7 +79,7 @@ def fetch_feed(name: str, ticker: str, timeout: int = 15) -> str:
 def parse_feed(xml: str, name: str, ticker: str, days: int = 30, now: Optional[datetime] = None) -> list[dict]:
     now = now or datetime.now(timezone.utc)
     root = ET.fromstring(xml)
-    key = short_name(name, ticker).split()[0].lower()
+    key = short_name(name, ticker).split()[0]
     base = ticker.split(".")[0].upper()
     out, seen = [], set()
     for it in root.iter("item"):
@@ -83,8 +94,23 @@ def parse_feed(xml: str, name: str, ticker: str, days: int = 30, now: Optional[d
             when = when.replace(tzinfo=timezone.utc)
         if when < now - timedelta(days=days) or not title:
             continue
-        # keep headlines that actually name the company or ticker
-        if key not in title.lower() and not re.search(rf"\b{re.escape(base)}\b", title):
+        # keep headlines about the company as a business: the ticker, or the name written as a proper
+        # noun ("Visa", not "visa") plus a business word or a business/markets publisher
+        has_tk = bool(re.search(rf"(?<![A-Za-z])\$?{re.escape(base)}(?![A-Za-z])", title)) and len(base) >= 2 and base not in ("A", "V", "ON", "IT", "ALL", "NOW", "ARE", "BIG", "CAN", "SO")
+        nm = [m for m in re.finditer(re.escape(key), title, re.I) if title[m.start()].isupper()]
+        if not nm and not has_tk:
+            continue
+        own = key.lower() in src.lower()                         # the company's own newsroom / IR site
+        if not (has_tk or own or re.search(BIZ_WORDS, title, re.I) or re.search(FIN_SOURCES, src, re.I)):
+            continue
+        if re.search(JUNK, title, re.I):                         # quote pages and "forecast 2026-2030" pages
+            continue
+        # "J-1 Visa", "Golden Visa", "student visa": the word, not the company
+        if re.search(r"(J-1|H-1B|H1B|F-1|L-1|O-1|E-2|EB-5|B-1|B-2|Golden|Student|Travel|Tourist|Work|Nomad|Investor|Startup|Family|Spousal|Partner)\s+" + re.escape(key) + r"\b", title, re.I):
+            continue
+        # the brand used for something else: a separately listed bottler, a scholarship, an arena...
+        full = re.escape(short_name(name, ticker))
+        if re.search(full + r"\s+(Consolidated|Bottling|Bottlers|Beverages|Europacific|HBC|FEMSA|Scholars?|Foundation|Bulletin|Arena|Center|Centre|Stadium|Park|Festival|Cup|Championship|Classic|Bowl|Theater|Theatre|Amphitheater)\b", title, re.I) and not has_tk:
             continue
         sig = re.sub(r"[^a-z0-9]", "", title.lower())[:50]
         if sig in seen:
@@ -130,16 +156,23 @@ def summarize(name: str, ticker: str, items: list[dict], change_1m: Optional[flo
     if op >= max(3, n // 4):
         parts.append(f"{op} of the {n} were buy-or-sell opinion pieces, which show attention more than new facts.")
     ins = [i for i in items if "insider trades" in i["themes"]]
-    if ins:
-        sells = sum(1 for i in ins if re.search(r"sell|sold", i["title"], re.I))
-        buys = sum(1 for i in ins if re.search(r"\bbuy|bought", i["title"], re.I))
-        parts.append(f"Insider activity: {sells} selling and {buys} buying headline{'s' if buys != 1 else ''} (latest: “{ins[0]['title']}”).")
+    sells = sum(1 for i in ins if re.search(r"\bsells?\b|\bsold\b|selling|unload|dump|withhold", i["title"], re.I))
+    buys = sum(1 for i in ins if re.search(r"\bbuys?\b|bought|buying", i["title"], re.I))
+    if sells or buys:
+        parts.append(f"Insiders: {sells} selling and {buys} buying headline{'s' if sells + buys != 1 else ''}"
+                     + (f", plus {len(ins) - sells - buys} other filing{'s' if len(ins) - sells - buys != 1 else ''}" if len(ins) > sells + buys else "")
+                     + f" (latest: “{ins[0]['title']}”).")
+    elif ins:
+        parts.append(f"{len(ins)} insider filing{'s' if len(ins) != 1 else ''} (Form 4) were reported; check them for buying or selling.")
     # the most informative recent headline: hard news, never an opinion piece
     hard = ("earnings & guidance", "deals & partnerships", "legal & regulation", "management", "dividends & buybacks",
             "IPO & listing", "insider trades", "analyst calls", "stock moves")
     facts = [i for i in items if "buy/sell opinion pieces" not in i["themes"]] or items
     pool = [i for i in facts if not ins or i is not ins[0]] or facts
-    key = next((i for i in pool if any(t in hard for t in i["themes"])), pool[0])
+    TOP = r"reuters|bloomberg|cnbc|wall street journal|\bwsj\b|financial times|barron|marketwatch|associated press|business wire|pr ?newswire|globe ?newswire"
+    hard_items = [i for i in pool if any(t in hard for t in i["themes"])]
+    top_items = [i for i in hard_items if re.search(TOP, i["source"], re.I) or short_name(name, ticker).split()[0].lower() in i["source"].lower()]
+    key = (top_items or hard_items or pool)[0]
     parts.append(f"Key headline: “{key['title']}” ({key['source']}, {key['date']}).")
     # up to 5 headlines to show: hard news first (one per top theme), opinion pieces only to fill
     pick, used = [key], {key["link"]}

@@ -65,8 +65,10 @@ def build_memo(e: dict) -> dict:
     if v.get("base"):
         mos = v.get("margin_of_safety")
         val = (f"Using a simple two-stage cash-flow model ({v['method']}, {v['growth']:.0%} growth fading to 3%, "
-               f"9% discount rate), fair value is roughly ${v['base']:,.2f} a share "
+               f"{v.get('discount_rate', 0.09):.0%} discount rate), fair value is roughly ${v['base']:,.2f} a share "
                f"(bear ${v['bear']:,.2f}, bull ${v['bull']:,.2f}) against a price of ${e['price']:,.2f}. ")
+        if v.get("confidence") == "low":
+            val += "Low confidence: cash flow and earnings disagree a lot here, so treat this range loosely. "
         if mos is not None:
             val += (f"That's a {mos:.0%} margin of safety: Buffett and Graham wanted 25%+." if mos >= 0.25 else
                     f"That's a thin {mos:.0%} margin of safety." if mos >= 0 else

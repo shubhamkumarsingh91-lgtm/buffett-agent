@@ -495,7 +495,7 @@ function valRange(v, price){
     <div class="mk" style="left:${pos(v.base)}%">Base<b>${money(v.base)}</b></div>
     <div class="mk" style="left:${pos(v.bull)}%">Bull<b>${money(v.bull)}</b></div>
     <div class="mk pr" style="left:${pos(price)}%">Price ${money(price)}</div></div>
-    <p class="muted" style="font-size:12px;margin-top:28px">Two-stage DCF on ${esc(v.method)}: ${pct(v.growth,0)} growth for 5 years fading to 3%, 9% discount rate. Bear halves the growth; bull adds half again.${v.margin_of_safety!=null?` Margin of safety at base case: <b style="color:${v.margin_of_safety>=0.25?'var(--buy)':v.margin_of_safety>=0?'var(--hold)':'var(--pass)'}">${pct(v.margin_of_safety,0)}</b>.`:''}</p>`;
+    <p class="muted" style="font-size:12px;margin-top:28px">Two-stage DCF on ${esc(v.method)}: ${pct(v.growth,0)} growth for 5 years fading to 3%, ${pct(v.discount_rate??0.09,0)} discount rate. Bear halves the growth; bull adds half again.${v.confidence==='low'?' <b style="color:var(--hold)">Low confidence:</b> cash flow and earnings disagree a lot for this company, so treat the range loosely.':''}${v.margin_of_safety!=null?` Margin of safety at base case: <b style="color:${v.margin_of_safety>=0.25?'var(--buy)':v.margin_of_safety>=0?'var(--hold)':'var(--pass)'}">${pct(v.margin_of_safety,0)}</b>.`:''}</p>`;
 }
 
 function openD(desk, t){
