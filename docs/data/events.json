@@ -1,0 +1,169 @@
+{
+"bot": "buffett",
+"events": [
+{
+"t": "2026-10-21T16:09:57Z",
+"bot": "buffett",
+"place": "research",
+"kind": "rescore",
+"text": "Re-scored all 16 stocks (0 IPOs, 16 established companies) with every investor’s rules. Top score: NVDA (WORTH RESEARCHING, 66)."
+},
+{
+"t": "2026-10-21T16:38:24Z",
+"bot": "buffett",
+"place": "research",
+"kind": "rescore",
+"text": "Re-scored all 26 stocks (10 IPOs, 16 established companies) with every investor’s rules. Top score: RDDT (BUY candidate (start small), 79)."
+},
+{
+"t": "2026-10-21T16:38:24Z",
+"bot": "buffett",
+"place": "research",
+"kind": "verdicts",
+"text": "Changed its mind on NVDA WORTH RESEARCHING → BUY candidate; MSFT HOLD / NEUTRAL → WORTH RESEARCHING; MCD HOLD / NEUTRAL → WORTH RESEARCHING; V LIKELY PASS → HOLD / NEUTRAL; JNJ LIKELY PASS → HOLD / NEUTRAL…."
+},
+{
+"t": "2026-10-21T16:58:12Z",
+"bot": "buffett",
+"place": "research",
+"kind": "rescore",
+"text": "Re-scored all 26 stocks (10 IPOs, 16 established companies) with every investor’s rules. Top score: RDDT (BUY candidate (start small), 79)."
+},
+{
+"t": "2026-10-21T16:58:12Z",
+"bot": "buffett",
+"place": "research",
+"kind": "verdicts",
+"text": "Changed its mind on RBRK BUY candidate (start small) → WATCH (priced for perfection); ALAB BUY candidate (start small) → WATCH (priced for perfection); KLAR BUY candidate (start small) → WATCH."
+},
+{
+"t": "2026-10-21T17:59:41Z",
+"bot": "buffett",
+"place": "research",
+"kind": "rescore",
+"text": "Re-scored all 26 stocks (10 IPOs, 16 established companies) with every investor’s rules. Top score: RDDT (BUY candidate (start small), 79)."
+},
+{
+"t": "2026-10-21T18:00:00Z",
+"bot": "buffett",
+"place": "ipo",
+"kind": "upcoming",
+"text": "Studied the Jio Platforms IPO before it lists (price band 1065–1119 INR) and saved it to Upcoming IPOs for both of you."
+},
+{
+"t": "2026-10-21T19:02:40Z",
+"bot": "buffett",
+"place": "research",
+"kind": "rescore",
+"text": "Re-scored all 26 stocks (10 IPOs, 16 established companies) with every investor’s rules. Top score: RDDT (BUY candidate (start small), 79)."
+},
+{
+"t": "2026-10-21T19:14:15Z",
+"bot": "buffett",
+"place": "research",
+"kind": "analyze",
+"text": "Analyzed SPCX (Space Exploration Technologies Corp.): HOLD / NEUTRAL, 43/100. Added to the Company Desk.",
+"ticker": "SPCX"
+},
+{
+"t": "2026-10-21T19:25:57Z",
+"bot": "buffett",
+"place": "research",
+"kind": "rescore",
+"text": "Re-scored all 27 stocks (10 IPOs, 17 established companies) with every investor’s rules. Top score: RDDT (BUY candidate (start small), 79)."
+},
+{
+"t": "2026-10-21T19:35:55Z",
+"bot": "buffett",
+"place": "research",
+"kind": "analyze",
+"text": "Analyzed NOW (ServiceNow, Inc.): HOLD / NEUTRAL, 50/100. Added to the Company Desk.",
+"ticker": "NOW"
+},
+{
+"t": "2026-10-21T19:36:44Z",
+"bot": "buffett",
+"place": "research",
+"kind": "analyze",
+"text": "Analyzed PNC (The PNC Financial Services Group, Inc.): HOLD / NEUTRAL, 54/100. Added to the Company Desk.",
+"ticker": "PNC"
+},
+{
+"t": "2026-10-21T19:37:45Z",
+"bot": "buffett",
+"place": "research",
+"kind": "analyze",
+"text": "Analyzed UNH (UnitedHealth Group Incorporated): HOLD / NEUTRAL, 46/100. Added to the Company Desk.",
+"ticker": "UNH"
+},
+{
+"t": "2026-10-21T19:50:29Z",
+"bot": "buffett",
+"place": "research",
+"kind": "analyze",
+"text": "Analyzed NFLX (Netflix, Inc.): WORTH RESEARCHING, 57/100. Added to the Company Desk.",
+"ticker": "NFLX"
+},
+{
+"t": "2026-10-21T20:37:41Z",
+"bot": "buffett",
+"place": "research",
+"kind": "rescore",
+"text": "Re-scored all 31 stocks (10 IPOs, 21 established companies) with every investor’s rules and a month of news for each. Top score: RDDT (BUY candidate (start small), 79)."
+},
+{
+"t": "2026-10-22T00:48:16Z",
+"bot": "buffett",
+"place": "research",
+"kind": "rescore",
+"text": "Re-scored all 31 stocks (10 IPOs, 21 established companies) with every investor’s rules and a month of news for each. Top score: RDDT (BUY candidate (start small), 79)."
+},
+{
+"t": "2026-10-22T14:49:36Z",
+"bot": "buffett",
+"place": "research",
+"kind": "analyze",
+"text": "Analyzed ENVA (Enova International, Inc.): WORTH RESEARCHING, 59/100; read 64 news stories from the past month. Added to the Company Desk.",
+"ticker": "ENVA"
+},
+{
+"t": "2026-10-22T14:49:36Z",
+"bot": "buffett",
+"place": "research",
+"kind": "analyze",
+"text": "Analyzed AMD (Advanced Micro Devices, Inc.): HOLD / NEUTRAL, 50/100; read 88 news stories from the past month. Added to the Company Desk.",
+"ticker": "AMD"
+},
+{
+"t": "2026-10-22T14:49:36Z",
+"bot": "buffett",
+"place": "research",
+"kind": "analyze",
+"text": "Analyzed MU (Micron Technology, Inc.): HOLD / NEUTRAL, 53/100; read 90 news stories from the past month. Added to the Company Desk.",
+"ticker": "MU"
+},
+{
+"t": "2026-10-22T14:49:36Z",
+"bot": "buffett",
+"place": "research",
+"kind": "analyze",
+"text": "Analyzed ASML (ASML Holding N.V.): WORTH RESEARCHING, 63/100; read 91 news stories from the past month. Added to the Company Desk.",
+"ticker": "ASML"
+},
+{
+"t": "2026-10-22T18:10:27Z",
+"bot": "buffett",
+"place": "research",
+"kind": "rescore",
+"text": "Re-scored all 35 stocks (10 IPOs, 25 established companies) with every investor’s rules and a month of news for each. Top score: RDDT (BUY candidate (start small), 79)."
+},
+{
+"t": "2026-10-22T18:10:27Z",
+"bot": "buffett",
+"place": "research",
+"kind": "verdicts",
+"text": "Changed its mind on MU HOLD / NEUTRAL → WORTH RESEARCHING."
+}
+],
+"generated": "2026-10-22T18:40:14Z"
+}

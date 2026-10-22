@@ -117,7 +117,7 @@ jobs:
         run: |
           git config user.name "investing-site-bot"
           git config user.email "actions@github.com"
-          git add docs/data/upcoming.json
+          git add docs/data/upcoming.json docs/data/events.json
           git diff --cached --quiet || git commit -m "Upcoming IPO: ${{ steps.save.outputs.id }} (issue #${{ github.event.issue.number }})"
           git pull --rebase && git push
       - name: Reply and close
