@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-21T20:37:41+00:00",
+ "generated": "2026-10-22T00:48:16+00:00",
  "version": 2,
  "count": 31,
  "failed": [],
@@ -103,8 +103,8 @@
     "pb": 8.97,
     "peg": 0.78,
     "price_to_sales": 10.61,
-    "ev_to_ebitda": 33.91,
-    "earnings_yield": 0.0163,
+    "ev_to_ebitda": 33.34,
+    "earnings_yield": 0.0165,
     "graham_number": 40.66,
     "dividend_yield": 0.0,
     "payout_ratio": 0.0,
@@ -185,7 +185,7 @@
     "Prospectus link unavailable: ticker not found in SEC's company list."
    ],
    "stale": false,
-   "updated": "2026-10-21T20:37:01+00:00",
+   "updated": "2026-10-22T00:47:40+00:00",
    "memo": {
     "headline": "BUY candidate (start small). Strong on IPO research and revenue quality at a reasonable price. If you buy, start small and add as it proves itself.",
     "business": "Reddit, Inc. (RDDT) is an internet content & information company worth about $29.5B. It brought in $2.8B of revenue over the last year, up 61% from a year earlier. It keeps 29% of sales as operating profit. It has traded publicly for about 31 months.",
@@ -213,19 +213,19 @@
     "ai": null
    },
    "news30": {
-    "summary": "Over the last 30 days Reddit shares fell 2% (now $153.28). News flow was heavy (83 stories) and the headlines were mixed (3 upbeat, 5 downbeat). Most coverage was about products & technology (4), earnings & guidance (3) and stock moves (2). Key headline: \u201cForget User Growth: Here\u2019s the Real Reason Reddit\u2019s Revenue Is Exploding\u201d (Yahoo Finance, 2026-10-21).",
-    "count": 83,
-    "tone": "mixed",
-    "positive": 3,
-    "negative": 5,
+    "summary": "Over the last 30 days Reddit shares were flat (now $153.28). News flow was heavy (90 stories) and the headlines were mostly negative (2 upbeat, 6 downbeat). Most coverage was about products & technology (5), earnings & guidance (3) and stock moves (2). Key headline: \u201cWill Slower Growth Outlook Change Reddit Stock Narrative\u201d (Yahoo Finance, 2026-10-20).",
+    "count": 90,
+    "tone": "mostly negative",
+    "positive": 2,
+    "negative": 6,
     "themes": [
      [
       "buy/sell opinion pieces",
-      8
+      7
      ],
      [
       "products & technology",
-      4
+      5
      ],
      [
       "earnings & guidance",
@@ -234,19 +234,9 @@
      [
       "stock moves",
       2
-     ],
-     [
-      "analyst calls",
-      1
      ]
     ],
     "items": [
-     {
-      "title": "Forget User Growth: Here\u2019s the Real Reason Reddit\u2019s Revenue Is Exploding",
-      "source": "Yahoo Finance",
-      "date": "2026-10-21",
-      "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNdUdxNFpKdldMMUVLcUpVS2VMTmtRMDRRVkhHa3oybVRhRjV2Mk5BRXlqRWFEQVNKUW1xeW1BRWw3SkR6dlMyTjJRZFNFR3pMN2lJVEV6YS1UTmhfLUZzTVRGM2VzV01ZenNQb0JRRzUya3hlOFBQdDQwc0lDV1JENnBlTkdrcDZJV0VKeU9jbU1uLXhQcUZBcnppUQ?oc=5"
-     },
      {
       "title": "Jeremy Lin participates in Reddit AMA",
       "source": "NBA.com",
@@ -254,16 +244,22 @@
       "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBjcDhZUEhNaDhyYk02eU1XSWtJck50Smk2OXoxMTRIQTY0YWtRYkY4Tjc0R0Vqb0xaLUpmYnBqMGd2X2ZQYko3VnBRZUViREZoNVY3RVF6VUh0aHdqZS0wSTBCOEF6Q0gyTHNHbEtwbw?oc=5"
      },
      {
-      "title": "Using AI, Reddit to identify potential side effects of unapproved new GLP-1",
-      "source": "Penn Today",
-      "date": "2026-10-20",
-      "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQbUpwWldQR3c1VWlncGI0d19yb3RyTUxyUS1UT0NGZjhYOHhfYzhPcUVUd2s0OEhfNUpOSENCdG1GOW5ManZmRjcyNkNZVkMyZEZUYktzME4wQ21VN3VhQ1l3UTVKdFBhc0hOdTI2TDBiTUR6TmRmV0pyamJKNXNzeXlORGlIMl9Yc1h0cGp1OXZjeGFybXkzZnlLekxsNFQ2Y2ZNRXE3NTBqRmI5UlBvZ3NfTzAxUThyVnc?oc=5"
-     },
-     {
       "title": "Will Slower Growth Outlook Change Reddit Stock Narrative",
       "source": "Yahoo Finance",
       "date": "2026-10-20",
       "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQR2ZvQ20taG5WU2pGQkU3T0lLVUJsVkhVcThmTjIwZnA0VGRvT0lfeVgzTFp3ZjhWcjBjT1NIX2FWdmM4RWhVOG5CNjV2RWtDUUplTlkwZjFDLXNnWDJsY0VSUFFfX3d5bE54bDgxV0lvLURSZkk1QVZjQVk5ZlQtZ1RFam5mYVl0aG1Dc0phdVJrQnJIUkRLaV9RUkhVbUdfNEE?oc=5"
+     },
+     {
+      "title": "Penn Engineers Use AI, Reddit to Identify Potential Side Effects of Unapproved New GLP-1",
+      "source": "University of Pennsylvania",
+      "date": "2026-10-15",
+      "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOTXZwZDlfYjlIbk9vakxpbDl6RXM0eGQ2VEYxazFDLVoyM1JHNFZoRGFVR292NU9PdGZId0ctZVRUbDlGUXZDMHlvQ1lUX0FzRGswYjlxTWtGMmk3MkNyM1RrX3dWdkcwUUVqVGFWWmNsNmY4TXU2elE5bFdnOVNpMmZ5QjByYnRwVFVVOTVUNTVyRy1BcDR4alZ2RmFmMDdEUFFUNENFdFpsWHBURVNwYVIwNVJvaFNnUmhKTS1UdVZkd1hMVUZwOW5R?oc=5"
+     },
+     {
+      "title": "Reddit Earnings Preview: What to Expect",
+      "source": "Yahoo Finance",
+      "date": "2026-10-13",
+      "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPRi1oUy00X05fYngxTXhUTjktUDFJWWVfSVFWZlFWdGpSREF5V1ExOFZ4dHdOTG41a2dXTXFLNG9OZFJ5Sm53b19pdzlIdlFkNkNzR1UtMlBTY1duODhFWXJJZE5FTm9OTnpVeUppMVVhZC1sNmNJZlNtSnhhQUNDZVEtOUNlc1h2OE91Y0RJMWI5MTI5M01fVHFSWQ?oc=5"
      },
      {
       "title": "Reddit Inc. (RDDT) Stock Falls Amid Market Uptick: What Investors Need to Know",
@@ -273,7 +269,7 @@
      }
     ],
     "by": "rules",
-    "updated": "2026-10-21"
+    "updated": "2026-10-22"
    }
   },
   {
@@ -373,8 +369,8 @@
     "pb": 8.19,
     "peg": null,
     "price_to_sales": 4.68,
-    "ev_to_ebitda": 27.49,
-    "earnings_yield": -0.0986,
+    "ev_to_ebitda": 27.4,
+    "earnings_yield": -0.0989,
     "graham_number": 8.57,
     "dividend_yield": 0.0,
     "payout_ratio": 0.0,
@@ -454,7 +450,7 @@
     "Prospectus link unavailable: ticker not found in SEC's company list."
    ],
    "stale": false,
-   "updated": "2026-10-21T20:37:32+00:00",
+   "updated": "2026-10-22T00:48:07+00:00",
    "memo": {
     "headline": "BUY candidate (start small). Strong on IPO research and revenue quality at a reasonable price. If you buy, start small and add as it proves itself.",
     "business": "Chime Financial, Inc. (CHYM) is a software - application company worth about $11.5B. It brought in $2.5B of revenue over the last year, up 27% from a year earlier. It keeps 19% of sales as operating profit. It has traded publicly for about 16 months.",
@@ -481,8 +477,8 @@
     "ai": null
    },
    "news30": {
-    "summary": "Over the last 30 days Chime Financial shares rose 6% (now $30.37). News flow was steady (31 stories) and the headlines were mostly positive (8 upbeat, 2 downbeat). Most coverage was about analyst calls (9), management (6) and insider trades (5). Analyst calls leaned positive: 6 upgrade or target-raise headlines vs 0 cuts. Insider activity: 3 selling and 0 buying headlines (latest: \u201cForm 4 Chime Financial Inc: Ryan A. King (Director, Co-Founder) For: 15 October\u201d). Key headline: \u201cStakk (ASX:SKK) Extends Its Chime Financial Agreement With Existing Terms Unchanged\u201d (Kalkine, 2026-10-19).",
-    "count": 31,
+    "summary": "Over the last 30 days Chime Financial shares rose 6% (now $30.37). News flow was steady (30 stories) and the headlines were mostly positive (8 upbeat, 2 downbeat). Most coverage was about analyst calls (9), management (6) and insider trades (5). Analyst calls leaned positive: 6 upgrade or target-raise headlines vs 0 cuts. Insider activity: 3 selling and 0 buying headlines (latest: \u201cForm 4 Chime Financial Inc: Ryan A. King (Director, Co-Founder) For: 15 October\u201d). Key headline: \u201cStakk (ASX:SKK) Extends Its Chime Financial Agreement With Existing Terms Unchanged\u201d (Kalkine, 2026-10-19).",
+    "count": 30,
     "tone": "mostly positive",
     "positive": 8,
     "negative": 2,
@@ -541,7 +537,7 @@
      }
     ],
     "by": "rules",
-    "updated": "2026-10-21"
+    "updated": "2026-10-22"
    }
   },
   {
@@ -644,7 +640,7 @@
     "pb": 6.78,
     "peg": null,
     "price_to_sales": 4.49,
-    "ev_to_ebitda": 21.2,
+    "ev_to_ebitda": 21.16,
     "earnings_yield": 0.0002,
     "graham_number": null,
     "dividend_yield": 0.0,
@@ -725,7 +721,7 @@
     "Prospectus link unavailable: ticker not found in SEC's company list."
    ],
    "stale": false,
-   "updated": "2026-10-21T20:37:19+00:00",
+   "updated": "2026-10-22T00:47:56+00:00",
    "memo": {
     "headline": "PASS (cash risk). Only ~0.8 years of cash left at today's burn. Likely to raise money and dilute owners.",
     "business": "CoreWeave, Inc. (CRWV) is a software - infrastructure company worth about $34.1B. It brought in $7.6B of revenue over the last year, up 112% from a year earlier. It is not yet profitable at the operating level. It has traded publicly for about 19 months.",
@@ -755,34 +751,40 @@
     "ai": null
    },
    "news30": {
-    "summary": "Over the last 30 days CoreWeave shares fell 29% (now $61.82). News flow was heavy (91 stories) and the headlines were mixed (10 upbeat, 18 downbeat). Most coverage was about products & technology (28), analyst calls (18) and stock moves (7). Analyst calls leaned positive: 12 upgrade or target-raise headlines vs 1 cut. Key headline: \u201cWhy CoreWeave earnings estimates are wildly too optimistic, warns HSBC\u201d (Yahoo Finance, 2026-10-20).",
-    "count": 91,
-    "tone": "mixed",
-    "positive": 10,
-    "negative": 18,
+    "summary": "Over the last 30 days CoreWeave shares fell 28% (now $61.82). News flow was heavy (94 stories) and the headlines were mostly negative (8 upbeat, 31 downbeat). Most coverage was about products & technology (36), analyst calls (13) and stock moves (11). Analyst calls leaned positive: 6 upgrade or target-raise headlines vs 1 cut. Key headline: \u201cCoreWeave\u2019s market confidence erodes as bond yields spike and stock sinks\u201d (CNBC, 2026-10-21).",
+    "count": 94,
+    "tone": "mostly negative",
+    "positive": 8,
+    "negative": 31,
     "themes": [
      [
       "products & technology",
-      28
+      36
      ],
      [
       "analyst calls",
-      18
-     ],
-     [
-      "buy/sell opinion pieces",
-      11
+      13
      ],
      [
       "stock moves",
-      7
+      11
      ],
      [
       "management",
-      4
+      10
+     ],
+     [
+      "buy/sell opinion pieces",
+      7
      ]
     ],
     "items": [
+     {
+      "title": "CoreWeave\u2019s market confidence erodes as bond yields spike and stock sinks",
+      "source": "CNBC",
+      "date": "2026-10-21",
+      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPRVgxcDF1U3FhT0VtZ19VY1NvclVqTHA3ZDk5UGNFX3BodHJ2VVpRMEhpT3ZmNlRLYk5iZDBIMlU0WW51SjEwcmJsWE9EcXZsTlJBdFNKZ3dlSm9nUGRCM0g5SDFCRk9ERE03WWpPLUdndDNmVUdBZ1ZNYkNubzZsOV95Nzk4bWVKQjRrb1JHSXBkdXM3N1BwdXUybUF4di1hRTNQdEx3c0M?oc=5"
+     },
      {
       "title": "CoreWeave Physical AI Launchables Simplify Development",
       "source": "CoreWeave",
@@ -790,16 +792,10 @@
       "link": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQVW4zM1kwcjVLS1V0UFhPa21EWFZma0p3Q09zMFNpUW5tQnhCajhDQlFmbi0xLU5Idkl0U081S21yaU9xZGZmcDlPQVJibjNIVjVjVVF5V3ByUGhvbWJ4NDl1aTBXUlpfRlJPRDZIU2VoYlVRMVhMYlhFMmtIeE5fbVIwLVhEQnBmR183ZUFoMVA0eF85dU1vS2dkRlhPZVRxOHdMNVF0VW1EakxxUHE0bTJuV3ViVmNxZVRIWEJYc1JaaXFRdUxXZnBacW9mTmlSS2JpbHJn?oc=5"
      },
      {
-      "title": "Jim Cramer Doubles Down On CoreWeave (CRWV), Sort Of",
-      "source": "Yahoo Finance",
+      "title": "NVIDIA HGX Rubin NVL8 Is Coming This Quarter | CoreWeave Blog",
+      "source": "CoreWeave",
       "date": "2026-10-21",
-      "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQQ3ZGTnRGX0JnMmpORmpndkEwci1NY2gwZjZEb0VmN2tQRUtUUnp3bUdoZDYxOFhYelRMMldfUWtudmFmbjNURjVYbkdnaWhDQWNSY0FhYXZCeDR2Y0YwLWo0MXZ2YW9feEg5cVBHSTZfRjF5cVp4X08tZmFoNzQtajBhM21BY0t5ZWdpV0x6X1hZVkxrLU5halpBb1ZOMkk?oc=5"
-     },
-     {
-      "title": "Why CoreWeave earnings estimates are wildly too optimistic, warns HSBC",
-      "source": "Yahoo Finance",
-      "date": "2026-10-20",
-      "link": "https://news.google.com/rss/articles/CBMizgFBVV95cUxOeUpock9zSkF1WWliclVuY19LNnpYYnV2QTdHdmhhR0J6LTl1VzRHbWR3QWNkTDlaamVMU0FwUmc3bjFSa3ZtcHZlM3FiSkVDd1A0VXJMYzF3TDVsenJaUGtVQ0d3cHA5R09FZnBfSlRobC03WTh0VXBfSXBfcWNJLUltWm9mc2lNWFlLY0ttZDVkbmdBOUxKeHhCUU1IVkJZeUhiTEpQMGVEeHVMNmMxUDFFTUVHdm04LXZBVXRUdEowTkw1V2YtSUJDMUczQQ?oc=5"
+      "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQMTFGZDUzd3VYR2pMUHVvbk9hMjN4dm10dWwwZVphTzdVLUlvamtTZXd1VG12SjBiM09BUXBNYzVOc25YQXN4dG5QNnFUZG5WeEtHSU02bkF0S2IxMFkxWjJKeGpxYW05Ti1GeUNWWjg5dk1jMmYwWVlCOW5lS0k0dzV3aks1UC1wLVlDTmxGRWVrelNCQlFULTNackZnNUhaaWI1Z05MQlJiTk1TZGZMd1YzOFlPRU03T2c?oc=5"
      },
      {
       "title": "Coreweave Keeps Getting Crushed: This Analyst Says It\u2019s Going to Quadruple In Price",
@@ -815,7 +811,7 @@
      }
     ],
     "by": "rules",
-    "updated": "2026-10-21"
+    "updated": "2026-10-22"
    }
   },
   {
@@ -918,8 +914,8 @@
     "pb": -49.95,
     "peg": null,
     "price_to_sales": 16.07,
-    "ev_to_ebitda": -88.0,
-    "earnings_yield": -0.0134,
+    "ev_to_ebitda": -92.56,
+    "earnings_yield": -0.0127,
     "graham_number": null,
     "dividend_yield": 0.0,
     "payout_ratio": null,
@@ -999,7 +995,7 @@
     "Prospectus link unavailable: ticker not found in SEC's company list."
    ],
    "stale": false,
-   "updated": "2026-10-21T20:37:10+00:00",
+   "updated": "2026-10-22T00:47:48+00:00",
    "memo": {
     "headline": "WATCH (priced for perfection). Good business by the numbers, but the price is far above what its cash flow supports even with strong growth. Wait for a better price.",
     "business": "Rubrik, Inc. (RBRK) is a software - infrastructure company worth about $24.8B. It brought in $1.5B of revenue over the last year, up 38% from a year earlier. It is not yet profitable at the operating level. It has traded publicly for about 30 months.",
@@ -1029,15 +1025,15 @@
     "ai": null
    },
    "news30": {
-    "summary": "Over the last 30 days Rubrik shares rose 8% (now $120.38). News flow was heavy (91 stories) and the headlines were mixed (11 upbeat, 7 downbeat). Most coverage was about products & technology (20), insider trades (12) and analyst calls (8). Analyst calls leaned positive: 5 upgrade or target-raise headlines vs 0 cuts. Insider activity: 8 selling and 0 buying headlines (latest: \u201cRubrik Stock Slumps As Rally Unravels And Insiders Sell\u201d). Key headline: \u201c\u2018Build for flexibility\u2019: Rubrik executives on the race to secure code amid \u2018rogue\u2019 AI agents\u201d (The Indian Express, 2026-10-19).",
+    "summary": "Over the last 30 days Rubrik shares rose 2% (now $120.38). News flow was heavy (91 stories) and the headlines were mixed (12 upbeat, 7 downbeat). Most coverage was about products & technology (21), insider trades (12) and analyst calls (8). Analyst calls leaned positive: 5 upgrade or target-raise headlines vs 0 cuts. Insider activity: 8 selling and 0 buying headlines (latest: \u201cRubrik Stock Slumps As Rally Unravels And Insiders Sell\u201d). Key headline: \u201c\u2018Build for flexibility\u2019: Rubrik executives on the race to secure code amid \u2018rogue\u2019 AI agents\u201d (The Indian Express, 2026-10-19).",
     "count": 91,
     "tone": "mixed",
-    "positive": 11,
+    "positive": 12,
     "negative": 7,
     "themes": [
      [
       "products & technology",
-      20
+      21
      ],
      [
       "insider trades",
@@ -1089,7 +1085,7 @@
      }
     ],
     "by": "rules",
-    "updated": "2026-10-21"
+    "updated": "2026-10-22"
    }
   },
   {
@@ -1193,8 +1189,8 @@
     "pb": 29.16,
     "peg": 0.77,
     "price_to_sales": 41.87,
-    "ev_to_ebitda": 168.89,
-    "earnings_yield": 0.0036,
+    "ev_to_ebitda": 172.09,
+    "earnings_yield": 0.0035,
     "graham_number": 21.31,
     "dividend_yield": 0.0,
     "payout_ratio": 0.0,
@@ -1216,7 +1212,7 @@
    },
    "recent_ipo": true,
    "ipo": {
-    "months_listed": 31.0,
+    "months_listed": 31.1,
     "first_trade_date": "2024-03-20",
     "first_day_open": 52.56,
     "first_day_close": 62.03,
@@ -1274,7 +1270,7 @@
     "Prospectus link unavailable: ticker not found in SEC's company list."
    ],
    "stale": false,
-   "updated": "2026-10-21T20:37:06+00:00",
+   "updated": "2026-10-22T00:47:44+00:00",
    "memo": {
     "headline": "WATCH (priced for perfection). Good business by the numbers, but at 42x sales the price already assumes years of flawless growth. Ritter's research says this is where IPO returns disappoint.",
     "business": "Astera Labs, Inc. (ALAB) is a semiconductors company worth about $50.3B. It brought in $1.2B of revenue over the last year, up 104% from a year earlier. It keeps 23% of sales as operating profit. It has traded publicly for about 31 months.",
@@ -1300,15 +1296,15 @@
     "ai": null
    },
    "news30": {
-    "summary": "Over the last 30 days Astera Labs shares fell 20% (now $290.06). News flow was heavy (94 stories) and the headlines were mixed (6 upbeat, 10 downbeat). Most coverage was about products & technology (23), analyst calls (9) and earnings & guidance (8). Analyst calls leaned negative: 3 upgrade or target-raise headlines vs 6 cuts. 27 of the 94 were buy-or-sell opinion pieces, which show attention more than new facts. Insider activity: 5 selling and 0 buying headlines (latest: \u201cAstera Labs (NASDAQ:ALAB) Shares Down 5.3% Following Insider Selling\u201d). Key headline: \u201cAstera Labs (NASDAQ:ALAB) Stock Price Target Cut by TD Cowen\u201d (MarketBeat, 2026-10-20).",
-    "count": 94,
+    "summary": "Over the last 30 days Astera Labs shares fell 22% (now $290.06). News flow was heavy (95 stories) and the headlines were mixed (7 upbeat, 10 downbeat). Most coverage was about products & technology (23), analyst calls (9) and earnings & guidance (8). Analyst calls leaned negative: 3 upgrade or target-raise headlines vs 6 cuts. 26 of the 95 were buy-or-sell opinion pieces, which show attention more than new facts. Insider activity: 4 selling and 0 buying headlines (latest: \u201cAstera Labs (NASDAQ:ALAB) Shares Down 5.3% Following Insider Selling\u201d). Key headline: \u201cAstera Labs (NASDAQ:ALAB) Stock Price Target Cut by TD Cowen\u201d (MarketBeat, 2026-10-20).",
+    "count": 95,
     "tone": "mixed",
-    "positive": 6,
+    "positive": 7,
     "negative": 10,
     "themes": [
      [
       "buy/sell opinion pieces",
-      27
+      26
      ],
      [
       "products & technology",
@@ -1329,6 +1325,12 @@
     ],
     "items": [
      {
+      "title": "Astera Labs, Inc. (ALAB) Outpaces Stock Market Gains: What You Should Know",
+      "source": "Yahoo Finance",
+      "date": "2026-10-21",
+      "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNRFgzN2tRbTRydHlyRWxLd0JzVENZQzBqVG1jcFl2X093OXlaRVNJcEwxUEN2M0V4TTFKM21acFMtckJZRTVvdzlpQjdGcHNYZUhoVGFUSGg2NVlDT0hRZ215WTFGazk4Y3ZoV1dhN2RGMVVpYkhKZnJZdzN3TnR3V2o3VUJBNGYtZjBZTTR4SEZfT3FQYXBaX1l3?oc=5"
+     },
+     {
       "title": "Astera Labs (NASDAQ:ALAB) Stock Price Target Cut by TD Cowen",
       "source": "MarketBeat",
       "date": "2026-10-20",
@@ -1339,12 +1341,6 @@
       "source": "Simply Wall Street",
       "date": "2026-10-19",
       "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNcXluVHc3d095WmVydHBwRTlwTHM1NHBrSVg2cTF5VUNpTVhkSGtTWnZXc2pJUzQzTjJ5ckVGYVBLSXpFVWlQRzVrcS0xcE00bnlKZVl2VWl5c0ZCOFR2azhGLWtIcWEyQlVNcVI5M0ptMnBsc1QxOXA0OTdobkdyRlZvSQ?oc=5"
-     },
-     {
-      "title": "Astera Labs, Inc. $ALAB Shares Purchased by Assenagon Asset Management S.A.",
-      "source": "MarketBeat",
-      "date": "2026-10-19",
-      "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPbERZRWZacFhCUDhyN2lKMXNCdUJKV29GWm5uM0F3UlRZOWxray1EQkdqM2Z2Yy13UTItWkxSekVkTW9xQU9SVE1ucUFHc2tGNzFUVXgyVmJ5cTNqcG54b19iQk5jRjZNcHhRRGo3aXdvdDBiaXQ5ZTJTcHpZRXlkbVJMWnFKRjB2MTVKbWI2OTNmSHlmdDZnQ1o4cTJqeHFNanN6RDBtVmsxWGtlVVZCTGtra0xqSTJSdnJkVkxlWUVsZDVKbFB3cFVnaw?oc=5"
      },
      {
       "title": "Why Northland Downgraded Astera Labs Even Though It Expects Earnings to Rise",
@@ -1360,7 +1356,7 @@
      }
     ],
     "by": "rules",
-    "updated": "2026-10-21"
+    "updated": "2026-10-22"
    }
   },
   {
@@ -1462,8 +1458,8 @@
     "pb": 8.25,
     "peg": 7.95,
     "price_to_sales": 9.56,
-    "ev_to_ebitda": -6.72,
-    "earnings_yield": -0.1228,
+    "ev_to_ebitda": -6.81,
+    "earnings_yield": -0.1212,
     "graham_number": null,
     "dividend_yield": 0.0,
     "payout_ratio": 0.0,
@@ -1543,7 +1539,7 @@
     "Prospectus link unavailable: ticker not found in SEC's company list."
    ],
    "stale": false,
-   "updated": "2026-10-21T20:37:36+00:00",
+   "updated": "2026-10-22T00:48:11+00:00",
    "memo": {
     "headline": "BUY candidate (start small). Strong on IPO research and revenue quality at a reasonable price. If you buy, start small and add as it proves itself.",
     "business": "Figma, Inc. (FIG) is a software - application company worth about $12.2B. It brought in $1.3B of revenue over the last year, up 48% from a year earlier. It is not yet profitable at the operating level. It has traded publicly for about 15 months.",
@@ -1573,34 +1569,40 @@
     "ai": null
    },
    "news30": {
-    "summary": "Over the last 30 days Figma shares rose 5% (now $22.98). News flow was heavy (60 stories) and the headlines were mostly positive (5 upbeat, 1 downbeat). Most coverage was about products & technology (31), management (13) and earnings & guidance (5). Key headline: \u201cFigma co-founder Dylan Field thinks MCP is not a perfect protocol\u201d (TechCrunch, 2026-10-20).",
-    "count": 60,
+    "summary": "Over the last 30 days Figma shares rose 4% (now $22.98). News flow was heavy (83 stories) and the headlines were mostly positive (6 upbeat, 3 downbeat). Most coverage was about products & technology (30), management (10) and earnings & guidance (7). Analyst calls leaned negative: 1 upgrade or target-raise headline vs 2 cuts. Insider activity: 4 selling and 0 buying headlines (latest: \u201cInsider Selling: Figma (NYSE:FIG) Director Sells 20,266 Shares of Company Stock\u201d). Key headline: \u201cFigma CEO warns against full openness on MCP protocol\u201d (jawlah.co, 2026-10-21).",
+    "count": 83,
     "tone": "mostly positive",
-    "positive": 5,
-    "negative": 1,
+    "positive": 6,
+    "negative": 3,
     "themes": [
      [
       "products & technology",
-      31
+      30
      ],
      [
       "management",
-      13
+      10
      ],
      [
       "buy/sell opinion pieces",
-      11
+      9
      ],
      [
       "earnings & guidance",
-      5
+      7
      ],
      [
-      "IPO & listing",
-      1
+      "analyst calls",
+      6
      ]
     ],
     "items": [
+     {
+      "title": "Figma CEO warns against full openness on MCP protocol",
+      "source": "jawlah.co",
+      "date": "2026-10-21",
+      "link": "https://news.google.com/rss/articles/CBMiP0FVX3lxTE5iY0U3SzV1REpZZ2t2aHRKVGthM1hJSS1sal9ERHJqNDVGc0pXaHJBUzBDaHNEejNfLUV2TjNLUQ?oc=5"
+     },
      {
       "title": "Figma Launches Specs To Help AI Agents Follow Design Rules",
       "source": "ALM Corp",
@@ -1614,26 +1616,20 @@
       "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPbWlwQmktb0tiLXBBZVdJQm02bTN4dGRHYnhIaWs3SG9aUXluX29yNjluYjJFZEtXRnhyMGxLRURNNUJpVkJqdk1VdGF2aDJEdG9ZN05FemN6Tnc1ektmS3QxdHpjZkU4dkU0alZPVUVGR2RCUlVjWFduZlY1bkI2M3d1dE9VRVI3N3JIWDg4c05Ta0dNOEJOSHJESmRyU3pxUnc?oc=5"
      },
      {
-      "title": "Figma co-founder Dylan Field says MCP is not a perfect protocol",
-      "source": "Mezha.net",
+      "title": "The Figma Story: How Two College Students Moved Design Into the Browser and Changed How Teams Create",
+      "source": "MarkHub24",
       "date": "2026-10-20",
-      "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNVE9aX3YxckJkWFpOVnMtdmYzT3Bfb0M1MU0xWFFBblQ0REY1Q1BTcFVJSGE3ZTRHc29WbkxCMGQ0VmZELWdSVXNINDFKS0lVM1lkTG03S20wWGd5VW0zRTdSVUdWbWFMNjB1ZWlQREZtb0NVZy0wZFhWd0VyLXQ5QzJhc3BrQVV2?oc=5"
+      "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPa0F0dGJZV3dYbGJscEhHYVIyRFJjZzFERG1Qb21VOXlwUXNaT1BoanlVZlJMaDlDdFoyR2tGTlFvMWJfeGZhTHBOS2NWdUhkdTBUdVpLSWREQzBHS0lDTEEtUGR3a2dHNXo0WmNEVHNORGFhaGRqUENSOWZCMFBCQ2RJbnZ5RFN1bDhXNENuc1VSRVFTc2w3ZFltOFhuSmFydldrQ1RCc01YRVBfeWxPR0J6Y20tTXZrcEJ5QUNVMUNjamVOYmpuWHBB?oc=5"
      },
      {
-      "title": "Figma CEO Dylan Field Says AI Is Lowering the Floor, Not Raising the Ceiling \u2014 and Design Is the New Code",
-      "source": "BigGo Finance",
-      "date": "2026-10-20",
-      "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE93cnBLbWEwZ3BvYW5Ta0NRX2t4OUE2clJtMThpRGxyMHZlalc1RUdsZmo3bzJpSzZrbDRzU3p1cURUWWV4OURSQTFKdlRXelBrcmNhY1ZUUmxsUmM?oc=5"
-     },
-     {
-      "title": "Figma AI Tools Expand as Profit Margins Shrink",
-      "source": "Innovation Village",
-      "date": "2026-10-15",
-      "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQRVRpODRfN3RJb3U5ZlVBR3VyZGpOSHJkZFQ1dW5qdlpJQjFnbVpsWXpkVUtWN0FMZERSWE5fUHd0c0l4UXRJSlRucnFfbWNyQUZUS3F4OTIyRkM4WU1BMVpFNGRkeUt6S0huSFhKWU5LNE05VmFyU1o1azBLMU95Z3ZoZ2w?oc=5"
+      "title": "\u2018Figma Gets Better As AI Gets Better,\u2019 Says CEO As Stock Soars On Strong Results",
+      "source": "Stocktwits",
+      "date": "2026-10-18",
+      "link": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQMFJvTWRsSVU1dmJ1MW80dWxrOENfc0x6Nm1uUFBDbHhmYmhReG9hVFJoTnFENm9ucFpNTjdpVWpXNjgtak53anR6Uy1wZTNQZy05MDFMXzExcFNMMUNQd2ZDUGRTSEczUGNsYUh1T3R3YkVRb2MzSHBzUG9jcW1jNUtFenRrTzMtaDdqZ2psMnVxV015bzJVMmNIWFVpanhUa1dSdXotWlk2S1c1UG9nYUdaSVhPNU43dDFsSU9RczNFZ1RybF9PNTJMNVhPQkc1amZaS05UdXg?oc=5"
      }
     ],
     "by": "rules",
-    "updated": "2026-10-21"
+    "updated": "2026-10-22"
    }
   },
   {
@@ -1735,7 +1731,7 @@
     "pb": 2.04,
     "peg": 0.08,
     "price_to_sales": 1.23,
-    "ev_to_ebitda": -107.45,
+    "ev_to_ebitda": -106.88,
     "earnings_yield": null,
     "graham_number": null,
     "dividend_yield": 0.0,
@@ -1811,7 +1807,7 @@
     "Prospectus link unavailable: ticker not found in SEC's company list."
    ],
    "stale": false,
-   "updated": "2026-10-21T20:37:40+00:00",
+   "updated": "2026-10-22T00:48:15+00:00",
    "memo": {
     "headline": "WATCH. Strong scores, but it isn't self-funding yet. Wait for free cash flow to turn positive.",
     "business": "Klarna Group plc (KLAR) is a credit services company worth about $5.0B. It brought in $4.0B of revenue over the last year, up 27% from a year earlier. It keeps 3% of sales as operating profit. It has traded publicly for about 13 months.",
@@ -1840,11 +1836,11 @@
     "ai": null
    },
    "news30": {
-    "summary": "Over the last 30 days Klarna shares fell 4% (now $13.12). News flow was heavy (83 stories) and the headlines were mostly negative (2 upbeat, 11 downbeat). Most coverage was about deals & partnerships (12), products & technology (8) and earnings & guidance (7). Analyst calls leaned negative: 1 upgrade or target-raise headline vs 3 cuts. Insider activity: 0 selling and 0 buying headlines (latest: \u201cForm 4 Klarna Group plc For: 23 September By Investing.com\u201d). Key headline: \u201cKlarna Expands Fiserv Partnership to Enterprise Merchants\u201d (Yahoo Finance, 2026-10-19).",
-    "count": 83,
+    "summary": "Over the last 30 days Klarna shares fell 4% (now $13.12). News flow was heavy (84 stories) and the headlines were mostly negative (3 upbeat, 12 downbeat). Most coverage was about deals & partnerships (12), products & technology (9) and earnings & guidance (9). Analyst calls leaned negative: 1 upgrade or target-raise headline vs 3 cuts. Insider activity: 0 selling and 0 buying headlines (latest: \u201cForm 4 Klarna Group plc For: 23 September By Investing.com\u201d). Key headline: \u201cKlarna Expands Fiserv Partnership to Enterprise Merchants\u201d (Yahoo Finance, 2026-10-19).",
+    "count": 84,
     "tone": "mostly negative",
-    "positive": 2,
-    "negative": 11,
+    "positive": 3,
+    "negative": 12,
     "themes": [
      [
       "deals & partnerships",
@@ -1852,15 +1848,15 @@
      ],
      [
       "products & technology",
-      8
-     ],
-     [
-      "buy/sell opinion pieces",
-      7
+      9
      ],
      [
       "earnings & guidance",
-      7
+      9
+     ],
+     [
+      "buy/sell opinion pieces",
+      8
      ],
      [
       "management",
@@ -1893,14 +1889,14 @@
       "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNeFhFMTFISTlzZGZqeDQwT3hwa1hJMkh5Y2tBSXF2dmpXX1FaVF9oTzVqemJvY2NXVjU0Ykcwc2JQWGZFUEpkbTU1U2dINUNCVDVZWUNQcUo2aEY4RHFfSnZfLTBWZFdWNzEyOFFOcDdqWnhtd0dLNXhsNG53TWRKWnlJWGFmSlRRNWliR3hYWndsd9IBlwFBVV95cUxOY1B6VUFpNG1hMWh4WkxPb3ZYczN4d2RiZkxwZ1Zmbm5RckVuSjU1cTJLUkVhc1hxZDBLd1AwWG52YkVWSkFFV1Bfb0JVamUxOS14NXFBNFF6dnNaQ2E2LUNpMnp1U2Rid3diUWgzaGVZNUFRVVZqVWItMnVOcWgxS3dMYngxdzNWcWM4cEI2cFdia0hhTkQ4?oc=5"
      },
      {
-      "title": "Klarna Group (NYSE:KLAR) Stock Forecast & Analyst Predictions",
-      "source": "Simply Wall Street",
-      "date": "2026-10-15",
-      "link": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNZ3FEWlI4SXE4aHZHWklnTzRFWVRibE1PRnJENHVTd3VsN0NfSTF3QjFSckJzUzFyS1A4RG12Y3R0elJxc2otWGZpYzA1eXRHdUVnVloySFB0cDVrZU1jU1FUVzRkeGhzVHhQTlh5eFZfbzMwQWVqQlZmNnA1ZDU1QVo3aVJyb29tWVNsNg?oc=5"
+      "title": "Klarna's Stock Craters as Germany Weakness Forces a Guidance Cut",
+      "source": "Startup Fortune",
+      "date": "2026-10-16",
+      "link": "https://news.google.com/rss/articles/CBMilgFBVV95cUxONjJSbHViTW1teG9pcFJ0cDRfQWdiTEhvbEFsVDhuQ2ctWlpWR1Fad2F0LUFST3h4WkJpZWJUV2tNV2pueEh1NFQ5c2VtaHhVZVEzVGZkQnhob2NmYVN6YmJqMkJHMksyUjlidU9aVm5GUjAzNml0WUd1aExEZWE4Z0VqbTlJRnFRd2huNzYxWk5DV0FKVHc?oc=5"
      }
     ],
     "by": "rules",
-    "updated": "2026-10-21"
+    "updated": "2026-10-22"
    }
   },
   {
@@ -2026,8 +2022,8 @@
     "pb": 23.41,
     "peg": 0.26,
     "price_to_sales": 17.69,
-    "ev_to_ebitda": 25.8,
-    "earnings_yield": 0.0273,
+    "ev_to_ebitda": 26.45,
+    "earnings_yield": 0.0266,
     "graham_number": 41.08,
     "dividend_yield": 0.0045,
     "payout_ratio": 0.0354,
@@ -2049,7 +2045,7 @@
    },
    "recent_ipo": false,
    "ipo": {
-    "months_listed": 332.9,
+    "months_listed": 333.0,
     "first_trade_date": "1999-01-22",
     "first_day_open": null,
     "first_day_close": null,
@@ -2059,7 +2055,7 @@
    "news": [],
    "data_notes": [],
    "stale": false,
-   "updated": "2026-10-21T20:36:21+00:00",
+   "updated": "2026-10-22T00:47:05+00:00",
    "memo": {
     "headline": "BUY candidate. Most of the great investors' tests agree. This deserves serious research time.",
     "business": "NVIDIA Corporation (NVDA) is a semiconductors company worth about $5.36T. It brought in $303.0B of revenue over the last year, up 106% from a year earlier. It keeps 66% of sales as operating profit.",
@@ -2085,7 +2081,7 @@
     "ai": null
    },
    "news30": {
-    "summary": "Over the last 30 days NVIDIA shares fell 3% (now $221.97). News flow was heavy (92 stories) and the headlines were mixed (7 upbeat, 7 downbeat). Most coverage was about products & technology (44), dividends & buybacks (8) and deals & partnerships (6). Key headline: \u201cGTC Berlin 2026: Live Updates From NVIDIA CEO Jensen Huang\u2019s Keynote\u201d (NVIDIA Blog, 2026-10-21).",
+    "summary": "Over the last 30 days NVIDIA shares fell 5% (now $221.97). News flow was heavy (92 stories) and the headlines were mixed (7 upbeat, 7 downbeat). Most coverage was about products & technology (45), dividends & buybacks (8) and deals & partnerships (7). Key headline: \u201cGTC Berlin 2026: Live Updates From NVIDIA CEO Jensen Huang\u2019s Keynote\u201d (NVIDIA Blog, 2026-10-21).",
     "count": 92,
     "tone": "mixed",
     "positive": 7,
@@ -2093,7 +2089,7 @@
     "themes": [
      [
       "products & technology",
-      44
+      45
      ],
      [
       "dividends & buybacks",
@@ -2101,7 +2097,7 @@
      ],
      [
       "deals & partnerships",
-      6
+      7
      ],
      [
       "stock moves",
@@ -2120,16 +2116,16 @@
       "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE01VUZ6OC1vZmotcEpjZEpFWEFET2VlVmpGcmtxTHFwemxBMkhvZWQ2aG5FUk5wa253dVVvUktkR2NjWmVUZGJ5X19IWDFEeVV5bUtDSHJzbmh2Y2l6WGE3cF9leEU?oc=5"
      },
      {
-      "title": "NVIDIA Launches OpenShell Reference Architecture for Safe AI Agents",
+      "title": "NVIDIA Advances Isaac Platform for General-Purpose Robotics With New Reference Humanoid, Frameworks, Simulation Pipelines and Data",
       "source": "NVIDIA Newsroom",
       "date": "2026-10-21",
-      "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE4xVjJaWWVnN3FsV2ZrdlVrSTRuVEE2V0JWZHJRQ2loQ1czLVdiWXpvQkYxLTU2R0U4VVhkMGNZblBRZ0hyY1pnbXVZMXAzdmN0LXdRTDNSSXpwNmhSaHRzR09wN1kxendGLVRWQm9CTkJmZ2stRUE?oc=5"
+      "link": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxNSWlrTXdiY0hPLXRzcTlxMWNtdDhWa3h1Q1o1MXA5eV9wRXhXMEFKTUFDdTdwdzlnSHRGT1o5RC15ME5LSGVxbWRoTDVHYTlmLVdVaFF0alhTakVCUWF1cTVrSlRuXzJ4bF9HM25MdEVnTTZMZER1UmNKOFBvYkhOcTRuSVFlN3dMUVRxaDJoWW8tT3NVNWVfQVc0TnRpT0EwOTk3OVowWGg5clQ3QV9BMGl5VVY2elVtc19QY1RrazE1aG56S2NCbFhGU2lnWjNydmlmOFZPX21FR3VqNVAzcEwwOVBnM2lEMGphckZSSVY5RVNnWHc?oc=5"
      },
      {
-      "title": "European Ecosystem Builds World\u2019s Most Efficient AI Factories With NVIDIA DSX",
+      "title": "NVIDIA and Supply Chain Partners Expand Capacity to Accelerate AI Infrastructure Buildout",
       "source": "NVIDIA Newsroom",
       "date": "2026-10-21",
-      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPbFBzY1F0X0hCRFJNSmRXZVlIZ09vNWN5b2txUW5KbHJwSzRqM05UZ0NBSE9GeXU1VlRvSWNCQzlGaU5FZGFvczR2THVDTWEyYVFLVjQ5YkVaVzhpSWdfb1MzM3RybVRVNklobHVadE4zcksyR2tJUDNNMHFVdmpWaUNxRXZkbVlwMGxFa0ZvcmI0Rzh6TnQ4VnJUQkJod256UGZDaXFhTFVKNTFyZXljeQ?oc=5"
+      "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPbFl2YjlqcF9vQ0s2QkdFMDBxNzdVT29ibDFOOUhxRlZhSDJmY0M4VENxOUNyLVNRdEFEcG54RkdUSHk0X2c4V0xOb1d0UmI3aHdSR0d2V0hRd2lQV0hWcXJfcU5vc0JzcUdOVzFTMl9XQjNaamF6ZTZSdWZuOU15RWVRNnBIMUh4c0ZfVy1JcDhUR0hGczl3UXBmcjc2ekxrVW9YMXdHU3lBYWZBMmxhbE5ScnFYTUhRZ0g1QjBpRmxCQQ?oc=5"
      },
      {
       "title": "EXCLUSIVE: ByteDance, Alibaba, Tencent place over $35 billion worth of Nvidia chip orders",
@@ -2145,7 +2141,7 @@
      }
     ],
     "by": "rules",
-    "updated": "2026-10-21"
+    "updated": "2026-10-22"
    }
   },
   {
@@ -2161,7 +2157,7 @@
    "overall": {
     "label": "WORTH RESEARCHING",
     "rationale": "Several lenses like it, others don't. Dig into the cons before buying.",
-    "score": 64.1
+    "score": 64.2
    },
    "lenses": [
     {
@@ -2195,15 +2191,15 @@
       "Currently pays a dividend (yield ~0.3%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
      ],
      "cons": [
-      "Price ($334.76) exceeds the Graham Number ($151.07) \u2014 fails Graham's defensive-investor price test.",
-      "P/E \u00d7 P/B = 110.5, above Graham's 22.5 ceiling \u2014 pricey on a combined basis."
+      "Price ($334.76) exceeds the Graham Number ($149.86) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 112.3, above Graham's 22.5 ceiling \u2014 pricey on a combined basis."
      ]
     },
     {
      "key": "lynch",
      "short": "Lynch",
      "name": "Peter Lynch (GARP \u2014 Fast Grower)",
-     "score": 61.6,
+     "score": 61.9,
      "verdict": "Partial fit",
      "pros": [
       "Classified as a Fast Grower (>25% earnings growth) \u2014 Lynch's favorite hunting ground, though these also carry the most execution/valuation risk.",
@@ -2211,7 +2207,7 @@
       "Company is buying back shares alongside its growth story."
      ],
      "cons": [
-      "PEG ratio of 1.20 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule."
+      "PEG ratio of 1.19 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule."
      ]
     },
     {
@@ -2238,7 +2234,7 @@
       "Return on capital ~69%: a good business by Greenblatt's first test."
      ],
      "cons": [
-      "Earnings yield (EBIT \u00f7 EV) 3.9%: not cheap by the Magic Formula."
+      "Earnings yield (EBIT \u00f7 EV) 4.0%: not cheap by the Magic Formula."
      ]
     }
    ],
@@ -2267,14 +2263,14 @@
     "cash_runway_years": null,
     "rule_of_40": 40.6,
     "market_cap": 4094093164544,
-    "pe": 16.8,
+    "pe": 17.07,
     "forward_pe": 21.81,
     "pb": 6.58,
-    "peg": 1.2,
+    "peg": 1.19,
     "price_to_sales": 9.18,
-    "ev_to_ebitda": 23.43,
-    "earnings_yield": 0.0393,
-    "graham_number": 151.07,
+    "ev_to_ebitda": 23.04,
+    "earnings_yield": 0.04,
+    "graham_number": 149.86,
     "dividend_yield": 0.0026,
     "payout_ratio": 0.0426,
     "debt_to_equity": 0.14,
@@ -2295,7 +2291,7 @@
    },
    "recent_ipo": false,
    "ipo": {
-    "months_listed": 266.0,
+    "months_listed": 266.1,
     "first_trade_date": "2004-08-19",
     "first_day_open": null,
     "first_day_close": null,
@@ -2305,7 +2301,7 @@
    "news": [],
    "data_notes": [],
    "stale": false,
-   "updated": "2026-10-21T20:36:12+00:00",
+   "updated": "2026-10-22T00:46:57+00:00",
    "memo": {
     "headline": "WORTH RESEARCHING. Several lenses like it, others don't. Dig into the cons before buying.",
     "business": "Alphabet Inc. (GOOGL) is an internet content & information company worth about $4.09T. It brought in $445.9B of revenue over the last year, up 24% from a year earlier. It keeps 34% of sales as operating profit.",
@@ -2316,10 +2312,10 @@
      "Average ROE of 28% clears Buffett's 20% bar for elite businesses. (Buffett)"
     ],
     "bear": [
-     "Price ($334.76) exceeds the Graham Number ($151.07) \u2014 fails Graham's defensive-investor price test. (Graham)",
-     "P/E \u00d7 P/B = 110.5, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)",
-     "Earnings yield (EBIT \u00f7 EV) 3.9%: not cheap by the Magic Formula. (Greenblatt)",
-     "PEG ratio of 1.20 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule. (Lynch)"
+     "Price ($334.76) exceeds the Graham Number ($149.86) \u2014 fails Graham's defensive-investor price test. (Graham)",
+     "P/E \u00d7 P/B = 112.3, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)",
+     "Earnings yield (EBIT \u00f7 EV) 4.0%: not cheap by the Magic Formula. (Greenblatt)",
+     "PEG ratio of 1.19 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule. (Lynch)"
     ],
     "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 24% growth fading to 3%, 9% discount rate), fair value is roughly $675.93 a share (bear $351.37, bull $1,175.46) against a price of $334.76. That's a 50% margin of safety: Buffett and Graham wanted 25%+.",
     "watch": [
@@ -2331,31 +2327,31 @@
     "ai": null
    },
    "news30": {
-    "summary": "Over the last 30 days Alphabet shares fell 5% (now $334.76). News flow was heavy (88 stories) and the headlines were mixed (9 upbeat, 6 downbeat). Most coverage was about earnings & guidance (22), products & technology (19) and stock moves (5). Analyst calls leaned split: 1 upgrade or target-raise headline vs 1 cut. 23 of the 88 were buy-or-sell opinion pieces, which show attention more than new facts. Key headline: \u201cAlphabet Slips 2% Despite NASDAQ Rally as Pichai Says Google Cloud Is Giving Up Revenue for AI Capacity; Amazon Dips, Microsoft Holds Steady\u201d (24/7 Wall St., 2026-10-21).",
-    "count": 88,
+    "summary": "Over the last 30 days Alphabet shares fell 3% (now $334.76). News flow was heavy (90 stories) and the headlines were mixed (11 upbeat, 8 downbeat). Most coverage was about products & technology (19), earnings & guidance (14) and stock moves (6). 24 of the 90 were buy-or-sell opinion pieces, which show attention more than new facts. Key headline: \u201cAlphabet Slips 2% Despite NASDAQ Rally as Pichai Says Google Cloud Is Giving Up Revenue for AI Capacity; Amazon Dips, Microsoft Holds Steady\u201d (24/7 Wall St., 2026-10-21).",
+    "count": 90,
     "tone": "mixed",
-    "positive": 9,
-    "negative": 6,
+    "positive": 11,
+    "negative": 8,
     "themes": [
      [
       "buy/sell opinion pieces",
-      23
-     ],
-     [
-      "earnings & guidance",
-      22
+      24
      ],
      [
       "products & technology",
       19
      ],
      [
+      "earnings & guidance",
+      14
+     ],
+     [
       "stock moves",
-      5
+      6
      ],
      [
       "analyst calls",
-      4
+      2
      ]
     ],
     "items": [
@@ -2366,16 +2362,16 @@
       "link": "https://news.google.com/rss/articles/CBMijgJBVV95cUxNUmFwTzgtN0FOZDRWNFQzWTZtd3VJUXdzeG1wcVVMWG02NFg3cWxTUFY4R0xINzNkV0h5a1lkX2VURW5CMVNuZkNYOXVjaHZ6c3paVUJQQlV0NDNQeXdLWHRiWC0xd3VsTUlfUG9GV1BwZTdNd3ZyTXp3dmNxOGxnRVdYLWE0bk8wd3JMejBrLVFzazExcXJmWTM2ank0dmppSk9uOTlDMDJQNmdmWHE2V282VnJqUWYweFdCelpzZEIyRFQzU2d6R0VPblBvZ2VqQlhVelExdEtBOFY1ZjVuSy1TcHBObkgtSXU3X3RVOFBOa0ZkWG9tUG0tQTZPNEViZmpjRlhaSGUza05mVVE?oc=5"
      },
      {
-      "title": "Alphabet (GOOGL) Earnings Expected to Grow: What to Know Ahead of Next Week's Release",
-      "source": "Yahoo Finance",
-      "date": "2026-10-21",
-      "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOUWhLTjNFeWdtVFptVXRWM3h3MW1jaVRwU2RqMTNLZnFNYV9JVHlYTXlMcVYwZ2Z4QzBSZGFLZTFPQllnOWgzQjNuU3NmTnZJVkxjWVJKU0YtcFNNRWRlTFdiVVZ1N1pydmh5bEFIcEVHVEw0VU9jRUJzdTE5Vy1YYUpUSlVpWDBPOEpvWWhjU2hHemllLXFHYmstZmRSQzhweEM5UQ?oc=5"
-     },
-     {
       "title": "Alphabet Has Lost About $860 Billion Since Its Peak, Nearly a Whole Walmart. Apple Has Avoided the AI Race and Is Near All-Time Highs.",
       "source": "Yahoo Finance",
       "date": "2026-10-21",
       "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNNEJsa0R3elFGd1QwNFR1WFVOVzUyMTRkSmxLX1ZJY1N5NF9SU1NJeWR3VVUtMXZDZzZ5ajRGcUItcW1EVVdWVXBjSDRHY01QcWQtWkZxcHlENDFPSWlCcFg1NzZ3OWVXcXpGcDJ5eXVtZzF6b2FJQWdxV1YzNHh1dWUweWxmbVVyWFRGR3hnWkJZRW5sa3Vsam44LTg?oc=5"
+     },
+     {
+      "title": "Alphabet (GOOGL) Earnings Expected to Grow: What to Know Ahead of Next Week's Release",
+      "source": "Yahoo Finance",
+      "date": "2026-10-21",
+      "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOUWhLTjNFeWdtVFptVXRWM3h3MW1jaVRwU2RqMTNLZnFNYV9JVHlYTXlMcVYwZ2Z4QzBSZGFLZTFPQllnOWgzQjNuU3NmTnZJVkxjWVJKU0YtcFNNRWRlTFdiVVZ1N1pydmh5bEFIcEVHVEw0VU9jRUJzdTE5Vy1YYUpUSlVpWDBPOEpvWWhjU2hHemllLXFHYmstZmRSQzhweEM5UQ?oc=5"
      },
      {
       "title": "If Alphabet Does This on Oct. 28, the Stock Could Skyrocket",
@@ -2391,7 +2387,7 @@
      }
     ],
     "by": "rules",
-    "updated": "2026-10-21"
+    "updated": "2026-10-22"
    }
   },
   {
@@ -2515,8 +2511,8 @@
     "pb": 8.95,
     "peg": 1.73,
     "price_to_sales": 11.93,
-    "ev_to_ebitda": 20.6,
-    "earnings_yield": 0.0422,
+    "ev_to_ebitda": 20.64,
+    "earnings_yield": 0.0421,
     "graham_number": 155.1,
     "dividend_yield": 0.0074,
     "payout_ratio": 0.1983,
@@ -2548,7 +2544,7 @@
    "news": [],
    "data_notes": [],
    "stale": false,
-   "updated": "2026-10-21T20:36:07+00:00",
+   "updated": "2026-10-22T00:46:54+00:00",
    "memo": {
     "headline": "WORTH RESEARCHING. Several lenses like it, others don't. Dig into the cons before buying.",
     "business": "Microsoft Corporation (MSFT) is a software - infrastructure company worth about $3.96T. It brought in $331.8B of revenue over the last year, up 18% from a year earlier. It keeps 45% of sales as operating profit.",
@@ -2574,34 +2570,46 @@
     "ai": null
    },
    "news30": {
-    "summary": "Over the last 30 days Microsoft shares rose 7% (now $532.95). News flow was heavy (53 stories) and the headlines were mostly negative (1 upbeat, 4 downbeat). Most coverage was about products & technology (20), legal & regulation (5) and deals & partnerships (2). Key headline: \u201cThe non-gamer CEO racing to save Microsoft\u2019s Xbox\u201d (Fortune, 2026-10-20).",
-    "count": 53,
-    "tone": "mostly negative",
-    "positive": 1,
+    "summary": "Over the last 30 days Microsoft shares rose 7% (now $532.95). News flow was heavy (67 stories) and the headlines were mixed (3 upbeat, 4 downbeat). Most coverage was about products & technology (22), deals & partnerships (6) and earnings & guidance (4). Insider activity: 0 selling and 0 buying headlines (latest: \u201cMicrosoft says AI agents are like insider threats as \u2018frontier models can\u2019t be trusted\u2019\u201d). Key headline: \u201cHow Birlasoft turned contract obligations into a delivery advantage with AI agents and Microsoft Azure\u201d (Microsoft Source, 2026-10-21).",
+    "count": 67,
+    "tone": "mixed",
+    "positive": 3,
     "negative": 4,
     "themes": [
      [
       "products & technology",
-      20
-     ],
-     [
-      "legal & regulation",
-      5
+      22
      ],
      [
       "deals & partnerships",
-      2
+      6
      ],
      [
       "buy/sell opinion pieces",
-      2
+      5
      ],
      [
-      "management",
-      1
+      "earnings & guidance",
+      4
+     ],
+     [
+      "analyst calls",
+      2
      ]
     ],
     "items": [
+     {
+      "title": "How Birlasoft turned contract obligations into a delivery advantage with AI agents and Microsoft Azure",
+      "source": "Microsoft Source",
+      "date": "2026-10-21",
+      "link": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQdDlPWDVaVzE2OWRWbllZcm1YcnExRmlENUtDa1FNemR4NVo0Q2ozMWJjUG11dnk5Ykp1STlhLTJfMEFoMnEtOW9aWXhlTm5wbUpJZFdNeTNDSC1FZzBFTGpIMFdTTmlrel9CRmZpZ0JJWG1wMl9LdE9ILThYZTRYeXhCalFHTG1pN2F4RUtwbE95ZmplSGRKTnJFM1BNUkxjeE44Q2dTQmFuQ0FTeVRZcGpYT0xtUC1QY1Q0ZVhuWjltcll6UklLYjB6dHN0MWNjeEZxMEUwbVJfcGo0MC1QRE9kZFBQUQ?oc=5"
+     },
+     {
+      "title": "OpenAI to bring AI models to Google's cloud, in further expansion beyond Microsoft",
+      "source": "CNBC",
+      "date": "2026-10-21",
+      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNNXhvUlpRaDlhdjFIa3BDYy12MFBILU1vZFNfa0ZKUlV6cERUd1lVUWtEbEFVcTAxRlVuaGJFTENlYUtyOFloTlhRZ1QwTW5zOUd2UXFwT1pjS0FhX2NfT0R4MUJpNVZ6Z3ItZ05WRklZN2tSX2NUdkhsckYyM1FHbjM4Mi1WeTNvdUI5MkR0LXphNWs5UHFUZGxENXE4NWliZkdQeXR5eW7SAa4BQVVfeXFMTUhXVUF3ZHRsOGJpRnlGR2dKT2FWdk5oaW5zTzVJN1E5aEt5eGM4Wmtyei00T2F4dFBMSm5CWGR1WjYzU3BpVWpKUjdNZkltS3VzdkYyMDNMZWtCbnQwZHUtMVV5dTdmZF9tcVpnVW52aGlqNGJzNlJvaDJyZXRMR19QN293Tzk2NnV0NXVwUmxBUUx6TTA2aDMzaUlTc20zWFg2UkhfdnhCUnpnMm9R?oc=5"
+     },
      {
       "title": "Introducing Microsoft Contact Center Intelligence - Microsoft Dynamics 365 Blog",
       "source": "Microsoft",
@@ -2609,32 +2617,20 @@
       "link": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxPa1pfSVVpTHZOcHQyeVZzVXBrcDA0aGY3aE9nMWZVWUZpdDRHNXhENTJWdjVPMEk5dFh5X09ndFN1S3lkU3NTWFZObU9tQW5RLTRZM2VIYWo2QWVBNjBLQ3lldDR2WUxvWC0zS00wUm9pRmJFT011Wllkc1Z0LVlwQXhlTDI3Y3ZkSTk0QllWaWhpanZnYkJ6V2dWMFREM1FZSnFERndHU3ZDanY4aGlrY0tFUDNqX0xMbzFBQWRGOS1fRjN4REdMbUV2V0xYWFNza0R6ek1KLU1YVThYVVlVWWQ0dDdrTVhDZHVjX25FUkRCQk4tYTI0VQ?oc=5"
      },
      {
-      "title": "The non-gamer CEO racing to save Microsoft\u2019s Xbox",
-      "source": "Fortune",
+      "title": "Private Equity Firms Weighed $100 Billion-Plus Buyout of Microsoft\u2019s Xbox",
+      "source": "The Information",
       "date": "2026-10-20",
-      "link": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOUGJabWtwdEFBZENLOHpvUDBFbWx1VWpIWjJ1bHF3eUx5SlhXZVRJYkRkTkFjSm9JdGJNYWpHNU5vR0lEaE9EZDdRVXZpMzd3N2ljeEhpX1RfM1BZd1Z5MnVVWFpJSVhmY2V4Q3FMY29nY2FUWGZtT1JTUmNNREduT0dqWEJIM0E?oc=5"
+      "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPb2ZIN1pNVDRlRXF4N0V3TGNPVVlGMHJlcmJubmJYNUdyWnI2NVlsQTBFRVY3RWNKRVBsRlpkbWtTMmQ3eUIxLW9ibGp4NFVGV0RXQ1A4dXhJWWlEQnZFZkdlVWpqWF9kdDRTdlZ3ckVqOUMyNWRSWXFpWlNzeHpLS3FJQjI4MUJvT2FNY1ZUejczcFBtUnlBZ3RSLXBfV0tJdXpFZTNwWjJiYVlC?oc=5"
      },
      {
-      "title": "Microsoft unveils tools to monitor and corral rogue AI agents",
-      "source": "GeekWire",
-      "date": "2026-10-19",
-      "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPSVpEMEJteFZjTTUwZnF2YjZ0eHhFV2JPajdoVUkyWENxY0FuLWh0TnZGYlgxbFkzV0tRTzdlWkVqOWwzWTF3Yi0zRVk4SDBCYUZ3UVM2TE9WR2FIWE1hQVVjd0s1djZveHd5OF9yZE13MUpPczhOV0pacFRrdy1meTgwUnZFQzljX0hZVWs5b1RjbGF6VUVn?oc=5"
-     },
-     {
-      "title": "Microsoft pulls out of UK Nscale data centre deal over power delay",
-      "source": "Reuters",
-      "date": "2026-10-18",
-      "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNMmVDUVQyZjhnbFN2MHQ1MHVPMHVpLVVsUFE1aU44Y2QzMUx2a25MRXR5OWtkTGd5RkViaG9fM3lZcnFHblYyT2xMeGZ3MHI3NkFjQ0FhdWFVRWlmdHlPRDRFRVRsclFpbUExakpiN3Z4aGMtODdDb09Mb0xXbnIxdU04ZmQ3UTEyTkhQd2EyMFhDNzQzYVgzZG9FeDlNYTJTanNOOThVSGRTb2RnRWdCajBVXzFMcDB4MWZpbXR1STMzZ1JaOXRr?oc=5"
-     },
-     {
-      "title": "UK competition regulator targets Microsoft's business software grip",
-      "source": "Reuters",
-      "date": "2026-10-16",
-      "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQbmFGbmFMbzg4cDVFbFJUN1E3bUlGb0VBaGxBMVFMRG11eE13dlM0Y2lhZmJiSjg4NGg3cHY2REV4MnM5ZkZKNWJjQmJ2RnZhSzk3MEhXbVhRSDRNWWlabU1IV3Z2OXJNYjZ2dWd0emNIbi02ejBiR25iWEs5UkJmcTh5WnlaNEMwaU9GWGdWN2Vrcm1aMmMtVUJ4NTJ6RE80MG1DazZJQ0RtbzdWT2htQVhKbHFydlhxQm1Z?oc=5"
+      "title": "Why Citi Thinks Microsoft Beats Neoclouds in the AI Debt Squeeze",
+      "source": "Yahoo Finance",
+      "date": "2026-10-20",
+      "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNVXJFcFpaU3hEM3h1NDV2ZGtMcWUyNFFERUpidnV0aTRmUWlvWE1zQ054cDFsWTJXcjVqSWdmcUtFZ2FJME9WVmNNQ3p2VTRJaG5MMHVla3N5RzZEeTJDR0lhbG1xSm5OdTlHWjgteGFSekpYZ1FMdlpQWWp0Z2FsOTBpb2NOVUZ3QlpBYW0yVnVacXAxRkxFM1Y1Z1g?oc=5"
      }
     ],
     "by": "rules",
-    "updated": "2026-10-21"
+    "updated": "2026-10-22"
    }
   },
   {
@@ -2786,7 +2782,7 @@
    "news": [],
    "data_notes": [],
    "stale": false,
-   "updated": "2026-10-21T20:35:41+00:00",
+   "updated": "2026-10-22T00:46:31+00:00",
    "memo": {
     "headline": "WORTH RESEARCHING. Several lenses like it, others don't. Dig into the cons before buying.",
     "business": "Berkshire Hathaway Inc. (BRK-B) is an insurance - diversified company worth about $1.15T. It brought in $384.7B of revenue over the last year, up 10% from a year earlier. It keeps 33% of sales as operating profit.",
@@ -2812,10 +2808,10 @@
     "ai": null
    },
    "news30": {
-    "summary": "Over the last 30 days Berkshire Hathaway shares rose 7% (now $538.99). News flow was heavy (88 stories) and the headlines were mostly positive (14 upbeat, 4 downbeat). Most coverage was about deals & partnerships (7), stock moves (5) and earnings & guidance (4). Key headline: \u201cBNSF Paid Berkshire Hathaway $4.4 Billion in Dividends Last Year. Berkshire Bought It for $34.5 Billion in 2010.\u201d (The Motley Fool, 2026-10-20).",
-    "count": 88,
+    "summary": "Over the last 30 days Berkshire Hathaway shares rose 7% (now $538.99). News flow was heavy (87 stories) and the headlines were mostly positive (15 upbeat, 4 downbeat). Most coverage was about deals & partnerships (6), earnings & guidance (5) and stock moves (5). Key headline: \u201cBNSF Paid Berkshire Hathaway $4.4 Billion in Dividends Last Year. Berkshire Bought It for $34.5 Billion in 2010.\u201d (The Motley Fool, 2026-10-20).",
+    "count": 87,
     "tone": "mostly positive",
-    "positive": 14,
+    "positive": 15,
     "negative": 4,
     "themes": [
      [
@@ -2824,15 +2820,15 @@
      ],
      [
       "deals & partnerships",
-      7
+      6
+     ],
+     [
+      "earnings & guidance",
+      5
      ],
      [
       "stock moves",
       5
-     ],
-     [
-      "earnings & guidance",
-      4
      ],
      [
       "dividends & buybacks",
@@ -2841,10 +2837,10 @@
     ],
     "items": [
      {
-      "title": "Is Berkshire Hathaway's Greg Abel Is Changing the Script? Here's the Latest Tech Stock He Just Bought.",
+      "title": "ETFs Are Net Sellers of Berkshire Hathaway (BRK.B) on Oct. 19",
       "source": "Yahoo Finance",
       "date": "2026-10-21",
-      "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPZnpqejlzRnVJT0U2NDRRdnhneVduTjViOC1PZnNTcm9GSG4tNGRGM09scm1SOUUxOEY5WTc4LVE5QkwzclZucnhXTjRKVHhkNkJQeXFuOGdxcmthZnhaUzdkNVM2cThNR256ODVDc1Qwek5nMS1mV2o4QWJYaW1TOS1PUVR1SldYcjYwRjNSa1paUUhDM3M1MWlISGZJb1BoWFplOEdB?oc=5"
+      "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNaTR5VUVPRmxPdkxzZzlXX3U0eXVYZDhLb3lKdUt0SDRMSW00OS1GUTlxNHJGWjY3WWNoNE1IT2FVQXMxZm9JUFA0dWlxaHdFTlQ1b1FDc1JpcTR3TlRfZDhhOFRTbmFPeVNON05UME95T3k5blFBYmNvbG40QW1GWlVjTURhQXZGZEZXcVdvaEd6S0gzUXVrY1NTSHlQRERqUEE?oc=5"
      },
      {
       "title": "BNSF Paid Berkshire Hathaway $4.4 Billion in Dividends Last Year. Berkshire Bought It for $34.5 Billion in 2010.",
@@ -2853,26 +2849,270 @@
       "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOMnFQTzNWSFo5aE1OdDRDWnN0UFpVcTZxS0lKajZKeGtiY1dpOFM5ckJ3S0hMTkYyQjljLTdfQi1TeWdBY1k0WVpvVmJ6OXA3TnBuOHJaRFZnUnJlcXFvVmVBVjByU05vZzBsOWY3bFpHbzQ0bi01dDJHOHhSeGZOX0F3NUJTTEdKNDJyWXhnY0ozMENwRXktbw?oc=5"
      },
      {
-      "title": "Berkshire Hathaway invests $330 mn in Bending Spoons, raises stake to 4%",
-      "source": "Beinsure",
+      "title": "LLY Stock Hits New Record, Eli Lilly Valuation Pushes Past Berkshire Hathaway Ahead Of Q3 Earnings",
+      "source": "Yahoo Finance",
       "date": "2026-10-20",
-      "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNa09Gb21LVjBPUkhkYjhrakZFR2l0S205Z2lrYUNCVHlNUWtGdXBOdW5RbkJfM2I0NGZfUGV6d3REQW9RRGU3dHJuMDNCSktTbDBwV3RRa3lveG1CXzltZFAxWDFIYVlreEFadDRYWDh3eDBnMGQzSUthYUl6QmtuOXpKbw?oc=5"
+      "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNWUxKNGJCSXo1LURUTDFtWGN5WEE3MTRUYTAtbm83Q1dDamdtVnU3V21oRnJUNDA2LXRULVgzR2xha2ZFanRFQUIyX0ZVQWtmMGsxaTNBN0lzcnRDM0wyeXlmcFdSYXhWV3JVSnFJdEZENUVXb0tBSnFGNXZmSUFzQ29HTXh0OF9BZGJQa0dwNi1Tblhk?oc=5"
+     },
+     {
+      "title": "Greg Abel's Berkshire Hathaway Collected $479 Million in Dividends Last Year from an American Express Stake That Cost $1.3 Billion. You Can Put the Same Principles to Work for Yourself.",
+      "source": "Yahoo Finance",
+      "date": "2026-10-17",
+      "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOLXgtb1NpTGdoeTEtWFNhMHhyWlZDQVZpbUdISU1QblZfMV90S1NoNE44bld0bldfRUtJN3o2d1l5Q3VoblNqSHVkbGZSYUxHSm82cDhLNVJ6b09hTFpfbGRZR3Rfd0FCcFpjblNXQ0hKdFdjU1FsNHIySVZaLUR3elFGZ0lWZDNadmt2ZnNCekZfbW1ld0VHZ1IzdkhWSnZFSldKS2FFQQ?oc=5"
      },
      {
       "title": "Berkshire backs Bending Spoons, sending shares soaring",
       "source": "Axios",
       "date": "2026-10-15",
       "link": "https://news.google.com/rss/articles/CBMiekFVX3lxTFA2eG1XZmZiS2NOMThjQ2hKZ0RxVHpPc25EUlZEdXgwTEpBS09EYk5CUHJpdmJlbDVoMTdJeXc5Z29paWEtVGdaNGQ0aVI1dl95VnF3Sk5kVllPV3A0UjNpdl9DOWNBVU10N05vOGwtUnhfdE9yNHlnQ2pn?oc=5"
-     },
-     {
-      "title": "Berkshire Hathaway (NYSE:BRK.A) Q2 Earnings: Leading The Diversified Financial Services Pack",
-      "source": "Yahoo Finance",
-      "date": "2026-10-08",
-      "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQSWVwaFpleEZVOFlwUXRBVElDQ1dTWUFDVkFwdlZlY2daa2VpbjhQeFotNzhTeDNTamhwSjBKa3BBbVlIMTYyQXRlckxMMmhkcEN6MjJSblQtTFI5aGpYRDFBWUxheVdQRW9nX0d4WDBkM0c3SjFQNlNXbmtYR3dENFhiTmdNbVVhQ3puSG1rZTdsT09kb0RGRDd6UQ?oc=5"
      }
     ],
     "by": "rules",
-    "updated": "2026-10-21"
+    "updated": "2026-10-22"
+   }
+  },
+  {
+   "ticker": "NFLX",
+   "desk": "company",
+   "note": "added from the site's search",
+   "name": "Netflix, Inc.",
+   "sector": "Communication Services",
+   "industry": "Entertainment",
+   "price": 65.04,
+   "week52_high": 116.73,
+   "week52_low": 64.1,
+   "overall": {
+    "label": "WORTH RESEARCHING",
+    "rationale": "Several lenses like it, others don't. Dig into the cons before buying.",
+    "score": 57.9
+   },
+   "lenses": [
+    {
+     "key": "buffett",
+     "short": "Buffett",
+     "name": "Buffett & Munger (Quality Compounding)",
+     "score": 61.3,
+     "verdict": "Partial fit",
+     "pros": [
+      "Earnings grew in every available period with no loss years.",
+      "Average ROE of 31% clears Buffett's 20% bar for elite businesses.",
+      "Share count shrank 3.7% \u2014 management is buying back stock, not diluting."
+     ],
+     "cons": [
+      "Margins are unstable year to year \u2014 less predictable than Buffett prefers.",
+      "Debt/Equity of 0.54 exceeds Buffett's usual 0.5 comfort zone.",
+      "Trading ~18% above estimated intrinsic value \u2014 little to no margin of safety."
+     ]
+    },
+    {
+     "key": "graham",
+     "short": "Graham",
+     "name": "Benjamin Graham (Deep Value)",
+     "score": 27.4,
+     "verdict": "Poor fit",
+     "pros": [
+      "No loss-making years across the 4 most recent periods available."
+     ],
+     "cons": [
+      "Price ($65.04) exceeds the Graham Number ($23.48) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 172.6, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
+      "Current ratio of 1.19 is below Graham's 2.0 liquidity bar.",
+      "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test.",
+      "No current dividend \u2014 fails Graham's income requirement for the defensive investor."
+     ]
+    },
+    {
+     "key": "lynch",
+     "short": "Lynch",
+     "name": "Peter Lynch (GARP \u2014 Fast Grower)",
+     "score": 58.5,
+     "verdict": "Partial fit",
+     "pros": [
+      "Classified as a Fast Grower (>25% earnings growth) \u2014 Lynch's favorite hunting ground, though these also carry the most execution/valuation risk.",
+      "Company is buying back shares alongside its growth story."
+     ],
+     "cons": [
+      "PEG ratio of 1.11 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule."
+     ]
+    },
+    {
+     "key": "fisher",
+     "short": "Fisher",
+     "name": "Philip Fisher (Growth Quality)",
+     "score": 74.8,
+     "verdict": "Partial fit",
+     "pros": [
+      "Revenue grew 13% a year over the available history. Fisher's point #1 wants products with room for sales to keep growing for years.",
+      "Spends 8% of revenue on R&D. Fisher (#2, #3) wants management investing in future products.",
+      "Operating margin 35%. Fisher #5: worthwhile profit margins.",
+      "Margins widened by 11.7 points. Fisher #6: improving margins."
+     ],
+     "cons": []
+    },
+    {
+     "key": "greenblatt",
+     "short": "Greenblatt",
+     "name": "Joel Greenblatt (Magic Formula)",
+     "score": 67.5,
+     "verdict": "Partial fit",
+     "pros": [
+      "Return on capital ~41%: a good business by Greenblatt's first test."
+     ],
+     "cons": [
+      "Earnings yield (EBIT \u00f7 EV) 4.9%: not cheap by the Magic Formula."
+     ]
+    }
+   ],
+   "classic": null,
+   "kpis": {
+    "revenue_ttm": 49734631424,
+    "revenue_growth_yoy": 0.118,
+    "revenue_cagr": 0.1264,
+    "earnings_growth": 0.482,
+    "quarterly_revenue": [
+     11079166000,
+     11510307000,
+     12050762000,
+     12249757000,
+     12559938000
+    ],
+    "gross_margin": 0.5069,
+    "operating_margin": 0.3463,
+    "profit_margin": 0.2969,
+    "roe_avg": 0.3109,
+    "roic": 0.4109,
+    "roa": 0.1712,
+    "free_cash_flow": 9461053000.0,
+    "fcf_margin": 0.1902,
+    "total_cash": 8222952960,
+    "cash_runway_years": null,
+    "rule_of_40": 30.8,
+    "market_cap": 270822637568,
+    "pe": 18.8,
+    "forward_pe": 17.21,
+    "pb": 9.18,
+    "peg": 1.11,
+    "price_to_sales": 5.45,
+    "ev_to_ebitda": 17.29,
+    "earnings_yield": 0.0489,
+    "graham_number": 23.48,
+    "dividend_yield": 0.0,
+    "payout_ratio": 0.0,
+    "debt_to_equity": 0.54,
+    "current_ratio": 1.19,
+    "insider_pct": 0.0057,
+    "institutional_pct": 0.842,
+    "short_pct_float": 0.0199,
+    "beta": null
+   },
+   "valuation": {
+    "bear": 38.71,
+    "base": 55.17,
+    "bull": 86.75,
+    "growth": 0.1264,
+    "method": "average free cash flow, last 3 years",
+    "note": null,
+    "margin_of_safety": -0.1789
+   },
+   "recent_ipo": false,
+   "ipo": {
+    "months_listed": 293.0,
+    "first_trade_date": "2002-05-23",
+    "first_day_open": null,
+    "first_day_close": null,
+    "prospectus": null,
+    "checklist": []
+   },
+   "news": [],
+   "data_notes": [],
+   "stale": false,
+   "updated": "2026-10-22T00:47:36+00:00",
+   "memo": {
+    "headline": "WORTH RESEARCHING. Several lenses like it, others don't. Dig into the cons before buying.",
+    "business": "Netflix, Inc. (NFLX) is an entertainment company worth about $270.8B. It brought in $49.7B of revenue over the last year, up 12% from a year earlier. It keeps 35% of sales as operating profit.",
+    "bull": [
+     "Revenue grew 13% a year over the available history. Fisher's point #1 wants products with room for sales to keep growing for years. (Fisher)",
+     "Spends 8% of revenue on R&D. Fisher (#2, #3) wants management investing in future products. (Fisher)",
+     "Operating margin 35%. Fisher #5: worthwhile profit margins. (Fisher)",
+     "Margins widened by 11.7 points. Fisher #6: improving margins. (Fisher)"
+    ],
+    "bear": [
+     "Price ($65.04) exceeds the Graham Number ($23.48) \u2014 fails Graham's defensive-investor price test. (Graham)",
+     "P/E \u00d7 P/B = 172.6, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)",
+     "Current ratio of 1.19 is below Graham's 2.0 liquidity bar. (Graham)",
+     "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test. (Graham)"
+    ],
+    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 13% growth fading to 3%, 9% discount rate), fair value is roughly $55.17 a share (bear $38.71, bull $86.75) against a price of $65.04. The price is 18% above the base-case value, so you're paying for growth that hasn't happened yet.",
+    "watch": [
+     "Revenue growth stays near or above 12% (last reading).",
+     "Operating margin (35%) keeps rising as the company grows."
+    ],
+    "plan": "Put it on watch. A price around $41.38 would give the 25% margin of safety value investors look for. Re-check after the next earnings report.",
+    "buffett_view": "On Buffett's own tests this scores 61/100.",
+    "ai": null
+   },
+   "news30": {
+    "summary": "Over the last 30 days Netflix shares fell 5% (now $65.04). News flow was heavy (45 stories) and the headlines were mostly negative (0 upbeat, 14 downbeat). Most coverage was about earnings & guidance (16) and stock moves (6). Key headline: \u201cNetflix stock sinks as Wall Street lowers price targets following Q4 revenue forecast miss\u201d (Yahoo Finance, 2026-10-21).",
+    "count": 45,
+    "tone": "mostly negative",
+    "positive": 0,
+    "negative": 14,
+    "themes": [
+     [
+      "earnings & guidance",
+      16
+     ],
+     [
+      "stock moves",
+      6
+     ],
+     [
+      "buy/sell opinion pieces",
+      3
+     ],
+     [
+      "analyst calls",
+      1
+     ],
+     [
+      "management",
+      1
+     ]
+    ],
+    "items": [
+     {
+      "title": "Netflix stock sinks as Wall Street lowers price targets following Q4 revenue forecast miss",
+      "source": "Yahoo Finance",
+      "date": "2026-10-21",
+      "link": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxQNEJkYUJaMXNVbEhiRTVINEhQZEptTkdWWFpkQkhDc2hDMkREQVRteGxITEZGVlYwcnZzSUdmd1ltclFkM2hBTnp2OGVWSVJEaWlub29QdHVMVC15eTRISWRPUGZLT3NaS2FiZHhwNGxtOExtUDBQUUpHejhDOFRmQ2pFQXhKRUNuN1JnM3RiR281VjlfT1ZvS1IxX2FWZ0tZQ3VjMTAzRERHQnowczhMNGJRUU1YeUFPdGNxVDNOWFFrZ0FOckdkNDdZNDFwaXhtaF81VXhJSzRLb1hVVW5JVks2Q09vVVViQ3dVN21n?oc=5"
+     },
+     {
+      "title": "Netflix Sales Growth to Decline for Fourth Quarter in a Row",
+      "source": "Bloomberg.com",
+      "date": "2026-10-21",
+      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQdHFqMFNFbjJDMVBoUURnSjJjeUNaYmtTMUpKd3ZsMzNPZDNfV19XSzhrZWhwN0ZHYUVpVTVuQUtnNWpJT2oxdTA5MDhxcjg1RW9HaVZ1U2ZoNVFWT21PaWhSZW5KalRNTEJLYUNRa1BPSVViX2RuamZuNS1fbmtDelNBWm9FRXlhTkdiTFlFYzNkRFZEcWVKWk5Sb1ptNVlZLWwteGk0R2Q2QllQZnd6YUZFSHg?oc=5"
+     },
+     {
+      "title": "Netflix's ad stumble deepens fears its growth is hitting a wall",
+      "source": "Reuters",
+      "date": "2026-10-21",
+      "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOR2NMX1phWXZ5OFZOZ09LVXF1R1Q0ckJfS0JwMm9sTFRfakN1QlVqWUwyUk8zV1UtZWFsbkRXNm01Q2N0TEdrUEtCQWJqeHVkOS14SWNHSkkwVUJGSVhKZnRPSkd5dG9FZ1hBYmFzbC15VlczeUdzamhiVFBGYWVQTTNoeG9vVjRfYjZTN3Q5MHp1OEswenI2d1NyMDRnT1AyOEFsMlIwbjRGZmI1aEZaLXlkQUQ1WWVHMm9oUW9fMFk?oc=5"
+     },
+     {
+      "title": "Netflix posts third-quarter earnings beat, but shares fall on advertising and revenue guidance",
+      "source": "CNBC",
+      "date": "2026-10-20",
+      "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTE4zWGVPQmxpYk9aQUgxT2szTmtmSnpJQlpGcTRWcWpiZGVQQ3JzZnNQNElCNlRiQmxQNjhFN3ljZWVfRVVrUEYzdlp6VUw2bHlQUUJiUlNWcDJEeFUzLVhCcFVVa3BrOTl1aXVVQ05yVlJYSTV60gF6QVVfeXFMTlA0cW56QmhrZk5uWlJ1VWllY3hMMnRUYVc5REx0Wi1ZZXJYeThtWW9jVGJmaGVPNzFlaGVtQVZGeXFWMm93Y0xIVkJTRkZEeVJhMHpLdGE1cXpVWE1YU1JWWWxTRXFZclN5MGJaU2JDNmN2WmlpMzg0eWc?oc=5"
+     },
+     {
+      "title": "Netflix co-CEO Sarandos says 'we could do better' after weak forecast",
+      "source": "Reuters",
+      "date": "2026-10-20",
+      "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxNQmJuWl84Zk9TanlERndybWRsaTVoaF95bUgzbldjVzJKNzcwZEFEUFh4Z0xVa2o0aGFSSEVJT3d2WENIeURzMWV3VUFTY2NxRWF2WHBjTVRjZURraFVHMkZ6M0pkOXJOb01FYW5OWTdkcmM3WkVFcXR5UC1QbDVqOFRIYWpsc1VxaUdhMENKa0I1S1ZWSk1BZ3BrYmRYVVQ5Q1FpRHBlY1NZbndHMVZnYjBfRnQ3cGktWkcwZ28tVDVQSFNqR1dZaFJGSTJ0b0U?oc=5"
+     }
+    ],
+    "by": "rules",
+    "updated": "2026-10-22"
    }
   },
   {
@@ -2939,7 +3179,7 @@
    "classic": {
     "buffett": 56.9,
     "graham": 39.6,
-    "lynch": 43.5,
+    "lynch": 42.4,
     "greenblatt": 22.5
    },
    "kpis": {
@@ -2969,10 +3209,10 @@
     "pe": null,
     "forward_pe": 48.84,
     "pb": 1.64,
-    "peg": 1.52,
+    "peg": 1.56,
     "price_to_sales": 9.64,
-    "ev_to_ebitda": -1129.9,
-    "earnings_yield": -0.0282,
+    "ev_to_ebitda": -1157.03,
+    "earnings_yield": -0.0275,
     "graham_number": null,
     "dividend_yield": 0.0,
     "payout_ratio": null,
@@ -3052,7 +3292,7 @@
     "Prospectus link unavailable: ticker not found in SEC's company list."
    ],
    "stale": false,
-   "updated": "2026-10-21T20:37:14+00:00",
+   "updated": "2026-10-22T00:47:52+00:00",
    "memo": {
     "headline": "WATCH. Promising, but not yet convincing. Watch the next two quarters.",
     "business": "SailPoint, Inc. (SAIL) is a software - infrastructure company worth about $11.2B. It brought in $1.2B of revenue over the last year, up 17% from a year earlier. It is not yet profitable at the operating level. It has traded publicly for about 20 months.",
@@ -3082,10 +3322,10 @@
     "ai": null
    },
    "news30": {
-    "summary": "Over the last 30 days SailPoint shares fell 8% (now $19.68). News flow was heavy (91 stories) and the headlines were mostly positive (10 upbeat, 2 downbeat). Most coverage was about products & technology (29), analyst calls (19) and insider trades (11). Analyst calls leaned positive: 10 upgrade or target-raise headlines vs 1 cut. Insider activity: 10 selling and 0 buying headlines (latest: \u201cForm 4 Sailpoint Inc For: 12 October By Investing.com\u201d). Key headline: \u201cAnalysts Have Conflicting Sentiments on These NA Companies: FMC (FMC) and SailPoint, Inc. (SAIL)\u201d (The Globe and Mail, 2026-10-16).",
-    "count": 91,
+    "summary": "Over the last 30 days SailPoint shares fell 10% (now $19.68). News flow was heavy (92 stories) and the headlines were mostly positive (9 upbeat, 2 downbeat). Most coverage was about products & technology (29), analyst calls (19) and insider trades (11). Analyst calls leaned positive: 10 upgrade or target-raise headlines vs 1 cut. Insider activity: 10 selling and 0 buying headlines (latest: \u201cForm 4 Sailpoint Inc For: 12 October By Investing.com\u201d). Key headline: \u201cAnalysts Have Conflicting Sentiments on These NA Companies: FMC (FMC) and SailPoint, Inc. (SAIL)\u201d (The Globe and Mail, 2026-10-16).",
+    "count": 92,
     "tone": "mostly positive",
-    "positive": 10,
+    "positive": 9,
     "negative": 2,
     "themes": [
      [
@@ -3142,251 +3382,7 @@
      }
     ],
     "by": "rules",
-    "updated": "2026-10-21"
-   }
-  },
-  {
-   "ticker": "NFLX",
-   "desk": "company",
-   "note": "added from the site's search",
-   "name": "Netflix, Inc.",
-   "sector": "Communication Services",
-   "industry": "Entertainment",
-   "price": 65.04,
-   "week52_high": 116.73,
-   "week52_low": 64.1,
-   "overall": {
-    "label": "WORTH RESEARCHING",
-    "rationale": "Several lenses like it, others don't. Dig into the cons before buying.",
-    "score": 57.4
-   },
-   "lenses": [
-    {
-     "key": "buffett",
-     "short": "Buffett",
-     "name": "Buffett & Munger (Quality Compounding)",
-     "score": 61.3,
-     "verdict": "Partial fit",
-     "pros": [
-      "Earnings grew in every available period with no loss years.",
-      "Average ROE of 31% clears Buffett's 20% bar for elite businesses.",
-      "Share count shrank 3.7% \u2014 management is buying back stock, not diluting."
-     ],
-     "cons": [
-      "Margins are unstable year to year \u2014 less predictable than Buffett prefers.",
-      "Debt/Equity of 0.54 exceeds Buffett's usual 0.5 comfort zone.",
-      "Trading ~18% above estimated intrinsic value \u2014 little to no margin of safety."
-     ]
-    },
-    {
-     "key": "graham",
-     "short": "Graham",
-     "name": "Benjamin Graham (Deep Value)",
-     "score": 27.4,
-     "verdict": "Poor fit",
-     "pros": [
-      "No loss-making years across the 4 most recent periods available."
-     ],
-     "cons": [
-      "Price ($65.04) exceeds the Graham Number ($23.48) \u2014 fails Graham's defensive-investor price test.",
-      "P/E \u00d7 P/B = 172.6, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
-      "Current ratio of 1.19 is below Graham's 2.0 liquidity bar.",
-      "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test.",
-      "No current dividend \u2014 fails Graham's income requirement for the defensive investor."
-     ]
-    },
-    {
-     "key": "lynch",
-     "short": "Lynch",
-     "name": "Peter Lynch (GARP \u2014 Fast Grower)",
-     "score": 55.8,
-     "verdict": "Partial fit",
-     "pros": [
-      "Classified as a Fast Grower (>25% earnings growth) \u2014 Lynch's favorite hunting ground, though these also carry the most execution/valuation risk.",
-      "Company is buying back shares alongside its growth story."
-     ],
-     "cons": [
-      "PEG ratio of 1.21 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule."
-     ]
-    },
-    {
-     "key": "fisher",
-     "short": "Fisher",
-     "name": "Philip Fisher (Growth Quality)",
-     "score": 74.8,
-     "verdict": "Partial fit",
-     "pros": [
-      "Revenue grew 13% a year over the available history. Fisher's point #1 wants products with room for sales to keep growing for years.",
-      "Spends 8% of revenue on R&D. Fisher (#2, #3) wants management investing in future products.",
-      "Operating margin 35%. Fisher #5: worthwhile profit margins.",
-      "Margins widened by 11.7 points. Fisher #6: improving margins."
-     ],
-     "cons": []
-    },
-    {
-     "key": "greenblatt",
-     "short": "Greenblatt",
-     "name": "Joel Greenblatt (Magic Formula)",
-     "score": 67.5,
-     "verdict": "Partial fit",
-     "pros": [
-      "Return on capital ~41%: a good business by Greenblatt's first test."
-     ],
-     "cons": [
-      "Earnings yield (EBIT \u00f7 EV) 4.6%: not cheap by the Magic Formula."
-     ]
-    }
-   ],
-   "classic": null,
-   "kpis": {
-    "revenue_ttm": 49734631424,
-    "revenue_growth_yoy": 0.118,
-    "revenue_cagr": 0.1264,
-    "earnings_growth": 0.482,
-    "quarterly_revenue": [
-     11079166000,
-     11510307000,
-     12050762000,
-     12249757000,
-     12559938000
-    ],
-    "gross_margin": 0.5069,
-    "operating_margin": 0.3463,
-    "profit_margin": 0.2969,
-    "roe_avg": 0.3109,
-    "roic": 0.4109,
-    "roa": 0.1712,
-    "free_cash_flow": 9461053000.0,
-    "fcf_margin": 0.1902,
-    "total_cash": 8222952960,
-    "cash_runway_years": null,
-    "rule_of_40": 30.8,
-    "market_cap": 270822637568,
-    "pe": 18.8,
-    "forward_pe": 17.21,
-    "pb": 9.18,
-    "peg": 1.21,
-    "price_to_sales": 5.45,
-    "ev_to_ebitda": 18.23,
-    "earnings_yield": 0.0464,
-    "graham_number": 23.48,
-    "dividend_yield": 0.0,
-    "payout_ratio": 0.0,
-    "debt_to_equity": 0.54,
-    "current_ratio": 1.19,
-    "insider_pct": 0.0057,
-    "institutional_pct": 0.842,
-    "short_pct_float": 0.0199,
-    "beta": null
-   },
-   "valuation": {
-    "bear": 38.71,
-    "base": 55.17,
-    "bull": 86.75,
-    "growth": 0.1264,
-    "method": "average free cash flow, last 3 years",
-    "note": null,
-    "margin_of_safety": -0.1789
-   },
-   "recent_ipo": false,
-   "ipo": {
-    "months_listed": 292.9,
-    "first_trade_date": "2002-05-23",
-    "first_day_open": null,
-    "first_day_close": null,
-    "prospectus": null,
-    "checklist": []
-   },
-   "news": [],
-   "data_notes": [],
-   "stale": false,
-   "updated": "2026-10-21T20:36:56+00:00",
-   "memo": {
-    "headline": "WORTH RESEARCHING. Several lenses like it, others don't. Dig into the cons before buying.",
-    "business": "Netflix, Inc. (NFLX) is an entertainment company worth about $270.8B. It brought in $49.7B of revenue over the last year, up 12% from a year earlier. It keeps 35% of sales as operating profit.",
-    "bull": [
-     "Revenue grew 13% a year over the available history. Fisher's point #1 wants products with room for sales to keep growing for years. (Fisher)",
-     "Spends 8% of revenue on R&D. Fisher (#2, #3) wants management investing in future products. (Fisher)",
-     "Operating margin 35%. Fisher #5: worthwhile profit margins. (Fisher)",
-     "Margins widened by 11.7 points. Fisher #6: improving margins. (Fisher)"
-    ],
-    "bear": [
-     "Price ($65.04) exceeds the Graham Number ($23.48) \u2014 fails Graham's defensive-investor price test. (Graham)",
-     "P/E \u00d7 P/B = 172.6, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)",
-     "Current ratio of 1.19 is below Graham's 2.0 liquidity bar. (Graham)",
-     "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test. (Graham)"
-    ],
-    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 13% growth fading to 3%, 9% discount rate), fair value is roughly $55.17 a share (bear $38.71, bull $86.75) against a price of $65.04. The price is 18% above the base-case value, so you're paying for growth that hasn't happened yet.",
-    "watch": [
-     "Revenue growth stays near or above 12% (last reading).",
-     "Operating margin (35%) keeps rising as the company grows."
-    ],
-    "plan": "Put it on watch. A price around $41.38 would give the 25% margin of safety value investors look for. Re-check after the next earnings report.",
-    "buffett_view": "On Buffett's own tests this scores 61/100.",
-    "ai": null
-   },
-   "news30": {
-    "summary": "Over the last 30 days Netflix shares fell 10% (now $65.04). News flow was heavy (45 stories) and the headlines were mostly negative (0 upbeat, 14 downbeat). Most coverage was about earnings & guidance (16) and stock moves (6). Key headline: \u201cNetflix stock sinks as Wall Street lowers price targets following Q4 revenue forecast miss\u201d (Yahoo Finance, 2026-10-21).",
-    "count": 45,
-    "tone": "mostly negative",
-    "positive": 0,
-    "negative": 14,
-    "themes": [
-     [
-      "earnings & guidance",
-      16
-     ],
-     [
-      "stock moves",
-      6
-     ],
-     [
-      "buy/sell opinion pieces",
-      3
-     ],
-     [
-      "analyst calls",
-      1
-     ],
-     [
-      "management",
-      1
-     ]
-    ],
-    "items": [
-     {
-      "title": "Netflix stock sinks as Wall Street lowers price targets following Q4 revenue forecast miss",
-      "source": "Yahoo Finance",
-      "date": "2026-10-21",
-      "link": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxQNEJkYUJaMXNVbEhiRTVINEhQZEptTkdWWFpkQkhDc2hDMkREQVRteGxITEZGVlYwcnZzSUdmd1ltclFkM2hBTnp2OGVWSVJEaWlub29QdHVMVC15eTRISWRPUGZLT3NaS2FiZHhwNGxtOExtUDBQUUpHejhDOFRmQ2pFQXhKRUNuN1JnM3RiR281VjlfT1ZvS1IxX2FWZ0tZQ3VjMTAzRERHQnowczhMNGJRUU1YeUFPdGNxVDNOWFFrZ0FOckdkNDdZNDFwaXhtaF81VXhJSzRLb1hVVW5JVks2Q09vVVViQ3dVN21n?oc=5"
-     },
-     {
-      "title": "Netflix's ad stumble deepens fears its growth is hitting a wall",
-      "source": "Reuters",
-      "date": "2026-10-21",
-      "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOR2NMX1phWXZ5OFZOZ09LVXF1R1Q0ckJfS0JwMm9sTFRfakN1QlVqWUwyUk8zV1UtZWFsbkRXNm01Q2N0TEdrUEtCQWJqeHVkOS14SWNHSkkwVUJGSVhKZnRPSkd5dG9FZ1hBYmFzbC15VlczeUdzamhiVFBGYWVQTTNoeG9vVjRfYjZTN3Q5MHp1OEswenI2d1NyMDRnT1AyOEFsMlIwbjRGZmI1aEZaLXlkQUQ1WWVHMm9oUW9fMFk?oc=5"
-     },
-     {
-      "title": "Netflix co-CEO Sarandos says 'we could do better' after weak forecast",
-      "source": "Reuters",
-      "date": "2026-10-20",
-      "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxNQmJuWl84Zk9TanlERndybWRsaTVoaF95bUgzbldjVzJKNzcwZEFEUFh4Z0xVa2o0aGFSSEVJT3d2WENIeURzMWV3VUFTY2NxRWF2WHBjTVRjZURraFVHMkZ6M0pkOXJOb01FYW5OWTdkcmM3WkVFcXR5UC1QbDVqOFRIYWpsc1VxaUdhMENKa0I1S1ZWSk1BZ3BrYmRYVVQ5Q1FpRHBlY1NZbndHMVZnYjBfRnQ3cGktWkcwZ28tVDVQSFNqR1dZaFJGSTJ0b0U?oc=5"
-     },
-     {
-      "title": "Netflix posts third-quarter earnings beat, but shares fall on advertising and revenue guidance",
-      "source": "CNBC",
-      "date": "2026-10-20",
-      "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTE4zWGVPQmxpYk9aQUgxT2szTmtmSnpJQlpGcTRWcWpiZGVQQ3JzZnNQNElCNlRiQmxQNjhFN3ljZWVfRVVrUEYzdlp6VUw2bHlQUUJiUlNWcDJEeFUzLVhCcFVVa3BrOTl1aXVVQ05yVlJYSTV60gF6QVVfeXFMTlA0cW56QmhrZk5uWlJ1VWllY3hMMnRUYVc5REx0Wi1ZZXJYeThtWW9jVGJmaGVPNzFlaGVtQVZGeXFWMm93Y0xIVkJTRkZEeVJhMHpLdGE1cXpVWE1YU1JWWWxTRXFZclN5MGJaU2JDNmN2WmlpMzg0eWc?oc=5"
-     },
-     {
-      "title": "Traders are betting Netflix's stock drama may be coming to an end",
-      "source": "CNBC",
-      "date": "2026-10-20",
-      "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQNHIxaXFCVEdIR1NualNQT19hOUNVeXdnNjBVVUxkc0FOTHQ3WnI0U1VaRk92akRvQ0ZOaENOWXA4RXFZenhRR0JJLXRiRER1ZVl3dGZhYTNkOVBOT0RacmNkVzZad0E3R1B3VTNtR3NtTzJCQ1VoOWtmT3NKYW5Qbi0yT2hrRHllWFNvYXJBdDVzMHJVVGtPUlByUWw1QkZWTkhZ0gGoAUFVX3lxTE9nQXBfYXN2eWlPZUtDNkpqRHZ3Tks2RV9rVmpQZ1M5b3hmcGZreE52b2dYM0xpZk05bW95WVRDTjRPWU85YUFEcHNlT24tMENZS3hJTF9mcXlrWjMxOC1LZ0FtbW1aZDUyQmNSOW1FTGk4d3BlbkU2VWNkQ295RnlSMEgyTFV4YTFSb1dPQTRlWkU0UDM0Y3prTDIzZHZJeWZzWi05SEp2OA?oc=5"
-     }
-    ],
-    "by": "rules",
-    "updated": "2026-10-21"
+    "updated": "2026-10-22"
    }
   },
   {
@@ -3449,7 +3445,7 @@
       "Company is buying back shares alongside its growth story."
      ],
      "cons": [
-      "PEG ratio of 2.57 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule.",
+      "PEG ratio of 2.61 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule.",
       "Sits in a cyclical sector \u2014 Lynch warns timing matters enormously here; cheap-looking multiples near a cycle peak can be a trap."
      ]
     },
@@ -3508,9 +3504,9 @@
     "pe": 20.0,
     "forward_pe": 17.91,
     "pb": -170.3,
-    "peg": 2.57,
+    "peg": 2.61,
     "price_to_sales": 6.29,
-    "ev_to_ebitda": 15.29,
+    "ev_to_ebitda": 15.27,
     "earnings_yield": 0.0547,
     "graham_number": null,
     "dividend_yield": 0.0314,
@@ -3543,7 +3539,7 @@
    "news": [],
    "data_notes": [],
    "stale": false,
-   "updated": "2026-10-21T20:36:35+00:00",
+   "updated": "2026-10-22T00:47:17+00:00",
    "memo": {
     "headline": "WORTH RESEARCHING. Several lenses like it, others don't. Dig into the cons before buying.",
     "business": "McDonald's Corporation (MCD) is a restaurants company worth about $174.3B. It brought in $27.7B of revenue over the last year, up 4% from a year earlier. It keeps 46% of sales as operating profit.",
@@ -3554,7 +3550,7 @@
      "Operating margin 46%. Fisher #5: worthwhile profit margins. (Fisher)"
     ],
     "bear": [
-     "PEG ratio of 2.57 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule. (Lynch)",
+     "PEG ratio of 2.61 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule. (Lynch)",
      "Sits in a cyclical sector \u2014 Lynch warns timing matters enormously here; cheap-looking multiples near a cycle peak can be a trap. (Lynch)",
      "Earnings yield (EBIT \u00f7 EV) 5.5%: not cheap by the Magic Formula. (Greenblatt)",
      "Not enough data (EPS/book value) to compute a Graham Number. (Graham)"
@@ -3569,8 +3565,8 @@
     "ai": null
    },
    "news30": {
-    "summary": "Over the last 30 days McDonald's shares fell 2% (now $246.25). News flow was heavy (47 stories) and the headlines were mostly negative (2 upbeat, 4 downbeat). Most coverage was about products & technology (8), dividends & buybacks (2) and earnings & guidance (2). Key headline: \u201c3 Reasons to Own McDonald's Stock by Dec. 1 to Qualify for Its First Payout as a Dividend King\u201d (The Motley Fool, 2026-10-20).",
-    "count": 47,
+    "summary": "Over the last 30 days McDonald's shares fell 2% (now $246.25). News flow was heavy (46 stories) and the headlines were mostly negative (2 upbeat, 4 downbeat). Most coverage was about products & technology (8), dividends & buybacks (2) and earnings & guidance (2). Key headline: \u201c3 Reasons to Own McDonald's Stock by Dec. 1 to Qualify for Its First Payout as a Dividend King\u201d (The Motley Fool, 2026-10-20).",
+    "count": 46,
     "tone": "mostly negative",
     "positive": 2,
     "negative": 4,
@@ -3598,10 +3594,10 @@
     ],
     "items": [
      {
-      "title": "Want Disney Villains McDonald's Boo Buckets? Get a Happy Meal in MS",
-      "source": "The Clarion-Ledger",
+      "title": "Is 'Deep Value' Done in QSR? What McDonald's New Menu Focus Reveals About What's Next",
+      "source": "QSR Magazine",
       "date": "2026-10-21",
-      "link": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxQSDFxSElhRklFczJtSV9URk1keUdEX0pDSU1oUnJ6ei1ldnNfclhkUVI0RG1jNEs4MlZiZFFoVE10RU5RSGtUR0ltejFRN2pCV1Q0QlE1WGNMbnRKSGpQbHVkU2JfWTU0eHdkTXQtS0hWbkVVWF9WN3kxVDF0eVU0dmd1bkktWllEbzdBRjdNcXBITjNkcmZTZ09rRy16UFJGRTQ4WU1kVF82M2E5V29TT1RlSDNGdng3LWFHQXN3S1pXbXZzclVBU2pCdnc0R3ZfdzZHblFXWUVWQnBCYjQ4dEdRQVVnMWJYbklz?oc=5"
+      "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQTHpJNlhmYmEtanctYzA4NG14RElkOE9kSUl5VFZULVNROGpZTGpjYlI3b0VvQjAyeWUtZVFyUkZPcUJuM3VfMjFiYmFIWkxHc1A1c2dTd2pWRDBEanJpV2pCVmUyQTRpVEtQQ19UOTZxU0ZGdWgtT3lsTldHVlhPRVdjSjJuU2NWam0yZENOUW9leGtzZEhQcGVxVHd6NG4yVHpNc2dZTmdkNFpjZVR5VWNRazI4Zw?oc=5"
      },
      {
       "title": "3 Reasons to Own McDonald's Stock by Dec. 1 to Qualify for Its First Payout as a Dividend King",
@@ -3629,7 +3625,7 @@
      }
     ],
     "by": "rules",
-    "updated": "2026-10-21"
+    "updated": "2026-10-22"
    }
   },
   {
@@ -3645,7 +3641,7 @@
    "overall": {
     "label": "HOLD / NEUTRAL",
     "rationale": "No strong signal either way on the available data.",
-    "score": 54.2
+    "score": 54.3
    },
    "lenses": [
     {
@@ -3684,13 +3680,13 @@
      "key": "lynch",
      "short": "Lynch",
      "name": "Peter Lynch (GARP \u2014 Cyclical)",
-     "score": 36.6,
+     "score": 36.9,
      "verdict": "Weak fit",
      "pros": [
       "Company is buying back shares alongside its growth story."
      ],
      "cons": [
-      "PEG ratio of 1.52 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule.",
+      "PEG ratio of 1.51 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule.",
       "Sits in a cyclical sector \u2014 Lynch warns timing matters enormously here; cheap-looking multiples near a cycle peak can be a trap.",
       "Institutional ownership is very high (86%) \u2014 the easy discovery phase is likely already behind it."
      ]
@@ -3748,7 +3744,7 @@
     "pe": 11.87,
     "forward_pe": 10.43,
     "pb": 1.42,
-    "peg": 1.52,
+    "peg": 1.51,
     "price_to_sales": 3.56,
     "ev_to_ebitda": null,
     "earnings_yield": null,
@@ -3783,7 +3779,7 @@
    "news": [],
    "data_notes": [],
    "stale": false,
-   "updated": "2026-10-21T20:36:48+00:00",
+   "updated": "2026-10-22T00:47:28+00:00",
    "memo": {
     "headline": "HOLD / NEUTRAL. No strong signal either way on the available data.",
     "business": "The PNC Financial Services Group, Inc. (PNC) is a banks - regional company worth about $88.9B. It brought in $24.9B of revenue over the last year, up 11% from a year earlier. It keeps 41% of sales as operating profit.",
@@ -3794,7 +3790,7 @@
      "Currently pays a dividend (yield ~3.6%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm. (Graham)"
     ],
     "bear": [
-     "PEG ratio of 1.52 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule. (Lynch)",
+     "PEG ratio of 1.51 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule. (Lynch)",
      "Sits in a cyclical sector \u2014 Lynch warns timing matters enormously here; cheap-looking multiples near a cycle peak can be a trap. (Lynch)",
      "Institutional ownership is very high (86%) \u2014 the easy discovery phase is likely already behind it. (Lynch)",
      "Greenblatt excludes Financial Services companies; their balance sheets don't fit the formula. (Greenblatt)"
@@ -3809,15 +3805,15 @@
     "ai": null
    },
    "news30": {
-    "summary": "Over the last 30 days PNC Financial Services shares fell 1% (now $222.89). News flow was heavy (84 stories) and the headlines were mostly positive (13 upbeat, 1 downbeat). Most coverage was about earnings & guidance (35), analyst calls (28) and dividends & buybacks (5). Analyst calls leaned positive: 10 upgrade or target-raise headlines vs 5 cuts. Key headline: \u201cPNC Financial Services Group Inc. stock outperforms competitors on strong trading day\u201d (MarketWatch, 2026-10-20).",
+    "summary": "Over the last 30 days PNC Financial Services shares fell 2% (now $222.89). News flow was heavy (84 stories) and the headlines were mostly positive (12 upbeat, 2 downbeat). Most coverage was about earnings & guidance (36), analyst calls (28) and dividends & buybacks (5). Analyst calls leaned positive: 9 upgrade or target-raise headlines vs 5 cuts. Key headline: \u201cPNC Financial Services Group Inc. stock outperforms competitors on strong trading day\u201d (MarketWatch, 2026-10-20).",
     "count": 84,
     "tone": "mostly positive",
-    "positive": 13,
-    "negative": 1,
+    "positive": 12,
+    "negative": 2,
     "themes": [
      [
       "earnings & guidance",
-      35
+      36
      ],
      [
       "analyst calls",
@@ -3832,7 +3828,7 @@
       5
      ],
      [
-      "products & technology",
+      "stock moves",
       2
      ]
     ],
@@ -3869,7 +3865,7 @@
      }
     ],
     "by": "rules",
-    "updated": "2026-10-21"
+    "updated": "2026-10-22"
    }
   },
   {
@@ -3916,8 +3912,8 @@
       "Currently pays a dividend (yield ~1.2%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
      ],
      "cons": [
-      "Price ($323.61) exceeds the Graham Number ($137.23) \u2014 fails Graham's defensive-investor price test.",
-      "P/E \u00d7 P/B = 125.1, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
+      "Price ($323.61) exceeds the Graham Number ($138.35) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 123.1, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
       "Current ratio unavailable \u2014 can't verify Graham's liquidity requirement."
      ]
     },
@@ -3986,14 +3982,14 @@
     "cash_runway_years": null,
     "rule_of_40": 35.4,
     "market_cap": 218537000960,
-    "pe": 19.64,
+    "pe": 19.32,
     "forward_pe": 16.06,
     "pb": 6.37,
     "peg": 1.28,
     "price_to_sales": 3.08,
     "ev_to_ebitda": null,
     "earnings_yield": null,
-    "graham_number": 137.23,
+    "graham_number": 138.35,
     "dividend_yield": 0.0117,
     "payout_ratio": 0.2148,
     "debt_to_equity": 1.73,
@@ -4024,7 +4020,7 @@
    "news": [],
    "data_notes": [],
    "stale": false,
-   "updated": "2026-10-21T20:35:32+00:00",
+   "updated": "2026-10-22T00:46:23+00:00",
    "memo": {
     "headline": "HOLD / NEUTRAL. No strong signal either way on the available data.",
     "business": "American Express Company (AXP) is a credit services company worth about $218.5B. It brought in $70.9B of revenue over the last year, up 13% from a year earlier. It keeps 20% of sales as operating profit.",
@@ -4035,8 +4031,8 @@
      "High gross margin (62%) suggests real pricing power / a moat. (Buffett)"
     ],
     "bear": [
-     "Price ($323.61) exceeds the Graham Number ($137.23) \u2014 fails Graham's defensive-investor price test. (Graham)",
-     "P/E \u00d7 P/B = 125.1, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)",
+     "Price ($323.61) exceeds the Graham Number ($138.35) \u2014 fails Graham's defensive-investor price test. (Graham)",
+     "P/E \u00d7 P/B = 123.1, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)",
      "Current ratio unavailable \u2014 can't verify Graham's liquidity requirement. (Graham)",
      "PEG ratio of 1.28 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule. (Lynch)"
     ],
@@ -4051,19 +4047,19 @@
     "ai": null
    },
    "news30": {
-    "summary": "Over the last 30 days American Express shares rose 6% (now $323.61). News flow was heavy (86 stories) and the headlines were mostly positive (4 upbeat, 2 downbeat). Most coverage was about legal & regulation (15), analyst calls (10) and earnings & guidance (4). Analyst calls leaned positive: 3 upgrade or target-raise headlines vs 0 cuts. Key headline: \u201cAmerican Express Company (AXP) Stock Forecasts\u201d (Yahoo Finance, 2026-10-21).",
-    "count": 86,
+    "summary": "Over the last 30 days American Express shares rose 5% (now $323.61). News flow was heavy (87 stories) and the headlines were mostly positive (4 upbeat, 2 downbeat). Most coverage was about legal & regulation (13), analyst calls (10) and earnings & guidance (5). Analyst calls leaned positive: 3 upgrade or target-raise headlines vs 0 cuts. Key headline: \u201cAmerican Express Company (AXP) Stock Forecasts\u201d (Yahoo Finance, 2026-10-21).",
+    "count": 87,
     "tone": "mostly positive",
     "positive": 4,
     "negative": 2,
     "themes": [
      [
       "legal & regulation",
-      15
+      13
      ],
      [
       "buy/sell opinion pieces",
-      13
+      12
      ],
      [
       "analyst calls",
@@ -4071,11 +4067,11 @@
      ],
      [
       "earnings & guidance",
-      4
+      5
      ],
      [
-      "deals & partnerships",
-      4
+      "products & technology",
+      5
      ]
     ],
     "items": [
@@ -4092,12 +4088,6 @@
       "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPbTAxdXRHRHpkNXFadVBYYnRXeWEtUXJjZ2FqbTFqcUxjR2ZRMXlTblNSWVB1cmQ1TUFHWlQyWjZnREJxZ3RDV0JIWVFOcWRrd3luM0JaVUV6S3ROWWU0V3d5MmNkUC10NVRNbUhaWVFYdEdyOGFBcXFnZFN3ZWZDSG0yUWlZdXlTbUNoN1d1aWNuem5YNzhzcVBLX3J1LWZIQUE?oc=5"
      },
      {
-      "title": "American Express Uses Tennis History To Inform New NFL Partnership",
-      "source": "Forbes",
-      "date": "2026-10-19",
-      "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQMHR2MS1ORk9TaWZaYUxJVUx2aE53NmU0UkxsVC1TcDdpZDZYSTd5UnNVaXgzZ2x6dFBWREdubE0wMTFYOXllWDJ2bUlKTURadmdEVHpjUnJyMDBlUkFZMldYQ0dkUWh1RHdfYUhicFFTNEEtS2ZmUXZMd0dhTlZZY3hyUDAzRDlXeVRPbmduSUpHSFlRR3poTFMzV2NxQko2TFQ3UHozTkd4TTlUTWViZXVFcV9vYW00X2c?oc=5"
-     },
-     {
       "title": "American Express (AXP) Stock May Sit Below Fair Value As AML Fine Lands",
       "source": "Yahoo Finance",
       "date": "2026-10-14",
@@ -4108,10 +4098,16 @@
       "source": "Community Impact",
       "date": "2026-10-14",
       "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxONFJGWENUdEZBczV0aHM4MnM1a0R1VXFvdWw1ZlBNaW50UzhiME51ejRjMERPbjEtSzlzLXhqbkgzeHRmVGRjYjM4U01sZ05XWjZsbUJCOFV1M2xpRV94WWFIN3NxaXIyV1hpMENSQVdfSjRyOGp0UExZR3ZRZFMzTWN6dDF3S0FPWnFwQ0cwWVVSS3RZRnpFbkdEaXgtM2xMRjZTbG9uaEpFd2phUlRaMWVJdUVKT0NSXzQyd2E5cGVBUGVIaTVyS2ZxUQ?oc=5"
+     },
+     {
+      "title": "American Express Plans Live Audio Webcast of Third-Quarter 2026 Earnings Conference Call",
+      "source": "Business Wire",
+      "date": "2026-09-23",
+      "link": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPc1hUZHpmeUVJQVllNTExdWR4Vzl0M3V6YXp6WEFCc05NcmNZTTdfZF9JNUJQNG9GcGtPdHhFOVZLbk9VQkMyaVJvMFVMX3hLTjJLU1kxMm8zQVpBY0l1MVJLZy00T1AwTDlQaUFXT09XT2h4eVB4TUE0R0ptS0FNWFd0UlF2eWc0eTRCLUVIbURIbEF0dC1HR2o1QnJiYmtyVDRMNmhEemJrQjd4djkwNDdNN0pYVjh6aXlFb09fOTBwa2R5MTVMUk5GTENDM19adjM3eEpTelQ3MnRCdHc?oc=5"
      }
     ],
     "by": "rules",
-    "updated": "2026-10-21"
+    "updated": "2026-10-22"
    }
   },
   {
@@ -4294,7 +4290,7 @@
     "Prospectus link unavailable: ticker not found in SEC's company list."
    ],
    "stale": false,
-   "updated": "2026-10-21T20:37:23+00:00",
+   "updated": "2026-10-22T00:48:00+00:00",
    "memo": {
     "headline": "WATCH. Promising, but not yet convincing. Watch the next two quarters.",
     "business": "eToro Group Ltd. (ETOR) is a capital markets company worth about $1.9B. It brought in $12.0B of revenue over the last year, down 24% from a year earlier. It keeps 4% of sales as operating profit. It has traded publicly for about 17 months.",
@@ -4320,19 +4316,19 @@
     "ai": null
    },
    "news30": {
-    "summary": "Over the last 30 days eToro shares fell 14% (now $24.32). News flow was heavy (68 stories) and the headlines were mostly negative (3 upbeat, 14 downbeat). Most coverage was about analyst calls (18), earnings & guidance (10) and products & technology (8). Analyst calls leaned negative: 3 upgrade or target-raise headlines vs 13 cuts. Key headline: \u201ceToro Shares Jump 20% on Crypto-Driven Q4 Earnings Beat\u201d (CoinMarketCap, 2026-10-21).",
-    "count": 68,
+    "summary": "Over the last 30 days eToro shares fell 13% (now $24.32). News flow was heavy (67 stories) and the headlines were mostly negative (3 upbeat, 14 downbeat). Most coverage was about analyst calls (17), earnings & guidance (9) and products & technology (8). Analyst calls leaned negative: 3 upgrade or target-raise headlines vs 13 cuts. Key headline: \u201ceToro Shares Jump 20% on Crypto-Driven Q4 Earnings Beat\u201d (CoinMarketCap, 2026-10-21).",
+    "count": 67,
     "tone": "mostly negative",
     "positive": 3,
     "negative": 14,
     "themes": [
      [
       "analyst calls",
-      18
+      17
      ],
      [
       "earnings & guidance",
-      10
+      9
      ],
      [
       "products & technology",
@@ -4380,7 +4376,7 @@
      }
     ],
     "by": "rules",
-    "updated": "2026-10-21"
+    "updated": "2026-10-22"
    }
   },
   {
@@ -4427,8 +4423,8 @@
       "Currently pays a dividend (yield ~2.1%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
      ],
      "cons": [
-      "Price ($257.78) exceeds the Graham Number ($72.33) \u2014 fails Graham's defensive-investor price test.",
-      "P/E \u00d7 P/B = 285.8, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
+      "Price ($257.78) exceeds the Graham Number ($72.11) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 287.5, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
       "Current ratio of 1.03 is below Graham's 2.0 liquidity bar.",
       "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test."
      ]
@@ -4443,7 +4439,7 @@
       "Company is buying back shares alongside its growth story."
      ],
      "cons": [
-      "PEG ratio of 2.80 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule.",
+      "PEG ratio of 2.87 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule.",
       "Negative recent earnings growth \u2014 a Lynch 'turnaround' candidate: high risk, requires real evidence the business is being fixed."
      ]
     },
@@ -4471,7 +4467,7 @@
       "Return on capital ~31%: a good business by Greenblatt's first test."
      ],
      "cons": [
-      "Earnings yield (EBIT \u00f7 EV) 5.1%: not cheap by the Magic Formula."
+      "Earnings yield (EBIT \u00f7 EV) 5.2%: not cheap by the Magic Formula."
      ]
     }
    ],
@@ -4500,14 +4496,14 @@
     "cash_runway_years": null,
     "rule_of_40": 25.3,
     "market_cap": 621223608320,
-    "pe": 39.12,
+    "pe": 39.36,
     "forward_pe": 22.19,
     "pb": 7.31,
-    "peg": 2.8,
+    "peg": 2.87,
     "price_to_sales": 6.25,
-    "ev_to_ebitda": 19.13,
-    "earnings_yield": 0.0514,
-    "graham_number": 72.33,
+    "ev_to_ebitda": 19.02,
+    "earnings_yield": 0.0517,
+    "graham_number": 72.11,
     "dividend_yield": 0.0208,
     "payout_ratio": 0.6072,
     "debt_to_equity": 0.59,
@@ -4528,7 +4524,7 @@
    },
    "recent_ipo": false,
    "ipo": {
-    "months_listed": 777.5,
+    "months_listed": 777.6,
     "first_trade_date": "1962-01-02",
     "first_day_open": null,
     "first_day_close": null,
@@ -4538,7 +4534,7 @@
    "news": [],
    "data_notes": [],
    "stale": false,
-   "updated": "2026-10-21T20:35:46+00:00",
+   "updated": "2026-10-22T00:46:35+00:00",
    "memo": {
     "headline": "HOLD / NEUTRAL. No strong signal either way on the available data.",
     "business": "Johnson & Johnson (JNJ) is a drug manufacturers - general company worth about $621.2B. It brought in $99.3B of revenue over the last year, up 6% from a year earlier. It keeps 25% of sales as operating profit.",
@@ -4549,10 +4545,10 @@
      "High gross margin (69%) suggests real pricing power / a moat. (Buffett)"
     ],
     "bear": [
-     "PEG ratio of 2.80 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule. (Lynch)",
+     "PEG ratio of 2.87 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule. (Lynch)",
      "Negative recent earnings growth \u2014 a Lynch 'turnaround' candidate: high risk, requires real evidence the business is being fixed. (Lynch)",
-     "Price ($257.78) exceeds the Graham Number ($72.33) \u2014 fails Graham's defensive-investor price test. (Graham)",
-     "P/E \u00d7 P/B = 285.8, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)"
+     "Price ($257.78) exceeds the Graham Number ($72.11) \u2014 fails Graham's defensive-investor price test. (Graham)",
+     "P/E \u00d7 P/B = 287.5, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)"
     ],
     "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 6% growth fading to 3%, 9% discount rate), fair value is roughly $151.90 a share (bear $129.46, bull $199.11) against a price of $257.78. The price is 70% above the base-case value, so you're paying for growth that hasn't happened yet.",
     "watch": [
@@ -4564,23 +4560,23 @@
     "ai": null
    },
    "news30": {
-    "summary": "Over the last 30 days Johnson Johnson shares fell 4% (now $257.78). News flow was heavy (40 stories) and the headlines were mostly negative (2 upbeat, 7 downbeat). Most coverage was about earnings & guidance (9), stock moves (6) and deals & partnerships (2). Key headline: \u201cJNJ Stock Quote Price and Forecast\u201d (CNN, 2026-10-20).",
-    "count": 40,
+    "summary": "Over the last 30 days Johnson Johnson shares fell 4% (now $257.78). News flow was steady (38 stories) and the headlines were mostly negative (2 upbeat, 7 downbeat). Most coverage was about earnings & guidance (7), stock moves (5) and deals & partnerships (2). Key headline: \u201cJohnson & Johnson (JNJ) Stock Rebounds While Earnings Power Keeps Eroding\u201d (Simply Wall Street, 2026-10-15).",
+    "count": 38,
     "tone": "mostly negative",
     "positive": 2,
     "negative": 7,
     "themes": [
      [
-      "earnings & guidance",
-      9
-     ],
-     [
       "buy/sell opinion pieces",
       7
      ],
      [
+      "earnings & guidance",
+      7
+     ],
+     [
       "stock moves",
-      6
+      5
      ],
      [
       "deals & partnerships",
@@ -4593,28 +4589,28 @@
     ],
     "items": [
      {
-      "title": "JNJ Stock Quote Price and Forecast",
-      "source": "CNN",
-      "date": "2026-10-20",
-      "link": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9weE5QcktLckczbFNmMFlOWEllWHl0S0lhQ1VYU2x5Zmszd0Y0YXZ6V2hTU252TW1JNWxEYWNtUWRCaFVZVzhDeHlnc2xyYUk?oc=5"
-     },
-     {
       "title": "Johnson & Johnson (JNJ) Stock Looks Reasonable As Crohns Drug Data Lands",
       "source": "Simply Wall Street",
       "date": "2026-10-20",
       "link": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPUGRHcnFzZWhBdjF5Q1lETE4tTDA3TXRnUEYzbjU2LVRhRUt5VjFEeGQ3WFJ1d3pnM2YtMExxUm0wSGo5T1VIVU9OdFRmeFNMazJieklkMUhHQXFROEwwS0staTltSk9NS1B5TS1EVVpUU0NmT1Yydjk5Q2lCbjMxMzQ3azQtcVk4UzJzNC1MNGF0S2Jpd0xlOGZSYVA2Qm5aZlcyR2VTN0hCWjRZU2dkUlhNODRObmFaOXlPajFaZXh6TFREbzNEc0kzLTBjb2ttNXhEWW9FTFZib0NuZEg40gHkAUFVX3lxTE51QnlZY2tnVms3UnNfT2JTM0haNjhMeGpiMG5QOFFXbFN0VFowX1FUcTZyZjFUejhZVjNXZGpLemk5MWotRFVweVJYZjlqaVJvc2xOT3c3anJwU2RYYlduYlktZk0xZ0htUHhXVXhDM3huRzUyTzBvV2lpU3U5OE5kV3IyOEhsbmlCVnRwVVBmQjlVZXNLa0p5eXpsaTl0U2tiQ0MybVF2dWZxLW9KRHBzOXdybTQxZGdHdjNRalprX2JiX24wZC05VkloajV1QVpoSlVnVG5nODlwcTF0WDJUaE9lUA?oc=5"
      },
      {
-      "title": "Johnson & Johnson (JNJ) Shares Fall 5.73% Despite Strong Q3 Earnings and Raised Outlook",
-      "source": "GuruFocus",
-      "date": "2026-10-17",
-      "link": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOMkRXUkR6NFBvRlVSMkFWcTAyX2FHb1I1Nl8weFJ3LU91V2l3a1dfcDExTEVTOXRTR0JSa0EwR1BMUmZMLWlvMmFXR2txZDZzd1F5UnhqQXBQZ1hVa3YxeDNiVHh1QTNiQjlJc2YwRVhoMFl4b2ZGejNXNHpzLUxwUk45UEl4WmdxMmtpamtob0t6VVM2RFV0emZxMUtMWERoeGQ0X3JIckw0dE9LaXAwQ05yUkd3dDdpTE5qeg?oc=5"
+      "title": "Johnson & Johnson (JNJ) Stock Rebounds While Earnings Power Keeps Eroding",
+      "source": "Simply Wall Street",
+      "date": "2026-10-15",
+      "link": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxNTmxKMTlZQVBYbUlPdXo4RThXRXFoVndlZkpHa2dZVF9CcVE3eGVSU0VhaFVmWXBhb0FvOTYwanNKdWZrVjh4eElUaFRPLUtkcUp2b2hiQ25LUjl6R1dMSk5Wb0c4Ym84RVplWXRtVFJCT3VtaHVtMXdaRTNwZjBGWlhsWllsdWhOcXR1dWg4NDN1clRMUHJaTEhJZ1N5TDJianA2Wk5ETnB1U3NoNkNkUUd5QzBzSDB0eWpvRW9YTkwzNU5rdndNZ3lfUm1DZlRxYm1lVzZmMmx4TDJoTWo00gHkAUFVX3lxTE5zbW5IOGVkZHJfRlliZWp6S1NVdEtZVi1acm0wSXA0YTdXNHJhb3VBdjEtdF9pMnRNYTBGLVd0VEdtS1hiNzJYUWItZ0JhQzhJdUdBMVd0ak1la1BVV1BLLXZyZVBqYkJMbFlVS3ZUa1ZwQ3pGSUZXQ0poakZ1VUhMU3NfU0g2d0RfOGFDMnVRRXNzM1dDVVFxTnRnaElTX05iOVE0bFNBeXRRNXJSd1dsLTg4VW5xU0NSclA2eklJWGhFNmdvUDRRQ2ZGdTNSTFpoOWRveWFSSHRFSUpDODM5Znd6LQ?oc=5"
      },
      {
       "title": "JNJ Stock Drops 5.73%, Death Cross: What to Know",
       "source": "JournalArta",
       "date": "2026-10-14",
       "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNZkc5QkNNZ01RSTU0dXNYSmY3WGE5dXp2NG1SLWZLczlrNFBPVDFKV2ZkOHROZWM5U0pIOUJyUEE2Z0NjMkpaTVBFUXRHY2tVYUtGT0tIVG9mellnejZZTmFtMHhyWVd5OW1ZVEViRTVFXzJjVzJCYkRONU1iOEJpaVFVUTZTdllzNXp1YnI1TE9OaEE?oc=5"
+     },
+     {
+      "title": "Johnson & Johnson Q3 2026 earnings: CEO and CFO prepared remarks",
+      "source": "Johnson & Johnson",
+      "date": "2026-10-13",
+      "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQVS00V2ZqWEVUX0tPLUM5cFhFbzBhSzhiRGx6djJJRXpfd1ZPbVFXa00wTTBCenQtYU53UXNBak13ZU5WVDFFNXVSOXl4SVp6aTRQaTY2ZTFNSElqaEQ0MHVKZmNuQlEtUTI0aGY3YkhGZ2lQQVdDd2hmV3JiN0dDb3dEcEQ2d0FTTE1ManJyUXVERW4xOU9OWW5GOFVXVl93UkFsMFNqTkZNTGNBbFE?oc=5"
      },
      {
       "title": "List of 60 Acquisitions by Johnson & Johnson (Oct 2026)",
@@ -4624,7 +4620,7 @@
      }
     ],
     "by": "rules",
-    "updated": "2026-10-21"
+    "updated": "2026-10-22"
    }
   },
   {
@@ -4746,7 +4742,7 @@
     "pb": 21.61,
     "peg": 1.84,
     "price_to_sales": 17.21,
-    "ev_to_ebitda": 24.37,
+    "ev_to_ebitda": 24.45,
     "earnings_yield": null,
     "graham_number": 70.63,
     "dividend_yield": 0.0066,
@@ -4779,7 +4775,7 @@
    "news": [],
    "data_notes": [],
    "stale": false,
-   "updated": "2026-10-21T20:35:59+00:00",
+   "updated": "2026-10-22T00:46:46+00:00",
    "memo": {
     "headline": "HOLD / NEUTRAL. No strong signal either way on the available data.",
     "business": "Visa Inc. (V) is a credit services company worth about $765.7B. It brought in $44.5B of revenue over the last year, up 14% from a year earlier. It keeps 66% of sales as operating profit.",
@@ -4805,7 +4801,7 @@
     "ai": null
    },
    "news30": {
-    "summary": "Over the last 30 days Visa shares rose 13% (now $407.85). News flow was heavy (90 stories) and the headlines were mixed (10 upbeat, 19 downbeat). Most coverage was about legal & regulation (22), products & technology (4) and deals & partnerships (2). Key headline: \u201cVisa Expands U.K. Merchant Reach With Barclaycard Checkout Deal\u201d (Yahoo Finance, 2026-10-19).",
+    "summary": "Over the last 30 days Visa shares rose 12% (now $407.85). News flow was heavy (90 stories) and the headlines were mixed (10 upbeat, 19 downbeat). Most coverage was about legal & regulation (21), products & technology (4) and earnings & guidance (3). Key headline: \u201cVisa Expands U.K. Merchant Reach With Barclaycard Checkout Deal\u201d (Yahoo Finance, 2026-10-19).",
     "count": 90,
     "tone": "mixed",
     "positive": 10,
@@ -4813,7 +4809,7 @@
     "themes": [
      [
       "legal & regulation",
-      22
+      21
      ],
      [
       "buy/sell opinion pieces",
@@ -4824,11 +4820,11 @@
       4
      ],
      [
-      "deals & partnerships",
-      2
+      "earnings & guidance",
+      3
      ],
      [
-      "earnings & guidance",
+      "deals & partnerships",
       2
      ]
     ],
@@ -4858,14 +4854,14 @@
       "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOOGhLYUFqc2ZzOVFUN19kSk5hOGd2YVNDSmhYUWRpTmJXakxxZWs0eGNTYmlHRWhpUzBsTGFKOVB1VEluR2c3a0lSaE1NTmY2SlpGTERPRkNFdE1NNnRLTWdqd1pWaVdaTFNxVUlGekVadnV0NU1CTGJ2YUFtbnBwSmZQSFY?oc=5"
      },
      {
-      "title": "United States: Court Orders State Department to Open FY 2027 Diversity Visa Lottery Registration",
-      "source": "Fragomen",
+      "title": "Visa Stock Is Up 11% in October While Earnings Estimates Stood Still. Here\u2019s What October 27 Has to Prove",
+      "source": "Yahoo Finance",
       "date": "2026-10-16",
-      "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQY242ZV9LNjRJUVpMVjMtbl9lUXJIU3A5Z1QtamYxUXJ1OTdyVjNzc3k1aWZCNDA0cldWcE8xWkI4amdoNkdEODZ2ZU0wS1JVLTF2aF81NHRNX2taWDRwU0FsMURCbmp1REwzdkVPblU3WTFPVkF5UDRFMWV3anhLakVfNTkxTlRvdDVWZjZtbXNGTUxheWRnTkNZd3dwd21lTmFFOFZTUmtWbDZ2czh3V3libDU0YkJ0Z210RTZfZVhtNFBxck90M2ZmZXVENE0?oc=5"
+      "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOVHBUQlA2M0dOZ254V2dURHJEbGRWcmxBX2tiXzg5b0pxNDdCbmpXYW51eXVkWUY0WE5PRExJZkVHUzBET25ZZlFrbzFta0xJQW1tV3M0QlAtM1VYOEFLSWNaQXd2Qzhxb1o1aGx0Uy1JaFJScWdEODFHR2dhNF8tN0ZwM2Q2VWJMTVEteDdyZjNidE9hRnp3?oc=5"
      }
     ],
     "by": "rules",
-    "updated": "2026-10-21"
+    "updated": "2026-10-22"
    }
   },
   {
@@ -4881,7 +4877,7 @@
    "overall": {
     "label": "HOLD / NEUTRAL",
     "rationale": "No strong signal either way on the available data.",
-    "score": 50.3
+    "score": 50.0
    },
    "lenses": [
     {
@@ -4921,13 +4917,13 @@
      "key": "lynch",
      "short": "Lynch",
      "name": "Peter Lynch (GARP \u2014 Turnaround (negative recent earnings growth))",
-     "score": 55.2,
-     "verdict": "Partial fit",
+     "score": 53.6,
+     "verdict": "Weak fit",
      "pros": [
       "Manageable Debt/Equity of 0.19 \u2014 Lynch was wary of highly leveraged growth stories."
      ],
      "cons": [
-      "PEG ratio of 1.02 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule.",
+      "PEG ratio of 1.08 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule.",
       "Negative recent earnings growth \u2014 a Lynch 'turnaround' candidate: high risk, requires real evidence the business is being fixed."
      ]
     },
@@ -4988,10 +4984,10 @@
     "pe": 95.7,
     "forward_pe": 30.58,
     "pb": 12.65,
-    "peg": 1.02,
+    "peg": 1.08,
     "price_to_sales": 10.75,
-    "ev_to_ebitda": 54.67,
-    "earnings_yield": 0.0144,
+    "ev_to_ebitda": 55.95,
+    "earnings_yield": 0.0141,
     "graham_number": 20.88,
     "dividend_yield": 0.0,
     "payout_ratio": 0.0,
@@ -5023,7 +5019,7 @@
    "news": [],
    "data_notes": [],
    "stale": false,
-   "updated": "2026-10-21T20:36:43+00:00",
+   "updated": "2026-10-22T00:47:24+00:00",
    "memo": {
     "headline": "HOLD / NEUTRAL. No strong signal either way on the available data.",
     "business": "ServiceNow, Inc. (NOW) is a software - application company worth about $158.3B. It brought in $14.7B of revenue over the last year, up 24% from a year earlier. It keeps 4% of sales as operating profit.",
@@ -5049,15 +5045,15 @@
     "ai": null
    },
    "news30": {
-    "summary": "Over the last 30 days ServiceNow shares rose 12% (now $153.12). News flow was heavy (89 stories) and the headlines were mostly positive (14 upbeat, 7 downbeat). Most coverage was about products & technology (46), deals & partnerships (11) and earnings & guidance (8). Analyst calls leaned positive: 2 upgrade or target-raise headlines vs 1 cut. Key headline: \u201cServiceNow Rallies 43% in Three Months as AI Contract Value Tops $1 Billion\u201d (Yahoo Finance, 2026-10-21).",
-    "count": 89,
-    "tone": "mostly positive",
+    "summary": "Over the last 30 days ServiceNow shares rose 9% (now $153.12). News flow was heavy (91 stories) and the headlines were mixed (14 upbeat, 8 downbeat). Most coverage was about products & technology (48), deals & partnerships (11) and analyst calls (10). Analyst calls leaned positive: 2 upgrade or target-raise headlines vs 1 cut. Key headline: \u201cServiceNow Rallies 43% in Three Months as AI Contract Value Tops $1 Billion\u201d (Yahoo Finance, 2026-10-21).",
+    "count": 91,
+    "tone": "mixed",
     "positive": 14,
-    "negative": 7,
+    "negative": 8,
     "themes": [
      [
       "products & technology",
-      46
+      48
      ],
      [
       "deals & partnerships",
@@ -5068,12 +5064,12 @@
       11
      ],
      [
-      "earnings & guidance",
-      8
+      "analyst calls",
+      10
      ],
      [
-      "analyst calls",
-      8
+      "earnings & guidance",
+      7
      ]
     ],
     "items": [
@@ -5090,12 +5086,6 @@
       "link": "https://news.google.com/rss/articles/CBMirAJBVV95cUxONGJMTlM4Njc5TXRKcUoxYjl2U3RSSzRDS3hkTVlERFB2OGxlQS1qM0h5MGU5T19saUFIbWFYQWUtcE4tSTZtSjB4VDZZR0pramZjSWsxMEU2eWlWV3pVRldDa0RtalYyblJkVkJkWVp4V3FxQXllVjlXY2hFVWppMTAwaFM1SDFQWXh5Z09TMi02akx1WGl4b0lUd0xDcVhOS0FzeGRGRDJlV19HTnBMWlNwQmpIZDVFN1Z1WlRsSTd1dGRiMFhEdVBuNFpXWVNheGtLMkNTcl8wdEJqQ0hpQkRDVFVHOFFOMUgyelhKT1U0T3ZNN01GX3VabWlyYVM3QWM2NS00MXhiWVVwdjhuTGxSNldmM2RkY1ZmWGExNWJzX0hSN3M0YzFmcUM?oc=5"
      },
      {
-      "title": "ServiceNow's Quarterly Earnings Preview: What You Need to Know",
-      "source": "Barchart.com",
-      "date": "2026-10-21",
-      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOZGI5Sm0xYXlVR3FaOXNPa21fZUMzOUM0TjlDNElYWHpVMHQ3UnFlZHJ0Y0Y5U0Z5QmZ6RTl1cVdiZkJsVGxfRUoybHJWQUwzYkljX3F0MTdwaVRvVWlNNU9TV2NrS2hQT3hudE45V2Zobmpac1hJRWhkendFVXhwQ1hodDQ5ajAxQjhKc1NpV1dIUWZfMnVGT1JqM3NDLUYwcHhFOWw2bkg?oc=5"
-     },
-     {
       "title": "ServiceNow (NOW) Needs Stronger Cash Flow to Support Its AI Expansion",
       "source": "Yahoo Finance",
       "date": "2026-10-21",
@@ -5106,10 +5096,16 @@
       "source": "Yahoo Finance",
       "date": "2026-10-20",
       "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNSGloMFhWN0FDZ0FRZk5RU081ZUNxV1did25SNnBzb1pMdHBRUTNSQnhrRS1JOEI5OGxpMm1SWmZMdWlkNG54SXcwUXA0YzR0ODgyT3IxM2tzSEpNRUYtSGRSQ0k4M2NsOUQ0aHJkaGo5MWttb21GaDduSXdjSFNjLW80c29LRlBjRTIySGFzVTdtcnRLSno4?oc=5"
+     },
+     {
+      "title": "ServiceNow gets Street-high $266 price target as AI adoption boosts growth outlook",
+      "source": "Yahoo Finance",
+      "date": "2026-10-20",
+      "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOLWZqTkVFUUhvdktqNHZCV2ZTNEZpVjRqYUFleHNsYTZqV1NsbDdIalk1N3R6YmRvYlhnaTcyc0NXZW93N3ZNQUJPRjZZVGFTclpvQWIzTkNJclRPeTFGZDZ5czRkT1JST3R2bTYyZjdrTURjNEc3ajdsdEQ0MFoyTDlIbG9pSlBSMnh5UWlqRjhERHhOdktaeEtPYw?oc=5"
      }
     ],
     "by": "rules",
-    "updated": "2026-10-21"
+    "updated": "2026-10-22"
    }
   },
   {
@@ -5206,7 +5202,7 @@
     "pb": 6.46,
     "peg": 4.34,
     "price_to_sales": 7.84,
-    "ev_to_ebitda": 87.78,
+    "ev_to_ebitda": 92.04,
     "earnings_yield": null,
     "graham_number": 21.36,
     "dividend_yield": 0.0,
@@ -5229,7 +5225,7 @@
    },
    "recent_ipo": true,
    "ipo": {
-    "months_listed": 16.5,
+    "months_listed": 16.6,
     "first_trade_date": "2025-06-05",
     "first_day_open": 69.0,
     "first_day_close": 83.23,
@@ -5287,10 +5283,10 @@
     "Prospectus link unavailable: ticker not found in SEC's company list."
    ],
    "stale": false,
-   "updated": "2026-10-21T20:37:27+00:00",
+   "updated": "2026-10-22T00:48:04+00:00",
    "memo": {
     "headline": "WAIT for proof. Too many open questions on valuation or business quality.",
-    "business": "Circle Internet Group (CRCL) is a capital markets company worth about $22.8B. It brought in $2.9B of revenue over the last year, up 7% from a year earlier. It keeps 5% of sales as operating profit. It has traded publicly for about 16 months.",
+    "business": "Circle Internet Group (CRCL) is a capital markets company worth about $22.8B. It brought in $2.9B of revenue over the last year, up 7% from a year earlier. It keeps 5% of sales as operating profit. It has traded publicly for about 17 months.",
     "bull": [
      "Revenue of $2.91B. Ritter finds larger IPOs roughly match the market over time. (Ritter)",
      "Already profitable. (Ritter)",
@@ -5316,8 +5312,8 @@
     "ai": null
    },
    "news30": {
-    "summary": "Over the last 30 days Circle Internet shares fell 5% (now $89.71). News flow was heavy (90 stories) and the headlines were mostly positive (10 upbeat, 5 downbeat). Most coverage was about management (12), insider trades (10) and deals & partnerships (6). Analyst calls leaned split: 2 upgrade or target-raise headlines vs 2 cuts. Insider activity: 7 selling and 1 buying headline (latest: \u201cCircle Internet Group Insider Sold Shares Worth $2,122,506, According to a Recent SEC Filing\u201d). Key headline: \u201cCircle Internet Group (NYSE:CRCL) Stock Gets Price Target Increase from Needham & Company LLC\u201d (MarketBeat, 2026-10-21).",
-    "count": 90,
+    "summary": "Over the last 30 days Circle Internet shares fell 9% (now $89.71). News flow was heavy (88 stories) and the headlines were mostly positive (10 upbeat, 5 downbeat). Most coverage was about management (12), insider trades (10) and analyst calls (6). Analyst calls leaned split: 2 upgrade or target-raise headlines vs 2 cuts. Insider activity: 7 selling and 1 buying headline (latest: \u201cCircle Internet Group Insider Sold Shares Worth $2,122,506, According to a Recent SEC Filing\u201d). Key headline: \u201cCircle Internet Group (NYSE:CRCL) Stock Gets Price Target Increase from Needham & Company LLC\u201d (MarketBeat, 2026-10-21).",
+    "count": 88,
     "tone": "mostly positive",
     "positive": 10,
     "negative": 5,
@@ -5335,11 +5331,11 @@
       10
      ],
      [
-      "deals & partnerships",
+      "analyst calls",
       6
      ],
      [
-      "earnings & guidance",
+      "deals & partnerships",
       6
      ]
     ],
@@ -5351,16 +5347,16 @@
       "link": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQeHNjeE5hRHJRMzE5Ulc4d3RBcTFXX0RsaTRRNU9pYVFpalFsd3RfTzRBY2JIWFJHd0FaNGpfN1JTbmwtNHk5UExsWVhrM2dEaklEdzRkMVM0TWZRTFVGUy1Sd0pEQXp1UDFmZGdIOFNfZy1xc0lyalBYYTVVaWg3M2lTU1RBX1JHWGxIV0thX1dPVGNBczMtLVM2a1FJSHBVdFAxVDJOaExOYVdoMFU3S2d3VDNERGVVbmFPWDV2WGZqZWl3WXFlQlJZYVdJaV9mTGg5VnQxT3BndXVEQ0E5RGd1ZkNuUQ?oc=5"
      },
      {
-      "title": "Circle Rallies as Binance\u2019s $100 Million Stake Expands USDC Distribution",
-      "source": "TIKR.com",
-      "date": "2026-10-21",
-      "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPRklGY01qS3BPaldKa01jTHBkTk5nUGZmYUp5OU5oQ3VjVWV0VmxyelYyZjZxZ3gxbzQ5OWNfZURQc2ZkYzRkREs5blV0TEJLa1dKcDBpMVItaUkzZHV1Uy1MSDM4alIweHQtelRxYzdtazhtUVZROXNnNFRhTGZOOVVjb2pNRXpUOXR0SVRCMkhJM1lzenRZLTlULTc?oc=5"
-     },
-     {
       "title": "Circle Internet Group Has Lost 34% in a Year: Needham Sees 48% Upside",
       "source": "TIKR.com",
       "date": "2026-10-21",
-      "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPVUhCWEsycC1aVklzQzloS19ZbGt5cjI2STVPVHZOdkl0U2x6aF9FNHgtakRjbFJtZGVSRUYxNGgzaVlpZlNCZEVVZ2QtdjBQZExMdk01Wll2bmhjaFhGb0FZaUluNEF3WnRwalhpd0Zpc2hmQnRfNVNaaEFjMl9DR2I1anA1ZTdZbGNJaFdpVUtwMDZlVktFR2RBVm1FbjNQMDJoelZtZllIVnhZbmc?oc=5"
+      "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNZ3ZrdzZOV0VDREZlQW5Na2N6RDVrbTZVcFJLczdMTEZoU2VMcU9xaUpCQmlSUXZ3bGVBRW1Ia3RSUlZUVUlTZzNJa0dyNFI4YXZUdHoxOWNqLWhOa1A2Rm5uOW1hdW9tc2RQTERTSGpXcWdMcUctdUotUGxMaGJtcDFsWlBjeVBBM3NvbExxOEFJSm9Db0Nv?oc=5"
+     },
+     {
+      "title": "Analysts Offer Insights on NA Companies: Circle Internet Group, Inc. Class A (CRCL), Microsoft (MSFT) and StandardAero, Inc. (SARO)",
+      "source": "The Globe and Mail",
+      "date": "2026-10-20",
+      "link": "https://news.google.com/rss/articles/CBMirwJBVV95cUxQc0pHUEJRRDhPWDZGakdyX0pROTgyczBtbWhIeWpjRG1lZDBBNlVnbVZ6bkxReTVKdG9EY3NDWVYzNDhXTTAxdjUwdjRRbWhiNEZKVDF4UXlfbi1VSzA3eTVEUGVzY2I0b1ozdmZSS3JzSEVPRm9MV2ZacUx2QTNPbm9ic1JEMHNJZmFGaGktZzExaHJXTnVQOHpkclBZanhXVVVnQUFSZVRHNXZGYnllaVdFVTA5SS04a1BLNm9aLXdnYUxsTGl2Wkxia0ZUcnB3UEFBMmZVY3VwLTdoRzV2LVNqS0ExNXA5bGdyNnhuX1NfVjFIcjdERGlxd3phSVNnMUZJWGo2bTc1bERPa0t4LXB3Wkg0ajU0Z3gxTW5wUWNMYkdCM0dUVmVaZ1ppWDg?oc=5"
      },
      {
       "title": "Stablecoin issuer Circle to push into 40 new markets, CEO says",
@@ -5376,7 +5372,7 @@
      }
     ],
     "by": "rules",
-    "updated": "2026-10-21"
+    "updated": "2026-10-22"
    }
   },
   {
@@ -5392,7 +5388,7 @@
    "overall": {
     "label": "HOLD / NEUTRAL",
     "rationale": "No strong signal either way on the available data.",
-    "score": 48.3
+    "score": 48.5
    },
    "lenses": [
     {
@@ -5430,13 +5426,13 @@
      "key": "lynch",
      "short": "Lynch",
      "name": "Peter Lynch (GARP \u2014 Cyclical)",
-     "score": 35.4,
+     "score": 36.0,
      "verdict": "Weak fit",
      "pros": [
       "Company is buying back shares alongside its growth story."
      ],
      "cons": [
-      "PEG ratio of 1.45 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule.",
+      "PEG ratio of 1.43 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule.",
       "Sits in a cyclical sector \u2014 Lynch warns timing matters enormously here; cheap-looking multiples near a cycle peak can be a trap.",
       "Debt/Equity of 1.46 is elevated \u2014 leverage adds fragility to a growth thesis."
      ]
@@ -5493,7 +5489,7 @@
     "pe": 14.06,
     "forward_pe": 13.13,
     "pb": 2.53,
-    "peg": 1.45,
+    "peg": 1.43,
     "price_to_sales": 4.67,
     "ev_to_ebitda": null,
     "earnings_yield": null,
@@ -5528,7 +5524,7 @@
    "news": [],
    "data_notes": [],
    "stale": false,
-   "updated": "2026-10-21T20:36:25+00:00",
+   "updated": "2026-10-22T00:47:09+00:00",
    "memo": {
     "headline": "HOLD / NEUTRAL. No strong signal either way on the available data.",
     "business": "JPMorgan Chase & Co. (JPM) is a banks - diversified company worth about $890.1B. It brought in $190.7B of revenue over the last year, up 10% from a year earlier. It keeps 43% of sales as operating profit.",
@@ -5539,7 +5535,7 @@
      "No loss-making years across the 4 most recent periods available. (Graham)"
     ],
     "bear": [
-     "PEG ratio of 1.45 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule. (Lynch)",
+     "PEG ratio of 1.43 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule. (Lynch)",
      "Sits in a cyclical sector \u2014 Lynch warns timing matters enormously here; cheap-looking multiples near a cycle peak can be a trap. (Lynch)",
      "Debt/Equity of 1.46 is elevated \u2014 leverage adds fragility to a growth thesis. (Lynch)",
      "Price ($335.19) exceeds the Graham Number ($266.39) \u2014 fails Graham's defensive-investor price test. (Graham)"
@@ -5556,15 +5552,15 @@
     "ai": null
    },
    "news30": {
-    "summary": "Over the last 30 days JPMorgan Chase shares fell 1% (now $335.19). News flow was heavy (86 stories) and the headlines were mostly negative (6 upbeat, 13 downbeat). Most coverage was about earnings & guidance (37), analyst calls (9) and management (3). Analyst calls leaned negative: 0 upgrade or target-raise headlines vs 2 cuts. Key headline: \u201cJPMorgan Chase deployed $5 billion in equity investments under its resiliency initiative\u201d (Quartz, 2026-10-19).",
-    "count": 86,
+    "summary": "Over the last 30 days JPMorgan Chase shares fell 1% (now $335.19). News flow was heavy (85 stories) and the headlines were mostly negative (6 upbeat, 13 downbeat). Most coverage was about earnings & guidance (36), analyst calls (9) and management (3). Analyst calls leaned negative: 0 upgrade or target-raise headlines vs 2 cuts. Key headline: \u201cJPMorgan Chase deployed $5 billion in equity investments under its resiliency initiative\u201d (Quartz, 2026-10-19).",
+    "count": 85,
     "tone": "mostly negative",
     "positive": 6,
     "negative": 13,
     "themes": [
      [
       "earnings & guidance",
-      37
+      36
      ],
      [
       "analyst calls",
@@ -5616,7 +5612,7 @@
      }
     ],
     "by": "rules",
-    "updated": "2026-10-21"
+    "updated": "2026-10-22"
    }
   },
   {
@@ -5632,7 +5628,7 @@
    "overall": {
     "label": "HOLD / NEUTRAL",
     "rationale": "No strong signal either way on the available data.",
-    "score": 47.8
+    "score": 47.7
    },
    "lenses": [
     {
@@ -5673,14 +5669,14 @@
      "key": "lynch",
      "short": "Lynch",
      "name": "Peter Lynch (GARP \u2014 Stalwart)",
-     "score": 28.9,
+     "score": 28.6,
      "verdict": "Poor fit",
      "pros": [
       "Classified as a Stalwart (10-25% growth) \u2014 steady compounding, good downside protection.",
       "Company is buying back shares alongside its growth story."
      ],
      "cons": [
-      "PEG ratio of 1.61 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule.",
+      "PEG ratio of 1.62 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule.",
       "Debt/Equity of 2.46 is elevated \u2014 leverage adds fragility to a growth thesis.",
       "Institutional ownership is very high (91%) \u2014 the easy discovery phase is likely already behind it."
      ]
@@ -5738,9 +5734,9 @@
     "pe": 34.25,
     "forward_pe": 26.99,
     "pb": 97.35,
-    "peg": 1.61,
+    "peg": 1.62,
     "price_to_sales": 15.55,
-    "ev_to_ebitda": 25.07,
+    "ev_to_ebitda": 25.15,
     "earnings_yield": null,
     "graham_number": 51.15,
     "dividend_yield": 0.0056,
@@ -5773,7 +5769,7 @@
    "news": [],
    "data_notes": [],
    "stale": false,
-   "updated": "2026-10-21T20:36:03+00:00",
+   "updated": "2026-10-22T00:46:50+00:00",
    "memo": {
     "headline": "HOLD / NEUTRAL. No strong signal either way on the available data.",
     "business": "Mastercard Incorporated (MA) is a credit services company worth about $545.4B. It brought in $35.1B of revenue over the last year, up 14% from a year earlier. It keeps 61% of sales as operating profit.",
@@ -5784,7 +5780,7 @@
      "High gross margin (77%) suggests real pricing power / a moat. (Buffett)"
     ],
     "bear": [
-     "PEG ratio of 1.61 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule. (Lynch)",
+     "PEG ratio of 1.62 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule. (Lynch)",
      "Debt/Equity of 2.46 is elevated \u2014 leverage adds fragility to a growth thesis. (Lynch)",
      "Institutional ownership is very high (91%) \u2014 the easy discovery phase is likely already behind it. (Lynch)",
      "Price ($622.62) exceeds the Graham Number ($51.15) \u2014 fails Graham's defensive-investor price test. (Graham)"
@@ -5800,8 +5796,8 @@
     "ai": null
    },
    "news30": {
-    "summary": "Over the last 30 days Mastercard shares rose 12% (now $622.62). News flow was heavy (89 stories) and the headlines were mostly positive (13 upbeat, 1 downbeat). Most coverage was about products & technology (21), analyst calls (5) and deals & partnerships (4). Key headline: \u201cMastercard Hits a Record as Its $1.8 Billion BVNK Deal Becomes a Stablecoin Platform\u201d (Yahoo Finance, 2026-10-21).",
-    "count": 89,
+    "summary": "Over the last 30 days Mastercard shares rose 12% (now $622.62). News flow was heavy (88 stories) and the headlines were mostly positive (13 upbeat, 1 downbeat). Most coverage was about products & technology (21), analyst calls (5) and deals & partnerships (4). Key headline: \u201cMastercard Hits a Record as Its $1.8 Billion BVNK Deal Becomes a Stablecoin Platform\u201d (Yahoo Finance, 2026-10-21).",
+    "count": 88,
     "tone": "mostly positive",
     "positive": 13,
     "negative": 1,
@@ -5812,7 +5808,7 @@
      ],
      [
       "buy/sell opinion pieces",
-      13
+      14
      ],
      [
       "analyst calls",
@@ -5841,10 +5837,10 @@
       "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxObHJ6SXVqVUJSYThHSFFSZ0IycldhOEk5RVJmVFNRWFZSQ2hvMmk3MVpKVnZHaFhvNmFXMlQ3ZTRmc1ZwOUFuendaOXFBMndBQVVGdmJqREo3N05uLUhfRTlXMWVFdFdNNnNiUktRSFFFZmNRMk5iY0RxQTZ4MXRiSldENHloeTlvZV8zbjVWN24tLXYtUF9EeWNwX2hyZnJ2ZlVITlBoUQ?oc=5"
      },
      {
-      "title": "Mastercard Is Delivering Business And Customer Value From Data And AI",
-      "source": "Forbes",
+      "title": "Mastercard Owes South Carolina Tax on Card Swipes in State",
+      "source": "Bloomberg Tax",
       "date": "2026-10-21",
-      "link": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNVGNGTUE5UlJwRi1Ta2JzWW95TkVoRjBwOFBHTDQteVpLUGkzRTFTNnRaWFQtX2tMWFpISlhxaDcxV0ktWFNCTnlLWVBiTVZQdnp1N0ZCbW82dE5zd003SnVmVXh0X0J2YUJfZU1mNjVpczdXVHZYS0hocXJNVmR4RGl4Z0dNYnFkZDdGREVPUG5JX2dlc0JzWk5zMjVxS1h3UGFibUV4MTREUmRMNWl4NEhLTTJQUDNYVDFOMw?oc=5"
+      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNYkhGdXRBd1FRb29JRVl4aTFvNi1QZkU1eUl4d24xY3FvMzlFSGRMWUZqSmtieWwtOFJvNzVYcWluWWtqTjlxaDh1UnFKOGRpVzVMZmo5anVwcUQwdmp5aEFuTmFnek9uMVd5UllEcklTUDJOQzNJaUUzQ1loc2dVc3loUG5BUFUzTWJrQ085dGRoTEhUUFZaQ2s2WG9USHVsUER6RzA2TF8?oc=5"
      },
      {
       "title": "The Zacks Analyst Blog Highlights Mastercard, AstraZeneca and Sandisk",
@@ -5860,7 +5856,7 @@
      }
     ],
     "by": "rules",
-    "updated": "2026-10-21"
+    "updated": "2026-10-22"
    }
   },
   {
@@ -5921,7 +5917,7 @@
       "Classified as a Stalwart (10-25% growth) \u2014 steady compounding, good downside protection."
      ],
      "cons": [
-      "PEG ratio of 4.27 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule.",
+      "PEG ratio of 4.25 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule.",
       "Debt/Equity of 1.41 is elevated \u2014 leverage adds fragility to a growth thesis."
      ]
     },
@@ -5981,10 +5977,10 @@
     "pe": 27.83,
     "forward_pe": 26.31,
     "pb": 11.03,
-    "peg": 4.27,
+    "peg": 4.25,
     "price_to_sales": 7.95,
-    "ev_to_ebitda": 25.43,
-    "earnings_yield": 0.0408,
+    "ev_to_ebitda": 25.23,
+    "earnings_yield": 0.0412,
     "graham_number": 25.09,
     "dividend_yield": 0.0229,
     "payout_ratio": 0.6246,
@@ -6006,7 +6002,7 @@
    },
    "recent_ipo": false,
    "ipo": {
-    "months_listed": 777.5,
+    "months_listed": 777.6,
     "first_trade_date": "1962-01-02",
     "first_day_open": null,
     "first_day_close": null,
@@ -6016,7 +6012,7 @@
    "news": [],
    "data_notes": [],
    "stale": false,
-   "updated": "2026-10-21T20:35:28+00:00",
+   "updated": "2026-10-22T00:46:19+00:00",
    "memo": {
     "headline": "HOLD / NEUTRAL. No strong signal either way on the available data.",
     "business": "The Coca-Cola Company (KO) is a beverages - non-alcoholic company worth about $398.8B. It brought in $50.1B of revenue over the last year, up 7% from a year earlier. It keeps 35% of sales as operating profit.",
@@ -6027,7 +6023,7 @@
      "High gross margin (60%) suggests real pricing power / a moat. (Buffett)"
     ],
     "bear": [
-     "PEG ratio of 4.27 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule. (Lynch)",
+     "PEG ratio of 4.25 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule. (Lynch)",
      "Debt/Equity of 1.41 is elevated \u2014 leverage adds fragility to a growth thesis. (Lynch)",
      "Price ($92.68) exceeds the Graham Number ($25.09) \u2014 fails Graham's defensive-investor price test. (Graham)",
      "P/E \u00d7 P/B = 307.0, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)"
@@ -6043,10 +6039,10 @@
     "ai": null
    },
    "news30": {
-    "summary": "Over the last 30 days Coca-Cola shares rose 5% (now $92.68). News flow was heavy (65 stories) and the headlines were mostly positive (8 upbeat, 1 downbeat). Most coverage was about dividends & buybacks (7), products & technology (5) and deals & partnerships (4). 17 of the 65 were buy-or-sell opinion pieces, which show attention more than new facts. Key headline: \u201cIf You Invest $200 a Month in Coca-Cola (KO) Stock, Here's the Dividend Income It Could Generate Over 10 Years.\u201d (Yahoo Finance, 2026-10-19).",
-    "count": 65,
+    "summary": "Over the last 30 days Coca-Cola shares rose 6% (now $92.68). News flow was heavy (70 stories) and the headlines were mostly positive (7 upbeat, 1 downbeat). Most coverage was about products & technology (7), dividends & buybacks (7) and earnings & guidance (4). 17 of the 70 were buy-or-sell opinion pieces, which show attention more than new facts. Key headline: \u201cCoca-Cola Consolidated, Inc. to Release Third Quarter and First Nine Months 2026 Results\u201d (Yahoo Finance, 2026-10-21).",
+    "count": 70,
     "tone": "mostly positive",
-    "positive": 8,
+    "positive": 7,
     "negative": 1,
     "themes": [
      [
@@ -6054,23 +6050,29 @@
       17
      ],
      [
+      "products & technology",
+      7
+     ],
+     [
       "dividends & buybacks",
       7
      ],
      [
-      "products & technology",
-      5
-     ],
-     [
-      "deals & partnerships",
+      "earnings & guidance",
       4
      ],
      [
-      "earnings & guidance",
+      "deals & partnerships",
       3
      ]
     ],
     "items": [
+     {
+      "title": "Coca-Cola Consolidated, Inc. to Release Third Quarter and First Nine Months 2026 Results",
+      "source": "Yahoo Finance",
+      "date": "2026-10-21",
+      "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNdDJfZ1VVQXM2OHBGYXR6NHNTOFk4ZDg0MlhsYm84RjdjaGh5TVBHdzZHZ1lsaXYweWF0N0MzbVQ4dTdpU3FicjBWelNaUm84ckpEaDEzcFFtbklpOS1iYU1RRzU1VXhtWUU4dzNfS05GaEJjMF9lTk9MX2kyS3JkaHhYeFA2Z0pOVVoyVEVXdHNEWEhpMEtmTXpXZHJJNHlu?oc=5"
+     },
      {
       "title": "Students Named Semifinalists for 2027 Coca-Cola Scholars Program",
       "source": "Ames Community School District",
@@ -6090,20 +6092,14 @@
       "link": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOdENkNlJjV3ladkxGS2dfOHdySU45OGNCWlc5NlpyNGg2OFhOU0loVWRiR181aFR1YjltQmM4YXoxRHVwQndqWUowZ2xFWUNHdUZaUDRaQVZpUnREbFIyWlYtbUxZTHlXbGd6MzJza1BKVHR0azdNTHZWU0JuMG5vZUU4SHFNNHk4bHhUZWpNcGlwaDUyVWc?oc=5"
      },
      {
-      "title": "Coca-Cola (NYSE:KO) Dividend Quality: Strong Profitability, Payout Ratio in Focus",
-      "source": "ChartMill",
-      "date": "2026-10-19",
-      "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQQmJNWVJkcjNtYk1IVXVwY0VTVkdfcUwtNGtydHl0TVV6S0czdGlDMkd1WlAwc0FCaHpGZW5mOUx2TW13Wmd6aU9OaHVFUXhHRzhONmpZMGl6dUl2RVBwS0YxZnU5V3hycC1HUUdHTl9yenRYbUtrZTN4RmwzUjlqT0lnTnFVYXV3WmNVTGhpZDVKMmpkdmpDRGl2OTVQb1prc0ZUMDBpZWtwX1pVbUhpbDgzcHByNm9xWkVHbmRkRkEwOTMt?oc=5"
-     },
-     {
-      "title": "The Coca-Cola Company and KFC Announce New U.S. Beverage Partnership",
-      "source": "www.coca-colacompany.com",
-      "date": "2026-10-16",
-      "link": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPWmlFVVFmaW5OMU5OSW9LeFZEYkJGT2U1em5WT3Baek84MEtGNVFtYlAwVFpuYmNiT0gzcW5yOU9tQUZHUjRHMUxCZllFeXM3UFFHSXU4ZzdXMUhoYTlXRzFISXhNVHFPTUxrMmVxX0FpeW5kQXdFYTZYSTYxdjQ1RXlzTzB5Nk5WYjN3?oc=5"
+      "title": "Coca-Cola Board of Directors Declares Regular Quarterly Dividend",
+      "source": "Coca-Cola Investor Relations",
+      "date": "2026-10-15",
+      "link": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOaDB4RDVkNGJyQmYyWnJ2NzFRdUtzYUhhMkctRThHQ05IdnotVWJYVWFUd211cWgtSThHYUN0S1R5bmJoXzdiTVVjRmhPY0diRnlMTHJjUThqNmxfVl9DNXhUSGxmdlVObE0tcmM4V1RaY1gxWUJVQU9zczlTb096NmJja081Y1dCUllFWGFwTnlrOVVlVTRQU1dOeGZsUXdOd3hLVy1yRmY1UmlkUDNKY1dJRlY3ZkpjTTB3ZDB4dDc3dGtkeXh0Nl9XdHVaRVJuTHB0SkFpNV9qdw?oc=5"
      }
     ],
     "by": "rules",
-    "updated": "2026-10-21"
+    "updated": "2026-10-22"
    }
   },
   {
@@ -6150,8 +6146,8 @@
       "Currently pays a dividend (yield ~2.8%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
      ],
      "cons": [
-      "Price ($156.84) exceeds the Graham Number ($58.46) \u2014 fails Graham's defensive-investor price test.",
-      "P/E \u00d7 P/B = 161.9, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
+      "Price ($156.84) exceeds the Graham Number ($58.02) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 164.4, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
       "Current ratio of 0.68 is below Graham's 2.0 liquidity bar.",
       "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test."
      ]
@@ -6222,14 +6218,14 @@
     "cash_runway_years": null,
     "rule_of_40": 18.9,
     "market_cap": 364564086784,
-    "pe": 23.69,
+    "pe": 24.06,
     "forward_pe": 21.22,
     "pb": 6.83,
     "peg": 4.08,
     "price_to_sales": 4.19,
-    "ev_to_ebitda": 16.02,
-    "earnings_yield": 0.0536,
-    "graham_number": 58.46,
+    "ev_to_ebitda": 15.78,
+    "earnings_yield": 0.0544,
+    "graham_number": 58.02,
     "dividend_yield": 0.0277,
     "payout_ratio": 0.6433,
     "debt_to_equity": 0.66,
@@ -6250,7 +6246,7 @@
    },
    "recent_ipo": false,
    "ipo": {
-    "months_listed": 777.5,
+    "months_listed": 777.6,
     "first_trade_date": "1962-01-02",
     "first_day_open": null,
     "first_day_close": null,
@@ -6260,7 +6256,7 @@
    "news": [],
    "data_notes": [],
    "stale": false,
-   "updated": "2026-10-21T20:35:50+00:00",
+   "updated": "2026-10-22T00:46:38+00:00",
    "memo": {
     "headline": "HOLD / NEUTRAL. No strong signal either way on the available data.",
     "business": "The Procter & Gamble Company (PG) is a household & personal products company worth about $364.6B. It brought in $87.0B of revenue over the last year, up 2% from a year earlier. It keeps 22% of sales as operating profit.",
@@ -6273,8 +6269,8 @@
     "bear": [
      "PEG ratio of 4.08 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule. (Lynch)",
      "Negative recent earnings growth \u2014 a Lynch 'turnaround' candidate: high risk, requires real evidence the business is being fixed. (Lynch)",
-     "Price ($156.84) exceeds the Graham Number ($58.46) \u2014 fails Graham's defensive-investor price test. (Graham)",
-     "P/E \u00d7 P/B = 161.9, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)"
+     "Price ($156.84) exceeds the Graham Number ($58.02) \u2014 fails Graham's defensive-investor price test. (Graham)",
+     "P/E \u00d7 P/B = 164.4, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)"
     ],
     "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 2% growth fading to 3%, 9% discount rate), fair value is roughly $103.25 a share (bear $98.88, bull $120.88) against a price of $156.84. The price is 52% above the base-case value, so you're paying for growth that hasn't happened yet.",
     "watch": [
@@ -6286,7 +6282,7 @@
     "ai": null
    },
    "news30": {
-    "summary": "Over the last 30 days Procter Gamble shares rose 6% (now $156.84). News flow was steady (27 stories) and the headlines were mixed (6 upbeat, 4 downbeat). Most coverage was about stock moves (6), earnings & guidance (4) and analyst calls (2). 6 of the 27 were buy-or-sell opinion pieces, which show attention more than new facts. Insider activity: 1 selling and 0 buying headlines (latest: \u201cProcter & Gamble (NYSE:PG) Stock: Insider Andre Schulten Sells 3,914 Shares\u201d). Key headline: \u201cProcter & Gamble (NYSE:PG) Stock Rating Reaffirmed as \"Outperform\" by Royal Bank Of Canada\u201d (MarketBeat, 2026-10-20).",
+    "summary": "Over the last 30 days Procter Gamble shares rose 7% (now $156.84). News flow was steady (27 stories) and the headlines were mixed (6 upbeat, 4 downbeat). Most coverage was about stock moves (6), earnings & guidance (4) and analyst calls (2). 8 of the 27 were buy-or-sell opinion pieces, which show attention more than new facts. Insider activity: 1 selling and 0 buying headlines (latest: \u201cProcter & Gamble (NYSE:PG) Stock: Insider Andre Schulten Sells 3,914 Shares\u201d). Key headline: \u201cProcter & Gamble (NYSE:PG) Stock Rating Reaffirmed as \"Outperform\" by Royal Bank Of Canada\u201d (MarketBeat, 2026-10-20).",
     "count": 27,
     "tone": "mixed",
     "positive": 6,
@@ -6294,7 +6290,7 @@
     "themes": [
      [
       "buy/sell opinion pieces",
-      6
+      8
      ],
      [
       "stock moves",
@@ -6346,7 +6342,7 @@
      }
     ],
     "by": "rules",
-    "updated": "2026-10-21"
+    "updated": "2026-10-22"
    }
   },
   {
@@ -6362,7 +6358,7 @@
    "overall": {
     "label": "HOLD / NEUTRAL",
     "rationale": "No strong signal either way on the available data.",
-    "score": 45.9
+    "score": 45.8
    },
    "lenses": [
     {
@@ -6392,8 +6388,8 @@
       "Currently pays a dividend (yield ~2.2%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
      ],
      "cons": [
-      "Price ($417.00) exceeds the Graham Number ($200.97) \u2014 fails Graham's defensive-investor price test.",
-      "P/E \u00d7 P/B = 96.9, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
+      "Price ($417.00) exceeds the Graham Number ($200.46) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 97.4, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
       "Current ratio of 0.79 is below Graham's 2.0 liquidity bar.",
       "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test."
      ]
@@ -6402,14 +6398,14 @@
      "key": "lynch",
      "short": "Lynch",
      "name": "Peter Lynch (GARP \u2014 Fast Grower)",
-     "score": 55.9,
+     "score": 55.4,
      "verdict": "Partial fit",
      "pros": [
       "Classified as a Fast Grower (>25% earnings growth) \u2014 Lynch's favorite hunting ground, though these also carry the most execution/valuation risk.",
       "Company is buying back shares alongside its growth story."
      ],
      "cons": [
-      "PEG ratio of 1.06 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule.",
+      "PEG ratio of 1.08 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule.",
       "Institutional ownership is very high (90%) \u2014 the easy discovery phase is likely already behind it."
      ]
     },
@@ -6465,14 +6461,14 @@
     "cash_runway_years": null,
     "rule_of_40": 3.2,
     "market_cap": 374297034752,
-    "pe": 26.82,
-    "forward_pe": 17.93,
+    "pe": 26.96,
+    "forward_pe": 17.92,
     "pb": 3.61,
-    "peg": 1.06,
+    "peg": 1.08,
     "price_to_sales": 0.83,
-    "ev_to_ebitda": 14.72,
-    "earnings_yield": 0.044,
-    "graham_number": 200.97,
+    "ev_to_ebitda": 14.65,
+    "earnings_yield": 0.0442,
+    "graham_number": 200.46,
     "dividend_yield": 0.0223,
     "payout_ratio": 0.5756,
     "debt_to_equity": 0.83,
@@ -6503,7 +6499,7 @@
    "news": [],
    "data_notes": [],
    "stale": false,
-   "updated": "2026-10-21T20:36:52+00:00",
+   "updated": "2026-10-22T00:47:32+00:00",
    "memo": {
     "headline": "HOLD / NEUTRAL. No strong signal either way on the available data.",
     "business": "UnitedHealth Group Incorporated (UNH) is a healthcare plans company worth about $374.3B. It brought in $450.1B of revenue over the last year, down 0% from a year earlier. It keeps 6% of sales as operating profit.",
@@ -6514,8 +6510,8 @@
      "Share count shrank 4.1% \u2014 management is buying back stock, not diluting. (Buffett)"
     ],
     "bear": [
-     "Price ($417.00) exceeds the Graham Number ($200.97) \u2014 fails Graham's defensive-investor price test. (Graham)",
-     "P/E \u00d7 P/B = 96.9, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)",
+     "Price ($417.00) exceeds the Graham Number ($200.46) \u2014 fails Graham's defensive-investor price test. (Graham)",
+     "P/E \u00d7 P/B = 97.4, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)",
      "Current ratio of 0.79 is below Graham's 2.0 liquidity bar. (Graham)",
      "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test. (Graham)"
     ],
@@ -6529,15 +6525,15 @@
     "ai": null
    },
    "news30": {
-    "summary": "Over the last 30 days UnitedHealth shares rose 12% (now $417.00). News flow was heavy (94 stories) and the headlines were mostly positive (35 upbeat, 11 downbeat). Most coverage was about earnings & guidance (48), stock moves (9) and analyst calls (4). Key headline: \u201cUnitedHealth\u2019s OptumHealth Must Remain in Opioid Lawsuits, Judge Rules\u201d (Law Commentary, 2026-10-20).",
-    "count": 94,
+    "summary": "Over the last 30 days UnitedHealth shares rose 12% (now $417.00). News flow was heavy (93 stories) and the headlines were mostly positive (34 upbeat, 11 downbeat). Most coverage was about earnings & guidance (46), stock moves (8) and legal & regulation (4). Key headline: \u201cUnitedHealth Sued Over Claims Handling by Aramark, Kraft, Others\u201d (Bloomberg Law News, 2026-10-21).",
+    "count": 93,
     "tone": "mostly positive",
-    "positive": 35,
+    "positive": 34,
     "negative": 11,
     "themes": [
      [
       "earnings & guidance",
-      48
+      46
      ],
      [
       "buy/sell opinion pieces",
@@ -6545,18 +6541,24 @@
      ],
      [
       "stock moves",
-      9
-     ],
-     [
-      "analyst calls",
-      4
+      8
      ],
      [
       "legal & regulation",
-      3
+      4
+     ],
+     [
+      "products & technology",
+      4
      ]
     ],
     "items": [
+     {
+      "title": "UnitedHealth Sued Over Claims Handling by Aramark, Kraft, Others",
+      "source": "Bloomberg Law News",
+      "date": "2026-10-21",
+      "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPTDNDOE16aEJkZzFUSEtwcE5lemVvWWNDcjNHeVJxcG9HOTB4QTZqUkVQY25Fb1hqZnhRVzE5c2RBUlZEbkpSNjJKZkNMMTdid2YwcXFvQ3oxd3doRHgwNDJYVmFVZkxaVk9HamU4M2syeGtlVzl0VkF5cVo2SnY5c3RVRTRpTThGVGowNkY0cWF6TkN6Wm9BSHdBYXdCZlhLYk8zRVNoejExMUNoQVVv?oc=5"
+     },
      {
       "title": "UnitedHealth Leaders Say Costs \u2018Remain Stubbornly High\u2019",
       "source": "HCI Innovation Group",
@@ -6576,12 +6578,6 @@
       "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNeU0wY2VoZFpoZm5Pc0E1RjZTVnUtQkx6M1ZxeFFpY21Ba1NKamdvSWYxSW9fY3BMdmZ3YW03eDVfZHlFVU9IdkdlWDBBX1llSHVGc3FCU3pCOG10MUY3NWdPYkVyNlQ5SFRxMXltekVEeW5MNV9FZ3hPaVB3a1pUdVlpbllfV3dzRkV4ajY1cE4xbk10b0tyTVZhWVpYb3JUY1ZGaGlldGk?oc=5"
      },
      {
-      "title": "UnitedHealth: My Thesis Has Played Out, I Wouldn't Chase Here (Rating Downgrade)",
-      "source": "Seeking Alpha",
-      "date": "2026-10-19",
-      "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQSVlHbU53dkVPOE8zOTZ2M0lyUGxKS2NBaDdPckNTNkRPZkFObV9QSDFkMnlTTmtOdVFTTk1hQWtZd290YzVNU2lxZnM0dTFVdGRuRDh3ZVgyTmhxVnRjZ1RpTUZodVl0SXFSbDdnQ3lMUmF2LS1LY3BuOXhTbklzVDF3cHFJSnZqLUdFSTViQUlVT2dtdFJLNlg0QmF5VlVRekRFanZpeTJRWW54NjFUaEY2b2t6VzQ?oc=5"
-     },
-     {
       "title": "UnitedHealth Stock Rallies After Q3 Profit And Revenue Beat",
       "source": "TIKR.com",
       "date": "2026-10-14",
@@ -6589,7 +6585,7 @@
      }
     ],
     "by": "rules",
-    "updated": "2026-10-21"
+    "updated": "2026-10-22"
    }
   },
   {
@@ -6652,7 +6648,7 @@
       "Manageable Debt/Equity of 0.28 \u2014 Lynch was wary of highly leveraged growth stories."
      ],
      "cons": [
-      "PEG ratio of 4.96 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule."
+      "PEG ratio of 4.98 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule."
      ]
     },
     {
@@ -6677,7 +6673,7 @@
       "Return on capital ~68%: a good business by Greenblatt's first test."
      ],
      "cons": [
-      "Earnings yield (EBIT \u00f7 EV) 2.6%: not cheap by the Magic Formula."
+      "Earnings yield (EBIT \u00f7 EV) 2.5%: not cheap by the Magic Formula."
      ]
     }
    ],
@@ -6709,10 +6705,10 @@
     "pe": 48.09,
     "forward_pe": 39.89,
     "pb": 12.36,
-    "peg": 4.96,
+    "peg": 4.98,
     "price_to_sales": 1.46,
-    "ev_to_ebitda": 30.29,
-    "earnings_yield": 0.0255,
+    "ev_to_ebitda": 30.4,
+    "earnings_yield": 0.0254,
     "graham_number": 194.24,
     "dividend_yield": 0.0059,
     "payout_ratio": 0.2669,
@@ -6744,7 +6740,7 @@
    "news": [],
    "data_notes": [],
    "stale": false,
-   "updated": "2026-10-21T20:35:54+00:00",
+   "updated": "2026-10-22T00:46:42+00:00",
    "memo": {
     "headline": "HOLD / NEUTRAL. No strong signal either way on the available data.",
     "business": "Costco Wholesale Corporation (COST) is a discount stores company worth about $442.4B. It brought in $303.2B of revenue over the last year, up 11% from a year earlier. It keeps 4% of sales as operating profit.",
@@ -6770,39 +6766,39 @@
     "ai": null
    },
    "news30": {
-    "summary": "Over the last 30 days Costco Wholesale shares rose 11% (now $998.31). News flow was heavy (97 stories) and the headlines were mostly positive (19 upbeat, 3 downbeat). Most coverage was about earnings & guidance (26), analyst calls (19) and deals & partnerships (6). Analyst calls leaned positive: 9 upgrade or target-raise headlines vs 3 cuts. Insider activity: 2 selling and 0 buying headlines (latest: \u201cCostco Wholesale Insider Sold Shares Worth $2,015,046, According to a Recent SEC Filing\u201d). Key headline: \u201cHow Declared Dividend Will Impact Costco Stock Investors\u201d (Simply Wall Street, 2026-10-19).",
-    "count": 97,
+    "summary": "Over the last 30 days Costco Wholesale shares rose 11% (now $998.31). News flow was heavy (96 stories) and the headlines were mostly positive (19 upbeat, 3 downbeat). Most coverage was about earnings & guidance (30), analyst calls (17) and legal & regulation (6). Analyst calls leaned positive: 7 upgrade or target-raise headlines vs 3 cuts. Insider activity: 2 selling and 0 buying headlines (latest: \u201cCostco Wholesale Insider Sold Shares Worth $2,015,046, According to a Recent SEC Filing\u201d). Key headline: \u201cHow Declared Dividend Will Impact Costco Stock Investors\u201d (Simply Wall Street, 2026-10-19).",
+    "count": 96,
     "tone": "mostly positive",
     "positive": 19,
     "negative": 3,
     "themes": [
      [
       "earnings & guidance",
-      26
-     ],
-     [
-      "analyst calls",
-      19
+      30
      ],
      [
       "buy/sell opinion pieces",
       17
      ],
      [
-      "deals & partnerships",
-      6
+      "analyst calls",
+      17
      ],
      [
       "legal & regulation",
+      6
+     ],
+     [
+      "deals & partnerships",
       5
      ]
     ],
     "items": [
      {
-      "title": "New Costco could be built on historical site that\u2019s over 3,000 years old",
-      "source": "AZPM",
-      "date": "2026-10-21",
-      "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNV1NETS1Bb1NLdDZlbGlQbUZCbDI1cnA4YWxGYlRuLUl4YXJQQWROS0V6MHBsenQyU09PM2ViYTI4S28zRllLb2ZJUlI4MnNHdlVhZFdNbmpCaFlQTnlkelJGenR1bHZVeUFSbldCV0ZQZHpHODRsVDljcjFSWkpCaVJHTXZ4TVR1SmxfY3pjY21RSW9QYzd6WkYycHRNRWI4bHdJZ1ZSN1FUVThTMWhqWXU0dVpVSHdzdHV2dTZkdw?oc=5"
+      "title": "Man struck and killed by driver at Costco parking lot in Ventura County",
+      "source": "KTLA",
+      "date": "2026-10-22",
+      "link": "https://news.google.com/rss/articles/CBMiggFBVV95cUxObUlmZ2M1UmVDXzViTVFNQ3NHa1ZkcUlQNWRMZlUxWFNySUZTRXh6RURXV1R6ZVhUWWpGcGgzaHNuWWxrYjh3VlAyd1FGUGxoLVA2eEFHR3ZRZHd6aTM2b3M0Y1g3OTdTY1B4dFUzbEsyQmFsb0ExeEtaLXFXblNTTWRR0gGHAUFVX3lxTE5vUkpuenZUUXRScmhPNUdJVURob0Z0Skg0UE5XcGpBeFhlYUhocTJmbWkwY1VTLWk0UkxHNGFRang2MW0wUk5LYXRkNjlTLWtKSDF4RGVlQnFZRzFDTGJKQm13bTBKS2hyRzhrbzhMY3VMdnVRbHkyY05QQ296THpJU0Q5MW1tWQ?oc=5"
      },
      {
       "title": "How Declared Dividend Will Impact Costco Stock Investors",
@@ -6817,20 +6813,20 @@
       "link": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQVlNUVlhDNW9MOG0xRzFfeTZBdWdYQ0hSa1Fabkl6UEtNS3I0SXNsaGdwZjVDZnRSS2lOTDB0dmwyckk1TjBMX0RuSTVFaVhGeHAzdDE4THpqS09Ya1M3VHBiT1RxdE9TTmhHMEVzZUh5ZV9yYUFqeUlHSUd6WUhRYlFUWm53SkdIQkJKdkVQVTVmMktSWlE?oc=5"
      },
      {
-      "title": "Costco Wholesale Corporation Announces Quarterly Cash Dividend",
-      "source": "Yahoo Finance",
+      "title": "Costco Wholesale Keeps Quarterly Dividend at $1.47 a Share, Payable Nov. 13 to Holders of Record Oct. 30",
+      "source": "marketscreener.com",
       "date": "2026-10-14",
-      "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQUVJhMmZfUjVzZ1ZSd3hKcGdRSVpLWV9xZ1RuSkwxTWZYaXhJUXpSWVkxQ25Tdk5IdzVEUE12My1lTjJEZ3BmbWhtX2xDWDRiazg3bjJEdVRiZWlJdTdMekh4YkVROUczR3N1MVg3LXdhUXEzQnlTdTZkb05FY2lqb3pHa1JKQTR1MUlnTGUxVVRBVlpfU3lZSEdNVnp5SXlMYXRKc3hJZUhxWXdfaGRLbGU5Zw?oc=5"
+      "link": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxNSmR2aU1MclNzMjBDcGZpUTNUeDU2bGNNbTdwYjQ5WXBBVl9Xd1M1ZkgxVUQ4RGxPU2ZRb3EyLVV5NU1sUW5ZcmlRUUdwM2QySWtFeWdiZjN2TTEwSHlCcWluR0Zsa3RCWDk3TTJkWExQMk9Sc3hEU3NWcms5NWJJWGNpamxzVXAtZUd6TFBrV202VG5lbmp4N1dFNVhJMVI1b0NtbmFqdUNVMnlmUjUtOW02NmtPMVVGUmo0YXQ5RFVCVzZaYnJaeC1UaE1FQ205a3JSSTI1TEY2S2RMVEl3eVdYYk8?oc=5"
      },
      {
-      "title": "Costco Wholesale Corporation $COST Stock Acquired by Wedmont Private Capital",
-      "source": "MarketBeat",
-      "date": "2026-10-09",
-      "link": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPTWJzaEJiZ0lsNldJSHViSGVuQWdOeXhPMWs0eWlPRkxWLUxTZXd4cTN0TWxQSko3SVRjTHRmdkppaWRwd2lTUjVRMjNCd09pOFAzQVlRVXdibGFuVHJWRDFlaWdXSXJfV3M5LWxGa1hzblJROGN6aGhqOE9EOWUwYm1salpKbENyOEtsOGRXeEpUd0lpNzYyYmM2cThhUUxQU21fVUdKLVd4a2Q1bV9CR2RUdDJLWWFwdktDc1NwSjU0ajJGWEIyYmNNdU5aZmNWUHc?oc=5"
+      "title": "Costco Wholesale Insider Sold Shares Worth $2,015,046, According to a Recent SEC Filing",
+      "source": "Yahoo Finance",
+      "date": "2026-09-30",
+      "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOWi0yYzNBRnR1SzNvRlpHNTBDUVZRNFJZZnhfcG8ydXZGTzhYdXNMU2dkbzJ6dXRFdGRrMlBkeFNSVE1VM0dsNFZCTnphWndoSS1GVFNqSTd0V2pfblNyN20tTFRCbktvVVYwYm9PeVZXYnJaR0xFZ2FVQm9NX3ZESGRvdG5oTldrVVF0ZlJpNjFoTzNoWU9oNFdmRGp5RWdhWGVV?oc=5"
      }
     ],
     "by": "rules",
-    "updated": "2026-10-21"
+    "updated": "2026-10-22"
    }
   },
   {
@@ -6846,7 +6842,7 @@
    "overall": {
     "label": "HOLD / NEUTRAL",
     "rationale": "No strong signal either way on the available data.",
-    "score": 45.0
+    "score": 44.6
    },
    "lenses": [
     {
@@ -6887,14 +6883,14 @@
      "key": "lynch",
      "short": "Lynch",
      "name": "Peter Lynch (GARP \u2014 Fast Grower)",
-     "score": 51.4,
+     "score": 49.4,
      "verdict": "Weak fit",
      "pros": [
       "Classified as a Fast Grower (>25% earnings growth) \u2014 Lynch's favorite hunting ground, though these also carry the most execution/valuation risk.",
       "Manageable Debt/Equity of 0.37 \u2014 Lynch was wary of highly leveraged growth stories."
      ],
      "cons": [
-      "PEG ratio of 1.45 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule."
+      "PEG ratio of 1.52 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule."
      ]
     },
     {
@@ -6954,10 +6950,10 @@
     "pe": 21.11,
     "forward_pe": 25.12,
     "pb": 5.13,
-    "peg": 1.45,
+    "peg": 1.52,
     "price_to_sales": 3.65,
-    "ev_to_ebitda": 17.53,
-    "earnings_yield": 0.0336,
+    "ev_to_ebitda": 17.52,
+    "earnings_yield": 0.0337,
     "graham_number": 119.61,
     "dividend_yield": 0.0,
     "payout_ratio": 0.0,
@@ -6989,7 +6985,7 @@
    "news": [],
    "data_notes": [],
    "stale": false,
-   "updated": "2026-10-21T20:36:16+00:00",
+   "updated": "2026-10-22T00:47:01+00:00",
    "memo": {
     "headline": "HOLD / NEUTRAL. No strong signal either way on the available data.",
     "business": "Amazon.com, Inc. (AMZN) is an internet retail company worth about $2.83T. It brought in $775.7B of revenue over the last year, up 20% from a year earlier. It keeps 14% of sales as operating profit.",
@@ -7015,46 +7011,34 @@
     "ai": null
    },
    "news30": {
-    "summary": "Over the last 30 days Amazon.com shares rose 3% (now $262.37). News flow was heavy (58 stories) and the headlines were mixed (7 upbeat, 4 downbeat). Most coverage was about deals & partnerships (7), analyst calls (4) and stock moves (2). Analyst calls leaned positive: 2 upgrade or target-raise headlines vs 1 cut. Key headline: \u201cXY Planning Network Inc. Acquires 3,302 Shares of Amazon.com, Inc. $AMZN\u201d (MarketBeat, 2026-10-21).",
-    "count": 58,
-    "tone": "mixed",
-    "positive": 7,
-    "negative": 4,
+    "summary": "Over the last 30 days Amazon.com shares rose 3% (now $262.37). News flow was heavy (41 stories) and the headlines were mostly positive (3 upbeat, 1 downbeat). Most coverage was about products & technology (7), deals & partnerships (6) and analyst calls (2). 11 of the 41 were buy-or-sell opinion pieces, which show attention more than new facts. Key headline: \u201cMorgan Stanley Adjusts Price Target on Amazon.com to $350 From $335\u201d (Yahoo Finance, 2026-10-19).",
+    "count": 41,
+    "tone": "mostly positive",
+    "positive": 3,
+    "negative": 1,
     "themes": [
      [
       "buy/sell opinion pieces",
-      8
-     ],
-     [
-      "deals & partnerships",
-      7
-     ],
-     [
-      "analyst calls",
-      4
-     ],
-     [
-      "stock moves",
-      2
+      11
      ],
      [
       "products & technology",
+      7
+     ],
+     [
+      "deals & partnerships",
+      6
+     ],
+     [
+      "analyst calls",
+      2
+     ],
+     [
+      "IPO & listing",
       2
      ]
     ],
     "items": [
-     {
-      "title": "XY Planning Network Inc. Acquires 3,302 Shares of Amazon.com, Inc. $AMZN",
-      "source": "MarketBeat",
-      "date": "2026-10-21",
-      "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQc2VHNU1YdVJCVDlMUnRZaXgyeFNWRy16VFFRZHpSN1RYWkhRUl93YW1ld3R2XzhXV1N4THlQempzeGlFTXVtT0NSUDhMeXREdnhNTUt4YWc2bGJOV19Hbk93dDlYbVBidmZ6a0RnQ2lCTnJ2aEdub2hXVVlyZmpUMGpCWTd6TDdKOXgwQjQwbkxaQnFlS0ptZ2JpUi1JTHFFVGpDVGZlS0VmX2tRMTRZeExQYWpiLUd1Sm4tdXJ3WXZZYy1PRnc?oc=5"
-     },
-     {
-      "title": "21,343 Shares of Amazon.com, Inc. $AMZN Acquired by ASK Capital Investment Managers LLC",
-      "source": "MarketBeat",
-      "date": "2026-10-21",
-      "link": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxOWGdkdWg2eWZxcUN0UTNKNHlmaFRkSThRcjRaNU1vVzdlS3Zwc3plSzFTY1YzQUtYbk9HUnZ0NHRmczJQLW1oXzdWclNaaDdCN0dJbVIzbjVEbjNOSW9pRFdWS1RqV2prN2JybUVxQjZxT0g0X1Y1dkFFZUZfN3pQem1ldGdhY2lCYkgzZXVWNnV1eFRBRVRkVmxQTDFCVHd3bGVDTXZ3TzIxWXROODBfMWl6VmhvbjZVZWt2Qjc2dUFqZ0xZWU8tb1EtR2F4ajJCVUN2Z3VjdkRCbXc?oc=5"
-     },
      {
       "title": "A Galaxy First: Samsung Certified Re-Newed Now Available on Amazon.com",
       "source": "samsung.com",
@@ -7062,20 +7046,32 @@
       "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQb09QZDJkOUlfUTIyaUxKbEFUQ204NmhZU2piTW01NWxaMmE3QzlQaXVTalhoaGlzclRBczEwZTQ1cHFBYXVQTUVIc0FKZXBxb185cFQxZEhOa0dFWHpHZmw3QXdpUU1PdENHUWk4eFVrTzNEOW9KeUw1d2JaXzlXWlV1cURoaVItR3JhdVJVWWczUQ?oc=5"
      },
      {
-      "title": "Amazon.com, Inc. (NASDAQ:AMZN) Stock Now Rated \"Moderate Buy\" by Sell-Side Analysts",
-      "source": "MarketBeat",
-      "date": "2026-10-20",
-      "link": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOdTF2eS1Rbk1CMEZUWkxvaHIwdzRlYlRaQ0Iwb0Z2V0V4UmFYcHpxYXNEcDFON0hQX1pGV0dWT1E0clZyR0lnaFZYZjM1QkM5Mkp2SEJEb1ZRVzFrR3FLYzdEd0FSY2ZfblJ2OG9TeWdQeFVLYzRWdWR3bUU3R1kzYUdmcGRObnNZUGVnV3RVN3RTM1gwbGlKQVRZRTJKMXR1cDVIM1RlRWdRWjZfTmNIN3pScGJkdi1JV0lRUmE5OXJwbTlGVmQ3QkI2aldzTm1JSmh5RU40MA?oc=5"
+      "title": "Morgan Stanley Adjusts Price Target on Amazon.com to $350 From $335",
+      "source": "Yahoo Finance",
+      "date": "2026-10-19",
+      "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQak5WVFh3dFJxNGNUSTVXNk0zdEpfWjhwdldpcXhWY2tITm41Vjc1ajhFckNwSnNLblNFSEk4Nnh5eEtxWURrRTVLc3p6dWlwZzRNTzYwa3hEakM4SjRZMUZ1WjhaNjFuQXBYRlltYVNLLTBpTlZQd0lkaEg0YUFWWWI4ZGVXd2Z6RlUtd2RGNG9WdTAwcXUzRkZ4Nm1pcExBQmc?oc=5"
      },
      {
-      "title": "AMZN Stock Eyes Record High after Strong Jump on Morgan Stanley Naming Amazon a Top Pick and Warrant to Buy 3.16 million 3M shares",
-      "source": "FXLeaders",
-      "date": "2026-10-19",
-      "link": "https://news.google.com/rss/articles/CBMigwJBVV95cUxNYTB1U2Z1R2Q4QWZ6Z1V2clhsT1BNaHFwdzQ2cS16Mms4MWZQMUh6aEJRLVVpX0VvSk5kbEVqcnNjbzF2blJNV25FYklrUnh0MVgxSDJpX2pQZ1lBR0RJSmE5MWVZRjkzTFBseExnQXBIUVZnUllzWkktbC1lVG5UU0tSUlNqR21YQS10Z0l6Mmtab2pTUzRob3FhblE5VHlpMmkySXRvM0l4RlFMOGJmbXNsak0xWlVqRHZ0aTY3Zm52eFYyLXczZ2Q5VlpHcGR2djdNWGMyVFZEN0E3VkpWM2I5cTFMX0ZFSkVKQ0pmcm9EdlRBMG0zdUhIaFRic0pjTFZj?oc=5"
+      "title": "What Amazon.com (AMZN)'s AI Shopping Bot Block Means For Shareholders",
+      "source": "Yahoo Finance",
+      "date": "2026-10-16",
+      "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNd3RzSE1RcHBCYklZelpLNUl3U2xiWlJYSEFfZ2E2VHI1aW9qZ0FlTHBtbFdxZGtCdllyNFF4UDhUWkg4NEstRFZiVUxIb1NseUxfN1FxaXJveEtqVGUtbnpsZFpsd2NOWERON05kdmdPTDR0RWgxQmR1OUFQcDRfREF4SUVwRktDYmNFSDllNVBXS21NdFJV?oc=5"
+     },
+     {
+      "title": "New Street Adjusts Price Target on Amazon.com to $400 From $385",
+      "source": "Yahoo Finance",
+      "date": "2026-10-14",
+      "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQLUM4UXNUem5SUU16a0c0b2U0ZGxOdU9PbFFWR2M0cGdMa0IyQUtualpNT1FEUnlWN01HbU1iUC1yeG9BYjdfclYwYXlfTlF4Y3dnRVhxT1FzZTF4cGxocHlON3JuNjlZbUdDd2pIaWxON0dEa0EzSkNXXzdldHpCRkkzQ3ZJUkJoVXM0SzFRU29KcEFMQnlUMzZDWVcyR0N3?oc=5"
+     },
+     {
+      "title": "Market Chatter: Amazon.com in Talks to Acquire Decart in $7 Billion Deal",
+      "source": "Yahoo Finance",
+      "date": "2026-10-12",
+      "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOXy1sYUMxN3dRNjNWZjFFUDRtbnRyZXB0UzZPVVo0dXdxcWk3Z1JiZ2ZjREgyRTBjNHRxTDJyeUplSjg1N0RFVUk2TWhjWVZnMFhCVUVWMEdvRUxhaUpYelhxREpSQkxocFUwbUxwV0pwN1Z2ODdwQ0M4aGRJY3lGTXdYTlpyYlN5NlBGeWhkeVl1MWlOdWNiMFB4bw?oc=5"
      }
     ],
     "by": "rules",
-    "updated": "2026-10-21"
+    "updated": "2026-10-22"
    }
   },
   {
@@ -7121,8 +7117,8 @@
       "Currently pays a dividend (yield ~0.3%) \u2014 though a true Graham screen wants 20 uninterrupted years, which free data can't confirm."
      ],
      "cons": [
-      "Price ($343.99) exceeds the Graham Number ($38.00) \u2014 fails Graham's defensive-investor price test.",
-      "P/E \u00d7 P/B = 1843.7, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
+      "Price ($343.99) exceeds the Graham Number ($38.26) \u2014 fails Graham's defensive-investor price test.",
+      "P/E \u00d7 P/B = 1818.7, above Graham's 22.5 ceiling \u2014 pricey on a combined basis.",
       "Current ratio of 0.89 is below Graham's 2.0 liquidity bar.",
       "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test."
      ]
@@ -7138,7 +7134,7 @@
       "Company is buying back shares alongside its growth story."
      ],
      "cons": [
-      "PEG ratio of 2.75 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule.",
+      "PEG ratio of 2.72 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule.",
       "Debt/Equity of 1.34 is elevated \u2014 leverage adds fragility to a growth thesis."
      ]
     },
@@ -7166,7 +7162,7 @@
       "Return on capital ~121%: a good business by Greenblatt's first test."
      ],
      "cons": [
-      "Earnings yield (EBIT \u00f7 EV) 2.7%: not cheap by the Magic Formula."
+      "Earnings yield (EBIT \u00f7 EV) 2.6%: not cheap by the Magic Formula."
      ]
     }
    ],
@@ -7195,14 +7191,14 @@
     "cash_runway_years": null,
     "rule_of_40": 37.6,
     "market_cap": 5020252110848,
-    "pe": 39.45,
+    "pe": 38.91,
     "forward_pe": 35.94,
     "pb": 46.74,
-    "peg": 2.75,
+    "peg": 2.72,
     "price_to_sales": 10.75,
-    "ev_to_ebitda": 29.63,
-    "earnings_yield": 0.0267,
-    "graham_number": 38.0,
+    "ev_to_ebitda": 30.02,
+    "earnings_yield": 0.0264,
+    "graham_number": 38.26,
     "dividend_yield": 0.0031,
     "payout_ratio": 0.1204,
     "debt_to_equity": 1.34,
@@ -7223,7 +7219,7 @@
    },
    "recent_ipo": false,
    "ipo": {
-    "months_listed": 550.2,
+    "months_listed": 550.3,
     "first_trade_date": "1980-12-12",
     "first_day_open": null,
     "first_day_close": null,
@@ -7233,7 +7229,7 @@
    "news": [],
    "data_notes": [],
    "stale": false,
-   "updated": "2026-10-21T20:35:37+00:00",
+   "updated": "2026-10-22T00:46:27+00:00",
    "memo": {
     "headline": "HOLD / NEUTRAL. No strong signal either way on the available data.",
     "business": "Apple Inc. (AAPL) is a consumer electronics company worth about $5.02T. It brought in $466.8B of revenue over the last year, up 16% from a year earlier. It keeps 33% of sales as operating profit.",
@@ -7244,8 +7240,8 @@
      "High gross margin (45%) suggests real pricing power / a moat. (Buffett)"
     ],
     "bear": [
-     "Price ($343.99) exceeds the Graham Number ($38.00) \u2014 fails Graham's defensive-investor price test. (Graham)",
-     "P/E \u00d7 P/B = 1843.7, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)",
+     "Price ($343.99) exceeds the Graham Number ($38.26) \u2014 fails Graham's defensive-investor price test. (Graham)",
+     "P/E \u00d7 P/B = 1818.7, above Graham's 22.5 ceiling \u2014 pricey on a combined basis. (Graham)",
      "Current ratio of 0.89 is below Graham's 2.0 liquidity bar. (Graham)",
      "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test. (Graham)"
     ],
@@ -7260,15 +7256,15 @@
     "ai": null
    },
    "news30": {
-    "summary": "Over the last 30 days Apple shares rose 1% (now $343.99). News flow was heavy (90 stories) and the headlines were mostly negative (4 upbeat, 9 downbeat). Most coverage was about products & technology (30), IPO & listing (7) and deals & partnerships (5). Insider activity: 0 selling and 0 buying headlines (latest: \u201cApple names insider Steve Smith as new M&A chief, memo shows\u201d). Key headline: \u201cApple announces product launch event for Oct. 28. Analysts expect touchscreen laptop\u201d (CNBC, 2026-10-19).",
+    "summary": "Over the last 30 days Apple shares were flat (now $343.99). News flow was heavy (90 stories) and the headlines were mostly negative (3 upbeat, 9 downbeat). Most coverage was about products & technology (32), IPO & listing (7) and deals & partnerships (5). Insider activity: 0 selling and 0 buying headlines (latest: \u201cApple names insider Steve Smith as new M&A chief, memo shows\u201d). Key headline: \u201cApple announces product launch event for Oct. 28. Analysts expect touchscreen laptop\u201d (CNBC, 2026-10-19).",
     "count": 90,
     "tone": "mostly negative",
-    "positive": 4,
+    "positive": 3,
     "negative": 9,
     "themes": [
      [
       "products & technology",
-      30
+      32
      ],
      [
       "IPO & listing",
@@ -7279,26 +7275,26 @@
       5
      ],
      [
-      "buy/sell opinion pieces",
-      4
-     ],
-     [
       "analyst calls",
       3
+     ],
+     [
+      "buy/sell opinion pieces",
+      2
      ]
     ],
     "items": [
+     {
+      "title": "The new human-crafted Apple Music brand matters in an AI world",
+      "source": "Ars Technica",
+      "date": "2026-10-21",
+      "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOLUk2OU5Pc2FxNXB0RGlQWEZZekxCeVFkeTZLcFZuVE1Ecmtob1J0dDItUC1RcENIME5KWHZMZGt1VkxoZTlzc3NMNWY1ck93Nzl0enhrMEJiTjQyajJyV3VtX0JmbEZsd0FNclFYWllqTGg0RkFjMVRoU1YyU2N6RjdDa0VqcVNxZll0TUI3ZmsyUWU4amRydVZuTmRvLThMQzJrTUZ3?oc=5"
+     },
      {
       "title": "Apple will have limited iPhone Duo units available in stores on Friday",
       "source": "Reuters",
       "date": "2026-10-21",
       "link": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNdXZTMU9WWlI5RHdJWm9rSFN6SXF1Q2ZfRUxXM1Y4dzVwbUVzNjNxeFRjcUdnRUpJcXZMUnVweXYySjRBcldhTTNFTk1vR3lCOVBrU2RxMUltNUtvVklUb2tJVk5oUmhRWTdjYmhpYjlIazFpYlhkb0pGbVF6UTRqS19mWUVfVmh4UDRqb1pUVEFJaEhTdlF6YWd3UVZxZVBITlFJR2FLOGUweDhsd1hpTHhxeU5EbjJTTkNtazUwa0ZvbU0?oc=5"
-     },
-     {
-      "title": "Apple unveils the 2026 Designers of Tomorrow",
-      "source": "Apple",
-      "date": "2026-10-20",
-      "link": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQN3haNUNEbXlsWnJXVExQajFRaFcwaHFvUWprcjZuYzJQb1ZMRk5lRlk4Y2lYaW1HdjA5dUI5X3MwSXdQOU9xUjQxSU14eTFIVFEteld0cmJIT3hTd09obzZaSm9JcllESTJLOExEalA1eWZWbGVVZEhMZjNPY0RsQkJrQ01pM0JkWjZFdg?oc=5"
      },
      {
       "title": "Apple announces product launch event for Oct. 28. Analysts expect touchscreen laptop",
@@ -7320,7 +7316,7 @@
      }
     ],
     "by": "rules",
-    "updated": "2026-10-21"
+    "updated": "2026-10-22"
    }
   },
   {
@@ -7336,7 +7332,7 @@
    "overall": {
     "label": "HOLD / NEUTRAL",
     "rationale": "No strong signal either way on the available data.",
-    "score": 44.2
+    "score": 44.1
    },
    "lenses": [
     {
@@ -7376,14 +7372,14 @@
      "key": "lynch",
      "short": "Lynch",
      "name": "Peter Lynch (GARP \u2014 Stalwart)",
-     "score": 35.8,
+     "score": 35.3,
      "verdict": "Weak fit",
      "pros": [
       "Classified as a Stalwart (10-25% growth) \u2014 steady compounding, good downside protection.",
       "Company is buying back shares alongside its growth story."
      ],
      "cons": [
-      "PEG ratio of 1.37 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule.",
+      "PEG ratio of 1.39 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule.",
       "Debt/Equity of 2.45 is elevated \u2014 leverage adds fragility to a growth thesis."
      ]
     },
@@ -7442,10 +7438,10 @@
     "pe": 16.94,
     "forward_pe": 15.59,
     "pb": 8.24,
-    "peg": 1.37,
+    "peg": 1.39,
     "price_to_sales": 1.87,
-    "ev_to_ebitda": 11.66,
-    "earnings_yield": 0.0508,
+    "ev_to_ebitda": 11.71,
+    "earnings_yield": 0.0506,
     "graham_number": 54.07,
     "dividend_yield": 0.0439,
     "payout_ratio": 0.7302,
@@ -7477,7 +7473,7 @@
    "news": [],
    "data_notes": [],
    "stale": false,
-   "updated": "2026-10-21T20:36:30+00:00",
+   "updated": "2026-10-22T00:47:13+00:00",
    "memo": {
     "headline": "HOLD / NEUTRAL. No strong signal either way on the available data.",
     "business": "PepsiCo, Inc. (PEP) is a beverages - non-alcoholic company worth about $183.6B. It brought in $98.2B of revenue over the last year, up 6% from a year earlier. It keeps 17% of sales as operating profit.",
@@ -7504,10 +7500,10 @@
     "ai": null
    },
    "news30": {
-    "summary": "Over the last 30 days PepsiCo shares rose 3% (now $134.70). News flow was heavy (84 stories) and the headlines were mostly negative (7 upbeat, 15 downbeat). Most coverage was about earnings & guidance (20), dividends & buybacks (7) and management (6). Key headline: \u201cPepsiCo closes Knoxville plant, cuts 122 jobs \u2014 just 11 days after reporting $3.07 billion in quarterly profit\u201d (Yahoo Finance, 2026-10-21).",
-    "count": 84,
-    "tone": "mostly negative",
-    "positive": 7,
+    "summary": "Over the last 30 days PepsiCo shares rose 2% (now $134.70). News flow was heavy (85 stories) and the headlines were mixed (8 upbeat, 15 downbeat). Most coverage was about earnings & guidance (20), dividends & buybacks (7) and management (6). Key headline: \u201cPepsiCo closes Knoxville plant, cuts 122 jobs \u2014 just 11 days after reporting $3.07 billion in quarterly profit\u201d (Yahoo Finance, 2026-10-21).",
+    "count": 85,
+    "tone": "mixed",
+    "positive": 8,
     "negative": 15,
     "themes": [
      [
@@ -7540,9 +7536,9 @@
      },
      {
       "title": "PepsiCo\u2019s Good Warrior enters protein bar space",
-      "source": "Yahoo Finance",
+      "source": "Food Dive",
       "date": "2026-10-21",
-      "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQMGtJaFBWazdyeTkxdmVaU0c0QlNPQnFqS2xRS0I4X19udTBGU2poRHlld0pkWVRLSFZ3eDBXUnJiX1kwTzdmUm1jWTExcldha3kwR3FQa29TTDQyTlJRZmxnd3A0NWZqazQ4SUdiLXFzWG1vdFFFMkdualBQNXFLOXpHOHAwYXZoU0dkc2hCQmVqc1ROd2JBMXd0dHJvX3lzM3c?oc=5"
+      "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPdnpMUXpkSzhiNndyZWZ5bTRIQks0TkF1SVZUeTJQQUdVUlZzaVlpRDZUanVrandjQVBVdVA2UUxZR1ZNY05uMDZTX3otXzBxZTFYRG80ZmdvcjRIaDQ5U2o5Y1lxekw2ZXhmd043bVZjZFZjQXVSNUc3Wl9FNE9qMTY3VnQ0QmktOEF4MVRXQzlRQQ?oc=5"
      },
      {
       "title": "PepsiCo Stock Is Down 27% From Its High. Here\u2019s What Q3 Earnings Need to Show",
@@ -7564,7 +7560,7 @@
      }
     ],
     "by": "rules",
-    "updated": "2026-10-21"
+    "updated": "2026-10-22"
    }
   },
   {
@@ -7688,8 +7684,8 @@
     "pb": 16.5,
     "peg": null,
     "price_to_sales": 91.08,
-    "ev_to_ebitda": 650.5,
-    "earnings_yield": -0.0006,
+    "ev_to_ebitda": 702.0,
+    "earnings_yield": -0.0005,
     "graham_number": null,
     "dividend_yield": 0.0,
     "payout_ratio": 0.0,
@@ -7721,7 +7717,7 @@
    "news": [],
    "data_notes": [],
    "stale": false,
-   "updated": "2026-10-21T20:36:39+00:00",
+   "updated": "2026-10-22T00:47:21+00:00",
    "memo": {
     "headline": "HOLD / NEUTRAL. No strong signal either way on the available data.",
     "business": "Space Exploration Technologies Corp. (SPCX) is an aerospace & defense company worth about $2.10T. It brought in $23.0B of revenue over the last year, up 92% from a year earlier. It is not yet profitable at the operating level.",
@@ -7749,51 +7745,51 @@
     "ai": null
    },
    "news30": {
-    "summary": "Over the last 30 days Space Exploration Technologies shares rose 3% (now $159.31). News flow was heavy (91 stories) and the headlines were mostly positive (21 upbeat, 7 downbeat). Most coverage was about stock moves (18), products & technology (17) and analyst calls (14). Key headline: \u201cSpace Exploration Technologies Corp (SPCX) (Q3 2026) Earnings Call Highlights: Revenue Surges ...\u201d (Yahoo Finance, 2026-10-21).",
-    "count": 91,
+    "summary": "Over the last 30 days Space Exploration Technologies shares fell 4% (now $159.31). News flow was heavy (89 stories) and the headlines were mostly positive (20 upbeat, 7 downbeat). Most coverage was about stock moves (17), products & technology (16) and analyst calls (15). Key headline: \u201cStock Market Today, Oct. 21: Space Exploration Technologies Surges on Q3 Earnings Beat\u201d (Yahoo Finance, 2026-10-21).",
+    "count": 89,
     "tone": "mostly positive",
-    "positive": 21,
+    "positive": 20,
     "negative": 7,
     "themes": [
      [
       "stock moves",
-      18
-     ],
-     [
-      "products & technology",
       17
      ],
      [
-      "buy/sell opinion pieces",
-      14
+      "products & technology",
+      16
      ],
      [
       "analyst calls",
-      14
+      15
      ],
      [
       "earnings & guidance",
+      13
+     ],
+     [
+      "buy/sell opinion pieces",
       13
      ]
     ],
     "items": [
      {
-      "title": "Space Exploration Technologies Corp (SPCX) (Q3 2026) Earnings Call Highlights: Revenue Surges ...",
+      "title": "Stock Market Today, Oct. 21: Space Exploration Technologies Surges on Q3 Earnings Beat",
       "source": "Yahoo Finance",
       "date": "2026-10-21",
-      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPd1NhMUxWXzNHTl93aGFJWTBQM0hYaHJiSGVERUZSNzR0NnNZSjF3NnJJTzJtdVd3UW02bllBSUpOeXgxTGJjTDE3M0RwclBtUDl0UUlHVjVIY3dGV180NWluRGF6RnkyNWN4aldQcFJaV1k2dXhHTXFUMVVBVWNubnBOQkJsSlljOUkzTndPTFhxWVItMVg5RW1zTkFUZEpDdDdOZGxsNU0?oc=5"
+      "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOVUZCbTdMR0RybXpPcVRsQVJNVE5PT1hCZkpRRDRjSGY1aTVodlQ2TlZxdTNvQVREODRhQko3cXI4b18zMU00OXppbTB1ODFKUm9xQVVxSUIweGpWbS1fcW93S1REM1RCbDIwZlR4clZzLVJFN1AzOGV3WEMwcXBMZlFUdWh2RkZYblJyRjlUekVMWEo0?oc=5"
      },
      {
       "title": "SPCX Stock Jumps Overnight: Musk Teases $1 Trillion Revenue By 2028 \u2014 Analyst Sees 95% Tesla Merger Odds In 2 Years",
-      "source": "Stocktwits",
+      "source": "TradingView",
       "date": "2026-10-21",
-      "link": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQbFdvaVFqY2FEZWpUS3UtZDh6NURoaTlLbEtDLUY1TDg1ZDBUcTdnd0dpODUzdVlyZ2tNVm5KM2EzUC16NjZQeS1yYmxvajJ2Y3ZNc1VDX21yYmFZTUlMVjZ3QnN1RTdYeGlxV3RidnRwbmRhUFNjUDQ0S0Nvd3ZsTllJSm9JUnAwSVlPTkRwWldYc2tON2NtTmFMVks1WkhLbnlIODFyZ2MxRDFPeXNYN0J4WWtHRDBPendmZ0t3VUxibkFBRFRwOUMwaHhmUEkwRVVN?oc=5"
+      "link": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxPNU1oVXFVM3RmSG9IWlNLdDhYQ3plTlF2b2RnczhQWEZuS3BBNmhnU19SZ3phWlJnTzdlaVQ0VzEzTHNXMnNtZjVxR2FOX3JlSk1LQzhGQWZSX3ltalZhMmdGTEI2c2oyT2hoX0pEVTdjVkhQcTJZdXdRdXpkeUhHd1NnTFFET3NKUjA2dTN6NEJmcW12M180YUdMdGZ3b2d1a09GZERib2ZmaDRlWFJpWll3bEd6LW1ZWEt6cnRpYU1LbzNDWWFtY0ozNUhKWVVyeTJMRXJLS0I4bnYwRXFGTmN0aEJsYWwtMmJyeVNORE9ENWg5SUZvVzREZGlNUzQ?oc=5"
      },
      {
-      "title": "SPCX Stock Eyes Mobile And AI Upside As Volatility Builds",
-      "source": "Timothy Sykes",
+      "title": "SPCX Stock Jumps 10% Premarket: Morningstar Boosts SpaceX\u2019s Fair Value As Starship And Orbital AI Offer Long-Term Upside",
+      "source": "TradingView",
       "date": "2026-10-21",
-      "link": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQX09oOGloVzkzTzctbHdmV2hlMGFselZNeVo4MkJLMGIxbzdnMkN0dHl0Szdocmhuc3JtVWFhVF9zVDNPZTJDOExBeXBwTzZfc3cxMUtYSXhaN3M2QjFYc2EwQWFEVTFJajRFV2xEZU5BdkFOb2UtNmFyTmY2VGdOZTZBWnVDd2pWU0V0R01vMmRZNERxM2c?oc=5"
+      "link": "https://news.google.com/rss/articles/CBMiigJBVV95cUxQYXlCbFV0OTk4NzVOakhBcW9TMmlpbWVvTTN0N3FBSHg5OHdoQnl1bnlpMU84NXRwdVZRZ0RpRkpRdkVGdk1mRERJQkttTWZLUkdMaU5Ib3lZZ1FLblJsMjRmUjBfeExXNWxQRkpNVGVBUks0eTFRYkVYTVBLaDNwZDRfcTB6bHR0TThyRFBZQzIyaldoRm5yLVNzX3dMZDh6dFNyblJGYzJnRmdQbjhjSDhFREw2Ukk2LVFGMHJ6ZDNpM29wTklDRlBXTDdwUkxLaENVZE0wLUlVTUUtdE92ME56UDlVNHVSM2tMRWMyb0NCZHAyUm80U3lIcU81c0VoQ2hZcmNmSndGZw?oc=5"
      },
      {
       "title": "SpaceX (NASDAQ:SPCX) Stock Gets Price Target Increase from Wells Fargo & Company",
@@ -7809,7 +7805,7 @@
      }
     ],
     "by": "rules",
-    "updated": "2026-10-21"
+    "updated": "2026-10-22"
    }
   }
  ]
