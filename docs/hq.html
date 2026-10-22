@@ -2,396 +2,838 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Agent HQ · Shubham's AI agents at work</title>
-<meta name="description" content="A live town map of Shubham's AI agents: three paper-trading bots and a long-term investing researcher, shown doing what their own records say they did.">
+<meta name="description" content="A 3D town where Shubham's AI agents walk to wherever their real work happened: three paper-trading bots and a long-term investing researcher.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet">
 <!--
-  Agent HQ — independent personal project, not tied to any employer or agency. Public market data and
+  Agent HQ (3D) — independent personal project, not tied to any employer or agency. Public market data and
   Alpaca paper (fake-money) accounts only; no internal or personal data (no SSNs/PHI). Not financial advice.
-  Every scene on this page replays an event the agent itself recorded: nothing is scripted.
+  Every agent action replays an event the agent itself recorded. Traffic and clouds are scenery.
 -->
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}
+</script>
 <style>
-:root{
-  --paper:#E4EAE0;      /* sage paper ground */
-  --paper2:#D5DED1;     /* blocks, roads */
-  --road:#C6D0C3;
-  --ink:#1F2A36;        /* slate ink */
-  --ink2:#4B5866;
-  --mute:#6E7A86;
-  --card:#F2F5EF;
-  --line:#BFCAC0;
-  --b1:#3E6FD8; --b2:#1E9E8A; --b3:#8A4FD0; --bf:#C98B1C;
-  --up:#1F8A57; --down:#C2414B;
-  --dusk:#22304A;
-}
+:root{--ink:#1F2A36;--ink2:#4B5866;--mute:#6E7A86;--card:#F4F7F1;--line:#C9D2C8;--b1:#3E6FD8;--b2:#1E9E8A;--b3:#8A4FD0;--bf:#C98B1C;--up:#1F8A57;--down:#C2414B}
 *{box-sizing:border-box;margin:0}
-html,body{background:var(--paper);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,sans-serif;font-size:16px;line-height:1.5;overflow-x:clip}
-a{color:inherit}
-.wrap{max-width:1320px;margin:0 auto;padding:22px 20px 40px}
-header{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:16px}
-h1{font-size:clamp(34px,5vw,56px);font-weight:800;letter-spacing:-.02em;line-height:1;font-variation-settings:"opsz" 96}
-.sub{color:var(--ink2);max-width:62ch;margin-top:8px;font-size:15.5px}
-.status{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.pill{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--ink);border-radius:999px;padding:5px 12px;font-size:13.5px;font-weight:600;background:var(--card);text-decoration:none}
-.pill .lamp{width:9px;height:9px;border-radius:50%;background:var(--up);box-shadow:0 0 0 3px rgba(31,138,87,.18)}
-.pill.closed .lamp{background:var(--mute);box-shadow:none}
-.stage{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:16px;align-items:start}
-.mapbox{position:relative;border:2px solid var(--ink);border-radius:18px;overflow:hidden;background:var(--paper);box-shadow:6px 6px 0 var(--ink)}
-svg.map{display:block;width:100%;height:auto}
-.dusk{transition:opacity 1.2s}
-.bubble{position:absolute;max-width:290px;background:#fff;border:2px solid var(--ink);border-radius:14px;padding:8px 11px;font-size:13.5px;line-height:1.35;
-  transform:translate(-50%,calc(-100% - 12px));pointer-events:none;opacity:0;transition:opacity .25s;box-shadow:3px 3px 0 var(--ink);z-index:3}
-.bubble.on{opacity:1}
-.bubble b{display:block;font-size:12px;font-weight:700}
-.bubble:after{content:"";position:absolute;left:50%;bottom:-9px;width:14px;height:14px;background:#fff;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:translateX(-50%) rotate(45deg)}
-.bubble.below{transform:translate(-50%,12px)}
-.bubble.below:after{bottom:auto;top:-9px;transform:translateX(-50%) rotate(225deg)}
-.robot{transition:transform 1.1s cubic-bezier(.45,.05,.3,1)}
-.robot.walking .bod{animation:bob .32s ease-in-out infinite alternate}
-.robot .ant{animation:blink 1.8s steps(1) infinite}
-@keyframes bob{from{transform:translateY(0)}to{transform:translateY(-3px)}}
-@keyframes blink{50%{opacity:.25}}
-.controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:10px 12px;border-top:2px solid var(--ink);background:var(--card)}
-button{font:inherit;font-weight:600;font-size:13.5px;border:1.5px solid var(--ink);background:#fff;color:var(--ink);border-radius:999px;padding:5px 12px;cursor:pointer}
-button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
-button:focus-visible,a:focus-visible{outline:3px solid var(--b1);outline-offset:2px}
-.clock{margin-left:auto;font-size:13.5px;color:var(--ink2);font-variant-numeric:tabular-nums}
-.progress{flex-basis:100%;height:4px;background:var(--paper2);border-radius:4px;overflow:hidden}
-.progress i{display:block;height:100%;width:0;background:var(--ink);transition:width .3s}
-aside.feed{border:2px solid var(--ink);border-radius:18px;background:var(--card);box-shadow:6px 6px 0 var(--ink);display:flex;flex-direction:column;max-height:calc(100vh - 140px);min-height:420px}
-.feed h2{font-size:20px;font-weight:700;padding:14px 16px 4px}
-.feed .hint{font-size:13px;color:var(--mute);padding:0 16px 10px;border-bottom:2px solid var(--ink)}
-.feed ol{list-style:none;padding:6px 0;overflow-y:auto;flex:1}
-.feed li{padding:10px 16px;border-bottom:1px solid var(--line);font-size:14px;line-height:1.45}
+html,body{height:100%;overflow:hidden;background:#BFD3DF;color:var(--ink);font-family:"Bricolage Grotesque",system-ui,sans-serif;font-size:15px;line-height:1.45}
+#world{position:fixed;inset:0}
+#world canvas{display:block}
+.ui{position:fixed;z-index:5;pointer-events:none}
+.ui>*{pointer-events:auto}
+.card{background:var(--card);border:2px solid var(--ink);border-radius:16px;box-shadow:5px 5px 0 var(--ink)}
+/* title */
+.title{top:16px;left:16px;max-width:420px;padding:14px 16px}
+.title h1{font-size:34px;font-weight:800;letter-spacing:-.02em;line-height:1}
+.title p{color:var(--ink2);font-size:14px;margin-top:6px}
+.pills{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.pill{display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--ink);border-radius:999px;padding:4px 11px;font-size:13px;font-weight:600;background:#fff;text-decoration:none;color:var(--ink)}
+.pill .lamp{width:8px;height:8px;border-radius:50%;background:var(--up)}
+.pill.closed .lamp{background:var(--mute)}
+/* agent chips */
+.chips{top:16px;left:456px;right:402px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;pointer-events:none}
+.chips .chip{pointer-events:auto}
+.chip{display:flex;align-items:center;gap:8px;background:#fff;border:2px solid var(--ink);border-radius:999px;padding:5px 12px 5px 6px;font-weight:700;font-size:13.5px;cursor:pointer;box-shadow:3px 3px 0 var(--ink)}
+.chip i{width:20px;height:20px;border-radius:50%;border:2px solid var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:#fff}
+/* side panel */
+.panel{top:16px;right:16px;bottom:96px;width:370px;display:flex;flex-direction:column;overflow:hidden}
+.tabs{display:flex;border-bottom:2px solid var(--ink)}
+.tabs button{flex:1;border:0;border-radius:0;background:transparent;padding:11px;font-size:14.5px}
+.tabs button[aria-selected="true"]{background:var(--ink);color:#fff}
+.pbody{overflow-y:auto;flex:1}
+.hint{font-size:13px;color:var(--mute);padding:10px 16px;border-bottom:1px solid var(--line)}
+.feed{list-style:none;padding:0}
+.feed li{padding:10px 16px;border-bottom:1px solid var(--line);font-size:14px;cursor:pointer}
+.feed li:hover{background:#fff}
 .feed li.new{animation:flash 1.4s ease-out}
-@keyframes flash{from{background:#fff}to{background:transparent}}
-.feed .who{display:flex;align-items:center;gap:7px;font-weight:700;font-size:13px}
-.feed .who time{margin-left:auto;font-weight:500;color:var(--mute);font-variant-numeric:tabular-nums}
-.feed .where{color:var(--mute);font-weight:500}
+@keyframes flash{from{background:#FFF6D8}to{background:transparent}}
+.who{display:flex;align-items:center;gap:7px;font-weight:700;font-size:13px}
+.who time{margin-left:auto;font-weight:500;color:var(--mute);font-variant-numeric:tabular-nums}
+.where{color:var(--mute);font-weight:500}
 .dot{width:10px;height:10px;border-radius:3px;flex:none;border:1.5px solid var(--ink)}
-.feed .detail{color:var(--ink2);font-size:13px;margin-top:3px}
-.feed .empty{color:var(--mute);padding:16px}
-h2.sec{font-size:24px;font-weight:800;margin:30px 0 12px;letter-spacing:-.01em}
-.roster{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.agent{border:2px solid var(--ink);border-radius:16px;background:var(--card);padding:14px 16px;display:flex;flex-direction:column;gap:6px}
-.agent.soon{border-style:dashed;background:transparent}
-.agent .nm{display:flex;align-items:center;gap:8px;font-weight:700;font-size:17px}
-.agent .role{color:var(--ink2);font-size:14px}
-.agent .st{font-size:13px;font-weight:600;display:inline-flex;align-items:center;gap:6px}
-.agent .st i{width:8px;height:8px;border-radius:50%;background:var(--mute)}
-.agent .st.work i{background:var(--up)}
-.agent .last{font-size:14px;border-top:1px solid var(--line);padding-top:8px;margin-top:2px}
-.agent .last time{display:block;color:var(--mute);font-size:12.5px}
-.agent a{font-size:13.5px;font-weight:600}
-footer{margin-top:34px;color:var(--mute);font-size:13px;max-width:80ch}
-.err{background:#fff;border:1.5px solid var(--down);color:var(--down);border-radius:10px;padding:8px 12px;font-size:13.5px;margin:8px 16px}
-@media(max-width:1020px){.stage{grid-template-columns:1fr}aside.feed{max-height:520px}.roster{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:620px){.wrap{padding:16px 14px 30px}.roster{grid-template-columns:1fr}.bubble{max-width:200px;font-size:12px}.mapbox,aside.feed{box-shadow:4px 4px 0 var(--ink)}}
-@media(prefers-reduced-motion:reduce){.robot{transition:none}.robot.walking .bod,.robot .ant{animation:none}.bubble{transition:opacity .2s}}
+.detail{color:var(--ink2);font-size:12.5px;margin-top:3px}
+.info{padding:16px;display:flex;flex-direction:column;gap:10px}
+.info h2{font-size:24px;font-weight:800;line-height:1.1;display:flex;align-items:center;gap:10px}
+.info .role{color:var(--ink2)}
+.stat{display:inline-flex;gap:6px;align-items:center;font-weight:600;font-size:13px}
+.stat i{width:8px;height:8px;border-radius:50%;background:var(--mute)}
+.stat.work i{background:var(--up)}
+.info h3{font-size:14px;font-weight:700;margin-top:6px}
+.empty{padding:16px;color:var(--mute)}
+/* bottom bar */
+.bar{left:16px;right:402px;bottom:16px;padding:10px 14px;display:flex;flex-direction:column;gap:8px}
+.ctrls{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+button{font:inherit;font-weight:600;font-size:13.5px;border:1.5px solid var(--ink);background:#fff;color:var(--ink);border-radius:999px;padding:5px 12px;cursor:pointer}
+button[aria-pressed="true"]{background:var(--ink);color:#fff}
+button:focus-visible,.chip:focus-visible,a:focus-visible{outline:3px solid var(--b1);outline-offset:2px}
+.clock{margin-left:auto;font-size:13.5px;color:var(--ink2);font-variant-numeric:tabular-nums}
+.tl{position:relative;height:22px;border-radius:999px;background:#E3E9E1;border:1.5px solid var(--ink);cursor:pointer}
+.tl i{position:absolute;top:50%;width:8px;height:8px;border-radius:50%;transform:translate(-50%,-50%);border:1px solid var(--ink)}
+.tl .head{position:absolute;top:-4px;bottom:-4px;width:3px;background:var(--ink);border-radius:2px;transition:left .3s}
+/* 3D labels */
+.ptag{font-size:12px;font-weight:700;color:var(--ink);background:rgba(255,255,255,.88);border:1.5px solid var(--ink);border-radius:8px;padding:2px 7px;white-space:nowrap;cursor:pointer;transition:transform .15s}
+.ptag.hot{background:var(--ink);color:#fff;transform:scale(1.12)}
+.ptag.soon{border-style:dashed;color:var(--ink2)}
+.rtag{font-size:12px;font-weight:800;color:#fff;border:1.5px solid var(--ink);border-radius:999px;padding:1px 8px;white-space:nowrap;cursor:pointer}
+.say{max-width:250px;background:#fff;border:2px solid var(--ink);border-radius:12px;padding:7px 10px;font-size:13px;line-height:1.35;box-shadow:3px 3px 0 var(--ink);opacity:0;transform:translateY(6px);transition:opacity .25s,transform .25s;pointer-events:none}
+.say.on{opacity:1;transform:none}
+.say b{display:block;font-size:11.5px}
+.loading{position:fixed;inset:0;display:grid;place-items:center;z-index:9;background:#BFD3DF;font-size:18px;font-weight:700;transition:opacity .6s}
+.err{margin:8px 16px;padding:8px 10px;border:1.5px solid var(--down);border-radius:10px;color:var(--down);font-size:13px;background:#fff}
+@media(max-width:1240px){.chips{display:none}}
+@media(max-width:820px){
+  .title{max-width:none;right:16px}.title p{display:none}
+  .panel{top:auto;left:10px;right:10px;bottom:10px;width:auto;height:32vh}
+  .bar{left:10px;right:10px;bottom:calc(32vh + 18px)}
+  .card{box-shadow:3px 3px 0 var(--ink)}
+}
+@media(prefers-reduced-motion:reduce){.say{transition:opacity .2s}}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <div>
-      <h1>Agent HQ</h1>
-      <p class="sub">Four of Shubham's AI agents, each with its own job. Every scene below is something an agent actually did, replayed from its own records. The town turns to dusk when the stock market is closed.</p>
-    </div>
-    <div class="status">
-      <span class="pill" id="mkt"><span class="lamp"></span><span id="mktTxt">Checking market…</span></span>
-      <a class="pill" href="./">Long-Term Lab</a>
-      <a class="pill" href="https://shubhamkumarsingh91-lgtm.github.io/AI-Paper-Trading-Bot/" target="_blank" rel="noopener">Trading dashboard</a>
-    </div>
-  </header>
+<div id="world" aria-label="3D town map of the AI agents" role="img"></div>
+<div class="loading" id="loading">Building the town…</div>
 
-  <div class="stage">
-    <div>
-      <div class="mapbox" id="mapbox">
-        <svg class="map" id="map" viewBox="0 0 1200 720" role="img" aria-label="Town map with the agents' workplaces"></svg>
-        <div class="bubble" id="bubble" aria-live="polite"></div>
-        <div class="controls">
-          <button id="playBtn" aria-pressed="false">Replay today</button>
-          <button class="spd" data-s="1" aria-pressed="false">1×</button>
-          <button class="spd" data-s="2" aria-pressed="true">2×</button>
-          <button class="spd" data-s="4" aria-pressed="false">4×</button>
-          <button id="liveBtn" aria-pressed="true">Live</button>
-          <span class="clock" id="clock">—</span>
-          <div class="progress" aria-hidden="true"><i id="prog"></i></div>
-        </div>
-      </div>
-    </div>
-    <aside class="feed" aria-label="What the agents did">
-      <h2>What happened</h2>
-      <p class="hint" id="hint">Loading the agents' records…</p>
-      <ol id="feed"></ol>
-    </aside>
+<div class="ui title card">
+  <h1>Agent HQ</h1>
+  <p>Shubham's AI agents at work. Each robot walks to where its real work happened, replayed from its own records. Drag to look around, scroll to zoom, click a robot or a building.</p>
+  <div class="pills">
+    <span class="pill" id="mkt"><span class="lamp"></span><span id="mktTxt">…</span></span>
+    <a class="pill" href="./">Long-Term Lab</a>
+    <a class="pill" href="https://shubhamkumarsingh91-lgtm.github.io/AI-Paper-Trading-Bot/" target="_blank" rel="noopener">Trading dashboard</a>
+    <a class="pill" href="hq-lite.html">2D view</a>
   </div>
+</div>
+<div class="ui chips" id="chips"></div>
 
-  <h2 class="sec">The team</h2>
-  <div class="roster" id="roster"></div>
+<aside class="ui panel card" aria-label="Agent HQ details">
+  <div class="tabs" role="tablist">
+    <button role="tab" aria-selected="true" id="tabStory">Story</button>
+    <button role="tab" aria-selected="false" id="tabInfo">Details</button>
+  </div>
+  <div class="pbody" id="pStory"><p class="hint" id="hint">Loading the agents' records…</p><ol class="feed" id="feed"></ol></div>
+  <div class="pbody" id="pInfo" hidden><p class="empty">Click a robot or a building to see what it does and what happened there.</p></div>
+</aside>
 
-  <footer>
-    Independent personal project, not tied to any employer or agency. Trading bots use Alpaca paper (fake-money) accounts and public market data; the research agent uses public data only. No internal or personal data (no SSNs/PHI). Not financial advice.
-    The page reads the files the agents save after every run, so it updates every few minutes, not tick by tick.
-  </footer>
+<div class="ui bar card">
+  <div class="ctrls">
+    <button id="playBtn">Replay today</button>
+    <button class="spd" data-s="1" aria-pressed="false">1×</button>
+    <button class="spd" data-s="2" aria-pressed="true">2×</button>
+    <button class="spd" data-s="4" aria-pressed="false">4×</button>
+    <button id="liveBtn" aria-pressed="true">Live</button>
+    <button id="followBtn" aria-pressed="true" title="Camera follows whoever is acting">Follow action</button>
+    <button id="overBtn">Overview</button>
+    <span class="clock" id="clock">—</span>
+  </div>
+  <div class="tl" id="tl" title="Click a dot to jump to that moment"><span class="head" id="tlHead" style="left:0"></span></div>
 </div>
 
-<script>
-/* ── who's who ─────────────────────────────────────────────── */
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+
+/* ───────────────────────── agents & places ───────────────────────── */
 const TRADING = 'https://raw.githubusercontent.com/shubhamkumarsingh91-lgtm/AI-Paper-Trading-Bot/main/';
 const AGENTS = [
-  {id:'b1', name:'AI Day Trader', color:'var(--b1)', hex:'#3E6FD8', role:'Day-trades 5 tech stocks with $100k of fake money. Buys only when its AI and TradingView agree.', src:TRADING+'state/events_b1.json'},
-  {id:'b3', name:'Day-Trade-100', color:'var(--b3)', hex:'#8A4FD0', role:'Day-trades the 100 biggest US companies with $100k of fake money, using the same AI with its own safety checks.', src:TRADING+'state_dt100/events.json'},
-  {id:'b2', name:'Regime', color:'var(--b2)', hex:'#1E9E8A', role:'Reads the market’s mood once a day and decides how to hold $25k of fake money.', src:TRADING+'state/events_regime.json'},
-  {id:'buffett', name:'Buffett Researcher', color:'var(--bf)', hex:'#C98B1C', role:'Studies new IPOs and established companies the way Buffett, Graham, Lynch and IPO experts would.', src:'data/events.json'},
+  {id:'b1', name:'AI Day Trader', short:'Day Trader', hex:'#3E6FD8', role:'Day-trades 5 tech stocks with $100k of fake money. Buys only when its AI and TradingView agree.', src:TRADING + 'state/events_b1.json'},
+  {id:'b3', name:'Day-Trade-100', short:'DT-100', hex:'#8A4FD0', role:'Day-trades the 100 biggest US companies with $100k of fake money, using the same AI with its own safety checks.', src:TRADING + 'state_dt100/events.json'},
+  {id:'b2', name:'Regime', short:'Regime', hex:'#1E9E8A', role:'Reads the market’s mood once a day and decides how to hold $25k of fake money.', src:TRADING + 'state/events_regime.json'},
+  {id:'buffett', name:'Buffett Researcher', short:'Buffett', hex:'#C98B1C', role:'Studies new IPOs and established companies the way Buffett, Graham, Lynch and IPO experts would.', src:'data/events.json'},
 ];
-const SOON = [
-  {name:'Compliance AI', role:'Checks documents against rules. Joins the town once it reports what it did (synthetic data only).', place:'courthouse'},
-  {name:'Claims Translator', role:'Explains healthcare claims in plain English, running on Shubham’s Mac. Joins once it reports its runs (synthetic claims only, never patient data).', place:'hospital'},
-];
-const PLACES = {   // where an agent stands for each kind of work (SVG coordinates)
-  newsroom:{x:190,y:228,name:'the Newsroom'}, lab:{x:480,y:228,name:'the AI Lab'}, tower:{x:790,y:228,name:'the Market Mood Tower'},
-  courthouse:{x:1060,y:228,name:'the Courthouse'}, floor:{x:250,y:452,name:'the Trading Floor'}, broker:{x:600,y:452,name:'the Broker'},
-  vault:{x:900,y:452,name:'the Vault'}, research:{x:220,y:672,name:'the Research Office'}, ipo:{x:520,y:672,name:'the IPO Office'},
-  dock:{x:800,y:672,name:'the Charging Dock'}, hospital:{x:1060,y:672,name:'the Clinic'},
+const L = (i, j) => ({x:-120 + 40 * i, z:-120 + 40 * j});        // lot centres on a 7×7 grid; roads between
+const PLACES = {
+  floor:{lot:L(3,3), name:'Trading Floor', about:'The day-trading bots scan stocks here every 10 minutes and decide whether to buy.'},
+  broker:{lot:L(4,3), name:'Broker', about:'Buy and sell orders go from here to the bots’ Alpaca paper (fake-money) accounts.'},
+  vault:{lot:L(5,3), name:'Vault', about:'Each bot records its account balance here at the close.'},
+  tower:{lot:L(3,2), name:'Market Mood Tower', about:'The Regime bot reads the market’s mood here every afternoon. The beacon glows its latest call: green for BULL, amber for SIDEWAYS, red for BEAR.'},
+  newsroom:{lot:L(2,2), name:'Newsroom', about:'Morning prep before the open: earnings calendars and market news.'},
+  lab:{lot:L(2,3), name:'AI Lab', about:'Every night the trading bots retrain their AI on the latest prices.'},
+  research:{lot:L(2,4), name:'Research Office', about:'The Buffett Researcher scores companies with the rules of Buffett, Graham, Lynch, Fisher and Greenblatt, plus a month of news.'},
+  ipo:{lot:L(3,4), name:'IPO Office', about:'New listings and upcoming IPOs, judged with Jay Ritter’s IPO research and Bill Gurley’s revenue-quality tests.'},
+  dock:{lot:L(4,4), name:'Charging Dock', about:'Agents rest here between runs.'},
+  courthouse:{lot:L(4,2), name:'Courthouse', soon:true, about:'Coming soon: the home of Compliance AI. It joins the town once it reports what it did (synthetic data only).'},
+  hospital:{lot:L(5,4), name:'Clinic', soon:true, about:'Coming soon: the home of the Claims Translator. It joins the town once it reports its runs (synthetic claims only, never patient data).'},
 };
-const SLOT = {b1:-48, b3:-16, b2:16, buffett:48};   // agents sharing a place stand side by side
+const DOOR = id => { const l = PLACES[id].lot; return new THREE.Vector3(l.x, 0, l.z + 20); };   // on the road in front
+const SLOT = {b1:-7.5, b3:-2.5, b2:2.5, buffett:7.5};
+const MOOD = {BULL:'#2BD47D', SIDEWAYS:'#F5B942', BEAR:'#FF5A5F'};
 
-/* ── map drawing ───────────────────────────────────────────── */
-const NS = 'http://www.w3.org/2000/svg', $ = s => document.querySelector(s);
-const el = (tag, attrs = {}, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
-function building(g, x, y, w, h, roof, label, kind, soon){
-  const b = el('g', {}, g);
-  if (soon){   // an empty lot: dashed outline, no shadow
-    el('rect', {x:x - w/2, y:y - h, width:w, height:h, rx:6, fill:'rgba(255,255,255,.35)', stroke:'#6E7A86', 'stroke-width':2.5, 'stroke-dasharray':'7 6'}, b);
-    kind(b, x, y - h - 2);
-    el('text', {x, y:y - h/2 + 2, 'text-anchor':'middle', 'font-size':16, 'font-weight':700, fill:'#4B5866'}, b).textContent = label;
-    el('text', {x, y:y - h/2 + 22, 'text-anchor':'middle', 'font-size':13, fill:'#6E7A86'}, b).textContent = 'coming soon';
-    return;
-  }
-  el('rect', {x:x - w/2 + 6, y:y - h + 6, width:w, height:h, rx:6, fill:'#1F2A36'}, b);                 // offset shadow
-  el('rect', {x:x - w/2, y:y - h, width:w, height:h, rx:6, fill:'#F7F9F4', stroke:'#1F2A36', 'stroke-width':2.5}, b);
-  el('rect', {x:x - w/2, y:y - h, width:w, height:24, rx:6, fill:roof, stroke:'#1F2A36', 'stroke-width':2.5}, b);
-  el('text', {x, y:y - h + 17, 'text-anchor':'middle', 'font-size':14, 'font-weight':700, fill:'#1F2A36'}, b).textContent = label;
-  // windows: lit at dusk
-  for (let i = 0; i < Math.floor((w - 20) / 26); i++) el('rect', {class:'win', x:x - w/2 + 14 + i*26, y:y - h + 34, width:14, height:12, rx:2, fill:'#DCE3D7', stroke:'#1F2A36', 'stroke-width':1.5}, b);
-  el('rect', {x:x - 11, y:y - 24, width:22, height:24, rx:3, fill:'#1F2A36'}, b);   // door
-  kind(b, x, y - h - 2);
-}
-const sign = {   // a small rooftop emblem per building, drawn with simple shapes
-  news:(g,x,y)=>{ el('rect',{x:x-16,y:y-22,width:32,height:20,rx:2,fill:'#fff',stroke:'#1F2A36','stroke-width':2},g); for(let i=0;i<3;i++) el('line',{x1:x-11,y1:y-17+i*5,x2:x+11,y2:y-17+i*5,stroke:'#1F2A36','stroke-width':1.6},g); },
-  lab:(g,x,y)=>{ el('path',{d:`M${x-6} ${y-24} v8 l-9 14 h30 l-9 -14 v-8 z`,fill:'#fff',stroke:'#1F2A36','stroke-width':2,'stroke-linejoin':'round'},g); el('circle',{cx:x+2,cy:y-6,r:2.5,fill:'#3E6FD8'},g); },
-  tower:(g,x,y)=>{ el('path',{d:`M${x} ${y-34} l10 32 h-20 z`,fill:'#fff',stroke:'#1F2A36','stroke-width':2,'stroke-linejoin':'round'},g); el('circle',{cx:x,cy:y-36,r:5,fill:'#1E9E8A',stroke:'#1F2A36','stroke-width':2,class:'mood'},g); },
-  court:(g,x,y)=>{ el('path',{d:`M${x-18} ${y-4} h36 M${x-14} ${y-6} v-12 M${x} ${y-6} v-12 M${x+14} ${y-6} v-12 M${x-20} ${y-20} l20 -10 l20 10 z`,fill:'none',stroke:'#6E7A86','stroke-width':2},g); },
-  floor:(g,x,y)=>{ el('polyline',{points:`${x-22},${y-6} ${x-10},${y-16} ${x-2},${y-10} ${x+10},${y-24} ${x+22},${y-18}`,fill:'none',stroke:'#1F8A57','stroke-width':3,'stroke-linejoin':'round','stroke-linecap':'round'},g); },
-  broker:(g,x,y)=>{ el('rect',{x:x-14,y:y-22,width:28,height:20,rx:3,fill:'#fff',stroke:'#1F2A36','stroke-width':2},g); el('text',{x,y:y-7,'text-anchor':'middle','font-size':13,'font-weight':800,fill:'#1F2A36'},g).textContent='$'; },
-  vault:(g,x,y)=>{ el('circle',{cx:x,cy:y-13,r:11,fill:'#fff',stroke:'#1F2A36','stroke-width':2},g); el('path',{d:`M${x} ${y-21} v16 M${x-8} ${y-13} h16`,stroke:'#1F2A36','stroke-width':2},g); },
-  research:(g,x,y)=>{ el('rect',{x:x-14,y:y-24,width:22,height:22,rx:2,fill:'#fff',stroke:'#1F2A36','stroke-width':2},g); el('circle',{cx:x+6,cy:y-8,r:7,fill:'#fff',stroke:'#C98B1C','stroke-width':3},g); el('line',{x1:x+11,y1:y-3,x2:x+17,y2:y+3,stroke:'#C98B1C','stroke-width':3,'stroke-linecap':'round'},g); },
-  ipo:(g,x,y)=>{ el('path',{d:`M${x} ${y-30} c8 6 8 18 0 26 c-8 -8 -8 -20 0 -26 z`,fill:'#fff',stroke:'#1F2A36','stroke-width':2},g); el('path',{d:`M${x-4} ${y-4} l-5 6 M${x+4} ${y-4} l5 6`,stroke:'#C98B1C','stroke-width':2.5,'stroke-linecap':'round'},g); },
-  dock:(g,x,y)=>{ el('path',{d:`M${x+2} ${y-28} l-10 14 h8 l-4 12 l12 -16 h-8 z`,fill:'#E9C46A',stroke:'#1F2A36','stroke-width':2,'stroke-linejoin':'round'},g); },
-  clinic:(g,x,y)=>{ el('path',{d:`M${x-5} ${y-26} h10 v7 h7 v10 h-7 v7 h-10 v-7 h-7 v-10 h7 z`,fill:'none',stroke:'#6E7A86','stroke-width':2},g); },
-};
-function drawMap(){
-  const m = $('#map');
-  el('rect', {width:1200, height:720, fill:'#E4EAE0'}, m);
-  const roads = el('g', {fill:'none', stroke:'#C6D0C3', 'stroke-width':34, 'stroke-linecap':'round'}, m);
-  el('path', {d:'M40 268 H1160 M40 492 H1160 M335 120 V700 M745 120 V700 M985 120 V700'}, roads);
-  el('path', {d:'M40 268 H1160 M40 492 H1160 M335 120 V700 M745 120 V700 M985 120 V700', stroke:'#F2F5EF', 'stroke-width':2, 'stroke-dasharray':'10 12'}, m);
-  // a few trees, for scale
-  [[60,120],[640,110],[1150,120],[60,600],[1150,450],[680,560]].forEach(([x,y]) => { el('circle',{cx:x,cy:y,r:14,fill:'#9DB89A',stroke:'#1F2A36','stroke-width':2},m); });
-  const g = el('g', {}, m);
-  building(g, 190, 228, 170, 96, '#E9C46A', 'Newsroom', sign.news);
-  building(g, 480, 228, 170, 96, '#9CB8F0', 'AI Lab', sign.lab);
-  building(g, 790, 228, 180, 120, '#8FD1C3', 'Market Mood Tower', sign.tower);
-  building(g, 1060, 228, 150, 96, '#fff', 'Courthouse', sign.court, true);
-  building(g, 250, 452, 230, 104, '#A7D7B8', 'Trading Floor', sign.floor);
-  building(g, 600, 452, 170, 96, '#F0B7A4', 'Broker', sign.broker);
-  building(g, 900, 452, 150, 96, '#D2C6E8', 'Vault', sign.vault);
-  building(g, 220, 672, 200, 96, '#F3D597', 'Research Office', sign.research);
-  building(g, 520, 672, 160, 96, '#F3D597', 'IPO Office', sign.ipo);
-  building(g, 800, 672, 170, 104, '#E3E7DF', 'Charging Dock', sign.dock);
-  building(g, 1060, 672, 150, 96, '#fff', 'Clinic', sign.clinic, true);
-  el('rect', {class:'dusk', width:1200, height:720, fill:'#22304A', opacity:0, 'pointer-events':'none'}, m);
-  AGENTS.forEach(a => robot(m, a));
-}
-function robot(m, a){
-  const g = el('g', {class:'robot', id:'r-' + a.id}, m);
-  const b = el('g', {class:'bod'}, g);
-  el('ellipse', {cx:0, cy:2, rx:15, ry:4, fill:'#1F2A36', opacity:.18}, g);
-  el('line', {x1:0, y1:-44, x2:0, y2:-52, stroke:'#1F2A36', 'stroke-width':2}, b);
-  el('circle', {class:'ant', cx:0, cy:-54, r:3.5, fill:a.hex, stroke:'#1F2A36', 'stroke-width':1.5}, b);
-  el('rect', {x:-13, y:-44, width:26, height:20, rx:7, fill:a.hex, stroke:'#1F2A36', 'stroke-width':2}, b);   // head
-  el('rect', {x:-9, y:-40, width:18, height:11, rx:4, fill:'#1F2A36'}, b);                                     // face screen
-  el('circle', {cx:-4, cy:-34.5, r:2, fill:'#E9F5FF'}, b); el('circle', {cx:4, cy:-34.5, r:2, fill:'#E9F5FF'}, b);
-  el('rect', {x:-11, y:-23, width:22, height:18, rx:5, fill:a.hex, stroke:'#1F2A36', 'stroke-width':2}, b);   // body
-  el('rect', {x:-5, y:-18, width:10, height:5, rx:2, fill:'#fff', opacity:.8}, b);
-  el('rect', {x:-10, y:-5, width:7, height:6, rx:2, fill:'#1F2A36'}, b); el('rect', {x:3, y:-5, width:7, height:6, rx:2, fill:'#1F2A36'}, b);
-  g.dataset.place = 'dock';
-  place(a.id, 'dock', true);
-}
-let WALK = 1100;                                 // ms; shortened at higher replay speeds
-function place(id, where, instant){
-  const p = PLACES[where] || PLACES.dock, g = document.getElementById('r-' + id);
-  const x = p.x + (SLOT[id] || 0), y = p.y + 10;
-  if (instant){ g.style.transition = 'none'; requestAnimationFrame(() => g.style.transition = ''); }
-  const moving = g.dataset.place !== where && !instant;
-  g.dataset.place = where;
-  g.style.transitionDuration = WALK + 'ms';
-  g.style.transform = `translate(${x}px, ${y}px) scale(1.35)`;
-  if (moving){ g.classList.add('walking'); clearTimeout(g._w); g._w = setTimeout(() => g.classList.remove('walking'), WALK); }
-  return {x, y};
-}
-function bubble(a, text, where){
-  const p = PLACES[where] || PLACES.dock, box = $('#map').getBoundingClientRect(), k = box.width / 1200;
-  const b = $('#bubble');
-  b.innerHTML = `<b style="color:${a.hex}">${a.name}</b>${esc(text.length > 170 ? text.slice(0, 167) + '…' : text)}`;
-  b.style.left = Math.min(Math.max((p.x + (SLOT[a.id] || 0)) * k, 120), box.width - 120) + 'px';
-  const head = (p.y + 10 - 80) * k, feet = (p.y + 16) * k;      // robot is ~80 map units tall
-  const below = head - b.offsetHeight - 14 < 4;
-  b.classList.toggle('below', below);
-  b.style.top = (below ? feet : head) + 'px';
-  b.classList.add('on');
-}
+/* ───────────────────────── renderer ───────────────────────── */
+const host = document.getElementById('world');
+let renderer;
+try { renderer = new THREE.WebGLRenderer({antialias:true, powerPreference:'high-performance'}); }
+catch (e) { location.replace('hq-lite.html'); throw e; }
+const small = matchMedia('(max-width:820px)').matches;
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+renderer.setPixelRatio(Math.min(devicePixelRatio, small ? 1.5 : 2));
+renderer.setSize(innerWidth, innerHeight);
+renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.0;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+host.appendChild(renderer.domElement);
+const labels = new CSS2DRenderer(); labels.setSize(innerWidth, innerHeight);
+Object.assign(labels.domElement.style, {position:'fixed', inset:'0', pointerEvents:'none', zIndex:2});
+document.body.appendChild(labels.domElement);
 
-/* ── market clock: day or dusk ─────────────────────────────── */
+const scene = new THREE.Scene();
+scene.environment = new THREE.PMREMGenerator(renderer).fromScene(new RoomEnvironment(), 0.04).texture;
+const camera = new THREE.PerspectiveCamera(42, innerWidth / innerHeight, 1, 2000);
+const HOME = {pos:new THREE.Vector3(78, 70, 118), target:new THREE.Vector3(0, 0, 18)};      // close enough to see the robots
+const WIDE = {pos:new THREE.Vector3(170, 150, 220), target:new THREE.Vector3(0, 0, 0)};       // the whole town
+camera.position.set(40, 420, 520);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true; controls.dampingFactor = .08;
+controls.minDistance = 35; controls.maxDistance = 420; controls.maxPolarAngle = 1.32;
+controls.target.copy(HOME.target);
+
+/* ───────────────────────── light & sky (real New York clock) ───────────────────────── */
+const hemi = new THREE.HemisphereLight('#EAF4FF', '#7C8A72', 1.1); scene.add(hemi);
+const sun = new THREE.DirectionalLight('#FFF3DC', 2.4);
+sun.castShadow = true; sun.shadow.mapSize.set(small ? 1024 : 2048, small ? 1024 : 2048);
+Object.assign(sun.shadow.camera, {left:-190, right:190, top:190, bottom:-190, near:10, far:700});
+sun.shadow.bias = -0.0006; scene.add(sun); scene.add(sun.target);
+scene.fog = new THREE.Fog('#BFD3DF', 380, 900);
+const nightMats = [];   // materials that glow at night: {mat, day, night}
+const nightLights = [];
 function nyNow(){ return new Date(new Date().toLocaleString('en-US', {timeZone:'America/New_York'})); }
 function marketOpen(){ const n = nyNow(), m = n.getHours() * 60 + n.getMinutes(), d = n.getDay(); return d > 0 && d < 6 && m >= 570 && m < 960; }
-function tickMarket(){
+let NIGHT = 0;
+function applySky(){
+  const n = nyNow(), h = n.getHours() + n.getMinutes() / 60;
+  // daylight from about 7:00 to 18:15 in New York (autumn); smooth dusk and dawn
+  const day = THREE.MathUtils.clamp(Math.min((h - 6.4) / 1.2, (18.6 - h) / 1.2), 0, 1);
+  NIGHT = 1 - day;
+  const ang = THREE.MathUtils.mapLinear(THREE.MathUtils.clamp(h, 6, 19), 6, 19, 0.15, Math.PI - 0.15);
+  sun.position.set(Math.cos(ang) * 260, 40 + Math.sin(ang) * 260 * (0.35 + 0.65 * day), 140);
+  const sky = new THREE.Color('#0E1A2E').lerp(new THREE.Color('#BFD3DF'), day);
+  if (day > 0 && day < 1) sky.lerp(new THREE.Color('#E9A77F'), 0.35 * (1 - Math.abs(day - 0.5) * 2));
+  scene.background = sky; scene.fog.color.copy(sky); document.body.style.background = '#' + sky.getHexString();
+  sun.intensity = 0.25 + 2.3 * day; sun.color.set(day < 1 ? '#FFD2A8' : '#FFF3DC');
+  hemi.intensity = 0.35 + 0.8 * day; hemi.color.set(day > .5 ? '#EAF4FF' : '#7F95C9');
+  renderer.toneMappingExposure = 0.85 + 0.2 * day;
+  nightMats.forEach(o => o.mat.emissiveIntensity = o.day + (o.night - o.day) * NIGHT);
+  nightLights.forEach(l => l.intensity = l.userData.max * NIGHT);
   const open = marketOpen();
-  $('#mkt').classList.toggle('closed', !open);
-  $('#mktTxt').textContent = open ? 'Market open' : 'Market closed';
-  document.querySelector('.dusk').setAttribute('opacity', open ? 0 : .26);
-  document.querySelectorAll('.win').forEach(w => w.setAttribute('fill', open ? '#DCE3D7' : '#F6D77A'));
+  document.getElementById('mkt').classList.toggle('closed', !open);
+  document.getElementById('mktTxt').textContent = open ? 'Market open' : 'Market closed';
+  if (window.setTicker) setTicker();
 }
 
-/* ── data ─────────────────────────────────────────────────── */
-const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+/* ───────────────────────── helpers ───────────────────────── */
+const rnd = (a = 0, b = 1) => a + Math.random() * (b - a);
+let seed = 7; const srnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;   // stable town layout
+const std = (color, o = {}) => new THREE.MeshStandardMaterial({color, roughness:.75, metalness:.05, ...o});
+function mesh(geo, mat, x = 0, y = 0, z = 0, cast = true){ const m = new THREE.Mesh(geo, mat); m.position.set(x, y, z); m.castShadow = cast; m.receiveShadow = true; return m; }
+function canvasTex(w, h, draw){ const c = document.createElement('canvas'); c.width = w; c.height = h; draw(c.getContext('2d'), w, h); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4; return t; }
+function label(text, cls, parent, y, onClick){
+  const d = document.createElement('div'); d.className = cls; d.textContent = text;
+  if (onClick){ d.style.pointerEvents = 'auto'; d.addEventListener('click', e => { e.stopPropagation(); onClick(); }); }
+  const o = new CSS2DObject(d); o.position.set(0, y, 0); parent.add(o); return d;
+}
+
+/* ───────────────────────── ground, roads, blocks ───────────────────────── */
+const ground = mesh(new THREE.PlaneGeometry(2400, 2400), std('#94A88A', {roughness:1}), 0, -0.05, 0, false);
+ground.rotation.x = -Math.PI / 2; scene.add(ground);
+const asphalt = mesh(new THREE.PlaneGeometry(300, 300), std('#4A525B', {roughness:.95}), 0, 0, 0, false);
+asphalt.rotation.x = -Math.PI / 2; scene.add(asphalt);
+// dashed lane markings (instanced)
+{
+  const dash = new THREE.InstancedMesh(new THREE.BoxGeometry(3, .05, .5), std('#F2F2E6', {roughness:.6}), 2000);
+  const m4 = new THREE.Matrix4(); let k = 0;
+  for (let r = -140; r <= 140; r += 40) for (let s = -146; s <= 146; s += 7){
+    if (Math.abs(((s + 140) % 40 + 40) % 40) < 6) continue;
+    m4.makeTranslation(s, .03, r); dash.setMatrixAt(k++, m4);
+    m4.makeRotationY(Math.PI / 2).setPosition(r, .03, s); dash.setMatrixAt(k++, m4);
+  }
+  dash.count = k; dash.receiveShadow = true; scene.add(dash);
+}
+// sidewalks / block slabs
+const slabMat = std('#CFD4CC', {roughness:.9});
+{ const slabs = new THREE.InstancedMesh(new THREE.BoxGeometry(31, .5, 31), slabMat, 49), m4 = new THREE.Matrix4(); let k = 0;
+  for (let i = 0; i < 7; i++) for (let j = 0; j < 7; j++){ const l = L(i, j); slabs.setMatrixAt(k++, m4.makeTranslation(l.x, .25, l.z)); }
+  slabs.receiveShadow = true; scene.add(slabs); }
+// river along the north edge, for a sense of place
+{ const w = mesh(new THREE.PlaneGeometry(420, 46), std('#5E8FB0', {roughness:.15, metalness:.2}), 0, .02, -182, false); w.rotation.x = -Math.PI / 2; scene.add(w); }
+
+/* windows texture: one shared day texture + a lit-window emissive map */
+const winTex = canvasTex(64, 64, (g, w, h) => { g.fillStyle = '#fff'; g.fillRect(0, 0, w, h); g.fillStyle = '#9DB0C2'; for (let x = 0; x < 2; x++) for (let y = 0; y < 2; y++) g.fillRect(6 + x * 32, 8 + y * 32, 20, 18); });
+const litTex = canvasTex(64, 64, (g, w, h) => { g.fillStyle = '#000'; g.fillRect(0, 0, w, h); for (let x = 0; x < 2; x++) for (let y = 0; y < 2; y++){ g.fillStyle = Math.random() < .7 ? '#FFD58A' : '#000'; g.fillRect(6 + x * 32, 8 + y * 32, 20, 18); } });
+[winTex, litTex].forEach(t => { t.wrapS = t.wrapT = THREE.RepeatWrapping; });
+const PAL = ['#C9D3DC', '#B7C4D1', '#DAD4C8', '#A8B8C8', '#E3E6EA', '#90A4B9', '#C7BBA9', '#B5C2B0'];
+const sideMats = PAL.map(c => { const m = std(c, {map:winTex, emissive:'#FFD58A', emissiveMap:litTex, emissiveIntensity:0, roughness:.6, metalness:.15}); nightMats.push({mat:m, day:0, night:1.3}); return m; });
+const roofMat = std('#7D8894', {roughness:.85});
+function towerGeos(x, z, w, d, h){
+  const g = new THREE.BoxGeometry(w, h, d);
+  const uv = g.attributes.uv;
+  for (let f = 0; f < 6; f++) for (let v = 0; v < 4; v++){
+    const i = f * 4 + v, horiz = (f === 0 || f === 1) ? d : w;
+    if (f === 2 || f === 3) uv.setXY(i, 0, 0); else uv.setXY(i, uv.getX(i) * horiz / 8, uv.getY(i) * h / 7);
+  }
+  g.translate(x, h / 2 + .5, z);
+  const idx = Array.from(g.index.array), part = fs => fs.flatMap(f => idx.slice(g.groups[f].start, g.groups[f].start + g.groups[f].count));
+  const side = g.clone(), roof = g.clone(); side.setIndex(part([0, 1, 4, 5])); roof.setIndex(part([2])); side.clearGroups(); roof.clearGroups();
+  return {side, roof};
+}
+const CITY = {sides:PAL.map(() => []), roofs:[]};
+function tower(x, z, w, d, h, mat){
+  const g = new THREE.BoxGeometry(w, h, d);
+  const uv = g.attributes.uv;            // repeat windows by size so they keep their scale
+  for (let f = 0; f < 6; f++) for (let v = 0; v < 4; v++){
+    const i = f * 4 + v, horiz = (f === 0 || f === 1) ? d : w;
+    if (f === 2 || f === 3) uv.setXY(i, 0, 0);
+    else uv.setXY(i, uv.getX(i) * horiz / 8, uv.getY(i) * h / 7);
+  }
+  const m = new THREE.Mesh(g, [mat, mat, roofMat, roofMat, mat, mat]);
+  m.position.set(x, h / 2 + .5, z); m.castShadow = m.receiveShadow = true; return m;
+}
+
+/* ───────────────────────── landmarks ───────────────────────── */
+const PLACE_OBJ = {};
+function landmark(id, build){
+  const p = PLACES[id], g = new THREE.Group(); g.position.set(p.lot.x, .5, p.lot.z);
+  const top = build(g) || 30;
+  g.traverse(o => { o.userData.place = id; });
+  g.userData.tag = label(p.name + (p.soon ? ' · coming soon' : ''), 'ptag' + (p.soon ? ' soon' : ''), g, top + 6, () => select({place:id}));
+  scene.add(g); PLACE_OBJ[id] = g; return g;
+}
+const glass = c => std(c, {roughness:.08, metalness:.55, envMapIntensity:1.2});
+const glowMat = (c, day = .25, night = 1.6) => { const m = std(c, {emissive:c, emissiveIntensity:day}); nightMats.push({mat:m, day, night}); return m; };
+
+// Trading Floor: the downtown glass tower with a LED ticker of the bots' latest picks
+let tickerTex, tickerText = 'MARKET DATA LOADING';
+landmark('floor', g => {
+  g.add(mesh(new THREE.BoxGeometry(28, 7, 28), std('#E4E7EA'), 0, 3.5, 0));
+  g.add(mesh(new THREE.BoxGeometry(20, 64, 20), glass('#5B83AE'), 0, 39, 0));
+  g.add(mesh(new THREE.BoxGeometry(14, 10, 14), glass('#47698E'), 0, 76, 0));
+  tickerTex = canvasTex(2048, 64, () => {}); tickerTex.wrapS = THREE.RepeatWrapping;
+  const ring = mesh(new THREE.CylinderGeometry(15.2, 15.2, 4, 64, 1, true), new THREE.MeshBasicMaterial({map:tickerTex, side:THREE.DoubleSide, toneMapped:false}), 0, 11, 0, false);
+  g.add(ring);
+  const arrow = new THREE.Group(); arrow.position.set(0, 82, 0);
+  arrow.add(mesh(new THREE.BoxGeometry(1.6, 8, 1.6), glowMat('#2BD47D', .6, 1.8), 0, 4, 0));
+  arrow.add(mesh(new THREE.ConeGeometry(3, 4, 4), glowMat('#2BD47D', .6, 1.8), 0, 10, 0));
+  g.add(arrow);
+  return 92;
+});
+window.setTicker = () => {
+  const c = tickerTex.image, g = c.getContext('2d'), open = marketOpen();
+  g.fillStyle = '#0B1220'; g.fillRect(0, 0, c.width, c.height);
+  g.font = 'bold 40px "Bricolage Grotesque", system-ui'; g.fillStyle = open ? '#58F0A0' : '#FFC95C'; g.textBaseline = 'middle';
+  const t = (open ? tickerText : 'MARKET CLOSED · OPENS 9:30 AM ET · LAST: ' + tickerText) + '      ';
+  let x = 10; while (x < c.width){ g.fillText(t, x, 34); x += g.measureText(t).width; }
+  tickerTex.needsUpdate = true;
+};
+// Broker
+landmark('broker', g => {
+  g.add(tower(0, 0, 24, 22, 26, sideMats[0]).translateY(-.5));
+  const s = canvasTex(256, 128, (c, w, h) => { c.fillStyle = '#F0B7A4'; c.fillRect(0, 0, w, h); c.fillStyle = '#1F2A36'; c.font = 'bold 84px system-ui'; c.textAlign = 'center'; c.fillText('BROKER', w / 2, 92); });
+  g.add(mesh(new THREE.BoxGeometry(20, 6, 1), std('#fff', {map:s}), 0, 30, 0));
+  return 34;
+});
+// Vault: a classical bank with a gold door
+landmark('vault', g => {
+  g.add(mesh(new THREE.BoxGeometry(28, 3, 24), std('#E8E2D4'), 0, 1.5, 0));
+  g.add(mesh(new THREE.BoxGeometry(24, 16, 18), std('#EFEADF'), 0, 11, -1));
+  for (let i = 0; i < 6; i++) g.add(mesh(new THREE.CylinderGeometry(1, 1, 14, 16), std('#F7F3EA'), -10 + i * 4, 10, 10));
+  const tri = new THREE.Shape(); tri.moveTo(-13, 0); tri.lineTo(13, 0); tri.lineTo(0, 6); tri.closePath();
+  const ped = mesh(new THREE.ExtrudeGeometry(tri, {depth:4, bevelEnabled:false}), std('#E8E2D4'), 0, 17.5, 7); g.add(ped);
+  const door = mesh(new THREE.CylinderGeometry(4, 4, .8, 32), std('#D4AF37', {metalness:.9, roughness:.25}), 0, 8, 8.2); door.rotation.x = Math.PI / 2; g.add(door);
+  return 26;
+});
+// Market Mood Tower with a beacon in the Regime bot's latest mood colour
+let beacon, beaconLight;
+landmark('tower', g => {
+  g.add(mesh(new THREE.CylinderGeometry(7, 9, 6, 8), std('#DDE3E6'), 0, 3, 0));
+  g.add(mesh(new THREE.CylinderGeometry(3, 5, 74, 8), glass('#6F8FA8'), 0, 43, 0));
+  g.add(mesh(new THREE.CylinderGeometry(5.5, 5.5, 4, 16), std('#1F2A36'), 0, 81, 0));
+  beacon = new THREE.Mesh(new THREE.SphereGeometry(4.4, 32, 16), new THREE.MeshStandardMaterial({color:'#9AA5B1', emissive:'#9AA5B1', emissiveIntensity:2, toneMapped:false}));
+  beacon.position.set(0, 87, 0); g.add(beacon);
+  beaconLight = new THREE.PointLight('#9AA5B1', 0, 120, 1.5); beaconLight.position.set(0, 87, 0); g.add(beaconLight);
+  g.add(mesh(new THREE.CylinderGeometry(.3, .3, 12), std('#1F2A36'), 0, 97, 0));
+  return 104;
+});
+// Newsroom with a turning satellite dish
+let dish;
+landmark('newsroom', g => {
+  g.add(tower(0, 0, 26, 24, 22, sideMats[6]).translateY(-.5));
+  dish = new THREE.Group(); dish.position.set(6, 23, -4);
+  const bowl = new THREE.Mesh(new THREE.SphereGeometry(5, 24, 12, 0, Math.PI * 2, 0, Math.PI / 3), std('#F4F4F4', {side:THREE.DoubleSide})); bowl.rotation.x = -Math.PI / 2.4; bowl.position.y = 4; bowl.castShadow = true;
+  dish.add(bowl, mesh(new THREE.CylinderGeometry(.5, .8, 4), std('#5D6873'), 0, 2, 0)); g.add(dish);
+  const s = canvasTex(512, 96, (c, w, h) => { c.fillStyle = '#E9C46A'; c.fillRect(0, 0, w, h); c.fillStyle = '#1F2A36'; c.font = 'bold 70px system-ui'; c.textAlign = 'center'; c.fillText('NEWS', w / 2, 74); });
+  g.add(mesh(new THREE.BoxGeometry(18, 4, 1), std('#fff', {map:s}), -4, 25, 12.6));
+  return 30;
+});
+// AI Lab with glowing server strips that pulse on retrains
+const labStrips = [];
+landmark('lab', g => {
+  g.add(mesh(new THREE.BoxGeometry(28, 18, 26), std('#E6ECF2'), 0, 9, 0));
+  for (let i = 0; i < 4; i++){ const m = glowMat('#4F8BFF', .5, 2.2); labStrips.push(m); g.add(mesh(new THREE.BoxGeometry(28.4, 1, 26.4), m, 0, 3.5 + i * 4, 0)); }
+  for (let i = 0; i < 3; i++){ const f = mesh(new THREE.CylinderGeometry(2.6, 2.6, 1.6, 20), std('#9AA7B3', {metalness:.6, roughness:.3}), -8 + i * 8, 18.8, -4); g.add(f); }
+  g.add(mesh(new THREE.BoxGeometry(6, 6, 6), glass('#9CB8F0'), 8, 21, 6));
+  return 28;
+});
+// Research Office: a library with a giant gold magnifying glass
+landmark('research', g => {
+  g.add(mesh(new THREE.BoxGeometry(30, 14, 22), std('#F1E8D6'), 0, 7, -2));
+  for (let i = 0; i < 7; i++) g.add(mesh(new THREE.CylinderGeometry(.9, .9, 12, 12), std('#FBF7EE'), -12 + i * 4, 6, 10));
+  g.add(mesh(new THREE.BoxGeometry(32, 2, 24), std('#C9B48A'), 0, 15, -1));
+  const lens = new THREE.Group(); lens.position.set(4, 24, 0); lens.rotation.z = -.5;
+  lens.add(mesh(new THREE.TorusGeometry(5, .9, 16, 40), std('#D4AF37', {metalness:.85, roughness:.25})));
+  const gl = mesh(new THREE.CircleGeometry(4.6, 32), std('#CFE7FF', {transparent:true, opacity:.45, roughness:.05}), 0, 0, 0, false); lens.add(gl);
+  lens.add(mesh(new THREE.CylinderGeometry(.8, .8, 8), std('#5B3B1E'), 0, -9, 0));
+  g.add(lens);
+  return 32;
+});
+// IPO Office with a rocket on the roof
+let rocket, rocketGlow;
+landmark('ipo', g => {
+  g.add(tower(0, 0, 22, 22, 20, sideMats[2]).translateY(-.5));
+  rocket = new THREE.Group(); rocket.position.set(0, 21, 0);
+  rocket.add(mesh(new THREE.CylinderGeometry(2.2, 2.2, 10, 20), std('#F7F7F7', {metalness:.3}), 0, 7, 0));
+  rocket.add(mesh(new THREE.ConeGeometry(2.2, 4, 20), std('#C98B1C', {metalness:.6, roughness:.3}), 0, 14, 0));
+  for (let i = 0; i < 3; i++){ const f = mesh(new THREE.BoxGeometry(.4, 3, 3), std('#C2414B'), Math.cos(i * 2.09) * 2.3, 3, Math.sin(i * 2.09) * 2.3); f.rotation.y = -i * 2.09; rocket.add(f); }
+  rocketGlow = new THREE.Mesh(new THREE.ConeGeometry(1.6, 4, 16), new THREE.MeshBasicMaterial({color:'#FFB547', transparent:true, opacity:0, toneMapped:false})); rocketGlow.rotation.x = Math.PI; rocketGlow.position.y = 0; rocket.add(rocketGlow);
+  g.add(rocket);
+  return 40;
+});
+// Charging Dock: glowing pads under a canopy
+landmark('dock', g => {
+  AGENTS.forEach((a, i) => { const pad = mesh(new THREE.CylinderGeometry(3, 3, .4, 28), glowMat(a.hex, .6, 1.8), -10.5 + i * 7, .3, 6, false); g.add(pad); });
+  for (const [x, z] of [[-14, -2], [14, -2], [-14, 12], [14, 12]]) g.add(mesh(new THREE.CylinderGeometry(.5, .5, 12), std('#5D6873'), x, 6, z));
+  g.add(mesh(new THREE.BoxGeometry(31, 1, 17), glass('#9CC9D9'), 0, 12.5, 5));
+  const bolt = new THREE.Shape(); bolt.moveTo(1, 6); bolt.lineTo(-3, 0); bolt.lineTo(0, 0); bolt.lineTo(-1.5, -6); bolt.lineTo(3, 1); bolt.lineTo(0, 1); bolt.closePath();
+  const b = mesh(new THREE.ExtrudeGeometry(bolt, {depth:1, bevelEnabled:false}), glowMat('#FFD23F', .8, 2), 0, 20, 5); g.add(b);
+  return 26;
+});
+// Coming-soon lots: scaffolding and a slowly turning crane
+const cranes = [];
+function construction(g, text){
+  const pipe = std('#E0A93A', {metalness:.4, roughness:.5}), parts = [];
+  for (let y = 0; y < 3; y++) for (const [x, z] of [[-10, -10], [10, -10], [-10, 10], [10, 10], [0, -10], [0, 10], [-10, 0], [10, 0]]) parts.push(new THREE.BoxGeometry(.5, 8, .5).translate(x, 4 + y * 8, z));
+  for (let y = 1; y < 4; y++){ for (const s of [-10, 10]){ parts.push(new THREE.BoxGeometry(20.5, .4, .4).translate(0, y * 8, s)); parts.push(new THREE.BoxGeometry(.4, .4, 20.5).translate(s, y * 8, 0)); } }
+  g.add(mesh(mergeGeometries(parts), pipe));
+  g.add(mesh(new THREE.BoxGeometry(20, 8, 20), std('#BCC3C9'), 0, 4, 0));
+  const crane = new THREE.Group(); crane.position.set(-12, 0, 12);
+  crane.add(mesh(new THREE.BoxGeometry(1.4, 44, 1.4), std('#F2C230', {metalness:.3}), 0, 22, 0));
+  const jib = new THREE.Group(); jib.position.y = 44;
+  jib.add(mesh(new THREE.BoxGeometry(34, 1.2, 1.2), std('#F2C230', {metalness:.3}), 12, 0, 0));
+  jib.add(mesh(new THREE.BoxGeometry(.2, 14, .2), std('#333'), 24, -7, 0));
+  crane.add(jib); g.add(crane); cranes.push(jib);
+  const s = canvasTex(512, 160, (c, w, h) => { c.fillStyle = '#fff'; c.fillRect(0, 0, w, h); c.strokeStyle = '#1F2A36'; c.lineWidth = 10; c.strokeRect(5, 5, w - 10, h - 10); c.fillStyle = '#1F2A36'; c.font = 'bold 54px system-ui'; c.textAlign = 'center'; c.fillText(text, w / 2, 72); c.font = '40px system-ui'; c.fillStyle = '#4B5866'; c.fillText('coming soon', w / 2, 128); });
+  const board = mesh(new THREE.BoxGeometry(16, 5, .6), std('#fff', {map:s}), 4, 6, 14); g.add(board);
+  g.add(mesh(new THREE.BoxGeometry(.5, 4, .5), std('#5D6873'), 4, 2, 14));
+  return 48;
+}
+landmark('courthouse', g => construction(g, 'Compliance AI'));
+landmark('hospital', g => construction(g, 'Claims Translator'));
+
+/* ───────────────────────── the rest of the city ───────────────────────── */
+const landmarkLots = new Set(Object.values(PLACES).map(p => p.lot.x + ',' + p.lot.z));
+const parks = new Set([L(1, 4), L(5, 1), L(0, 2), L(6, 5)].map(l => l.x + ',' + l.z));
+const treeTrunk = new THREE.CylinderGeometry(.5, .7, 4, 8), treeTop = new THREE.IcosahedronGeometry(3.4, 0);
+const trunkMat = std('#6B4F35'), leafMats = ['#6FA368', '#5C9460', '#88B474', '#4F8A5B'].map(c => std(c, {flatShading:true}));
+const TREES = [];
+function tree(x, z, s = 1){ TREES.push({x, z, s, leaf:Math.floor(srnd() * 4)}); }
+function plantTrees(){
+  const m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), sc = new THREE.Vector3(), p = new THREE.Vector3();
+  const trunks = new THREE.InstancedMesh(treeTrunk, trunkMat, TREES.length); trunks.castShadow = true;
+  TREES.forEach((t, i) => trunks.setMatrixAt(i, m4.compose(p.set(t.x, .5 + 2 * t.s, t.z), q, sc.setScalar(t.s))));
+  scene.add(trunks);
+  leafMats.forEach((mat, k) => {
+    const mine = TREES.filter(t => t.leaf === k); if (!mine.length) return;
+    const tops = new THREE.InstancedMesh(treeTop, mat, mine.length); tops.castShadow = true;
+    mine.forEach((t, i) => tops.setMatrixAt(i, m4.compose(p.set(t.x, .5 + 6 * t.s, t.z), q, sc.setScalar(t.s))));
+    scene.add(tops);
+  });
+}
+for (let i = 0; i < 7; i++) for (let j = 0; j < 7; j++){
+  const l = L(i, j), key = l.x + ',' + l.z;
+  if (landmarkLots.has(key)) continue;
+  if (parks.has(key)){
+    const lawn = mesh(new THREE.BoxGeometry(30, .6, 30), std('#7FAE6E', {roughness:1}), l.x, .3, l.z, false); scene.add(lawn);
+    for (let k = 0; k < 9; k++) tree(l.x + (srnd() - .5) * 24, l.z + (srnd() - .5) * 24, .8 + srnd() * .6);
+    const pond = mesh(new THREE.CylinderGeometry(5, 5, .3, 32), std('#6FA4C7', {roughness:.1, metalness:.2}), l.x + 4, .65, l.z - 3, false); scene.add(pond);
+    continue;
+  }
+  const dist = Math.hypot(l.x, l.z), base = 12 + 46 * Math.exp(-dist / 75);
+  const split = srnd() < .55;
+  const parts = split ? [[-7, -7], [7, -7], [-7, 7], [7, 7]] : [[0, 0]];
+  for (const [dx, dz] of parts){
+    if (split && srnd() < .18){ tree(l.x + dx, l.z + dz, 1); continue; }
+    const w = split ? 11 + srnd() * 2 : 22 + srnd() * 5, h = Math.max(6, base * (0.45 + srnd() * .9) * (split ? .8 : 1));
+    const k = Math.floor(srnd() * sideMats.length), t = towerGeos(l.x + dx, l.z + dz, w, w * (0.85 + srnd() * .3), h);
+    CITY.sides[k].push(t.side); CITY.roofs.push(t.roof);
+  }
+}
+CITY.sides.forEach((list, k) => { if (!list.length) return; const m = new THREE.Mesh(mergeGeometries(list), sideMats[k]); m.castShadow = m.receiveShadow = true; scene.add(m); });
+{ const m = new THREE.Mesh(mergeGeometries(CITY.roofs), roofMat); m.castShadow = m.receiveShadow = true; scene.add(m); }
+// trees along the avenues
+for (let k = -130; k <= 130; k += 20) if (Math.abs(k) % 40 !== 20){ tree(k, -150, .9); tree(-152, k, .9); tree(152, k, .9); }
+plantTrees();
+// street lamps at intersections (heads glow at night)
+{
+  const pole = new THREE.InstancedMesh(new THREE.CylinderGeometry(.25, .3, 7, 6), std('#3A434C'), 64);
+  const lampMat = glowMat('#FFE6A3', 0, 2.5);
+  const headM = new THREE.InstancedMesh(new THREE.SphereGeometry(.8, 10, 8), lampMat, 64);
+  const m4 = new THREE.Matrix4(); let k = 0;
+  for (let x = -140; x <= 140; x += 40) for (let z = -140; z <= 140; z += 40){ if (k >= 64) break; m4.makeTranslation(x + 6, 3.5, z + 6); pole.setMatrixAt(k, m4); m4.makeTranslation(x + 6, 7.2, z + 6); headM.setMatrixAt(k, m4); k++; }
+  pole.count = headM.count = k; scene.add(pole, headM);
+}
+// a few real lights for the downtown at night
+for (const [x, z] of [[0, 20], [-40, 20], [40, 20], [0, -20]]){ const pl = new THREE.PointLight('#FFD9A0', 0, 70, 1.6); pl.position.set(x, 12, z); pl.userData.max = 220; scene.add(pl); nightLights.push(pl); }
+
+/* scenery: traffic loops and drifting clouds (decoration, not agent activity) */
+const cars = [], CAR = {};
+{
+  const colors = ['#E05D5D', '#3E6FD8', '#F2C230', '#FFFFFF', '#2F3B47', '#5BAE7B', '#E58A3A'];
+  const roads = [-140, -100, -60, -20, 20, 60, 100, 140], N = small ? 12 : 22;
+  const bodyG = mergeGeometries([new THREE.BoxGeometry(5.6, 1.6, 2.6).translate(0, 1.3, 0), new THREE.BoxGeometry(1.2, 1.2, 2.7).translate(1.8, .6, 0), new THREE.BoxGeometry(1.2, 1.2, 2.7).translate(-1.8, .6, 0)]);
+  CAR.body = new THREE.InstancedMesh(bodyG, std('#ffffff', {metalness:.5, roughness:.3}), N);
+  CAR.cab = new THREE.InstancedMesh(new THREE.BoxGeometry(3, 1.3, 2.3).translate(-.3, 2.6, 0), glass('#2A3A4A'), N);
+  CAR.head = new THREE.InstancedMesh(new THREE.BoxGeometry(.2, .4, 2).translate(2.85, 1.4, 0), glowMat('#FFF5D6', .2, 2.2), N);
+  CAR.tail = new THREE.InstancedMesh(new THREE.BoxGeometry(.2, .4, 2).translate(-2.85, 1.4, 0), glowMat('#FF4B4B', .2, 2), N);
+  [CAR.body, CAR.cab].forEach(m => { m.castShadow = true; });
+  for (let i = 0; i < N; i++){
+    const a = roads[Math.floor(srnd() * 4)], b = roads[4 + Math.floor(srnd() * 4)], c = roads[Math.floor(srnd() * 4)], d = roads[4 + Math.floor(srnd() * 4)];
+    CAR.body.setColorAt(i, new THREE.Color(colors[i % colors.length]));
+    cars.push({loop:[[a, c], [b, c], [b, d], [a, d]], seg:0, t:srnd(), speed:14 + srnd() * 10});
+  }
+  Object.values(CAR).forEach(m => scene.add(m));
+}
+const clouds = [];
+for (let i = 0; i < 9; i++){
+  const m = std('#FFFFFF', {flatShading:true, roughness:1, transparent:true, opacity:.92}), parts = [];
+  for (let k = 0; k < 5; k++) parts.push(new THREE.IcosahedronGeometry(6 + srnd() * 7, 0).translate(k * 7 - 14, srnd() * 4, (srnd() - .5) * 8));
+  const c = new THREE.Mesh(mergeGeometries(parts), m);
+  c.position.set((srnd() - .5) * 700, 300 + srnd() * 60, (srnd() - .5) * 600); c.scale.set(1.6, .55, 1.6); scene.add(c); clouds.push(c);
+}
+
+/* ───────────────────────── robots ───────────────────────── */
+const ROBOT = {};
+function makeRobot(a){
+  const g = new THREE.Group(), col = new THREE.Color(a.hex);
+  const shell = std(a.hex, {roughness:.35, metalness:.25}), dark = std('#1F2A36', {roughness:.4, metalness:.3});
+  const eye = new THREE.MeshStandardMaterial({color:'#E9F7FF', emissive:'#BDEBFF', emissiveIntensity:2.2, toneMapped:false});
+  const body = new THREE.Group(); g.add(body);
+  body.add(mesh(new THREE.CapsuleGeometry(1.7, 2, 6, 16), shell, 0, 3.6, 0));
+  const head = new THREE.Group(); head.position.y = 7.3; body.add(head);
+  const skull = mesh(new THREE.SphereGeometry(1.9, 28, 18), shell); skull.scale.set(1.15, .9, 1); head.add(skull);
+  head.add(mesh(new THREE.BoxGeometry(2.9, 1.3, .6), dark, 0, 0, 1.55));
+  head.add(mesh(new THREE.SphereGeometry(.32, 12, 10), eye, -.65, .05, 1.88), mesh(new THREE.SphereGeometry(.32, 12, 10), eye, .65, .05, 1.88));
+  head.add(mesh(new THREE.CylinderGeometry(.12, .12, 1.6), dark, 0, 2.2, 0));
+  const tip = new THREE.Mesh(new THREE.SphereGeometry(.45, 14, 10), new THREE.MeshStandardMaterial({color:a.hex, emissive:a.hex, emissiveIntensity:2.4, toneMapped:false})); tip.position.y = 3.1; head.add(tip);
+  const armL = mesh(new THREE.CapsuleGeometry(.45, 1.8, 4, 10), shell, -2.2, 4, 0), armR = armL.clone(); armR.position.x = 2.2; body.add(armL, armR);
+  const legL = mesh(new THREE.CapsuleGeometry(.55, 1.2, 4, 10), dark, -.8, 1.1, 0), legR = legL.clone(); legR.position.x = .8; g.add(legL, legR);
+  const ring = new THREE.Mesh(new THREE.RingGeometry(3.2, 4, 40), new THREE.MeshBasicMaterial({color:col, transparent:true, opacity:0, toneMapped:false, side:THREE.DoubleSide}));
+  ring.rotation.x = -Math.PI / 2; ring.position.y = .08; g.add(ring);
+  g.scale.setScalar(1.45);
+  g.traverse(o => { o.userData.agent = a.id; });
+  const tag = label(a.short, 'rtag', g, {b1:12.5, b3:14.6, b2:12.5, buffett:14.6}[a.id], () => select({agent:a.id})); tag.style.background = a.hex; tag.title = a.name;
+  const sayDiv = document.createElement('div'); sayDiv.className = 'say';
+  const say = new CSS2DObject(sayDiv); say.position.set(0, 18, 0); g.add(say);
+  scene.add(g);
+  const pos = DOOR('dock').add(new THREE.Vector3(SLOT[a.id], 0, -6));
+  g.position.copy(pos);
+  ROBOT[a.id] = {a, g, body, head, armL, armR, legL, legR, ring, tip, say:sayDiv, path:[], place:'dock', walk:0, onArrive:null};
+}
+AGENTS.forEach(makeRobot);
+
+// walk along the street grid: along this road to the nearest cross street, across, then along the target road
+function routeTo(r, where){
+  const to = DOOR(where).add(new THREE.Vector3(SLOT[r.a.id], 0, where === 'dock' ? -6 : 0));
+  const from = r.g.position.clone();
+  if (Math.abs(from.z - to.z) < 1 || where === r.place && from.distanceTo(to) < 1) return [to];
+  const vx = Math.round((from.x + 20) / 40) * 40 - 20 + SLOT[r.a.id] * .3;
+  return [new THREE.Vector3(vx, 0, from.z), new THREE.Vector3(vx, 0, to.z), to];
+}
+let SPEED = 2;
+function walk(id, where){
+  const r = ROBOT[id];
+  return new Promise(res => {
+    if (r.place === where && !r.path.length){ res(); return; }
+    r.path = routeTo(r, where); r.place = where; r.onArrive = res;
+    if (reduce){ r.g.position.copy(r.path[r.path.length - 1]); r.path = []; res(); }
+  });
+}
+
+/* ───────────────────────── events (the real story) ───────────────────────── */
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'}[c]));
 const fmtT = t => new Date(t).toLocaleTimeString('en-US', {timeZone:'America/New_York', hour:'numeric', minute:'2-digit'});
 const fmtD = t => new Date(t).toLocaleDateString('en-US', {timeZone:'America/New_York', weekday:'short', month:'short', day:'numeric'});
-let EVENTS = [], LOAD_ERR = [];
+const dayKey = t => new Date(t).toLocaleDateString('en-CA', {timeZone:'America/New_York'});
+const agentOf = id => AGENTS.find(a => a.id === id);
+const placeOf = e => PLACES[e.place] ? e.place : 'dock';
+let SCENES = [], LOAD_ERR = [];
 async function loadEvents(){
   LOAD_ERR = [];
-  const res = await Promise.all(AGENTS.map(async a => {
+  const all = await Promise.all(AGENTS.map(async a => {
     try { const r = await fetch(a.src + (a.src.startsWith('http') ? '?t=' + Date.now() : ''), {cache:'no-store'}); if (!r.ok) throw 0;
           return ((await r.json()).events || []).map(e => ({...e, bot:a.id})); }
     catch (e) { LOAD_ERR.push(a.name); return []; }
   }));
-  return res.flat().filter(e => e.t && e.text).sort((x, y) => x.t.localeCompare(y.t));
-}
-// Turn raw events into scenes: a scan plus its "why no buy" becomes one scene
-function scenes(events){
-  const out = [], used = new Set();
-  for (let i = 0; i < events.length; i++){
-    const e = events[i];
-    if (used.has(e)) continue;
+  const ev = all.flat().filter(e => e.t && e.text).sort((x, y) => x.t.localeCompare(y.t));
+  const out = [], used = new Set();     // a scan plus its "why no buy" is one scene
+  ev.forEach((e, i) => {
+    if (used.has(e)) return;
     if (e.kind === 'scan'){
-      const nx = events.slice(i + 1, i + 8).find(f => !used.has(f) && f.bot === e.bot && ['hold', 'wait', 'skip'].includes(f.kind) && Date.parse(f.t) - Date.parse(e.t) < 180000);
-      if (nx){ used.add(nx); out.push({...nx, place:'floor', detail:e.text}); continue; }
+      const nx = ev.slice(i + 1, i + 8).find(f => !used.has(f) && f.bot === e.bot && ['hold', 'wait', 'skip'].includes(f.kind) && Date.parse(f.t) - Date.parse(e.t) < 180000);
+      if (nx){ used.add(nx); out.push({...nx, place:'floor', detail:e.text, scan:e.text}); return; }
     }
     out.push(e);
-  }
+  });
   return out;
 }
-const PLACE_OF = e => PLACES[e.place] ? e.place : 'dock';
-const agentOf = id => AGENTS.find(a => a.id === id);
+function updateWorldFromData(){
+  const moods = SCENES.filter(s => s.kind === 'mood'), m = moods[moods.length - 1];
+  const c = new THREE.Color(m ? (MOOD[m.mood] || '#9AA5B1') : '#9AA5B1');
+  beacon.material.color.copy(c); beacon.material.emissive.copy(c); beaconLight.color.copy(c); beaconLight.intensity = 260;
+  PLACE_OBJ.tower.userData.tag.textContent = 'Market Mood Tower' + (m ? ` · ${m.mood}` : '');
+  const scans = SCENES.filter(s => s.scan), last = scans[scans.length - 1];
+  if (last){
+    const picks = (last.scan.match(/(?:checks|bar): (.+?)\.?$/) || [])[1];
+    tickerText = `${agentOf(last.bot).name.toUpperCase()} · ${fmtT(last.t)} ET · ` + (picks ? 'TOP PICKS ' + picks.replace(/…$/, '') : last.text.toUpperCase());
+    setTicker();
+  }
+}
 
-/* ── feed ─────────────────────────────────────────────────── */
+/* ───────────────────────── showing a scene ───────────────────────── */
+const pulses = [];
+function pulse(where, hex){
+  const p = DOOR(where), ring = new THREE.Mesh(new THREE.RingGeometry(1, 2.2, 48), new THREE.MeshBasicMaterial({color:hex, transparent:true, opacity:.9, toneMapped:false, side:THREE.DoubleSide}));
+  ring.rotation.x = -Math.PI / 2; ring.position.set(p.x, .15, p.z - 4); scene.add(ring); pulses.push({ring, t:0});
+  if (where === 'lab') labStrips.forEach(m => { m.userData.flash = 1; });
+  if (where === 'ipo') rocketGlow.userData.flash = 1;
+}
+let ACTIVE = null;
+function speak(id, text){
+  Object.values(ROBOT).forEach(r => { r.say.classList.remove('on'); r.ring.material.opacity = 0; });
+  const r = ROBOT[id], a = r.a;
+  r.say.innerHTML = `<b style="color:${a.hex}">${esc(a.name)}</b>${esc(text.length > 160 ? text.slice(0, 157) + '…' : text)}`;
+  r.say.classList.add('on'); r.ring.material.opacity = .85; ACTIVE = id;
+}
 function feedItem(s, fresh){
   const a = agentOf(s.bot), li = document.createElement('li');
   if (fresh) li.className = 'new';
-  li.innerHTML = `<div class="who"><span class="dot" style="background:${a.hex}"></span>${a.name}<span class="where">at ${PLACES[PLACE_OF(s)].name.replace(/^the /, '')}</span><time datetime="${s.t}">${fmtT(s.t)}</time></div>
+  li.innerHTML = `<div class="who"><span class="dot" style="background:${a.hex}"></span>${esc(a.name)}<span class="where">at ${esc(PLACES[placeOf(s)].name)}</span><time datetime="${s.t}">${fmtT(s.t)}</time></div>
     <div>${esc(s.text)}</div>${s.detail ? `<div class="detail">${esc(s.detail)}</div>` : ''}`;
-  $('#feed').prepend(li);
-  while ($('#feed').children.length > 120) $('#feed').lastChild.remove();
+  li.onclick = () => { select({agent:s.bot}); };
+  const f = document.getElementById('feed'); f.prepend(li); while (f.children.length > 150) f.lastChild.remove();
+}
+async function showScene(s, fresh){
+  const where = placeOf(s);
+  ACTIVE = s.bot;
+  await walk(s.bot, where);
+  pulse(where, agentOf(s.bot).hex);
+  speak(s.bot, s.text); feedItem(s, fresh);
+  document.getElementById('clock').textContent = `${fmtD(s.t)}, ${fmtT(s.t)} ET`;
 }
 
-/* ── playback ─────────────────────────────────────────────── */
-let SCENES = [], speed = 2, playing = false, idx = 0, timer = null, live = true, lastSeen = '';
-function stopReplay(){ playing = false; clearTimeout(timer); $('#playBtn').setAttribute('aria-pressed', 'false'); $('#playBtn').textContent = 'Replay today'; }
-function showScene(s, fresh){
-  const a = agentOf(s.bot); if (!a) return;
-  WALK = Math.min(1100, 2600 / speed * 0.55);
-  const g = document.getElementById('r-' + s.bot), moving = g.dataset.place !== PLACE_OF(s);
-  place(s.bot, PLACE_OF(s)); feedItem(s, fresh);
-  $('#bubble').classList.remove('on');
-  clearTimeout(showScene._b); showScene._b = setTimeout(() => bubble(a, s.text, PLACE_OF(s)), moving ? WALK : 0);
-  $('#clock').textContent = `${fmtD(s.t)}, ${fmtT(s.t)} ET`;
-}
+/* ───────────────────────── replay, live, timeline ───────────────────────── */
+let playing = false, live = true, idx = 0, LIST = [], lastSeen = '', FOLLOW = true, token = 0;
+const $ = s => document.querySelector(s);
 function todays(){
-  // the most recent day that has events (in New York time), so evenings and weekends still show a full day
   if (!SCENES.length) return [];
-  const day = t => new Date(t).toLocaleDateString('en-CA', {timeZone:'America/New_York'});
-  const last = day(SCENES[SCENES.length - 1].t);
-  const list = SCENES.filter(s => day(s.t) === last);
+  const last = dayKey(SCENES[SCENES.length - 1].t), list = SCENES.filter(s => dayKey(s.t) === last);
   return list.length >= 4 ? list : SCENES.slice(-12);
 }
-function replay(){
-  const list = todays(); if (!list.length) return;
-  live = false; $('#liveBtn').setAttribute('aria-pressed', 'false');
-  playing = true; idx = 0; $('#feed').innerHTML = '';
-  $('#playBtn').setAttribute('aria-pressed', 'true'); $('#playBtn').textContent = 'Pause';
-  AGENTS.forEach(a => place(a.id, 'dock', true));
-  $('#hint').textContent = `Replaying ${list.length} moments from ${fmtD(list[0].t)}.`;
-  const step = () => {
-    if (!playing) return;
-    if (idx >= list.length){ stopReplay(); goLive(); return; }
-    showScene(list[idx], true); idx++;
-    $('#prog').style.width = (idx / list.length * 100) + '%';
-    timer = setTimeout(step, 2600 / speed);
-  };
-  step();
+function drawTimeline(){
+  const tl = $('#tl'); tl.querySelectorAll('i').forEach(x => x.remove());
+  if (!LIST.length) return;
+  const t0 = Date.parse(LIST[0].t), t1 = Date.parse(LIST[LIST.length - 1].t) || t0 + 1;
+  LIST.forEach((s, k) => { const d = document.createElement('i'); d.style.left = (3 + 94 * (Date.parse(s.t) - t0) / Math.max(1, t1 - t0)) + '%'; d.style.background = agentOf(s.bot).hex; d.title = `${fmtT(s.t)} · ${agentOf(s.bot).name}`; d.onclick = e => { e.stopPropagation(); replay(k); }; tl.appendChild(d); });
+}
+function moveHead(k){
+  if (!LIST.length) return;
+  const t0 = Date.parse(LIST[0].t), t1 = Date.parse(LIST[LIST.length - 1].t) || t0 + 1;
+  $('#tlHead').style.left = (3 + 94 * (Date.parse(LIST[Math.min(k, LIST.length - 1)].t) - t0) / Math.max(1, t1 - t0)) + '%';
+}
+async function replay(from = 0){
+  LIST = todays(); if (!LIST.length) return;
+  const my = ++token; playing = true; live = false;
+  $('#liveBtn').setAttribute('aria-pressed', 'false'); $('#playBtn').textContent = 'Pause';
+  if (from === 0){ $('#feed').innerHTML = ''; Object.values(ROBOT).forEach(r => { r.path = []; r.place = 'dock'; r.g.position.copy(DOOR('dock').add(new THREE.Vector3(SLOT[r.a.id], 0, -6))); }); }
+  $('#hint').textContent = `Replaying ${LIST.length} real moments from ${fmtD(LIST[0].t)}. Click a dot on the timeline to jump.`;
+  drawTimeline();
+  for (idx = from; idx < LIST.length; idx++){
+    if (my !== token || !playing) return;
+    moveHead(idx);
+    await showScene(LIST[idx], true);
+    await new Promise(r => setTimeout(r, 2200 / SPEED));
+  }
+  if (my === token) goLive();
 }
 function goLive(){
-  stopReplay(); live = true; $('#liveBtn').setAttribute('aria-pressed', 'true'); $('#prog').style.width = '100%';
-  $('#feed').innerHTML = '';
-  SCENES.slice(-60).forEach(s => feedItem(s, false));
-  // each agent stands where its latest action happened; after an hour without news it goes back to charge
+  token++; playing = false; live = true;
+  $('#liveBtn').setAttribute('aria-pressed', 'true'); $('#playBtn').textContent = 'Replay today';
+  LIST = todays(); drawTimeline(); moveHead(LIST.length - 1);
+  $('#feed').innerHTML = ''; SCENES.slice(-80).forEach(s => feedItem(s, false));
   let latest = null;
   AGENTS.forEach(a => {
-    const mine = SCENES.filter(s => s.bot === a.id), s = mine[mine.length - 1];
-    if (!s) return place(a.id, 'dock', true);
-    place(a.id, Date.now() - Date.parse(s.t) < 3600e3 ? PLACE_OF(s) : 'dock');
-    if (!latest || s.t > latest.t) latest = s;
+    const mine = SCENES.filter(s => s.bot === a.id), s = mine[mine.length - 1], r = ROBOT[a.id];
+    const where = s && Date.now() - Date.parse(s.t) < 3600e3 ? placeOf(s) : 'dock';
+    r.path = []; r.place = where; r.g.position.copy(DOOR(where).add(new THREE.Vector3(SLOT[a.id], 0, where === 'dock' ? -6 : 0)));
+    if (s && (!latest || s.t > latest.t)) latest = s;
   });
-  if (latest) bubble(agentOf(latest.bot), latest.text, Date.now() - Date.parse(latest.t) < 3600e3 ? PLACE_OF(latest) : 'dock');
+  if (latest) speak(latest.bot, latest.text);
   $('#clock').textContent = 'Live · ' + new Date().toLocaleTimeString('en-US', {timeZone:'America/New_York', hour:'numeric', minute:'2-digit'}) + ' ET';
-  $('#hint').textContent = SCENES.length ? `Newest first. ${SCENES.length} recorded moments from the last few days.` : 'No records yet.';
-  renderRoster();
+  $('#hint').textContent = SCENES.length ? `Newest first: ${SCENES.length} recorded moments. New ones play as they arrive (checked every 2 minutes).` : 'No records yet.';
+  if (SELECTED) select(SELECTED, true);
 }
 async function refresh(first){
-  const ev = await loadEvents();
-  EVENTS = ev; SCENES = scenes(ev);
-  if (LOAD_ERR.length) $('#hint').insertAdjacentHTML('afterend', `<p class="err" id="lerr">Couldn’t load ${LOAD_ERR.join(' and ')} (GitHub didn’t answer). Trying again in 2 minutes.</p>`);
-  else $('#lerr')?.remove();
-  if (first){ lastSeen = SCENES.length ? SCENES[SCENES.length - 1].t : ''; return replay(); }
-  const fresh = SCENES.filter(s => s.t > lastSeen);
-  if (fresh.length){ lastSeen = fresh[fresh.length - 1].t; if (live) { fresh.forEach((s, i) => setTimeout(() => showScene(s, true), i * 2600)); setTimeout(renderRoster, fresh.length * 2600); } }
+  const s = await loadEvents();
+  SCENES = s; updateWorldFromData();
+  $('#lerr')?.remove();
+  if (LOAD_ERR.length) $('#hint').insertAdjacentHTML('afterend', `<p class="err" id="lerr">Couldn’t load ${esc(LOAD_ERR.join(' and '))} (GitHub didn’t answer). Trying again in 2 minutes.</p>`);
+  if (first){ lastSeen = SCENES.length ? SCENES[SCENES.length - 1].t : ''; replay(0); return; }
+  const fresh = SCENES.filter(x => x.t > lastSeen);
+  if (fresh.length){ lastSeen = fresh[fresh.length - 1].t; if (live) for (const x of fresh) await showScene(x, true); }
 }
 
-/* ── roster ───────────────────────────────────────────────── */
+/* ───────────────────────── selection & details panel ───────────────────────── */
+let SELECTED = null;
+function tab(which){ const story = which === 'story'; $('#tabStory').setAttribute('aria-selected', story); $('#tabInfo').setAttribute('aria-selected', !story); $('#pStory').hidden = !story; $('#pInfo').hidden = story; }
 function ago(t){ const m = Math.round((Date.now() - Date.parse(t)) / 60000); return m < 1 ? 'just now' : m < 60 ? `${m} min ago` : m < 1440 ? `${Math.round(m / 60)} h ago` : `${Math.round(m / 1440)} d ago`; }
-function renderRoster(){
-  $('#roster').innerHTML = AGENTS.map(a => {
-    const mine = SCENES.filter(s => s.bot === a.id), s = mine[mine.length - 1];
-    const today = mine.filter(x => new Date(x.t).toDateString() === new Date().toDateString()).length;
-    const recent = s && Date.now() - Date.parse(s.t) < 3600e3;
-    return `<article class="agent"><div class="nm"><span class="dot" style="background:${a.hex}"></span>${a.name}</div>
-      <div class="role">${a.role}</div>
-      <span class="st ${recent ? 'work' : ''}"><i></i>${recent ? 'Working' : 'Between runs'}${today ? ` · ${today} moment${today === 1 ? '' : 's'} today` : ''}</span>
-      <div class="last">${s ? esc(s.text) : 'No records yet.'}${s ? `<time datetime="${s.t}">${fmtD(s.t)}, ${fmtT(s.t)} ET · ${ago(s.t)}</time>` : ''}</div></article>`;
-  }).join('') + SOON.map(x => `<article class="agent soon"><div class="nm"><span class="dot" style="background:transparent"></span>${x.name}</div><div class="role">${x.role}</div><span class="st"><i></i>Not connected yet</span></article>`).join('');
+const evRow = s => { const a = agentOf(s.bot); return `<li><div class="who"><span class="dot" style="background:${a.hex}"></span>${esc(a.name)}<time>${fmtD(s.t)}, ${fmtT(s.t)}</time></div><div>${esc(s.text)}</div></li>`; };
+function select(sel, quiet){
+  SELECTED = sel;
+  document.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', c.dataset.id === sel?.agent));
+  Object.values(PLACE_OBJ).forEach(g => g.userData.tag.classList.toggle('hot', g === PLACE_OBJ[sel?.place]));
+  if (!sel){ $('#pInfo').innerHTML = '<p class="empty">Click a robot or a building to see what it does and what happened there.</p>'; return; }
+  if (sel.agent){
+    const a = agentOf(sel.agent), mine = SCENES.filter(s => s.bot === a.id), s = mine[mine.length - 1];
+    const today = mine.filter(x => dayKey(x.t) === dayKey(new Date().toISOString())).length, recent = s && Date.now() - Date.parse(s.t) < 3600e3;
+    $('#pInfo').innerHTML = `<div class="info"><h2><span class="dot" style="background:${a.hex};width:16px;height:16px"></span>${esc(a.name)}</h2>
+      <div class="role">${esc(a.role)}</div>
+      <span class="stat ${recent ? 'work' : ''}"><i></i>${recent ? 'Working' : 'Between runs'}${today ? ` · ${today} moment${today === 1 ? '' : 's'} today` : ''}${s ? ` · last ${ago(s.t)}` : ''}</span>
+      <h3>Latest</h3></div><ol class="feed">${mine.slice(-12).reverse().map(evRow).join('') || '<li>No records yet.</li>'}</ol>`;
+    if (!quiet){ tab('info'); FOLLOW_ID = a.id; }
+  } else {
+    const p = PLACES[sel.place], here = SCENES.filter(s => placeOf(s) === sel.place), who = [...new Set(here.map(s => agentOf(s.bot).name))];
+    $('#pInfo').innerHTML = `<div class="info"><h2>${esc(p.name)}</h2><div class="role">${esc(p.about)}</div>
+      ${who.length ? `<span class="stat"><i style="background:var(--ink)"></i>Who works here: ${esc(who.join(', '))}</span>` : ''}<h3>${here.length ? 'What happened here' : 'Nothing recorded here yet'}</h3></div>
+      <ol class="feed">${here.slice(-12).reverse().map(evRow).join('')}</ol>`;
+    if (!quiet){ tab('info'); FOLLOW_ID = null; flyTo(new THREE.Vector3(p.lot.x, 0, p.lot.z), 110); }
+  }
 }
+$('#tabStory').onclick = () => tab('story'); $('#tabInfo').onclick = () => tab('info');
+$('#chips').innerHTML = AGENTS.map(a => `<button class="chip" data-id="${a.id}" aria-pressed="false"><i style="background:${a.hex}"></i>${esc(a.name)}</button>`).join('');
+document.querySelectorAll('.chip').forEach(c => c.onclick = () => select({agent:c.dataset.id}));
 
-/* ── wire up ──────────────────────────────────────────────── */
-drawMap(); tickMarket(); setInterval(tickMarket, 60000);
-$('#playBtn').onclick = () => { if (playing){ stopReplay(); } else replay(); };
+/* ───────────────────────── camera moves ───────────────────────── */
+let FOLLOW_ID = null, fly = null;
+function flyTo(target, dist = 150, pos){
+  const dir = camera.position.clone().sub(controls.target).normalize();
+  fly = {t:0, from:{p:camera.position.clone(), t:controls.target.clone()}, to:{p:pos || target.clone().add(dir.multiplyScalar(dist)), t:target.clone()}, dur:reduce ? .01 : 1.4};
+}
+$('#overBtn').onclick = () => { FOLLOW_ID = null; select(null); flyTo(WIDE.target, 0, WIDE.pos); };
+$('#followBtn').onclick = () => { FOLLOW = !FOLLOW; $('#followBtn').setAttribute('aria-pressed', FOLLOW); };
+$('#playBtn').onclick = () => { if (playing){ token++; playing = false; $('#playBtn').textContent = 'Resume'; } else if ($('#playBtn').textContent === 'Resume') replay(idx); else replay(0); };
 $('#liveBtn').onclick = () => goLive();
-document.querySelectorAll('.spd').forEach(b => b.onclick = () => { speed = +b.dataset.s; document.querySelectorAll('.spd').forEach(x => x.setAttribute('aria-pressed', x === b)); });
-window.addEventListener('resize', () => { const b = $('#bubble'); if (b.classList.contains('on')) b.classList.remove('on'); });
-refresh(true);
-setInterval(() => refresh(false), 120000);
+document.querySelectorAll('.spd').forEach(b => b.onclick = () => { SPEED = +b.dataset.s; document.querySelectorAll('.spd').forEach(x => x.setAttribute('aria-pressed', x === b)); });
+
+/* ───────────────────────── picking ───────────────────────── */
+const ray = new THREE.Raycaster(), ptr = new THREE.Vector2(); let down = null, hoverPlace = null;
+const pickables = () => [...Object.values(ROBOT).map(r => r.g), ...Object.values(PLACE_OBJ)];
+function pick(e){
+  ptr.set(e.clientX / innerWidth * 2 - 1, -(e.clientY / innerHeight) * 2 + 1); ray.setFromCamera(ptr, camera);
+  const hit = ray.intersectObjects(pickables(), true)[0];
+  return hit ? hit.object.userData : null;
+}
+renderer.domElement.addEventListener('pointerdown', e => { down = [e.clientX, e.clientY]; });
+renderer.domElement.addEventListener('pointerup', e => {
+  if (!down || Math.hypot(e.clientX - down[0], e.clientY - down[1]) > 6) return;
+  const u = pick(e);
+  if (u?.agent) select({agent:u.agent}); else if (u?.place) select({place:u.place}); else select(null);
+});
+renderer.domElement.addEventListener('pointermove', e => {
+  if (e.buttons) return;
+  const u = pick(e); renderer.domElement.style.cursor = u && (u.agent || u.place) ? 'pointer' : 'grab';
+  const p = u?.place || null;
+  if (p !== hoverPlace){ if (hoverPlace && SELECTED?.place !== hoverPlace) PLACE_OBJ[hoverPlace].userData.tag.classList.remove('hot'); if (p) PLACE_OBJ[p].userData.tag.classList.add('hot'); hoverPlace = p; }
+});
+controls.addEventListener('start', () => { fly = null; });
+
+/* ───────────────────────── animation loop ───────────────────────── */
+const clock = new THREE.Clock(); let el = 0;
+const _m4 = new THREE.Matrix4(), _q = new THREE.Quaternion(), _p = new THREE.Vector3(), _up = new THREE.Vector3(0, 1, 0), _one = new THREE.Vector3(1, 1, 1);
+// adaptive quality: if the device is struggling, drop resolution, then shadows
+const perf = {n:0, sum:0, level:0};
+function adapt(dt){
+  if (perf.level >= 2) return;
+  perf.n++; perf.sum += dt;
+  if (perf.n < 45 && perf.sum < 1.5) return;
+  const avg = perf.sum / perf.n; perf.n = perf.sum = 0;
+  if (avg > 1 / 30){
+    perf.level++;
+    if (perf.level === 1) renderer.setPixelRatio(1);
+    if (perf.level === 2){ renderer.shadowMap.enabled = false; scene.traverse(o => { if (o.material) [].concat(o.material).forEach(m => m.needsUpdate = true); }); }
+  }
+}
+const intro = reduce ? null : {t:0, from:camera.position.clone(), to:HOME.pos.clone()};
+if (reduce) camera.position.copy(HOME.pos);
+function frame(){
+  const raw = clock.getDelta(), dt = Math.min(raw, .05); el += dt; adapt(raw);
+  // intro fly-in (the one orchestrated motion)
+  if (intro && intro.t < 1){ intro.t = Math.min(1, intro.t + dt / 3.2); const k = 1 - Math.pow(1 - intro.t, 3); camera.position.lerpVectors(intro.from, intro.to, k); }
+  if (fly){ fly.t = Math.min(1, fly.t + dt / fly.dur); const k = 1 - Math.pow(1 - fly.t, 3); camera.position.lerpVectors(fly.from.p, fly.to.p, k); controls.target.lerpVectors(fly.from.t, fly.to.t, k); if (fly.t >= 1) fly = null; }
+  // robots
+  Object.values(ROBOT).forEach(r => {
+    const moving = r.path.length > 0;
+    if (moving){
+      const goal = r.path[0], d = goal.clone().sub(r.g.position); d.y = 0;
+      const step = 34 * SPEED * dt;
+      if (d.length() <= step){ r.g.position.copy(goal); r.path.shift(); if (!r.path.length && r.onArrive){ const f = r.onArrive; r.onArrive = null; f(); } }
+      else { r.g.position.add(d.normalize().multiplyScalar(step)); r.g.rotation.y = Math.atan2(d.x, d.z); }
+      r.walk += dt * 11;
+    } else { r.g.rotation.y += (0 - r.g.rotation.y) * .08; }
+    const sw = moving ? Math.sin(r.walk) : 0;
+    r.legL.rotation.x = sw * .7; r.legR.rotation.x = -sw * .7; r.armL.rotation.x = -sw * .6; r.armR.rotation.x = sw * .6;
+    r.body.position.y = moving ? Math.abs(Math.sin(r.walk)) * .35 : Math.sin(el * 2 + r.g.position.x) * .12;
+    r.head.rotation.y = moving ? 0 : Math.sin(el * .7 + r.g.position.z) * .35;
+    r.tip.material.emissiveIntensity = 1.6 + Math.sin(el * 4) * .8;
+  });
+  // camera follows the acting robot (or the one you clicked)
+  const fid = FOLLOW_ID || (FOLLOW && playing ? ACTIVE : null);
+  if (fid && !fly && !(intro && intro.t < 1)){
+    const p = ROBOT[fid].g.position, delta = new THREE.Vector3(p.x, 0, p.z).sub(controls.target).multiplyScalar(.045);
+    controls.target.add(delta); camera.position.add(delta);
+  }
+  // scenery
+  cars.forEach((c, i) => {
+    const a = c.loop[c.seg], b = c.loop[(c.seg + 1) % 4], len = Math.hypot(b[0] - a[0], b[1] - a[1]) || 1;
+    c.t += c.speed * dt / len; if (c.t >= 1){ c.t = 0; c.seg = (c.seg + 1) % 4; }
+    const x = a[0] + (b[0] - a[0]) * c.t, z = a[1] + (b[1] - a[1]) * c.t, dx = b[0] - a[0], dz = b[1] - a[1];
+    const nx = -Math.sign(dz) * 2.4, nz = Math.sign(dx) * 2.4;            // keep right
+    _q.setFromAxisAngle(_up, Math.atan2(-dz, dx)); _m4.compose(_p.set(x + nx, .5, z + nz), _q, _one);
+    CAR.body.setMatrixAt(i, _m4); CAR.cab.setMatrixAt(i, _m4); CAR.head.setMatrixAt(i, _m4); CAR.tail.setMatrixAt(i, _m4);
+  });
+  Object.values(CAR).forEach(m => { m.instanceMatrix.needsUpdate = true; });
+  clouds.forEach((c, i) => { c.position.x += dt * (2 + i % 3); if (c.position.x > 340) c.position.x = -340; });
+  if (dish) dish.rotation.y += dt * .4;
+  cranes.forEach((j, i) => j.rotation.y = Math.sin(el * .15 + i * 2) * .9);
+  if (tickerTex) tickerTex.offset.x = (tickerTex.offset.x + dt * .025) % 1;
+  if (rocket) rocket.position.y = 21 + Math.sin(el * 1.5) * .15;
+  labStrips.forEach(m => { if (m.userData.flash){ m.userData.flash = Math.max(0, m.userData.flash - dt * .5); m.emissiveIntensity = (.5 + (2.2 - .5) * NIGHT) + m.userData.flash * 3; } });
+  if (rocketGlow.userData.flash){ rocketGlow.userData.flash = Math.max(0, rocketGlow.userData.flash - dt * .4); rocketGlow.material.opacity = rocketGlow.userData.flash; rocketGlow.scale.y = 1 + Math.sin(el * 30) * .2; }
+  for (let i = pulses.length - 1; i >= 0; i--){ const p = pulses[i]; p.t += dt; p.ring.scale.setScalar(1 + p.t * 7); p.ring.material.opacity = Math.max(0, .9 - p.t * .6); if (p.t > 1.6){ scene.remove(p.ring); pulses.splice(i, 1); } }
+  controls.update();
+  renderer.render(scene, camera); labels.render(scene, camera);
+  Object.values(ROBOT).forEach(r => { r.say.style.zIndex = 999999; });   // speech above every name tag
+  requestAnimationFrame(frame);
+}
+addEventListener('resize', () => { camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); labels.setSize(innerWidth, innerHeight); });
+
+applySky(); setInterval(applySky, 60000);
+window.__hq = {renderer, perf, info:() => renderer.info.render};
+frame();
+setTimeout(() => { const l = $('#loading'); l.style.opacity = 0; setTimeout(() => l.remove(), 700); }, 300);
+refresh(true); setInterval(() => refresh(false), 120000);
 </script>
 </body>
 </html>
