@@ -601,8 +601,12 @@ const ETFS={VTI:'us',VOO:'us',SPY:'us',IVV:'us',QQQ:'us',SCHB:'us',ITOT:'us',SCH
   VXUS:'intl',VEA:'intl',VWO:'intl',IXUS:'intl',EFA:'intl',IEFA:'intl',IEMG:'intl',VT:'global',ACWI:'global',
   BND:'bond',AGG:'bond',BNDX:'bond',TLT:'bond',IEF:'bond',SHY:'bond',SGOV:'bond',BIL:'bond',VGIT:'bond',SCHZ:'bond',
   GLD:'gold',IAU:'gold',GLDM:'gold',SLV:'gold',VNQ:'reit',SCHH:'reit'};
+// Crypto: the name must say so (LINK, COMP, OP… are also real stock tickers); a few big coins are safe by ticker alone.
+const CRYPTO_NAME=/\b(BITCOIN|ETHEREUM|XRP|RIPPLE|ARBITRUM|DOGECOIN|CARDANO|SOLANA|LITECOIN|AVALANCHE|CHAINLINK|POLKADOT|SHIBA INU|POLYGON|STELLAR|UNISWAP|PEPE|TRON|TONCOIN|BONK|AAVE|TEZOS|COSMOS|OPTIMISM|HEDERA|USD COIN|USDC|TETHER|SUI|DOGWIFHAT|ONDO|CRYPTO)\b/;
+const CRYPTO_SAFE=new Set(['BTC','ETH','XRP','DOGE','ADA','SOL','SHIB','LTC','AVAX','XLM','BCH','ETC','USDC','USDT']);
 function fundKind(h){
   const t=(h.ticker||'').toUpperCase(), d=(h.desc||'').toUpperCase();
+  if(CRYPTO_NAME.test(d)&&!/\b(ETF|TRUST|FUND)\b/.test(d) || (!d&&CRYPTO_SAFE.has(t)&&!DATA.stocks.some(x=>x.ticker===t))) return 'crypto';
   if(ETFS[t]) return ETFS[t];
   if(!/\b(ETF|INDEX|FUND|FDS|SPDR|ISHARES|TRUST|TR)\b/.test(d)) return null;
   if(/BOND|BD |TREASURY|INCOME|FIXED/.test(d)) return 'bond';
@@ -612,7 +616,7 @@ function fundKind(h){
   return /\b(ETF|INDEX)\b/.test(d)?'us':null;
 }
 const isFund=h=>!!fundKind(h);
-const KIND={us:'US stock index fund',intl:'International index fund',global:'Global index fund',bond:'Bond fund',gold:'Gold / commodity',reit:'Real-estate fund'};
+const KIND={us:'US stock index fund',intl:'International index fund',global:'Global index fund',bond:'Bond fund',gold:'Gold / commodity',reit:'Real-estate fund',crypto:'Crypto'};
 function portData(){
   // One stock can sit in several accounts (lots). Show one row per stock, add up the shares.
   let tv=0,tc=0,tvc=0,ws=0,wv=0; const by=new Map();
@@ -625,10 +629,16 @@ function portData(){
     const h={...h0,shares,cost:cShares?costed.reduce((a,l)=>a+l.cost*l.shares,0)/cShares:null,price:filePx,asOf,desc:lots.map(l=>l.desc).find(Boolean)||'',
              accts:[...new Set(lots.map(l=>l.acct||''))].filter(Boolean),lots:lots.length};
     const fk=fundKind(h);
-    const price=s?s.price:filePx, val=price!=null?price*shares:null;
+    // newest price wins: your file's (dated the day you import it) or the site's last update
+    const newest=lots.filter(l=>l.price!=null).sort((a,b)=>String(b.asOf||'').localeCompare(String(a.asOf||'')))[0];
+    const fileAt=newest?String(newest.asOf||''):'', siteAt=s?String(s.updated||DATA.generated||''):'';
+    // compare real moments: a date-only asOf ("2026-10-25") from older saves counts as the end of that day (UTC)
+    const t=x=>x?Date.parse(x.length===10?x+'T23:59:59Z':x):0;
+    const useFile=newest!=null&&(!s||t(fileAt)>t(siteAt));
+    const price=useFile?newest.price:(s?s.price:null), val=price!=null?price*shares:null;
     const cost=cShares?h.cost*cShares:null, cval=price!=null&&cShares?price*cShares:null;   // gain only on shares that have a cost
     if(val!=null)tv+=val; if(cost!=null&&cval!=null){tc+=cost;tvc+=cval;} if(s&&val!=null){ws+=s.overall.score*val;wv+=val;}
-    return {h,s,fk,price,priceSrc:s?'site':(filePx!=null?'file':null),val,cost,partialCost:cShares>0&&cShares<shares-1e-9,g:(cval!=null&&cost)?(cval-cost)/cost:null};
+    return {h,s,fk,price,priceSrc:useFile?'file':(s?'site':null),val,cost,partialCost:cShares>0&&cShares<shares-1e-9,g:(cval!=null&&cost)?(cval-cost)/cost:null};
   });
   rows.forEach(r=>r.w=tv&&r.val!=null?r.val/tv:null);
   rows.sort((a,b)=>(b.val||0)-(a.val||0));
@@ -638,10 +648,10 @@ function renderPort(){
   const P=portData();
   if(!P.rows.length){ $('#ptb').innerHTML='<tr><td colspan="10" class="muted">No holdings yet. Add one above or import a file. It stays private to this browser.</td></tr>'; $('#pAnalysis').innerHTML=''; return; }
   const rows=P.rows.map(({h,s,fk,price,priceSrc,val,g,w,partialCost})=>`<tr><td class="mono" style="cursor:${s?'pointer':'default'}" ${s?`onclick="openD('${s.desk}','${esc(h.ticker)}')"`:''}>${esc(h.ticker)}<div class="muted" style="font:11px Inter;max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(s?.name||h.desc||'')}</div>${h.accts.length?`<div class="muted" style="font:10.5px Inter">${esc(h.accts.join(' + '))}</div>`:''}</td>
-      <td class="muted">${s?(s.desk==='ipo'?'IPO':'Company'):fk?'Fund':'Stock'}</td>
-      <td class="n">${num(h.shares,h.shares%1?3:0)}</td><td class="n">${money(h.cost)}</td><td class="n">${money(price)}${priceSrc==='file'?`<div class="muted" style="font:10.5px Inter" title="Price from your imported file${h.asOf?' ('+esc(h.asOf)+')':''}">from file</div>`:''}</td><td class="n">${money(val)}${w!=null?`<div class="muted" style="font:10.5px Inter">${pct(w,1)}</div>`:''}</td>
+      <td class="muted">${s?(s.desk==='ipo'?'IPO':'Company'):fk==='crypto'?'Crypto':fk?'Fund':'Stock'}</td>
+      <td class="n">${num(h.shares,h.shares%1?3:0)}</td><td class="n">${money(h.cost)}</td><td class="n">${money(price)}${priceSrc==='file'?`<div class="muted" style="font:10.5px Inter" title="Price from your imported file${h.asOf?' ('+esc(new Date(h.asOf).toLocaleString())+')':''}">from file</div>`:''}</td><td class="n">${money(val)}${w!=null?`<div class="muted" style="font:10.5px Inter">${pct(w,1)}</div>`:''}</td>
       <td class="n ${g==null?'muted':g>=0?'up':'down'}">${g==null?'—':(g>=0?'+':'')+pct(g)}${partialCost?'<div class="muted" style="font:10.5px Inter" title="Only the shares with a cost are counted">part</div>':''}</td><td class="n">${s?Math.round(s.overall.score):'—'}</td>
-      <td>${s?`<span class="badge ${bc(s.overall.label)}">${esc(s.overall.label)}</span>`:fk?`<span class="badge b-research" title="Funds are baskets of companies; the investor lenses score individual businesses.">${esc(KIND[fk]||'Fund')}</span>`:'<span class="muted">not analyzed yet</span>'}</td>
+      <td>${s?`<span class="badge ${bc(s.overall.label)}">${esc(s.overall.label)}</span>`:fk==='crypto'?'<span class="badge b-hold" title="Crypto has no earnings or cash flow, so the investor lenses can\'t score it.">Crypto</span>':fk?`<span class="badge b-research" title="Funds are baskets of companies; the investor lenses score individual businesses.">${esc(KIND[fk]||'Fund')}</span>`:'<span class="muted">not analyzed yet</span>'}</td>
       <td><button class="btn" style="padding:4px 8px" onclick="removeHolding('${esc(h.ticker)}')">✕</button></td></tr>`);
   rows.push(`<tr><td><b>Total</b></td><td></td><td></td><td class="n">${money(P.tc||null)}</td><td></td><td class="n"><b>${money(P.tv)}</b></td><td class="n ${P.tg==null?'muted':P.tg>=0?'up':'down'}"><b>${P.tg==null?'—':(P.tg>=0?'+':'')+pct(P.tg)}</b>${P.tg!=null&&P.costCover<0.995?`<div class="muted" style="font:10.5px Inter" title="Gain is measured only on holdings where you entered a cost">on ${pct(P.costCover,0)} of value</div>`:''}</td><td class="n"><b>${P.score?Math.round(P.score):'—'}</b></td><td class="muted" style="font-size:12px">value-weighted score</td><td></td></tr>`);
   $('#ptb').innerHTML=rows.join('');
@@ -658,7 +668,7 @@ function renderAnalysis(P){
   const sum=f=>R.filter(f).reduce((a,r)=>a+r.val,0)/tv;
   const stocks=R.filter(r=>!r.fk), funds=R.filter(r=>r.fk);
   const wStocks=sum(r=>!r.fk), wIndex=sum(r=>['us','intl','global'].includes(r.fk)), wBond=sum(r=>r.fk==='bond'),
-        wGold=sum(r=>r.fk==='gold');
+        wGold=sum(r=>r.fk==='gold'), wCrypto=sum(r=>r.fk==='crypto');
   const top=R[0], top3=R.slice(0,3).reduce((a,r)=>a+r.w,0);
   const unscored=stocks.filter(r=>!r.s).map(r=>r.h.ticker);
   const scoredW=stocks.filter(r=>r.s).reduce((a,r)=>a+r.val,0)/tv;
@@ -681,9 +691,10 @@ function renderAnalysis(P){
   if(weak.length) C.push(['fail',`${weak.map(r=>r.h.ticker).join(', ')} rated PASS`,'The investor lenses see meaningful problems here. Re-read the memo before adding more.']);
   if(P.noPrice.length) C.unshift(['fail',`No price for ${P.noPrice.join(', ')}`,'These count as $0 in the total. Re-import a file that has the price (statement or positions export), or analyze the stock so the site has a price.']);
   if(P.tg!=null&&P.costCover<0.95) C.push(['info',`Gain covers ${pct(P.costCover,0)} of the value`,'Holdings without a cost per share are left out of the gain. Add your average cost (your broker app shows it on each stock page) to see the full picture.']);
+  if(wCrypto>0) C.push([wCrypto>0.1?'warn':'info',`${pct(wCrypto,0)} in crypto`,'Crypto has no earnings, so none of the investor lenses can value it. It can fall 70–80% in a bad year. Many long-term investors keep it under 5–10%.']);
   if(unscored.length) C.push(['warn',`${unscored.length} stock${unscored.length>1?'s':''} not analyzed yet`,`${unscored.join(', ')}: ${pct(sum(r=>!r.fk&&!r.s),0)} of the portfolio has no research memo yet.`]);
   // allocation by holding (donut) and by type (bars)
-  const types=[['Individual stocks',wStocks,'#d9b46c'],['US index funds',sum(r=>r.fk==='us'),'#6aa8ff'],['International / global',sum(r=>['intl','global'].includes(r.fk)),'#5fd3c6'],['Bonds',wBond,'#b993ff'],['Gold / commodities',wGold,'#f0d79c'],['Real estate',sum(r=>r.fk==='reit'),'#f08fb8']].filter(t=>t[1]>0.0001);
+  const types=[['Individual stocks',wStocks,'#d9b46c'],['US index funds',sum(r=>r.fk==='us'),'#6aa8ff'],['International / global',sum(r=>['intl','global'].includes(r.fk)),'#5fd3c6'],['Bonds',wBond,'#b993ff'],['Gold / commodities',wGold,'#f0d79c'],['Crypto',wCrypto,'#ff8a5c'],['Real estate',sum(r=>r.fk==='reit'),'#f08fb8']].filter(t=>t[1]>0.0001);
   const scoredLine=P.score!=null?`<div class="kr"><span>Research score (analyzed stocks)</span><b style="color:${sc(P.score)}">${Math.round(P.score)}/100</b></div>`:'';
   const title=encodeURIComponent('Analyze: '+unscored.join(', '));
   const body=encodeURIComponent(`Please add ${unscored.join(', ')} to the Company Desk.\n\nJust press "Submit new issue". The site researches and scores them within a few minutes, then replies here.`);
@@ -694,7 +705,7 @@ function renderAnalysis(P){
       <div class="stat"><div class="k">Value</div><div class="v">${money(tv)}</div></div>
       <div class="stat"><div class="k">Gain</div><div class="v" style="color:${P.tg==null?'':P.tg>=0?'var(--buy)':'var(--pass)'}">${P.tg==null?'—':(P.tg>=0?'+':'')+pct(P.tg)}${P.tg!=null&&P.costCover<0.995?`<span class="muted" style="font-size:13px;font-family:Inter"> on ${pct(P.costCover,0)} of value</span>`:''}</div></div>
       <div class="stat"><div class="k">Holdings</div><div class="v">${R.length}<span class="muted" style="font-size:13px;font-family:Inter"> · ${stocks.length} stocks, ${funds.length} funds</span></div></div>
-      <div class="stat"><div class="k">Researched</div><div class="v">${pct(scoredW+sum(r=>r.fk),0)}<span class="muted" style="font-size:13px;font-family:Inter"> of value</span></div></div>
+      <div class="stat"><div class="k">Researched</div><div class="v">${pct(scoredW+sum(r=>r.fk&&r.fk!=='crypto'),0)}<span class="muted" style="font-size:13px;font-family:Inter"> of value</span></div></div>
     </div>
     <div class="cols">
       <div class="box"><h5>Where the money is</h5><div style="height:220px"><canvas id="pDonut"></canvas></div></div>
@@ -803,7 +814,7 @@ function openReview(rows,name,src,skipped=[],broker=''){
     <td data-l="Cost / share"><input class="rv" type="number" step="any" value="${r.cost??''}" data-k="cost" data-i="${i}" style="width:90px" placeholder="optional"></td>
     <td class="n" data-l="Price"><input class="rv" type="number" step="any" value="${r.price??''}" data-k="price" data-i="${i}" style="width:90px" placeholder="auto"></td>
     <td class="n muted" data-l="Value">${r.value!=null?money(r.value):'—'}</td>
-    <td style="font-size:12px" title="${esc(r.why||'')}">${r.conf==='high'?'<span style="color:var(--buy)">✓</span>':'<span style="color:var(--hold)">⚠</span>'} <span class="muted">${esc(r.why||'')}${r.accounts>1?` · ${r.accounts} lines merged`:''} · ${isFund(r)?'fund':DATA.stocks.some(s=>s.ticker===r.ticker.toUpperCase())?'scored':'not analyzed yet'}</span></td></tr>`).join('');
+    <td style="font-size:12px" title="${esc(r.why||'')}">${r.conf==='high'?'<span style="color:var(--buy)">✓</span>':'<span style="color:var(--hold)">⚠</span>'} <span class="muted">${esc(r.why||'')}${r.accounts>1?` · ${r.accounts} lines merged`:''} · ${fundKind(r)==='crypto'?'crypto':isFund(r)?'fund':DATA.stocks.some(s=>s.ticker===r.ticker.toUpperCase())?'scored':'not analyzed yet'}</span></td></tr>`).join('');
   $('#review').classList.add('on'); $('#shade').classList.add('on');
 }
 function closeReview(){ $('#review').classList.remove('on'); if(!$('#drawer').classList.contains('on')) $('#shade').classList.remove('on'); }
@@ -815,7 +826,7 @@ function applyReview(replace){
     const px=get(i,'price')===''?null:parseFloat(get(i,'price'));
     const acct=!src.acct?label:(/[\s·]/.test(src.acct)?src.acct:`${label} ···${src.acct}`);
     return {ticker:get(i,'ticker').trim().toUpperCase().replace(/\.(?=[A-Z]{1,2}$)/,'-'),acct,shares:parseFloat(get(i,'shares')),cost:get(i,'cost')===''?null:parseFloat(get(i,'cost')),
-            price:px>0?px:null,desc:src.desc||'',asOf:px>0?new Date().toISOString().slice(0,10):null}; })
+            price:px>0?px:null,desc:src.desc||'',asOf:px>0?new Date().toISOString():null}; })
     .filter(h=>h.ticker&&h.shares>0);
   const p=replace?[]:store.get(PKEY,[]);
   // same stock + same account -> update that lot; same stock in another account -> keep both
