@@ -52,7 +52,7 @@
 
   /** Fill price/value from each other, score confidence and say why. */
   function finish(r) {
-    const out = { ticker: yahoo(r.ticker), shares: r.shares, price: r.price ?? null, cost: r.cost ?? null,
+    const out = { ticker: yahoo(r.ticker), acct: r.acct || '', shares: r.shares, price: r.price ?? null, cost: r.cost ?? null,
                   value: r.value ?? null, desc: (r.desc || '').trim(), src: r.src };
     if (out.price == null && out.value != null && out.shares > 0) out.price = +(out.value / out.shares).toFixed(4);
     if (out.value == null && out.price != null) out.value = +(out.price * out.shares).toFixed(2);
@@ -65,6 +65,13 @@
     return out;
   }
 
+  /** Only the last 4 characters of an account number are ever kept ("Z26954116" -> "4116"). */
+  const lastDigits = v => { const t = String(v || '').replace(/[^A-Za-z0-9]/g, ''); return t.length >= 4 ? t.slice(-4) : ''; };
+  const BROKERS = [['Fidelity', /fidelity/i], ['Robinhood', /robinhood/i], ['Schwab', /schwab/i], ['Vanguard', /vanguard brokerage|vanguard\.com/i],
+    ['E*TRADE', /e\*trade|etrade/i], ['Merrill', /merrill/i], ['Webull', /webull/i], ['Interactive Brokers', /interactive brokers/i], ['Public', /public\.com/i], ['SoFi', /sofi invest/i], ['Alpaca', /alpaca/i]];
+  /** Which broker a file came from, from its text (fine print usually names it). */
+  function guessBroker(text) { for (const [n, re] of BROKERS) if (re.test(text)) return n; return ''; }
+
   // ───────────────────────── 1. tables by column ─────────────────────────
   const COLS = {
     ticker: [/^(symbol|ticker|sym)\b/, /sym\s*\/\s*cusip|symbol\s*\/\s*cusip/, /security symbol|stock symbol|^code$/],
@@ -74,11 +81,12 @@
     cost: [/(avg|average).*(cost|price)|cost.*(per|\/)\s*(share|unit)|unit cost|purchase price|price paid|avg\.? cost/],
     costTotal: [/^cost basis|total cost|^cost$|^basis$|cost basis total/],
     desc: [/^(description|security|security name|name|holding|instrument|investment|securities held)/],
+    acct: [/^(account|acct)\.?\s*(number|no\.?|#)$|^account$/],
   };
   function classifyHeader(cell) {
     const c = String(cell || '').toLowerCase().replace(/\s+/g, ' ').trim();
     if (!c) return null;
-    for (const k of ['cost', 'costTotal', 'ticker', 'shares', 'price', 'value', 'desc'])
+    for (const k of ['acct', 'cost', 'costTotal', 'ticker', 'shares', 'price', 'value', 'desc'])
       if (COLS[k].some(re => re.test(c))) return k;
     return null;
   }
@@ -130,7 +138,7 @@
         let cost = map.cost != null ? toNum(r[map.cost]) : null;
         if (cost == null && map.costTotal != null) { const ct = toNum(r[map.costTotal]); if (ct > 0) cost = +(ct / sh).toFixed(4); }
         out.push(finish({ ticker: tk, shares: sh, price: px, value: mv, cost: cost > 0 ? cost : null, desc,
-          src, conf: 'high', why: 'read from a table with column headers' }));
+          acct: map.acct != null ? lastDigits(r[map.acct]) : '', src, conf: 'high', why: 'read from a table with column headers' }));
       }
     }
     return { rows: out, skipped };
@@ -210,7 +218,8 @@
               if (isTicker(t) && sh > 0) {
                 let cost = toNum(pick(o, JKEYS.cost));
                 if (cost == null) { const ct = toNum(pick(o, JKEYS.costTotal)); if (ct > 0) cost = +(ct / sh).toFixed(4); }
-                out.push(finish({ ticker: t, shares: sh, price: toNum(pick(o, JKEYS.price)), value: toNum(pick(o, JKEYS.value)),
+                const ac = String(pick(o, ['acct', 'account', 'account_number', 'account_id']) ?? '');
+                out.push(finish({ ticker: t, acct: /[\s·]/.test(ac) ? ac : lastDigits(ac), shares: sh, price: toNum(pick(o, JKEYS.price)), value: toNum(pick(o, JKEYS.value)),
                   cost: cost > 0 ? cost : null, desc: String(pick(o, JKEYS.desc) || ''), src: 'json', conf: 'high', why: 'read from named fields' }));
                 continue;
               }
@@ -310,7 +319,7 @@
   function mergeRows(rows) {
     const m = new Map(), rank = { high: 3, medium: 2, low: 1 };
     for (const r of rows) {
-      const k = r.ticker;
+      const k = r.ticker + '|' + (r.acct || '');      // same stock in two accounts stays two lots
       if (!m.has(k)) { m.set(k, { ...r, accounts: 1 }); continue; }
       const a = m.get(k), sh = a.shares + r.shares;
       const cost = (a.cost != null && r.cost != null) ? (a.cost * a.shares + r.cost * r.shares) / sh : (a.cost ?? r.cost);
@@ -343,10 +352,11 @@
     if (!best && input.lines) best = fromText(input.lines, input.src || 'text');
     best = best || { rows: [], skipped: [] };
     const skipped = [...new Map(tries.concat(best).flatMap(t => t.skipped).map(s => [s.text, s])).values()];
-    return { rows: mergeRows(best.rows), skipped };
+    const text = [].concat(input.lines || [], (input.tables || []).flat().map(r => [].concat(r).join(' '))).join('\n');
+    return { rows: mergeRows(best.rows), skipped, broker: guessBroker(text) };
   }
 
-  const api = { extract, fromTables, fromText, fromJSON, fromItemLines, linesFromItems, mergeRows, toNum, isTicker, headerOf };
+  const api = { extract, guessBroker, lastDigits, fromTables, fromText, fromJSON, fromItemLines, linesFromItems, mergeRows, toNum, isTicker, headerOf };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else root.Importer = api;
 })(typeof window !== 'undefined' ? window : globalThis);

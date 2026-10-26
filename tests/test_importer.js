@@ -35,4 +35,10 @@ check('labels @ cost', I.extract({ lines: ['GLD 1.7 @ 380.84 cost 300'] }), 'GLD
 check('legacy TICKER shares cost', I.extract({ lines: ['AAPL 10 150', 'KO 5'] }), 'AAPL 10 - 150 ; KO 5 - -');
 check('fine print ignored', I.extract({ lines: ['Member SIPC 123 Main St Suite 400', 'FINRA 2026 report 12', 'Page 1 of 20'] }), '');
 check('same ticker merged', I.extract({ lines: ['AAPL 10 shares @ 200', 'AAPL 5 shares @ 200'] }), 'AAPL 15 200 -');
+// Two accounts at one broker: same stock stays as two lots, only last 4 digits of the account kept, broker named from fine print
+const two = I.extract({ tables: [[['Account Number', 'Symbol', 'Quantity', 'Last Price', 'Current Value'],
+  ['Z00001111', 'NVDA', '6', '$200', '$1,200'], ['Z00002222', 'NVDA', '0.5', '$200', '$100'], [''], ['Brokerage services are provided by Fidelity Brokerage Services LLC']]] });
+check('two accounts kept apart', two, 'NVDA 6 200 - ; NVDA 0.5 200 -');
+const accOk = two.rows.map(r => r.acct).join(',') === '1111,2222' && two.broker === 'Fidelity'; if (!accOk) fail++;
+console.log((accOk ? 'ok   ' : 'FAIL ') + 'account last-4 + broker name: ' + two.rows.map(r => r.acct).join(',') + ' / ' + two.broker);
 console.log(fail ? `${fail} FAILED` : 'all passed'); process.exit(fail ? 1 : 0);
