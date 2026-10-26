@@ -25,7 +25,7 @@
   const STOP = new Set(('USD CASH TOTAL TOTALS ETF INC CORP CO LLC LTD THE AND FOR OF ACCT ACCOUNT PAGE NA N A I AM PM ' +
     'YTD QTY US DATE BUY SELL NET GAIN LOSS VALUE PRICE DAY MKT SYMBOL SHARES IRA ROTH EST TAX ID NO CUSIP CLASS CL ' +
     'SHS COM ORD ADR NEW FUND TRUST MONEY MARKET SPAXX FDRXX DIV REINV PCT YES OR AS AT ON IN BY TO IS IT BE ' +
-    'SIPC FINRA FDIC IRS APY SEC ACH DCF RHS RHF RAM INT BTO STO BTC STC DRIP NAV ADJ AVG CUR QTR EPS APR FAQ ' +
+    'SIPC FINRA FDIC IRS APY SEC ACH DCF RHS RHF RAM INT BTO STO STC DRIP NAV ADJ AVG CUR QTR EPS APR FAQ ' +
     'LLC NYSE NASDAQ OTC LP PLC SA AG NV DTC CEO CFO').split(/\s+/));
   // Lines that are legal text, addresses or account plumbing, never holdings.
   const FINE_PRINT = /\b(sipc|finra|fdic|member of|insured|insurance|securities investor protection|page \d+ of|statement period|account (number|#)|routing|suite \d+|p\.?o\.? box|apy|interest rate|sweep|disclosure|prospectus|1099|cusip:)\b/i;
@@ -47,6 +47,12 @@
     const n = parseFloat(t.replace(/[()\-+]/g, ''));
     return isFinite(n) ? (neg ? -n : n) : null;
   }
+  /** A table cell's number, ignoring stray marks around it ("▲ $214.22", "$814.22 Pp"). */
+  function cellNum(v) {
+    const n = toNum(v); if (n != null || typeof v === 'number') return n;
+    const m = String(v ?? '').match(/\(?-?[$€£₹]?\s?\d[\d,]*(?:\.\d+)?\)?(?!\s*%)/);
+    return m ? toNum(m[0]) : null;
+  }
   const isMoneyTok = s => /^\(?-?[$€£₹]/.test(String(s).trim());
   const close = (a, b, tol = 0.025) => a > 0 && b > 0 && Math.abs(a - b) / Math.max(a, b) <= tol;
 
@@ -59,7 +65,16 @@
     let conf = r.conf || 'medium', why = r.why || '';
     if (r.price != null && r.value != null) {
       if (close(r.shares * r.price, r.value)) { conf = 'high'; why = why || 'shares × price = value'; }
-      else { conf = 'low'; why = 'shares × price ≠ value: check shares'; }
+      else {
+        // OCR often drops a decimal point ("1.7" -> "17"). If value ÷ price is the same digits shifted, use it.
+        const d = r.value / r.price, ratio = r.shares / d, k = Math.round(Math.log10(ratio));
+        let fixed = null;
+        if (k !== 0 && Math.abs(ratio / Math.pow(10, k) - 1) < 0.02)
+          for (let dp = 0; dp <= 6 && fixed == null; dp++) { const t = +d.toFixed(dp); if (t > 0 && close(t * r.price, r.value, 0.006)) fixed = t; }
+        if (fixed != null) { why = `read ${r.shares} shares, but value ÷ price = ${fixed}: used ${fixed}, check it`; out.shares = fixed; }
+        else why = 'shares × price ≠ value: check shares';
+        conf = 'low';
+      }
     }
     out.conf = conf; out.why = why;
     return out;
@@ -130,13 +145,13 @@
         if (OPTION.test(line)) { skipped.push({ text: line, reason: 'option contract (not a stock holding)' }); continue; }
         if (CASHLIKE.test(desc || r[map.ticker] || '')) { skipped.push({ text: line, reason: 'cash or total line' }); continue; }
         const tk = tickerFrom(map.ticker != null ? r[map.ticker] : '', desc);
-        const sh = toNum(r[map.shares]);
+        const sh = cellNum(r[map.shares]);
         if (!tk || !(sh > 0)) { if (tk || sh) skipped.push({ text: line, reason: 'no usable symbol or share count' }); continue; }
-        const px = map.price != null ? toNum(r[map.price]) : null, mv = map.value != null ? toNum(r[map.value]) : null;
+        const px = map.price != null ? cellNum(r[map.price]) : null, mv = map.value != null ? cellNum(r[map.value]) : null;
         if (px > 0 && mv > 0 && close(sh * px * 100, mv, 0.01) && !close(sh * px, mv)) {   // 1 contract = 100 shares
           skipped.push({ text: line, reason: 'option contract (value = qty × price × 100)' }); continue; }
-        let cost = map.cost != null ? toNum(r[map.cost]) : null;
-        if (cost == null && map.costTotal != null) { const ct = toNum(r[map.costTotal]); if (ct > 0) cost = +(ct / sh).toFixed(4); }
+        let cost = map.cost != null ? cellNum(r[map.cost]) : null;
+        if (cost == null && map.costTotal != null) { const ct = cellNum(r[map.costTotal]); if (ct > 0) cost = +(ct / sh).toFixed(4); }
         out.push(finish({ ticker: tk, shares: sh, price: px, value: mv, cost: cost > 0 ? cost : null, desc,
           acct: map.acct != null ? lastDigits(r[map.acct]) : '', src, conf: 'high', why: 'read from a table with column headers' }));
       }
@@ -149,14 +164,20 @@
    * pass yDown=true for OCR where y grows downward). Words close together on a line are joined into cells.
    */
   function linesFromItems(items, yDown = false) {
-    const rows = {};
-    for (const it of items) {
-      if (!String(it.str || '').trim()) continue;
-      const key = Math.round((yDown ? -it.y : it.y) / 3);
-      (rows[key] = rows[key] || []).push(it);
+    // Group words into lines by their vertical CENTRE, with a tolerance. (Grouping by top edge split OCR lines:
+    // "cost" has a lower top than "Average", so one header row became two.)
+    const its0 = items.filter(it => String(it.str || '').trim())
+      .map(it => ({ ...it, cy: yDown ? -(it.y + (it.h || 0) / 2) : it.y + (it.h || 0) / 2 }))
+      .sort((a, b) => b.cy - a.cy);
+    const hs = its0.map(it => it.h || 10).sort((a, b) => a - b), tol = Math.max(2, (hs[hs.length >> 1] || 10) * 0.45);
+    const groups = [];
+    for (const it of its0) {
+      const g = groups[groups.length - 1];
+      if (g && Math.abs(g.cy - it.cy) <= tol) { g.items.push(it); g.cy = g.items.reduce((a, x) => a + x.cy, 0) / g.items.length; }
+      else groups.push({ cy: it.cy, items: [it] });
     }
-    return Object.keys(rows).map(Number).sort((a, b) => b - a).map(k => {
-      const its = rows[k].sort((a, b) => a.x - b.x), cells = [];
+    return groups.map(g => {
+      const its = g.items.sort((a, b) => a.x - b.x), cells = [];
       for (const it of its) {
         const last = cells[cells.length - 1];
         const gap = last ? it.x - (last.x + last.w) : Infinity;
@@ -173,14 +194,14 @@
     for (const cells of lines) {
       const h = headerOf(cells.map(c => c.str));
       if (h && h.activity) { cur = null; continue; }
-      if (h) { cols = cells.map(c => c.x + c.w / 2); cur = [cells.map(c => c.str)]; tables.push(cur); continue; }
+      if (h) { cols = cells.map(c => ({ l: c.x, r: c.x + c.w, c: c.x + c.w / 2 })); cur = [cells.map(c => c.str)]; tables.push(cur); continue; }
       if (!cur) continue;
       const row = new Array(cols.length).fill('');
       for (const c of cells) {
-        // left edge for text columns, centre for numbers (numbers are often right-aligned)
-        const cx = toNum(c.str) != null ? c.x + c.w / 2 : c.x + Math.min(c.w, 30) / 2;
+        // A column can be left-aligned (apps), right-aligned (statements) or centred: match whichever edge lines up best.
+        const l = c.x, r = c.x + c.w, m = c.x + c.w / 2;
         let bi = 0, bd = Infinity;
-        cols.forEach((x, i) => { const d = Math.abs(x - cx); if (d < bd) { bd = d; bi = i; } });
+        cols.forEach((k, i) => { const d = Math.min(Math.abs(l - k.l), Math.abs(r - k.r), Math.abs(m - k.c)); if (d < bd) { bd = d; bi = i; } });
         row[bi] = row[bi] ? row[bi] + ' ' + c.str : c.str;
       }
       cur.push(row);

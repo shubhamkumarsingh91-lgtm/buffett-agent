@@ -41,4 +41,13 @@ const two = I.extract({ tables: [[['Account Number', 'Symbol', 'Quantity', 'Last
 check('two accounts kept apart', two, 'NVDA 6 200 - ; NVDA 0.5 200 -');
 const accOk = two.rows.map(r => r.acct).join(',') === '1111,2222' && two.broker === 'Fidelity'; if (!accOk) fail++;
 console.log((accOk ? 'ok   ' : 'FAIL ') + 'account last-4 + broker name: ' + two.rows.map(r => r.acct).join(',') + ' / ' + two.broker);
+// Phone-app screenshot (OCR words, y grows down): left-aligned columns, lowercase words sit lower than capitals,
+// junk next to numbers, a dropped decimal (1.7 read as 17) and BTC (also an options code) in the Symbol column.
+const ow = (str, x, y, h = 20) => ({ str, x, y, w: str.length * 11, h });
+const shot = [
+  ow('Name', 40, 100), ow('Symbol', 420, 100), ow('Shares', 550, 100), ow('Price', 720, 100), ow('Average', 886, 100), ow('cost', 975, 106, 14), ow('Equity', 1300, 100),
+  ow('Gold', 40, 200), ow('Fund', 95, 200), ow('GLDX', 420, 200), ow('17', 552, 200), ow('$365.55', 720, 200), ow('$374.56', 888, 200), ow('$621.44', 1300, 200), ow('Pp', 1390, 200),
+  ow('Bitcoin', 40, 300), ow('BTC', 420, 300), ow('0.00794501', 551, 300), ow('$80,091.93', 720, 300), ow('$69,040.82', 888, 300), ow('$636.33', 1300, 300)];
+const sr = I.extract({ items: [shot], yDown: true });
+check('screenshot: decimal fix, BTC, junk', sr, 'GLDX 1.7 365.55 374.56 ; BTC 0.00794501 80091.93 69040.82');
 console.log(fail ? `${fail} FAILED` : 'all passed'); process.exit(fail ? 1 : 0);
