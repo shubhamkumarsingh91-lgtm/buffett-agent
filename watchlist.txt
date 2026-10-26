@@ -27,3 +27,4 @@ ENVA    # added from the site's search
 AMD    # added from the site's search
 MU    # added from the site's search
 ASML    # added from the site's search
+SNOW    # added from the site's search

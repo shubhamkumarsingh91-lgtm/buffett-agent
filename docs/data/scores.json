@@ -1,7 +1,7 @@
 {
- "generated": "2026-10-24T00:55:09+00:00",
+ "generated": "2026-10-26T00:07:29+00:00",
  "version": 2,
- "count": 35,
+ "count": 36,
  "failed": [],
  "stocks": [
   {
@@ -8858,6 +8858,251 @@
     ],
     "by": "rules",
     "updated": "2026-10-24"
+   }
+  },
+  {
+   "ticker": "SNOW",
+   "desk": "company",
+   "note": "",
+   "name": "Snowflake Inc.",
+   "sector": "Technology",
+   "industry": "Software - Application",
+   "price": 325.43,
+   "week52_high": 384.56,
+   "week52_low": 118.3,
+   "overall": {
+    "label": "LIKELY PASS",
+    "rationale": "Most lenses see meaningful gaps versus their criteria.",
+    "score": 31.8
+   },
+   "lenses": [
+    {
+     "key": "buffett",
+     "short": "Buffett",
+     "name": "Buffett & Munger (Quality Compounding)",
+     "score": 20.8,
+     "verdict": "Poor fit",
+     "pros": [
+      "High gross margin (67%) suggests real pricing power / a moat."
+     ],
+     "cons": [
+      "Debt/Equity of 1.42 exceeds Buffett's usual 0.5 comfort zone.",
+      "At least one loss-making year in the available window.",
+      "Average ROE of -36% falls short of Buffett's 15% minimum.",
+      "Share count grew 5.9% \u2014 dilution works against per-share owner value.",
+      "High R&D intensity (42% of revenue) \u2014 fast-moving, harder to forecast 10-20 years out, arguably outside a conservative circle of competence.",
+      "Trading ~117% above estimated intrinsic value \u2014 little to no margin of safety."
+     ]
+    },
+    {
+     "key": "graham",
+     "short": "Graham",
+     "name": "Benjamin Graham (Deep Value)",
+     "score": 39.4,
+     "verdict": "Weak fit",
+     "pros": [],
+     "cons": [
+      "Not enough data (EPS/book value) to compute a Graham Number.",
+      "Current ratio of 1.30 is below Graham's 2.0 liquidity bar.",
+      "Long-term debt exceeds net working capital \u2014 fails Graham's conservative debt test.",
+      "At least one loss-making year in the available window \u2014 Graham requires positive earnings every year (traditionally over 10 years).",
+      "No current dividend \u2014 fails Graham's income requirement for the defensive investor."
+     ]
+    },
+    {
+     "key": "lynch",
+     "short": "Lynch",
+     "name": "Peter Lynch (GARP \u2014 Unclassified (insufficient growth data))",
+     "score": 16.9,
+     "verdict": "Poor fit",
+     "pros": [],
+     "cons": [
+      "PEG ratio of 5.83 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule.",
+      "Debt/Equity of 1.42 is elevated \u2014 leverage adds fragility to a growth thesis."
+     ]
+    },
+    {
+     "key": "fisher",
+     "short": "Fisher",
+     "name": "Philip Fisher (Growth Quality)",
+     "score": 59.2,
+     "verdict": "Partial fit",
+     "pros": [
+      "Revenue grew 31% a year over the available history. Fisher's point #1 wants products with room for sales to keep growing for years.",
+      "Spends 42% of revenue on R&D. Fisher (#2, #3) wants management investing in future products.",
+      "Margins widened by 10.1 points. Fisher #6: improving margins."
+     ],
+     "cons": [
+      "Operating margin -17%, below what Fisher called a worthwhile margin (#5).",
+      "Share count up 6%. Fisher #13 warns against growth funded by diluting owners."
+     ]
+    },
+    {
+     "key": "greenblatt",
+     "short": "Greenblatt",
+     "name": "Joel Greenblatt (Magic Formula)",
+     "score": 22.5,
+     "verdict": "Poor fit",
+     "pros": [],
+     "cons": [
+      "Return on capital ~-56%: below what the Magic Formula looks for.",
+      "Earnings yield (EBIT \u00f7 EV) -1.1%: not cheap by the Magic Formula."
+     ]
+    }
+   ],
+   "classic": null,
+   "kpis": {
+    "revenue_ttm": 5434647040,
+    "revenue_growth_yoy": 0.351,
+    "revenue_cagr": 0.3138,
+    "earnings_growth": null,
+    "quarterly_revenue": [
+     1144969000,
+     1212909000,
+     1283994000,
+     1390951000,
+     1546793000
+    ],
+    "gross_margin": 0.6703,
+    "operating_margin": -0.17,
+    "profit_margin": -0.2007,
+    "roe_avg": -0.357,
+    "roic": -0.5618,
+    "roa": -0.0902,
+    "free_cash_flow": 1117213000.0,
+    "fcf_margin": 0.2056,
+    "total_cash": 2344695040,
+    "cash_runway_years": null,
+    "rule_of_40": 55.7,
+    "market_cap": 114811699200,
+    "pe": null,
+    "forward_pe": 107.74,
+    "pb": 53.36,
+    "peg": 5.83,
+    "price_to_sales": 21.13,
+    "ev_to_ebitda": -111.08,
+    "earnings_yield": -0.0113,
+    "graham_number": null,
+    "dividend_yield": 0.0,
+    "payout_ratio": null,
+    "debt_to_equity": 1.42,
+    "current_ratio": 1.3,
+    "insider_pct": 0.0287,
+    "institutional_pct": 0.8098,
+    "short_pct_float": 0.0522,
+    "beta": 1.35
+   },
+   "valuation": {
+    "bear": 76.27,
+    "base": 149.66,
+    "bull": 249.56,
+    "growth": 0.25,
+    "method": "average free cash flow, last 3 years",
+    "note": null,
+    "margin_of_safety": -1.1745,
+    "confidence": "medium",
+    "discount_rate": 0.09
+   },
+   "recent_ipo": false,
+   "ipo": {
+    "months_listed": 73.3,
+    "first_trade_date": "2020-09-16",
+    "first_day_open": null,
+    "first_day_close": null,
+    "prospectus": null,
+    "checklist": []
+   },
+   "news": [],
+   "data_notes": [],
+   "stale": false,
+   "updated": "2026-10-26T00:07:28+00:00",
+   "memo": {
+    "headline": "LIKELY PASS. Most lenses see meaningful gaps versus their criteria.",
+    "business": "Snowflake Inc. (SNOW) is a software - application company worth about $114.8B. It brought in $5.4B of revenue over the last year, up 35% from a year earlier. It is not yet profitable at the operating level.",
+    "bull": [
+     "Revenue grew 31% a year over the available history. Fisher's point #1 wants products with room for sales to keep growing for years. (Fisher)",
+     "Spends 42% of revenue on R&D. Fisher (#2, #3) wants management investing in future products. (Fisher)",
+     "Margins widened by 10.1 points. Fisher #6: improving margins. (Fisher)",
+     "High gross margin (67%) suggests real pricing power / a moat. (Buffett)"
+    ],
+    "bear": [
+     "PEG ratio of 5.83 is at/above 1.0 \u2014 pricey relative to its growth rate by Lynch's rule. (Lynch)",
+     "Debt/Equity of 1.42 is elevated \u2014 leverage adds fragility to a growth thesis. (Lynch)",
+     "Debt/Equity of 1.42 exceeds Buffett's usual 0.5 comfort zone. (Buffett)",
+     "At least one loss-making year in the available window. (Buffett)"
+    ],
+    "valuation": "Using a simple two-stage cash-flow model (average free cash flow, last 3 years, 25% growth fading to 3%, 9% discount rate), fair value is roughly $149.66 a share (bear $76.27, bull $249.56) against a price of $325.43. The price is more than 2x the base-case value: the market expects far more growth than this model assumes.",
+    "watch": [
+     "Revenue growth stays near or above 35% (last reading).",
+     "Operating margin (-17%) keeps rising as the company grows.",
+     "Debt (debt/equity 1.4) comes down."
+    ],
+    "plan": "Pass for now. Revisit only if the business or the price changes materially.",
+    "buffett_view": "On Buffett's own tests this scores 21/100.",
+    "ai": null
+   },
+   "news30": {
+    "summary": "Over the last 30 days Snowflake shares fell 3% (now $325.43). News flow was heavy (71 stories) and the headlines were mixed (7 upbeat, 4 downbeat). Most coverage was about products & technology (20), deals & partnerships (5) and stock moves (5). Analyst calls leaned positive: 3 upgrade or target-raise headlines vs 1 cut. Insiders: 1 selling and 0 buying headline, plus 1 other filing (latest: \u201cForm 4 Snowflake Inc For: 23 October By Investing.com\u201d). Key headline: \u201cHow New AI Partnerships At Snowflake (SNOW) Have Changed Its Investment Story\u201d (Yahoo Finance, 2026-10-23).",
+    "count": 71,
+    "tone": "mixed",
+    "positive": 7,
+    "negative": 4,
+    "themes": [
+     [
+      "products & technology",
+      20
+     ],
+     [
+      "buy/sell opinion pieces",
+      14
+     ],
+     [
+      "deals & partnerships",
+      5
+     ],
+     [
+      "stock moves",
+      5
+     ],
+     [
+      "analyst calls",
+      4
+     ]
+    ],
+    "items": [
+     {
+      "title": "41,100 Snowflake Inc. $SNOW Shares Sold by Robeco Schweiz AG",
+      "source": "MarketBeat",
+      "date": "2026-10-25",
+      "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOc1dySnJxRl82Vk9tQXV2NV8yOF9SX1JXb2RkZFdWYm9idmdjS3pwSXpwZVp1czhDekRESi1kNm82SzlNTWUtbXhOeUpqelBUdmg4TzNKUVN2eW53LVpJZ2Rhck52WEE5bk1qdjRHTE14ZkpZNFFqLXlaWjZOZ0ZGNVYyZDNhNzR4NWlyQWY1Snp3VG5RblpLUWtGbG16dkFsU0VYWnpIV3dKRjNwd3VMdHdGTUpBRkpPVVE?oc=5"
+     },
+     {
+      "title": "How New AI Partnerships At Snowflake (SNOW) Have Changed Its Investment Story",
+      "source": "Yahoo Finance",
+      "date": "2026-10-23",
+      "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNbzI3WEpodnRqMW5HVlI3TDIwb2dCZTExdk92WkZTeHBZV2FOWGlhSm5ieGRtWG5fTHVIMDJUeWp5bTFlUDUtc0IzOTAtN09xRTN0MnpIVGtZM0tzYVlfTGVmWlpXdlNyOU1FdzVQQ0lUZG05SGVEenl3OWVOWEpyWTZQMVBucF9jc2JLYVhkS0gwQ0hPMXg1ZW9xQ0doU0toRDBqWQ?oc=5"
+     },
+     {
+      "title": "Snowflake (NYSE:SNOW) stock rallies on expanded cloud pact for agentic AI today",
+      "source": "Kalkine Media",
+      "date": "2026-10-22",
+      "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNXzY0dVBZVmpFOE9yZG1waHJydHJFbUtQMU5yQ0pRZW9vUHdCc1VKM2wtZFctcVYxc0FpNENUbmNiUGdRdmFId3RoRzB5c0E1ZjF6MS1NOXo2SmRhOHByR2w1NWlYZ2ZlMXRsOUd0cG96aUlVRzNnSTNSWnZwUXFaUHNGSHBING5zdVVKUGxPWEk4cy1qZllmeHRWU0FHaVpsVDlVcF9mNjFyM3FrVVQ3Wk5qQUpOcm5YRmc?oc=5"
+     },
+     {
+      "title": "Snowflake Inc. $SNOW Stock Acquired by TD Waterhouse Canada Inc.",
+      "source": "MarketBeat",
+      "date": "2026-10-19",
+      "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOam1NcHJ0TjVKTjZDSDFUWW1KUDFmSUhLVnNkTFlfSFVVdTUtSUU3b1hVRGhkRmk2XzlYdHdXTko4Z3otdzdBZ1Y1SmRXRVJNcUtua2pLU00zZXdiMkpFXzduR1lxbUNXN2h1UzZZNkQxU1NJX21FR0NDeFd4a3RJQW1qNFdNdFFDbHVkeHM4QUV4cS03ZTBYVWtibllRWm9Hd3l4b2J3eG9HYnhYdjd6RV9tZnlwZmhKdGZydE16WQ?oc=5"
+     },
+     {
+      "title": "Snowflake stock falls after Asos hack notification",
+      "source": "Yahoo Finance",
+      "date": "2026-10-06",
+      "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQM1NnUXR1ME1nVGEtMTU1LU5hTl9zZ2k0dmRkZGFHY2pfdXVNdGxkTk1qU0lUaUw4N25fU3ZvaUlKMDcxek4yQnVZY3hnb1NwdXVMVEUyVWpiWXRVVmdTRVU0MWdJbnVfa0FUejBveUY0LWdQUGMwVE5ic2hMaDlJX0RDNUdnazk3N0x3MFBaZHkxTF8tQUVKcDZ1eGo?oc=5"
+     }
+    ],
+    "by": "rules",
+    "updated": "2026-10-26"
    }
   }
  ]
