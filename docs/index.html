@@ -219,6 +219,14 @@ footer{margin-top:44px;color:var(--dim);font-size:11.5px;text-align:center;line-
   #rvBody input.rv{width:100%!important;box-sizing:border-box}
   #rvBody td:last-child{grid-column:2 / -1}
 }
+/* action plan beside the checks */
+.pa-grid{display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:16px;align-items:start}
+@media (max-width:1000px){.pa-grid{grid-template-columns:1fr}}
+.plan .nx{background:rgba(60,207,145,.08);border:1px solid rgba(60,207,145,.25);border-radius:10px;padding:8px 10px;font-size:13px;margin-bottom:8px}
+.plan .pi{padding:9px 0;border-top:1px solid var(--line)}
+.plan .ph{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.plan .pa{margin-left:auto;font:12.5px 'JetBrains Mono',monospace;color:var(--soft)}
+.plan .pw{font-size:12.5px;color:var(--mute);margin-top:4px;line-height:1.45}
 </style>
 </head>
 <body>
@@ -661,6 +669,73 @@ function renderPort(){
 
 // ── Portfolio analysis: what the whole portfolio looks like through the investors' eyes ──
 let pCharts=[];
+
+// ── Action plan: what to trim, review, add to or hold, and why. Plain rules, shown to the user. ──
+const RULES={stockCap:0.10, buyTarget:0.05, cryptoCap:0.10, indexTarget:0.50, tooPricey:-0.15};
+function actionPlan(P){
+  const R=P.rows.filter(r=>r.val!=null), tv=P.tv||0, out=[];
+  if(!R.length||!tv) return {items:out};
+  const w=f=>R.filter(f).reduce((a,r)=>a+r.val,0)/tv;
+  const wIndex=w(r=>['us','intl','global'].includes(r.fk)), wCrypto=w(r=>r.fk==='crypto');
+  const taxNote=r=>r.g==null?'':r.g>0?` You're up ${pct(r.g,0)}, so selling is taxable (lower rate if held over a year).`:` You're down ${pct(-r.g,0)}; selling books a loss that can offset other gains.`;
+  const sh=(amt,r)=>{ if(!r.price) return ''; const q=amt/r.price; return ` ≈ ${num(q,q<0.01?6:q<1?3:2)} ${r.fk==='crypto'?'coins':'sh'}`; };
+  const con=s=>{ const L=(s.lenses||[]).filter(l=>l.cons&&l.cons.length).sort((a,b)=>a.score-b.score)[0]; return L?` Weakest view (${L.short}): ${L.cons[0]}`:''; };
+  // crypto above the cap: sell the small altcoins first, then trim BTC/ETH evenly
+  let cryptoTrim=wCrypto>RULES.cryptoCap?(wCrypto-RULES.cryptoCap)*tv:0;
+  const coins=R.filter(r=>r.fk==='crypto'), majors=coins.filter(r=>['BTC','ETH'].includes(r.h.ticker)), alts=coins.filter(r=>!majors.includes(r));
+  const cut=new Map();
+  for(const r of alts.sort((a,b)=>a.val-b.val)){ if(cryptoTrim<=0) break; const a=Math.min(r.val,cryptoTrim); cut.set(r,a); cryptoTrim-=a; }
+  const mj=majors.reduce((a,r)=>a+r.val,0); if(cryptoTrim>0&&mj) majors.forEach(r=>cut.set(r,r.val/mj*cryptoTrim));
+  for(const r of R){
+    const t=r.h.ticker, s=r.s, add=(act,amt,why,cls)=>out.push({t,act,amt,why,cls,r});
+    if(r.fk==='crypto'){
+      const c=cut.get(r);
+      if(r.val<5) add('Clean up',r.val,`Worth ${money(r.val)}. Too small to matter either way.`,'b-hold');
+      else if(c) add(c>=r.val-0.01?'Sell':'Trim',c,`Crypto is ${pct(wCrypto,0)} of the portfolio (rule: ≤ ${pct(RULES.cryptoCap,0)}). ${['BTC','ETH'].includes(t)?'BTC/ETH are trimmed last, evenly, after the smaller coins.':'Smaller coins go first: higher risk, no earnings, less staying power.'}${taxNote(r)}`,'b-pass');
+      else add('Hold',null,`Crypto is within the ${pct(RULES.cryptoCap,0)} cap.`,'b-hold');
+      continue;
+    }
+    if(r.fk){
+      const bigUS=R.filter(x=>x.fk==='us').sort((a,b)=>b.val-a.val)[0];
+      if(r.fk==='us'&&bigUS&&bigUS!==r) add('Hold',null,`Overlaps ${bigUS.h.ticker} (a total-market fund already holds every S&P 500 stock). Keep it, but send new money to ${bigUS.h.ticker}: one fund is simpler${t==='SPY'&&bigUS.h.ticker==='VTI'?' and VTI\u2019s fee is about a third of SPY\u2019s':''}.`,'b-hold');
+      else if(['us','intl','global'].includes(r.fk)&&wIndex<RULES.indexTarget) add('Add more',null,`Broad index funds are ${pct(wIndex,0)} of the portfolio; the plan's core target is ${pct(RULES.indexTarget,0)}. This is the default home for new money.`,'b-buy');
+      else if(r.fk==='gold'&&r.w>0.10) add('Trim',(r.w-0.10)*tv,`Gold is ${pct(r.w,0)}. It cushions crashes but earns nothing; 5–10% is plenty.${taxNote(r)}`,'b-pass');
+      else add('Hold',null,{bond:'Bonds are ballast. Fine at this size.',gold:'Gold is a crash cushion. Fine at this size.'}[r.fk]||'Diversified fund. Keep.','b-hold');
+      continue;
+    }
+    if(!s){ add('Analyze first',null,'No research memo yet, so no verdict. Use “Analyze” below.','b-research'); continue; }
+    const sc=s.overall.score, lab=s.overall.label, mos=s.valuation?.margin_of_safety, base=s.valuation?.base;
+    const conf=s.valuation?.confidence==='low'?' (low-confidence estimate)':'';
+    const val=mos==null?'':mos<0?` Price is ${pct(-mos,0)} above the site's base fair value${base?` (${money(base)})`:''}${conf}.`:` Price is ${pct(mos,0)} below the base fair value${base?` (${money(base)})`:''}${conf}.`;
+    if(r.w>RULES.stockCap){
+      add('Trim',(r.w-RULES.stockCap)*tv,`${pct(r.w,0)} of the portfolio in one company (rule: ≤ ${pct(RULES.stockCap,0)}). Score ${Math.round(sc)}, ${lab}.${val}${taxNote(r)} No-tax option: stop buying it and let new money shrink its share.`,'b-pass');
+    } else if(/PASS/.test(lab)){
+      add('Review: sell?',r.val,`Score ${Math.round(sc)}, ${lab}: ${s.overall.rationale||''}${con(s)}${val}${taxNote(r)}`,'b-pass');
+    } else if(sc>=65){
+      if(mos!=null&&mos<=RULES.tooPricey) add('Hold',null,`Strong business (score ${Math.round(sc)}), but expensive now.${val} Add on dips${base?` toward ${money(base)}`:''}.`,'b-hold');
+      else if(r.w<RULES.buyTarget) add('Add more',(RULES.buyTarget-r.w)*tv,`Score ${Math.round(sc)}, ${lab}.${val} At ${pct(r.w,1)} of the portfolio, there's room up to ${pct(RULES.buyTarget,0)}.`,'b-buy');
+      else add('Hold',null,`Score ${Math.round(sc)}, ${lab}. Already at its ${pct(RULES.buyTarget,0)} target.`,'b-hold');
+    } else if(sc>=50) add('Hold',null,`Score ${Math.round(sc)}, ${lab}: mixed. Don't add until the cons are answered.${con(s)}`,'b-hold');
+    else add('Hold, don’t add',null,`Score ${Math.round(sc)}, ${lab}: ${s.overall.rationale||'no strong signal.'}${val}`,'b-hold');
+  }
+  const order={'Sell':0,'Trim':0,'Review: sell?':1,'Clean up':2,'Add more':3,'Analyze first':4,'Hold':5,'Hold, don’t add':5};
+  out.sort((a,b)=>(order[a.act]??9)-(order[b.act]??9)||(b.amt||0)-(a.amt||0));
+  // where the next $200 goes
+  const idx=R.filter(r=>['us','intl','global'].includes(r.fk)).sort((a,b)=>b.val-a.val)[0];
+  const best=out.filter(x=>x.act==='Add more'&&!x.r.fk).sort((a,b)=>b.r.s.overall.score-a.r.s.overall.score)[0];
+  const next=[]; const idxName=idx?idx.h.ticker:'a total-market index fund (VTI/VOO)';
+  if(wIndex<RULES.indexTarget){ next.push([best?150:200,idxName]); if(best) next.push([50,best.t]); }
+  else if(best) next.push([200,best.t]); else next.push([200,idxName]);
+  return {items:out,next,trimTotal:out.filter(x=>/Trim|Sell/.test(x.act)).reduce((a,x)=>a+(x.amt||0),0),wIndex,wCrypto,sh};
+}
+function renderPlan(P){
+  const A=actionPlan(P); if(!A.items.length) return '';
+  return `<div class="box plan"><h5>🧭 Action plan</h5>
+    <div class="muted" style="font-size:12px;margin:-4px 0 10px">Rules: one stock ≤ ${pct(RULES.stockCap,0)} · crypto ≤ ${pct(RULES.cryptoCap,0)} · index core ≥ ${pct(RULES.indexTarget,0)} · add only to BUY-rated stocks under ${pct(RULES.buyTarget,0)} that aren't ${pct(-RULES.tooPricey,0)}+ above fair value.</div>
+    <div class="nx"><b>Your next $200:</b> ${A.next.map(([a,t])=>`$${a} → ${esc(t)}`).join(' · ')}</div>
+    ${A.items.map(x=>`<div class="pi"><div class="ph"><span class="mono">${esc(x.t)}</span><span class="badge ${x.cls}">${esc(x.act)}</span>${x.amt!=null&&x.act!=='Hold'?`<span class="pa">${money(x.amt)}${/Trim|Sell|Review|Clean/.test(x.act)?A.sh(x.amt,x.r):''}</span>`:''}</div><div class="pw">${esc(x.why)}</div></div>`).join('')}
+    <div class="muted" style="font-size:11.5px;margin-top:10px">${A.trimTotal>0?`Trims add up to ${money(A.trimTotal)}. Selling isn't the only way: sending all new money to the “Add more” rows fixes the same imbalances without taxes, just slower. `:''}Rules-based guide from the site's research scores, not financial advice.</div></div>`;
+}
 function renderAnalysis(P){
   const box=$('#pAnalysis'); if(!box) return;
   const R=P.rows.filter(r=>r.val!=null), tv=P.tv||0;
@@ -712,7 +787,7 @@ function renderAnalysis(P){
       <div class="box"><h5>By type</h5>${types.map(([n,w,c])=>`<div class="bar" style="grid-template-columns:150px 1fr 44px;margin:8px 0"><span>${n}</span><div class="track" style="height:8px"><i style="width:${(w*100).toFixed(1)}%;background:${c}"></i></div><span>${pct(w,0)}</span></div>`).join('')}
         <div style="margin-top:12px">${scoredLine}</div></div>
     </div>
-    <div class="check" style="margin-top:14px">${C.map(([st,t,d])=>`<div class="ci"><div class="s s-${st}">${{pass:'✓',warn:'!',fail:'✕',info:'i'}[st]}</div><b>${esc(t)}</b><span>${esc(d)}</span></div>`).join('')}</div>
+    <div class="pa-grid" style="margin-top:14px"><div class="check">${C.map(([st,t,d])=>`<div class="ci"><div class="s s-${st}">${{pass:'✓',warn:'!',fail:'✕',info:'i'}[st]}</div><b>${esc(t)}</b><span>${esc(d)}</span></div>`).join('')}</div>${renderPlan(P)}</div>
     ${unscored.length?`<div class="req on" style="margin:14px 0 0"><p><b>Get a research memo for ${unscored.join(', ')}.</b> Adds them to the Company Desk; results show up here in a minute or two. Funds (${funds.map(r=>r.h.ticker).join(', ')||'none'})${coins.length?' and crypto':''} aren\u2019t scored, because the investor lenses judge individual businesses.</p>
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px"><button class="btn primary" onclick="analyzeNow('${unscored.map(esc).join(',')}','company')">⚡ Analyze my ${unscored.length} stock${unscored.length>1?'s':''} now</button>
       <a class="muted" style="font-size:12px" target="_blank" rel="noopener" href="https://github.com/${REPO}/issues/new?title=${title}&body=${body}">or request on GitHub ↗</a></div></div>`:''}
