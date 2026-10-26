@@ -209,6 +209,16 @@ legend{font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--
 footer{margin-top:44px;color:var(--dim);font-size:11.5px;text-align:center;line-height:1.7}
 @media(max-width:860px){.stats{grid-template-columns:1fr 1fr}.cols{grid-template-columns:1fr}.ci{grid-template-columns:22px 1fr}.ci span{grid-column:2}}
 @media(max-width:560px){.stats{grid-template-columns:1fr 1fr}.wrap{padding:22px 16px}h1{font-size:30px}.db{padding:16px 14px 40px}}
+/* import review: one compact card per holding on phones */
+@media (max-width:640px){
+  #review thead{display:none}
+  #rvBody tr{display:grid;grid-template-columns:30px 1fr 1fr;gap:8px 10px;padding:12px 0;border-bottom:1px solid var(--line)}
+  #rvBody td{padding:0;border:0;text-align:left}
+  #rvBody td:first-child{grid-row:span 3;padding-top:22px}
+  #rvBody td[data-l]::before{content:attr(data-l);display:block;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:3px}
+  #rvBody input.rv{width:100%!important;box-sizing:border-box}
+  #rvBody td:last-child{grid-column:2 / -1}
+}
 </style>
 </head>
 <body>
@@ -266,14 +276,14 @@ footer{margin-top:44px;color:var(--dim);font-size:11.5px;text-align:center;line-
   <section id="v-port" hidden>
     <div class="sec">
       <h4>Our portfolio <i class="tip" data-t="Saved only in this browser on this device. Files you import are read inside your browser and never uploaded. Use Export/Import to share it with each other.">i</i></h4>
-      <p class="muted" style="font-size:12.5px;margin:-4px 0 12px">Import from your broker's Excel/CSV export, a PDF statement, a Word file or a screenshot. Everything is read inside your browser; nothing is uploaded.</p>
+      <p class="muted" style="font-size:12.5px;margin:-4px 0 12px">Import any file: your broker's PDF statement, CSV/Excel export, JSON, Word, text, or a screenshot/photo of your holdings. Ticker, shares, price, value and cost are found automatically and shown for review first. Everything is read inside your browser; nothing is uploaded.</p>
       <div class="form">
         <input id="pT" placeholder="Ticker (e.g. KO)"><input id="pS" type="number" step="any" placeholder="Shares">
         <input id="pC" type="number" step="any" placeholder="Cost / share ($)">
         <button class="btn" onclick="addHolding()">Add / update</button>
         <span id="pMsg" style="color:var(--pass);font-size:12px;align-self:center"></span>
         <span style="flex:1"></span>
-        <label class="btn" title="Excel, CSV, PDF statement, Word, screenshot or a previous export">⬆ Import file<input type="file" hidden accept=".xlsx,.xls,.csv,.tsv,.ods,.pdf,.docx,.doc,.png,.jpg,.jpeg,.webp,.bmp,.gif,.json" onchange="importFile(this)"></label>
+        <label class="btn" title="Any file: PDF statement, CSV, Excel, JSON, Word, text or a screenshot/photo">⬆ Import file<input type="file" hidden onchange="importFile(this)"></label>
         <div class="exp"><button class="btn" onclick="event.stopPropagation();$('#expMenu').classList.toggle('on')">⬇ Export ▾</button>
           <div class="menu" id="expMenu"><button onclick="exportAs('pdf')">PDF report</button><button onclick="exportAs('xlsx')">Excel (.xlsx)</button><button onclick="exportAs('csv')">CSV</button><button onclick="exportAs('json')">Backup file (.json)</button></div></div>
       </div>
@@ -326,7 +336,7 @@ footer{margin-top:44px;color:var(--dim);font-size:11.5px;text-align:center;line-
 </div>
 <div class="modal" id="review" role="dialog" aria-modal="true">
   <div class="dh"><div><div class="t" id="rvTitle" style="font-size:18px">Review import</div><div class="muted" id="rvNote" style="font-size:12.5px;margin-top:2px"></div></div><button class="btn" onclick="closeReview()">✕</button></div>
-  <div style="padding:14px 20px;overflow:auto;max-height:55vh"><table><thead><tr><th></th><th>Ticker</th><th>Shares</th><th>Cost / share</th><th class="n">Price</th><th></th></tr></thead><tbody id="rvBody"></tbody></table></div>
+  <div style="padding:14px 20px;overflow:auto;max-height:55vh"><table><thead><tr><th></th><th>Ticker</th><th>Shares</th><th>Cost / share</th><th class="n">Price</th><th class="n">Value</th><th>Check</th></tr></thead><tbody id="rvBody"></tbody></table></div>
   <div style="display:flex;gap:8px;justify-content:flex-end;padding:14px 20px;border-top:1px solid var(--line);flex-wrap:wrap">
     <button class="btn" onclick="closeReview()">Cancel</button><button class="btn" onclick="applyReview(true)">Replace portfolio</button><button class="btn primary" onclick="applyReview(false)">Add selected</button></div>
 </div>
@@ -335,6 +345,7 @@ footer{margin-top:44px;color:var(--dim);font-size:11.5px;text-align:center;line-
   <div class="db" id="dB"></div>
 </aside>
 
+<script src="importer.js"></script>
 <script>
 const REPO = 'shubhamkumarsingh91-lgtm/buffett-agent';
 const COL = {buffett:'#d9b46c',graham:'#7fb3ff',lynch:'#b993ff',fisher:'#5fd3c6',greenblatt:'#f08fb8',ritter:'#ff8a5c',gurley:'#9be27a'};
@@ -701,101 +712,78 @@ const LIBS={xlsx:CDN+'xlsx@0.18.5/dist/xlsx.full.min.js', pdf:CDN+'pdfjs-dist@3.
   jspdf:CDN+'jspdf@2.5.1/dist/jspdf.umd.min.js', autotable:CDN+'jspdf-autotable@3.8.2/dist/jspdf.plugin.autotable.min.js'};
 function loadScript(u){ return new Promise((res,rej)=>{ if(document.querySelector(`script[data-src="${u}"]`)) return res();
   const s=document.createElement('script'); s.src=u; s.dataset.src=u; s.onload=res; s.onerror=()=>rej(new Error('Could not load a helper library. Check your connection and try again.')); document.head.appendChild(s); }); }
-const STOP=new Set('USD CASH TOTAL TOTALS ETF INC CORP CO LLC LTD THE AND FOR OF ACCT ACCOUNT PAGE NA N A I AM PM YTD QTY US DATE BUY SELL NET GAIN LOSS VALUE PRICE DAY MKT SYMBOL SHARES IRA ROTH EST TAX ID NO CUSIP CLASS CL SHS COM ORD ADR NEW FUND TRUST MONEY MARKET SPAXX FDRXX DIV REINV PCT YES OR AS AT ON IN BY TO IS IT BE'.split(' '));
-const toNum=v=>{ if(typeof v==='number') return v; const t=String(v??'').replace(/[$,\s]/g,''); if(!t) return null; const neg=/^\(.*\)$/.test(t)||t.startsWith('-'); const n=parseFloat(t.replace(/[()\-+]/g,'')); return isFinite(n)?(neg?-n:n):null; };
-const yahoo=t=>t.toUpperCase().replace(/\.(?=[A-Z]{1,2}$)/,'-');   // BRK.B -> BRK-B (Yahoo style)
-const isTicker=t=>/^[A-Z]{1,5}(?:[.\-][A-Z]{1,2})?$/.test(t)&&!STOP.has(t);
-function fromTables(tables){
-  const out=[];
-  for(const t of tables){
-    const rows=t.map(r=>r.map(c=>String(c??'').trim()));
-    let hi=-1, cT=-1, cS=-1, cC=-1, cP=-1, cD=-1, costTotal=false;
-    for(let i=0;i<Math.min(rows.length,15);i++){
-      const r=rows[i].map(c=>c.toLowerCase());
-      const t1=r.findIndex(c=>/^(symbol|ticker|security symbol|stock symbol)\b|symbol|ticker/.test(c));
-      const s1=r.findIndex(c=>/quantity|shares|qty|units|position/.test(c));
-      if(t1>=0&&s1>=0){ hi=i; cT=t1; cS=s1;
-        cC=r.findIndex(c=>/(avg|average).*(cost|price)|cost.*(per|\/)\s*share|unit cost|purchase price|price paid|cost basis per/.test(c));
-        if(cC<0){ cC=r.findIndex(c=>/cost basis|total cost|^cost$|basis/.test(c)); costTotal=cC>=0 && !/per|avg|average/.test(r[cC]); }
-        cP=r.findIndex(c=>/^(last|current|market|closing)?\s*price$|last price|current price|market price/.test(c) && !/change|paid|purchase/.test(c));
-        cD=r.findIndex(c=>/description|security name|^name$|security$/.test(c));
-        break; }
-    }
-    if(hi<0){ out.push(...fromText(rows.map(r=>r.join(' ')))); continue; }
-    for(const r of rows.slice(hi+1)){
-      const tk=(r[cT]||'').toUpperCase().replace(/\*/g,'').split(/\s/)[0]; const sh=toNum(r[cS]);
-      if(!isTicker(tk)||!(sh>0)) continue;
-      let c=cC>=0?toNum(r[cC]):null; if(c!=null&&costTotal) c=c/sh;
-      const px=cP>=0?toNum(r[cP]):null;
-      out.push({ticker:yahoo(tk),shares:sh,cost:c!=null&&c>0?+c.toFixed(4):null,price:px!=null&&px>0?px:null,desc:cD>=0?r[cD]:'',src:'table'});
-    }
-  }
-  return out;
+// Parsing rules live in importer.js (also unit-tested in Node). This part only turns a file into text/tables/positions.
+const isTicker=t=>Importer.isTicker(t), toNum=v=>Importer.toNum(v);
+const IMG=['png','jpg','jpeg','webp','bmp','gif','heic','heif','tif','tiff'], SHEET=['xlsx','xls','xlsm','csv','tsv','ods'];
+async function sniff(f){
+  const ext=(f.name.includes('.')?f.name.split('.').pop():'').toLowerCase(), type=(f.type||'').toLowerCase();
+  const head=new Uint8Array(await f.slice(0,16).arrayBuffer()), sig=String.fromCharCode(...head);
+  if(sig.startsWith('%PDF')) return 'pdf';
+  if(type.startsWith('image/')||IMG.includes(ext)||/^\x89PNG|^\xFF\xD8|ftyphei|ftypmif|ftypheic/.test(sig)) return 'image';
+  if(sig.startsWith('PK')) return ext==='docx'?'docx':(SHEET.includes(ext)||ext===''?'sheet':ext==='docx'?'docx':'sheet');
+  if(ext==='doc') return 'doc';
+  if(SHEET.includes(ext)) return 'sheet';
+  const text=(await f.slice(0,4000).text()).trim();
+  if(ext==='json'||/^[\[{]/.test(text)) return 'json';
+  if(ext==='html'||ext==='htm'||/^<(!doctype|html|table)/i.test(text)) return 'html';
+  if(/[,\t;]/.test(text.split('\n')[0]||'')&&text.split('\n').length>1) return 'sheet';
+  return 'text';
 }
-function fromText(lines){
-  const out=[];
-  for(const raw of lines){
-    const line=String(raw).replace(/\s+/g,' ').trim(); if(!line) continue;
-    const toks=line.split(' '); const ti=toks.findIndex(x=>isTicker(x.replace(/[*:,]/g,'')));
-    if(ti<0) continue;
-    const nums=toks.slice(ti+1).map(toNum).filter(n=>n!=null&&n>0&&!(n>=1900&&n<=2100&&Number.isInteger(n)));
-    if(!nums.length) continue;
-    out.push({ticker:yahoo(toks[ti].replace(/[*:,]/g,'')),shares:nums[0],cost:nums.length>1?nums[1]:null,src:'text'});
-  }
-  return out;
+// iPhone photos can be HEIC: draw onto a canvas and re-encode as JPEG so OCR can read it.
+async function toReadableImage(f){
+  try{ const bmp=await createImageBitmap(f); const c=document.createElement('canvas');
+    const k=Math.min(1,2600/Math.max(bmp.width,bmp.height)), sc=Math.max(k, bmp.width<900?2:1);   // upscale small screenshots for OCR
+    c.width=bmp.width*sc; c.height=bmp.height*sc; c.getContext('2d').drawImage(bmp,0,0,c.width,c.height);
+    return await new Promise(r=>c.toBlob(r,'image/jpeg',0.92)); }
+  catch(e){ if(/hei[cf]/i.test(f.name+f.type)) throw new Error('This phone photo is HEIC and this browser can\'t open it. Take a screenshot instead (screenshots are PNG) or share it as JPEG.'); return f; }
 }
-function groupLines(items){
-  const rows={}; items.forEach(it=>{ const y=Math.round(it.transform[5]/3); (rows[y]=rows[y]||[]).push(it); });
-  return Object.keys(rows).sort((a,b)=>b-a).map(y=>rows[y].sort((a,b)=>a.transform[4]-b.transform[4]).map(i=>i.str).join(' '));
-}
+const tablesFromHTML=d=>[...d.querySelectorAll('table')].map(t=>[...t.rows].map(tr=>[...tr.cells].map(c=>c.textContent.trim())));
+const linesFromHTML=d=>(d.body?d.body.innerText||d.body.textContent:'').split('\n');
 async function importFile(input){
   const f=input.files[0]; input.value=''; if(!f) return;
-  const ext=(f.name.split('.').pop()||'').toLowerCase(); msg('Reading '+f.name+'…',true);
+  msg('Reading '+f.name+'…',true);
   try{
-    let rows=[];
-    if(ext==='json'){ const p=JSON.parse(await f.text()); rows=(Array.isArray(p)?p:[]).map(h=>({ticker:String(h.ticker||'').toUpperCase(),shares:toNum(h.shares),cost:toNum(h.cost),src:'json'})); }
-    else if(['xlsx','xls','csv','ods','tsv'].includes(ext)){ await loadScript(LIBS.xlsx); const wb=XLSX.read(await f.arrayBuffer());
-      rows=fromTables(wb.SheetNames.map(n=>XLSX.utils.sheet_to_json(wb.Sheets[n],{header:1,raw:true,defval:''}))); }
-    else if(ext==='pdf'){ await loadScript(LIBS.pdf); pdfjsLib.GlobalWorkerOptions.workerSrc=LIBS.pdfw;
-      const doc=await pdfjsLib.getDocument({data:await f.arrayBuffer()}).promise; const lines=[];
-      for(let p=1;p<=Math.min(doc.numPages,30);p++){ const tc=await (await doc.getPage(p)).getTextContent(); lines.push(...groupLines(tc.items)); }
-      rows=fromText(lines); }
-    else if(ext==='docx'){ await loadScript(LIBS.mammoth); const r=await mammoth.convertToHtml({arrayBuffer:await f.arrayBuffer()});
-      const d=new DOMParser().parseFromString(r.value,'text/html');
-      const tables=[...d.querySelectorAll('table')].map(t=>[...t.rows].map(tr=>[...tr.cells].map(c=>c.textContent.trim())));
-      rows=tables.length?fromTables(tables):[]; if(!rows.length) rows=fromText([...d.body.querySelectorAll('p,li')].map(p=>p.textContent)); }
-    else if(['png','jpg','jpeg','webp','bmp','gif'].includes(ext)){ await loadScript(LIBS.tess);
-      msg('Reading text from the screenshot (OCR). This takes 10–40 seconds…',true);
-      const {data}=await Tesseract.recognize(f,'eng'); rows=fromText(data.text.split('\n')); }
-    else if(ext==='doc'){ throw new Error('Old .doc files can\'t be read in the browser. Save it as .docx or PDF and try again.'); }
-    else throw new Error('Unsupported file type: .'+ext);
-    rows=mergeRows(rows);
-    msg('',true); openReview(rows,f.name,ext);
+    const kind=await sniff(f); let parsed={};
+    if(kind==='json'){ let j; try{ j=JSON.parse(await f.text()); }catch(e){ throw new Error('That JSON file is not valid JSON.'); } parsed={json:j,src:'json'}; }
+    else if(kind==='sheet'){ await loadScript(LIBS.xlsx); const wb=XLSX.read(await f.arrayBuffer());
+      parsed={tables:wb.SheetNames.map(n=>XLSX.utils.sheet_to_json(wb.Sheets[n],{header:1,raw:false,defval:''})),src:'sheet'};
+      parsed.lines=parsed.tables.flat().map(r=>r.join(' ')); }
+    else if(kind==='pdf'){ await loadScript(LIBS.pdf); pdfjsLib.GlobalWorkerOptions.workerSrc=LIBS.pdfw;
+      const doc=await pdfjsLib.getDocument({data:await f.arrayBuffer()}).promise, pages=[];
+      for(let p=1;p<=Math.min(doc.numPages,40);p++){ const tc=await (await doc.getPage(p)).getTextContent();
+        pages.push(tc.items.map(it=>({str:it.str,x:it.transform[4],y:it.transform[5],w:it.width,h:it.height}))); }
+      if(!pages.some(pg=>pg.some(it=>it.str.trim()))) throw new Error('This PDF is a scanned image with no text inside. Take a screenshot of the holdings page and import that instead.');
+      parsed={items:pages,src:'pdf'}; }
+    else if(kind==='docx'){ await loadScript(LIBS.mammoth); const r=await mammoth.convertToHtml({arrayBuffer:await f.arrayBuffer()});
+      const d=new DOMParser().parseFromString(r.value,'text/html'); parsed={tables:tablesFromHTML(d),lines:[...d.body.querySelectorAll('p,li,tr')].map(p=>p.textContent),src:'word'}; }
+    else if(kind==='html'){ const d=new DOMParser().parseFromString(await f.text(),'text/html'); parsed={tables:tablesFromHTML(d),lines:linesFromHTML(d),src:'web page'}; }
+    else if(kind==='image'){ await loadScript(LIBS.tess);
+      msg('Reading the picture (OCR). This takes 10–40 seconds…',true);
+      const img=await toReadableImage(f); const {data}=await Tesseract.recognize(img,'eng');
+      const words=(data.words||[]).map(w=>({str:w.text,x:w.bbox.x0,y:w.bbox.y0,w:w.bbox.x1-w.bbox.x0,h:w.bbox.y1-w.bbox.y0}));
+      parsed={items:words.length?[words]:[],yDown:true,lines:data.text.split('\n'),src:'screenshot'}; }
+    else if(kind==='doc') throw new Error('Old .doc files can\'t be read in the browser. Save it as .docx or PDF and try again.');
+    else parsed={lines:(await f.text()).split(/\r?\n/),src:'text'};
+    const res=Importer.extract(parsed);
+    msg('',true); openReview(res.rows,f.name,parsed.src,res.skipped);
   }catch(e){ msg(e.message||'Could not read that file.'); }
 }
-// Same ticker in several accounts -> one holding: shares added, cost = share-weighted average.
-function mergeRows(rows){
-  const m=new Map();
-  for(const r of rows){ if(!r.ticker) continue; const k=r.ticker.toUpperCase();
-    if(!m.has(k)){ m.set(k,{...r,ticker:k,accounts:1}); continue; }
-    const a=m.get(k), sh=(a.shares||0)+(r.shares||0);
-    const cost=(a.cost!=null&&r.cost!=null&&sh)?(a.cost*a.shares+r.cost*r.shares)/sh:(a.cost??r.cost);
-    m.set(k,{...a,shares:+sh.toFixed(6),cost:cost!=null?+cost.toFixed(4):null,price:a.price??r.price,desc:a.desc||r.desc,accounts:a.accounts+1}); }
-  return [...m.values()];
-}
 let REVIEW=[];
-function openReview(rows,name,ext){
+function openReview(rows,name,src,skipped=[]){
   REVIEW=rows;
-  const exact=['json','xlsx','xls','csv','ods','tsv'].includes(ext);
+  const low=rows.filter(r=>r.conf!=='high').length;
   $('#rvTitle').textContent=`${rows.length} holding${rows.length===1?'':'s'} found in ${name}`;
-  $('#rvNote').innerHTML=rows.length?(exact?'Check the rows, untick anything wrong, then add.':'<b style="color:var(--hold)">Check every number.</b> PDFs, Word files and screenshots are read by pattern-matching, so shares and cost can land in the wrong column. Fix any row before adding.')
-    :'Nothing recognisable was found. For best results, export positions from your broker as Excel/CSV with Symbol and Quantity columns.';
+  $('#rvNote').innerHTML=!rows.length?'Nothing recognisable was found. Try your broker\'s positions export (CSV/Excel), the statement PDF, or a clear screenshot of the holdings list.'
+    :(low?`<b style="color:var(--hold)">Check the ${low} row${low===1?'':'s'} marked ⚠.</b> `:'<b style="color:var(--buy)">Every row checks out</b> (shares × price = value). ')
+     +'Fix anything wrong, untick rows you don\'t want, then add.'
+     +(skipped.length?`<details style="margin-top:6px"><summary class="muted">${skipped.length} line${skipped.length===1?'':'s'} skipped (options, cash, totals…)</summary><div class="muted" style="font-size:12px">${skipped.slice(0,40).map(x=>esc(x.reason+': '+x.text.slice(0,90))).join('<br>')}</div></details>`:'');
   $('#rvBody').innerHTML=rows.map((r,i)=>`<tr><td><input type="checkbox" ${r.ticker&&r.shares>0?'checked':''} data-i="${i}"></td>
-    <td><input class="rv" value="${esc(r.ticker)}" data-k="ticker" data-i="${i}" style="width:90px;text-transform:uppercase"></td>
-    <td><input class="rv" type="number" step="any" value="${r.shares??''}" data-k="shares" data-i="${i}" style="width:110px"></td>
-    <td><input class="rv" type="number" step="any" value="${r.cost??''}" data-k="cost" data-i="${i}" style="width:110px"></td>
-    <td class="n muted">${r.price!=null?money(r.price):''}</td>
-    <td class="muted" style="font-size:12px">${isFund(r)?'fund':DATA.stocks.some(s=>s.ticker===r.ticker.toUpperCase())?'scored':'not analyzed yet'}${r.accounts>1?` · ${r.accounts} accounts merged`:''}</td></tr>`).join('');
+    <td data-l="Ticker"><input class="rv" value="${esc(r.ticker)}" data-k="ticker" data-i="${i}" style="width:80px;text-transform:uppercase">${r.desc?`<div class="muted" style="font-size:11px">${esc(r.desc.slice(0,28))}</div>`:''}</td>
+    <td data-l="Shares"><input class="rv" type="number" step="any" value="${r.shares??''}" data-k="shares" data-i="${i}" style="width:100px"></td>
+    <td data-l="Cost / share"><input class="rv" type="number" step="any" value="${r.cost??''}" data-k="cost" data-i="${i}" style="width:90px" placeholder="optional"></td>
+    <td class="n" data-l="Price"><input class="rv" type="number" step="any" value="${r.price??''}" data-k="price" data-i="${i}" style="width:90px" placeholder="auto"></td>
+    <td class="n muted" data-l="Value">${r.value!=null?money(r.value):'—'}</td>
+    <td style="font-size:12px" title="${esc(r.why||'')}">${r.conf==='high'?'<span style="color:var(--buy)">✓</span>':'<span style="color:var(--hold)">⚠</span>'} <span class="muted">${esc(r.why||'')}${r.accounts>1?` · ${r.accounts} lines merged`:''} · ${isFund(r)?'fund':DATA.stocks.some(s=>s.ticker===r.ticker.toUpperCase())?'scored':'not analyzed yet'}</span></td></tr>`).join('');
   $('#review').classList.add('on'); $('#shade').classList.add('on');
 }
 function closeReview(){ $('#review').classList.remove('on'); if(!$('#drawer').classList.contains('on')) $('#shade').classList.remove('on'); }
@@ -803,8 +791,9 @@ function applyReview(replace){
   const get=(i,k)=>$(`#rvBody input[data-i="${i}"][data-k="${k}"]`).value;
   const picked=[...$('#rvBody').querySelectorAll('input[type=checkbox]:checked')].map(cb=>{ const i=cb.dataset.i;
     const src=REVIEW[i]||{};
-    return {ticker:get(i,'ticker').trim().toUpperCase(),shares:parseFloat(get(i,'shares')),cost:get(i,'cost')===''?null:parseFloat(get(i,'cost')),
-            price:src.price??null,desc:src.desc||'',asOf:src.price!=null?new Date().toISOString().slice(0,10):null}; })
+    const px=get(i,'price')===''?null:parseFloat(get(i,'price'));
+    return {ticker:get(i,'ticker').trim().toUpperCase().replace(/\.(?=[A-Z]{1,2}$)/,'-'),shares:parseFloat(get(i,'shares')),cost:get(i,'cost')===''?null:parseFloat(get(i,'cost')),
+            price:px>0?px:null,desc:src.desc||'',asOf:px>0?new Date().toISOString().slice(0,10):null}; })
     .filter(h=>h.ticker&&h.shares>0);
   const p=replace?[]:store.get(PKEY,[]);
   picked.forEach(h=>{ const j=p.findIndex(x=>x.ticker===h.ticker); if(j>=0)p[j]=h; else p.push(h); });
