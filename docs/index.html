@@ -738,9 +738,17 @@ function fromText(lines){
     const line=String(raw).replace(/\s+/g,' ').trim(); if(!line) continue;
     const toks=line.split(' '); const ti=toks.findIndex(x=>isTicker(x.replace(/[*:,]/g,'')));
     if(ti<0) continue;
-    const nums=toks.slice(ti+1).map(toNum).filter(n=>n!=null&&n>0&&!(n>=1900&&n<=2100&&Number.isInteger(n)));
+    // Optional labels so a simple PDF can carry more than shares: "GLD 1.7 @ 380.84 cost 350"
+    // "@ <number>" = current price, "cost <number>" = average cost per share. Without labels nothing changes.
+    let price=null, lcost=null; const rest=toks.slice(ti+1);
+    for(let k=rest.length-2;k>=0;k--){
+      const w=rest[k].toLowerCase();
+      if(w==='@'||w==='price'||w==='price:'){ const v=toNum(rest[k+1]); if(v!=null&&v>0){ price=v; rest.splice(k,2); } }
+      else if(w==='cost'||w==='cost:'){ const v=toNum(rest[k+1]); if(v!=null&&v>0){ lcost=v; rest.splice(k,2); } }
+    }
+    const nums=rest.map(toNum).filter(n=>n!=null&&n>0&&!(n>=1900&&n<=2100&&Number.isInteger(n)));
     if(!nums.length) continue;
-    out.push({ticker:yahoo(toks[ti].replace(/[*:,]/g,'')),shares:nums[0],cost:nums.length>1?nums[1]:null,src:'text'});
+    out.push({ticker:yahoo(toks[ti].replace(/[*:,]/g,'')),shares:nums[0],cost:lcost??(nums.length>1?nums[1]:null),price,src:'text'});
   }
   return out;
 }
