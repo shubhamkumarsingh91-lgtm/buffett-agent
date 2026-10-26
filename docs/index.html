@@ -666,7 +666,7 @@ function renderAnalysis(P){
   const R=P.rows.filter(r=>r.val!=null), tv=P.tv||0;
   if(!R.length||!tv){ box.innerHTML=''; return; }
   const sum=f=>R.filter(f).reduce((a,r)=>a+r.val,0)/tv;
-  const stocks=R.filter(r=>!r.fk), funds=R.filter(r=>r.fk);
+  const stocks=R.filter(r=>!r.fk), funds=R.filter(r=>r.fk&&r.fk!=='crypto'), coins=R.filter(r=>r.fk==='crypto');
   const wStocks=sum(r=>!r.fk), wIndex=sum(r=>['us','intl','global'].includes(r.fk)), wBond=sum(r=>r.fk==='bond'),
         wGold=sum(r=>r.fk==='gold'), wCrypto=sum(r=>r.fk==='crypto');
   const top=R[0], top3=R.slice(0,3).reduce((a,r)=>a+r.w,0);
@@ -692,7 +692,7 @@ function renderAnalysis(P){
   if(P.noPrice.length) C.unshift(['fail',`No price for ${P.noPrice.join(', ')}`,'These count as $0 in the total. Re-import a file that has the price (statement or positions export), or analyze the stock so the site has a price.']);
   if(P.tg!=null&&P.costCover<0.95) C.push(['info',`Gain covers ${pct(P.costCover,0)} of the value`,'Holdings without a cost per share are left out of the gain. Add your average cost (your broker app shows it on each stock page) to see the full picture.']);
   if(wCrypto>0) C.push([wCrypto>0.1?'warn':'info',`${pct(wCrypto,0)} in crypto`,'Crypto has no earnings, so none of the investor lenses can value it. It can fall 70–80% in a bad year. Many long-term investors keep it under 5–10%.']);
-  if(unscored.length) C.push(['warn',`${unscored.length} stock${unscored.length>1?'s':''} not analyzed yet`,`${unscored.join(', ')}: ${pct(sum(r=>!r.fk&&!r.s),0)} of the portfolio has no research memo yet.`]);
+  if(unscored.length) C.push(['warn',`${unscored.length} stock${unscored.length>1?'s':''} not analyzed yet`,`${unscored.join(', ')}: ${(w=>pct(w,w<0.01?1:0))(sum(r=>!r.fk&&!r.s))} of the portfolio has no research memo yet.`]);
   // allocation by holding (donut) and by type (bars)
   const types=[['Individual stocks',wStocks,'#d9b46c'],['US index funds',sum(r=>r.fk==='us'),'#6aa8ff'],['International / global',sum(r=>['intl','global'].includes(r.fk)),'#5fd3c6'],['Bonds',wBond,'#b993ff'],['Gold / commodities',wGold,'#f0d79c'],['Crypto',wCrypto,'#ff8a5c'],['Real estate',sum(r=>r.fk==='reit'),'#f08fb8']].filter(t=>t[1]>0.0001);
   const scoredLine=P.score!=null?`<div class="kr"><span>Research score (analyzed stocks)</span><b style="color:${sc(P.score)}">${Math.round(P.score)}/100</b></div>`:'';
@@ -704,7 +704,7 @@ function renderAnalysis(P){
     <div class="stats" style="margin-bottom:14px">
       <div class="stat"><div class="k">Value</div><div class="v">${money(tv)}</div></div>
       <div class="stat"><div class="k">Gain</div><div class="v" style="color:${P.tg==null?'':P.tg>=0?'var(--buy)':'var(--pass)'}">${P.tg==null?'—':(P.tg>=0?'+':'')+pct(P.tg)}${P.tg!=null&&P.costCover<0.995?`<span class="muted" style="font-size:13px;font-family:Inter"> on ${pct(P.costCover,0)} of value</span>`:''}</div></div>
-      <div class="stat"><div class="k">Holdings</div><div class="v">${R.length}<span class="muted" style="font-size:13px;font-family:Inter"> · ${stocks.length} stocks, ${funds.length} funds</span></div></div>
+      <div class="stat"><div class="k">Holdings</div><div class="v">${R.length}<span class="muted" style="font-size:13px;font-family:Inter"> · ${stocks.length} stocks, ${funds.length} fund${funds.length===1?'':'s'}${coins.length?`, ${coins.length} crypto`:''}</span></div></div>
       <div class="stat"><div class="k">Researched</div><div class="v">${pct(scoredW+sum(r=>r.fk&&r.fk!=='crypto'),0)}<span class="muted" style="font-size:13px;font-family:Inter"> of value</span></div></div>
     </div>
     <div class="cols">
@@ -713,7 +713,7 @@ function renderAnalysis(P){
         <div style="margin-top:12px">${scoredLine}</div></div>
     </div>
     <div class="check" style="margin-top:14px">${C.map(([st,t,d])=>`<div class="ci"><div class="s s-${st}">${{pass:'✓',warn:'!',fail:'✕',info:'i'}[st]}</div><b>${esc(t)}</b><span>${esc(d)}</span></div>`).join('')}</div>
-    ${unscored.length?`<div class="req on" style="margin:14px 0 0"><p><b>Get a research memo for ${unscored.join(', ')}.</b> Adds them to the Company Desk; results show up here in a minute or two. Funds (${funds.map(r=>r.h.ticker).join(', ')||'none'}) aren\u2019t scored, because the investor lenses judge individual businesses.</p>
+    ${unscored.length?`<div class="req on" style="margin:14px 0 0"><p><b>Get a research memo for ${unscored.join(', ')}.</b> Adds them to the Company Desk; results show up here in a minute or two. Funds (${funds.map(r=>r.h.ticker).join(', ')||'none'})${coins.length?' and crypto':''} aren\u2019t scored, because the investor lenses judge individual businesses.</p>
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px"><button class="btn primary" onclick="analyzeNow('${unscored.map(esc).join(',')}','company')">⚡ Analyze my ${unscored.length} stock${unscored.length>1?'s':''} now</button>
       <a class="muted" style="font-size:12px" target="_blank" rel="noopener" href="https://github.com/${REPO}/issues/new?title=${title}&body=${body}">or request on GitHub ↗</a></div></div>`:''}
    </div>`;
