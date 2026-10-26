@@ -1,7 +1,7 @@
 {
- "generated": "2026-10-26T00:07:29+00:00",
+ "generated": "2026-10-26T01:11:19+00:00",
  "version": 2,
- "count": 36,
+ "count": 37,
  "failed": [],
  "stocks": [
   {
@@ -6399,6 +6399,213 @@
     ],
     "by": "rules",
     "updated": "2026-10-24"
+   }
+  },
+  {
+   "ticker": "RVII",
+   "desk": "company",
+   "note": "",
+   "name": "Robinhood Ventures Fund II",
+   "sector": "Financial Services",
+   "industry": "Asset Management",
+   "price": 17.84,
+   "week52_high": 25.24,
+   "week52_low": 17.5,
+   "overall": {
+    "label": "HOLD / NEUTRAL",
+    "rationale": "No strong signal either way on the available data.",
+    "score": 49.2
+   },
+   "lenses": [
+    {
+     "key": "buffett",
+     "short": "Buffett",
+     "name": "Buffett & Munger (Quality Compounding)",
+     "score": 41.0,
+     "verdict": "Weak fit",
+     "pros": [],
+     "cons": [
+      "Thin gross margin (0%) \u2014 little evidence of a durable moat.",
+      "Debt/equity data unavailable.",
+      "No positive free cash flow yet, so there's no intrinsic value / margin of safety to estimate."
+     ]
+    },
+    {
+     "key": "graham",
+     "short": "Graham",
+     "name": "Benjamin Graham (Deep Value)",
+     "score": 48.2,
+     "verdict": "Weak fit",
+     "pros": [],
+     "cons": [
+      "Not enough data (EPS/book value) to compute a Graham Number.",
+      "Current ratio unavailable \u2014 can't verify Graham's liquidity requirement.",
+      "No current dividend \u2014 fails Graham's income requirement for the defensive investor."
+     ]
+    },
+    {
+     "key": "lynch",
+     "short": "Lynch",
+     "name": "Peter Lynch (GARP \u2014 Unclassified (insufficient growth data))",
+     "score": 58.8,
+     "verdict": "Partial fit",
+     "pros": [
+      "Institutional ownership is relatively low (0%) \u2014 by Lynch's logic, more room for the stock to be 'discovered'."
+     ],
+     "cons": [
+      "PEG ratio unavailable (need both a P/E and a growth estimate)."
+     ]
+    },
+    {
+     "key": "fisher",
+     "short": "Fisher",
+     "name": "Philip Fisher (Growth Quality)",
+     "score": 49.0,
+     "verdict": "Weak fit",
+     "pros": [],
+     "cons": [
+      "Operating margin 0%, below what Fisher called a worthwhile margin (#5)."
+     ]
+    },
+    {
+     "key": "greenblatt",
+     "short": "Greenblatt",
+     "name": "Joel Greenblatt (Magic Formula)",
+     "score": 50.0,
+     "verdict": "Not applicable",
+     "pros": [],
+     "cons": [
+      "Greenblatt excludes Financial Services companies; their balance sheets don't fit the formula."
+     ]
+    }
+   ],
+   "classic": null,
+   "kpis": {
+    "revenue_ttm": null,
+    "revenue_growth_yoy": null,
+    "revenue_cagr": null,
+    "earnings_growth": null,
+    "quarterly_revenue": [],
+    "gross_margin": 0.0,
+    "operating_margin": 0.0,
+    "profit_margin": 0.0,
+    "roe_avg": null,
+    "roic": null,
+    "roa": null,
+    "free_cash_flow": null,
+    "fcf_margin": null,
+    "total_cash": null,
+    "cash_runway_years": null,
+    "rule_of_40": null,
+    "market_cap": 161744288,
+    "pe": null,
+    "forward_pe": null,
+    "pb": null,
+    "peg": null,
+    "price_to_sales": null,
+    "ev_to_ebitda": null,
+    "earnings_yield": null,
+    "graham_number": null,
+    "dividend_yield": 0.0,
+    "payout_ratio": null,
+    "debt_to_equity": null,
+    "current_ratio": null,
+    "insider_pct": 0.0,
+    "institutional_pct": 0.0,
+    "short_pct_float": null,
+    "beta": null
+   },
+   "valuation": {
+    "bear": null,
+    "base": null,
+    "bull": null,
+    "growth": null,
+    "method": null,
+    "note": "Not meaningful: no positive earnings to value (banks and lenders are valued on earnings, not cash flow).",
+    "margin_of_safety": null,
+    "confidence": null
+   },
+   "recent_ipo": true,
+   "ipo": {
+    "months_listed": 2.4,
+    "first_trade_date": "2026-08-13",
+    "first_day_open": null,
+    "first_day_close": null,
+    "prospectus": null,
+    "checklist": []
+   },
+   "news": [],
+   "data_notes": [
+    "Limited multi-year history from free data source vs. the 10-year windows the original strategies were designed around."
+   ],
+   "stale": false,
+   "updated": "2026-10-26T01:11:18+00:00",
+   "memo": {
+    "headline": "HOLD / NEUTRAL. No strong signal either way on the available data.",
+    "business": "Robinhood Ventures Fund II (RVII) is an asset management company worth about $162M. It is not yet profitable at the operating level.",
+    "bull": [
+     "Institutional ownership is relatively low (0%) \u2014 by Lynch's logic, more room for the stock to be 'discovered'. (Lynch)"
+    ],
+    "bear": [
+     "Thin gross margin (0%) \u2014 little evidence of a durable moat. (Buffett)",
+     "Debt/equity data unavailable. (Buffett)",
+     "No positive free cash flow yet, so there's no intrinsic value / margin of safety to estimate. (Buffett)",
+     "Not enough data (EPS/book value) to compute a Graham Number. (Graham)"
+    ],
+    "valuation": "Not meaningful: no positive earnings to value (banks and lenders are valued on earnings, not cash flow).",
+    "watch": [
+     "Operating margin (0%) keeps rising as the company grows."
+    ],
+    "plan": "Pass for now. Revisit only if the business or the price changes materially.",
+    "buffett_view": "On Buffett's own tests this scores 41/100.",
+    "ai": null
+   },
+   "news30": {
+    "summary": "Over the last 30 days Robinhood Ventures Fund II shares fell 20% (now $17.84). News flow was light (6 stories) and the headlines were mostly neutral (0 upbeat, 0 downbeat). Key headline: \u201cRobinhood Ventures Fund II (RVII) Analyst insights, Price targets and Recommendations\u201d (Yahoo Finance UK, 2026-10-25).",
+    "count": 6,
+    "tone": "mostly neutral",
+    "positive": 0,
+    "negative": 0,
+    "themes": [
+     [
+      "analyst calls",
+      1
+     ]
+    ],
+    "items": [
+     {
+      "title": "Robinhood Ventures Fund II (RVII) Analyst insights, Price targets and Recommendations",
+      "source": "Yahoo Finance UK",
+      "date": "2026-10-25",
+      "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE8tQUkta0dQMDM5XzgyNzIxOGE1ZWE0ekd3R0VhSVk0UzVNMVRIN3BVUWkwUHljZVE3a1d3U2hjUWxJOEF3SzVQZzBza3MzdjI0enpBX0U2MllmVGsxc214a3pwOXlUXzh2?oc=5"
+     },
+     {
+      "title": "Robinhood Ventures Fund I (RVI) Invests in Cognition",
+      "source": "Robinhood",
+      "date": "2026-10-23",
+      "link": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1GaVdjQ1F2Y19iLVlLY0tIRmw4NWVBaUtjSVB0Z1J0UTRfUzZRRFVFRkNVVV92ZVhCWkhFZThUT2xqbEpwUTYzX0hzamlCUmhsZ0sxY2ZfNGVWd2NZTWhOQ0xVYmpidw?oc=5"
+     },
+     {
+      "title": "Robinhood Ventures Fund II (Closed End) (RVII) Stock Price, News & Analysis $RVII",
+      "source": "MarketBeat",
+      "date": "2026-10-23",
+      "link": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFB1MDlrNHFwZVNRQ3ZvT0NjT1JBRTgwcTJlcmMzYWJnMEhNa01PUnE0bGxUZEhqRURLNzdXTUNUMmViTldkLUwxVXY2UDFTYnBQQUQxbklqdw?oc=5"
+     },
+     {
+      "title": "Robinhood Ventures Fund II Estimates \u2013 NYSE:RVII",
+      "source": "TradingView",
+      "date": "2026-10-23",
+      "link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxONGJIaTNQd2l2LXBRbTFVWjV0dmdSRTFuTlZEZ0R4bzFybUNja0NlVGxqQ3owTzhxRTFqRnk1cVl2UzFBSW1reVdBaHNqS3N4Wmk5WUllQTBPMldEM0hlaXQ0cjNkVmkzZGV1N2lIeW9xZ0Q0cWYtdjg3a1dVQ2FXaXN6cXE5eGFOdmF2MnczVQ?oc=5"
+     },
+     {
+      "title": "Robinhood Ventures Fund I (RVI) Invests in Erebor",
+      "source": "Robinhood",
+      "date": "2026-10-22",
+      "link": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFBjNU5GVzhVd2E0dTN0blBMVlNnQ2M4TVJHV2dlZ2xnNFlBLXdrSXNweWtjWUtQM3ZqemdiYlktR21Gb1B4SDBDT3luZnNOaTlCM0sxeFdzV0tDMG1BLU5Ha0pn?oc=5"
+     }
+    ],
+    "by": "rules",
+    "updated": "2026-10-26"
    }
   },
   {
