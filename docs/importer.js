@@ -153,7 +153,7 @@
         let cost = map.cost != null ? cellNum(r[map.cost]) : null;
         if (cost == null && map.costTotal != null) { const ct = cellNum(r[map.costTotal]); if (ct > 0) cost = +(ct / sh).toFixed(4); }
         out.push(finish({ ticker: tk, shares: sh, price: px, value: mv, cost: cost > 0 ? cost : null, desc,
-          acct: map.acct != null ? lastDigits(r[map.acct]) : '', src, conf: 'high', why: 'read from a table with column headers' }));
+          acct: map.acct != null ? lastDigits(r[map.acct]) : '', src, conf: 'high', why: 'from table columns' }));
       }
     }
     return { rows: out, skipped };
