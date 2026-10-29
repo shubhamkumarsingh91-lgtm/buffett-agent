@@ -242,7 +242,14 @@
 "place": "research",
 "kind": "verdicts",
 "text": "Changed its mind on SPCX HOLD / NEUTRAL → LIKELY PASS."
+},
+{
+"t": "2026-10-29T01:56:39Z",
+"bot": "buffett",
+"place": "research",
+"kind": "rescore",
+"text": "Re-scored all 37 stocks (10 IPOs, 27 established companies) with every investor’s rules and a month of news for each. Top score: RDDT (BUY candidate (start small), 79)."
 }
 ],
-"generated": "2026-10-28T01:33:08Z"
+"generated": "2026-10-29T01:56:39Z"
 }
