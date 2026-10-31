@@ -256,7 +256,14 @@
 "place": "research",
 "kind": "rescore",
 "text": "Re-scored all 37 stocks (10 IPOs, 27 established companies) with every investor’s rules and a month of news for each. Top score: RDDT (BUY candidate (start small), 79)."
+},
+{
+"t": "2026-10-31T01:44:22Z",
+"bot": "buffett",
+"place": "research",
+"kind": "rescore",
+"text": "Re-scored all 37 stocks (10 IPOs, 27 established companies) with every investor’s rules and a month of news for each. Top score: RDDT (BUY candidate (start small), 79)."
 }
 ],
-"generated": "2026-10-30T02:06:15Z"
+"generated": "2026-10-31T01:44:22Z"
 }
