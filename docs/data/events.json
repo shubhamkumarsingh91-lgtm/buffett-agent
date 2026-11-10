@@ -312,7 +312,21 @@
 "place": "research",
 "kind": "rescore",
 "text": "Re-scored all 37 stocks (10 IPOs, 27 established companies) with every investor’s rules and a month of news for each. Top score: RDDT (BUY candidate (start small), 82)."
+},
+{
+"t": "2026-11-10T04:15:06Z",
+"bot": "buffett",
+"place": "research",
+"kind": "rescore",
+"text": "Re-scored all 37 stocks (10 IPOs, 27 established companies) with every investor’s rules and a month of news for each. Top score: RDDT (BUY candidate (start small), 79)."
+},
+{
+"t": "2026-11-10T04:15:06Z",
+"bot": "buffett",
+"place": "research",
+"kind": "verdicts",
+"text": "Changed its mind on SAIL WATCH → WATCH (priced for perfection); BRK-B WORTH RESEARCHING → HOLD / NEUTRAL."
 }
 ],
-"generated": "2026-11-07T02:08:40Z"
+"generated": "2026-11-10T04:15:06Z"
 }
