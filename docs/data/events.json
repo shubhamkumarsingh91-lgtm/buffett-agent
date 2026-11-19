@@ -403,7 +403,21 @@
 "place": "research",
 "kind": "verdicts",
 "text": "Changed its mind on SAIL WATCH (priced for perfection) → WATCH."
+},
+{
+"t": "2026-11-19T03:45:51Z",
+"bot": "buffett",
+"place": "research",
+"kind": "rescore",
+"text": "Re-scored all 37 stocks (10 IPOs, 27 established companies) with every investor’s rules and a month of news for each. Top score: RDDT (BUY candidate (start small), 82)."
+},
+{
+"t": "2026-11-19T03:45:51Z",
+"bot": "buffett",
+"place": "research",
+"kind": "verdicts",
+"text": "Changed its mind on SAIL WATCH → WATCH (priced for perfection)."
 }
 ],
-"generated": "2026-11-18T03:47:39Z"
+"generated": "2026-11-19T03:45:51Z"
 }
